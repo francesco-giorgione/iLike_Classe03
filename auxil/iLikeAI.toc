@@ -1,0 +1,26 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Introduzione}{2}{}%
+\contentsline {chapter}{\numberline {2}Business Understanding}{3}{}%
+\contentsline {section}{\numberline {2.1}Obiettivi di business}{3}{}%
+\contentsline {section}{\numberline {2.2}PEAS}{3}{}%
+\contentsline {paragraph}{}{3}{}%
+\contentsline {section}{\numberline {2.3}Proprietà dell'ambiente}{3}{}%
+\contentsline {section}{\numberline {2.4}Analisi del problema}{4}{}%
+\contentsline {chapter}{\numberline {3}Data Understanding}{5}{}%
+\contentsline {section}{\numberline {3.1}Acquisizione dei dataset}{5}{}%
+\contentsline {section}{\numberline {3.2}Analisi dei dataset}{5}{}%
+\contentsline {chapter}{\numberline {4}Data Preparation}{6}{}%
+\contentsline {section}{\numberline {4.1}Data Cleaning}{6}{}%
+\contentsline {section}{\numberline {4.2}Feature Scaling}{6}{}%
+\contentsline {section}{\numberline {4.3}Feature Selection}{6}{}%
+\contentsline {section}{\numberline {4.4}Data Balancing}{6}{}%
+\contentsline {chapter}{\numberline {5}Modeling}{7}{}%
+\contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{7}{}%
+\contentsline {section}{\numberline {5.2}Fase di addestramento}{7}{}%
+\contentsline {chapter}{\numberline {6}Evaluation}{8}{}%
+\contentsline {section}{\numberline {6.1}Elbow point}{8}{}%
+\contentsline {section}{\numberline {6.2}Silhouette coefficient}{8}{}%
+\contentsline {section}{\numberline {6.3}MoJo distance}{8}{}%
+\contentsline {chapter}{\numberline {7}Deployment}{9}{}%
+\contentsline {chapter}{\numberline {8}Glossario}{10}{}%

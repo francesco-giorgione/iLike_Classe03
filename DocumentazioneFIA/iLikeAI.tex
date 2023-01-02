@@ -11,16 +11,21 @@
 \usepackage{colortbl}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{graphicx}
+\usepackage[colorlinks = true,
+    linkcolor = darkgray,
+    urlcolor  = darkgray,
+    citecolor = white,
+    anchorcolor = darkgray]{hyperref}
 
 \makeatletter
-\def\@makechapterhead#1{%
-    \vspace*{1\p@}%
-    {\parindent \z@ \raggedright
-    \normalfont
-    \interlinepenalty\@M
-    \Huge \bfseries\thechapter\space  #1\par\nobreak
-    \vskip 20\p@
-    }}
+    \def\@makechapterhead#1{%
+        \vspace*{1\p@}%
+        {\parindent \z@ \raggedright
+        \normalfont
+        \interlinepenalty\@M
+        \Huge \bfseries\thechapter\space  #1\par\nobreak
+        \vskip 20\p@
+        }}
 \makeatother
 
 % Document
@@ -44,122 +49,164 @@
 
     \chapter{Introduzione}\label{ch:introduzione}
 
+    Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che leggono libri, ascoltano musica,
+    guardano film e serie TV. Di conseguenza, aumenta la voglia di conoscere persone che condividono interessi simili, di esporre le proprie idee e
+    di scoprire quelle altrui. La recensione rappresenta lo strumento principale per garantire questa forma di interazione. Tuttavia, attualmente non esiste
+    una piattaforma unica che consenta di recensire una così ampia gamma di contenuti. A tal proposito, l’obiettivo principale di \textit{iLike} è quello di realizzare
+    una piattaforma unificata che consenta di recensire film, serie TV, libri e album musicali e di rimanere aggiornati sulle ultime novità.
+    Inoltre è di fondamentale importanza la possibilità di interagire con una chat bot, la quale permette di visualizzare i contenuti richiesti dall’utente,
+    personalizzati sulla base delle sue preferenze.
+
+
 
     \chapter{Business Understanding}\label{ch:business-understanding}
 
 
-    \section{Obiettivi di business}\label{sec:obiettivi-di-business}
+        \section{Obiettivi di business}\label{sec:obiettivi-di-business}
 
+        L’obiettivo principale di \textit{iLike} è la realizzazione di una chat bot, che permetterà all’utente di interagirvi
+        per richiedere consigli su contenuti che ricadono nei suoi gusti personali.
+        Lo scopo è quello di consentire una facile interazione degli utenti con la nostra applicazione, permettendo a utenti indecisi di ricevere
+        consigli personalizzati su contenuti che potrebbero essere di interesse personale,in base ai contenuti con i quali hanno già interagito.
 
     \section{PEAS}\label{sec:peas}
 
-    Specifica PEAS dell'ambiente.
+            Specifica PEAS dell'ambiente.
 
-        \paragraph{}
+                \paragraph{}
 
-        \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
-            \hline
-            \textbf{Performance} & Capacità dell’agente di suggerire all’utente contenuti che rispecchiano i suoi gusti. \\
-            \hline
-            \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
-            utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
-            \hline
-            \textbf{Actuators} & Risposta del Conversational Agent.\\
-            \hline
-            \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
-            \hline
-        \end{tabular}
+                \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
+                    \hline
+                    \textbf{Performance} & Capacità dell’agente di suggerire all’utente contenuti che rispecchiano i suoi gusti. \\
+                    \hline
+                    \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
+                    utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
+                    \hline
+                    \textbf{Actuators} & Risposta del Conversational Agent.\\
+                    \hline
+                    \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
+                    \hline
+                \end{tabular}
 
 
-    \section{Proprietà dell'ambiente}\label{sec:proprieta-dell'ambiente}
-    L’ambiente possiede le seguenti proprietà:
-        \begin{itemize}
-            \item \textbf{Completamente osservabile}: l’agente ha accesso all’elenco dei contenuti presenti nell’applicazione
-            e alle preferenze degli utenti in qualsiasi momento;
-            \item \textbf{Stocastico}: lo stato dell’ambiente varia indipendentemente dall’azione intrapresa dall’agente;
-            \item \textbf{Sequenziale}: le decisioni prese dall’agente dipendono dalle azioni passate dell’utente;
-            \item \textbf{Statico}: nel momento in cui l’agente sta elaborando la sua decisione l’utente non può modificare
-            le sue preferenze;
-            \item \textbf{Discreto}: i suggerimenti dati dall’agente dipendono dalla combinazione di contenuti preferiti di cui
-            l’utente dispone ed esistono un numero limitato di possibili combinazioni;
-            \item \textbf{Singolo-agente}: esiste un unico agente che opera nell’ambiente.
-        \end{itemize}
+        \section{Proprietà dell'ambiente}\label{sec:proprieta-dell'ambiente}
+            L’ambiente possiede le seguenti proprietà:
+                \begin{itemize}
+                    \item \textbf{Completamente osservabile}: l’agente ha accesso all’elenco dei contenuti presenti nell’applicazione
+                    e alle preferenze degli utenti in qualsiasi momento;
+                    \item \textbf{Stocastico}: lo stato dell’ambiente varia indipendentemente dall’azione intrapresa dall’agente;
+                    \item \textbf{Sequenziale}: le decisioni prese dall’agente dipendono dalle azioni passate dell’utente;
+                    \item \textbf{Statico}: nel momento in cui l’agente sta elaborando la sua decisione l’utente non può modificare
+                    le sue preferenze;
+                    \item \textbf{Discreto}: i suggerimenti dati dall’agente dipendono dalla combinazione di contenuti preferiti di cui
+                    l’utente dispone ed esistono un numero limitato di possibili combinazioni;
+                    \item \textbf{Singolo-agente}: esiste un unico agente che opera nell’ambiente.
+                \end{itemize}
 
-    \section{Analisi del problema}\label{sec:analisi-del-problema}
-    Il problema che l’agente intelligente dovrà risolvere consiste nel suggerire film/serie TV da vedere,
-        libri da leggere ed album musicali da ascoltare in base ai contenuti presenti nei dataset dell’applicazione
-        e soprattutto in base alle preferenze espresse dagli utenti.
+        \section{Analisi del problema}\label{sec:analisi-del-problema}
+            Il problema che l’agente intelligente dovrà risolvere consiste nel suggerire film/serie TV da vedere,
+            libri da leggere ed album musicali da ascoltare in base ai contenuti presenti nei dataset dell’applicazione
+            e soprattutto in base alle preferenze espresse dagli utenti.
 
-        Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare
-        l’esecuzione di un task (T=fornire suggerimenti personalizzati) rispetto ad una misura di prestazione
-        (P= numero di suggerimenti accettati dall’utente) e sulla base dell’esperienza (E= database di contenuti non
-        etichettati).
-        Inoltre l’algoritmo di apprendimento in questione è di tipo non supervisionato in quanto non si dispone di un
-        database contenente dati già etichettati, bensì dovrà essere l’agente capace di apprendere il valore reale
-        della variabile dipendente sulla base delle conoscenze di cui dispone.
+            Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare
+            l’esecuzione di un task (T=fornire suggerimenti personalizzati) rispetto ad una misura di prestazione
+            (P= numero di suggerimenti accettati dall’utente) e sulla base dell’esperienza (E= database di contenuti non
+            etichettati).
+            Inoltre l’algoritmo di apprendimento in questione è di tipo non supervisionato in quanto non si dispone di un
+            database contenente dati già etichettati, bensì dovrà essere l’agente capace di apprendere il valore reale
+            della variabile dipendente sulla base delle conoscenze di cui dispone.
 
-        Nello specifico il problema in esame può essere risolto tramite l’utilizzo di un algoritmo di clustering.
-        Una volta che l’utente ha espresso le sue preferenze riguardanti contenuti presenti nell’applicazione, l’algoritmo
-        creerà, in base ad una misura di similarità (che verrà definita in seguito), dei cluster contenenti film, serie TV,
-        libri e album musicali dotati di un certo grado di omogeneità.
-        Procederà quindi a consigliare nuovi contenuti in base alla clusterizzazione effettuata.
+            Nello specifico il problema in esame può essere risolto tramite l’utilizzo di un algoritmo di clustering.
+            Una volta che l’utente ha espresso le sue preferenze riguardanti contenuti presenti nell’applicazione, l’algoritmo
+            creerà, in base ad una misura di similarità (che verrà definita in seguito), dei cluster contenenti film, serie TV,
+            libri e album musicali dotati di un certo grado di omogeneità.
+            Procederà quindi a consigliare nuovi contenuti in base alla clusterizzazione effettuata.
 
-        I suggerimenti verranno dati solo qualora l’utente ne faccia richiesta ed il tutto avviene in maniera
-        automatica tramite l’utilizzo di un Conversational Agent.
+            I suggerimenti verranno dati solo qualora l’utente ne faccia richiesta ed il tutto avviene in maniera
+            automatica tramite l’utilizzo di un Conversational Agent.
 
     \chapter{Data Understanding}\label{ch:data-understanding}
 
+        \section{Acquisizione dei dataset}\label{sec:acquisizione-dei-dataset}
+            Durante la scelta dai dati da fornire al machine learning le possibili scelte da seguire erano sostanzialmente due:
+            \begin{itemize}
+                \item Creare un dataset contenente gli utenti di iLike ed analizzare il loro comportamento, al fine di creare
+                      cluster di utenti i quali hanno preferenze similari;
+                \item Cercare dataset con le informazioni sui contenuti e creare cluster di contenuti.
+            \end{itemize}
 
-    \section{Acquisizione dei dataset}\label{sec:acquisizione-dei-dataset}
+            I problemi riscontrati sono:
+            \begin{itemize}
+                \item La disponibilità di dati era maggiore nei dataset già esistenti;
+                \item Ogni utente ha gusti differenti, quindi la similarità dei contenuti in un cluster può non essere sempre
+                      veritera;
+                \item Individuare dataset con un numero ottimale di istanze e le giuste informazioni sui contenuti richiede
+                      un'accurata analisi.
+            \end{itemize}
+            Al seguito di una breve trade-off abbiamo preferito di utilizzare dataset già creati poichè, la disponibilità
+            di dati e la giusta similarità di elementi in un cluster, agevola le prestazioni dell'algoritmo di machine learning.
 
-
-    \section{Analisi dei dataset}\label{sec:analisi-dei-dataset}
+        \section{Analisi dei dataset}\label{sec:analisi-dei-dataset}
+            I dataset reperiti sulla piattaforma Kaggle sono:
+            \begin{itemize}
+                \item \href{https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset?resource=download}{\underline{Film}}
+                \item \href{https://www.kaggle.com/datasets/amritvirsinghx/web-series-ultimate-edition}{\underline{Serie TV}}
+                \item \href{https://www.kaggle.com/datasets/lucascantu/top-5000-albums-of-all-time-spotify-features}{\underline{Album Musicali}}
+                \item \href{https://www.kaggle.com/datasets/mdhamani/goodreads-books-100k}{\underline{Libri}}
+            \end{itemize}
 
 
     \chapter{Data Preparation}\label{ch:data-preparation}
 
 
-    \section{Data Cleaning}\label{sec:data-cleaning}
+        \section{Data Cleaning}\label{sec:data-cleaning}
 
 
-    \section{Feature Scaling}\label{sec:feature-scaling}
+        \section{Feature Scaling}\label{sec:feature-scaling}
 
 
-    \section{Feature Selection}\label{sec:feature-selection}
+        \section{Feature Selection}\label{sec:feature-selection}
 
 
-    \section{Data Balancing}\label{sec:data-balancing}
+        \section{Data Balancing}\label{sec:data-balancing}
 
 
     \chapter{Modeling}\label{ch:modeling}
 
 
-    \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
+        \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
 
 
-    \section{Fase di addestramento}\label{sec:fase-di-addestramento}
+        \section{Fase di addestramento}\label{sec:fase-di-addestramento}
 
 
     \chapter{Evaluation}\label{ch:evaluation}
 
 
-    \section{Elbow point}\label{sec:elbow-point}
+        \section{Elbow point}\label{sec:elbow-point}
 
 
-    \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
+        \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
 
 
-    \section{MoJo distance}\label{sec:mojo-distance}
+        \section{MoJo distance}\label{sec:mojo-distance}
 
 
     \chapter{Deployment}\label{ch:deployment}
 
 
     \chapter{Glossario}\label{ch:glossario}
-    \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
-        \hline
-        \textbf{Contenuto} & Elemento appartenente all’insieme di film, serie TV, libri e album musicali.\\
-        \hline
-    \end{tabular}
+        \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
+            \hline
+            \textbf{Contenuto} & Elemento appartenente all’insieme di film, serie TV, libri e album musicali.\\
+            \hline
+            \hline
+            \textbf{Cluster} & Sottoinsieme di contenuti con caratteristiche simili.\\
+            \hline
+            \hline
+            \textbf{Machine Learning} & É la branca dell'Intelligenza Artificiale che include tutti gli algoritmi
+                    che possano imparare dai dati e sulla base di questi fare previsioni.\\
+            \hline
+        \end{tabular}
 
 \end{document}
