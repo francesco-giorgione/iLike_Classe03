@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.28)  28 DEC 2022 22:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.28)  2 JAN 2023 19:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -197,7 +197,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo.
-JPEG>] (/Users/macbookpro/Desktop/progetto/out/iLikeAI.toc
+JPEG>] [2] (/Users/macbookpro/Desktop/progetto/out/iLikeAI.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -267,11 +267,11 @@ t/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2022/texmf-dist/
 fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2022/texmf-dist/fo
 nts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2022/texmf-dist/font
 s/type1/public/cm-super/sfti1440.pfb>
-Output written on /Users/macbookpro/Desktop/progetto/out/iLikeAI.pdf (11 pages,
- 423771 bytes).
+Output written on /Users/macbookpro/Desktop/progetto/out/iLikeAI.pdf (12 pages,
+ 425760 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 89 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
