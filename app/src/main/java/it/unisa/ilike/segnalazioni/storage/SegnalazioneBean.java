@@ -2,6 +2,14 @@ package it.unisa.ilike.segnalazioni.storage;
 
 public class SegnalazioneBean {
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getTipo() {
         return tipo;
     }
@@ -26,6 +34,7 @@ public class SegnalazioneBean {
         this.gestita = gestita;
     }
 
+    private int id;
     private int tipo;
     private String motivazione;
     private Boolean gestita;

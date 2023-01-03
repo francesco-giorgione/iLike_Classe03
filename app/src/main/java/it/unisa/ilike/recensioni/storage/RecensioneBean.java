@@ -4,6 +4,14 @@ import java.util.Date;
 
 public class RecensioneBean {
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTesto() {
         return testo;
     }
@@ -44,6 +52,7 @@ public class RecensioneBean {
         this.motivazione_cancellazione = motivazione_cancellazione;
     }
 
+    private int id;
     private String testo;
     private int valutazione;
     private Date data;

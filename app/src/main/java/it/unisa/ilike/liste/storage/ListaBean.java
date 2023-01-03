@@ -2,6 +2,14 @@ package it.unisa.ilike.liste.storage;
 
 public class ListaBean {
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -18,6 +26,7 @@ public class ListaBean {
         this.visibilita = visibilita;
     }
 
+    private int id;
     private String nome;
     private Boolean visibilita;
 }

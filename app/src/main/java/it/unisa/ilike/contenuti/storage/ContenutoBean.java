@@ -2,6 +2,14 @@ package it.unisa.ilike.contenuti.storage;
 
 public class ContenutoBean {
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitolo() {
         return titolo;
     }
@@ -26,6 +34,7 @@ public class ContenutoBean {
         this.categoria = categoria;
     }
 
+    private int id;
     private String titolo;
     private String descrizione;
     private String categoria;
