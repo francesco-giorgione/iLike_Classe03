@@ -1,4 +1,5 @@
 package it.unisa.ilike.account.storage;
 
-public class AccountDAO {
+public abstract class UtenteBean {
+
 }
