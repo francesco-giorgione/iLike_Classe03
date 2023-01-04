@@ -6,14 +6,13 @@ public class SegnalazioneBean {
     }
 
     public SegnalazioneBean(int id, int tipo, String motivazione, Boolean gestita,
-                            String email_iscritto, int id_recensione, int id_contenuto) {
+                            String email_iscritto, int id_recensione) {
         this.id = id;
         this.tipo = tipo;
         this.motivazione = motivazione;
         this.gestita = gestita;
         this.email_iscritto = email_iscritto;
         this.id_recensione = id_recensione;
-        this.id_contenuto = id_contenuto;
     }
 
     public int getId() {
@@ -78,6 +77,4 @@ public class SegnalazioneBean {
     private Boolean gestita;
     private String email_iscritto;
     private int id_recensione;
-    private int id_contenuto;
-
 }
