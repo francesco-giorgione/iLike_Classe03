@@ -1,6 +1,16 @@
 package it.unisa.ilike.contenuti.storage;
 
-public class ContenutoBean {
+public abstract class ContenutoBean {
+
+    public ContenutoBean() {
+    }
+
+    public ContenutoBean(int id, String titolo, String descrizione, String categoria) {
+        this.id = id;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.categoria = categoria;
+    }
 
     public int getId() {
         return id;
