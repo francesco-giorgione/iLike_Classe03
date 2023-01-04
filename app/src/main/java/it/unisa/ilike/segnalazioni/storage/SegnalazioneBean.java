@@ -63,14 +63,6 @@ public class SegnalazioneBean {
         this.id_recensione = id_recensione;
     }
 
-    public int getId_contenuto() {
-        return id_contenuto;
-    }
-
-    public void setId_contenuto(int id_contenuto) {
-        this.id_contenuto = id_contenuto;
-    }
-
     private int id;
     private int tipo;
     private String motivazione;
