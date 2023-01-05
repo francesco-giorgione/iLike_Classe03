@@ -140,7 +140,7 @@ public class RecensioneDAO {
 
         int id= recensione.getId();
         String motivazioneCancellazione= recensione.getMotivazioneCancellazione();
-        String query= "update Recensione set cancellata= "+true+", motivazione_cancellazione= '"+
+        String query= "update Recensione set cancellata= true, motivazione_cancellazione= '"+
                 motivazioneCancellazione+"' where id= "+ id;
         QueryManager queryManager= new QueryManager();
         queryManager.update(query);

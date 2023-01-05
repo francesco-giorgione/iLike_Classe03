@@ -104,11 +104,12 @@ public class SegnalazioneDAO {
 
     /**
      * Questo metodo restituisce tutti gli oggetti della classe <code>SegnalazioneBean</code> memorizzati nel database
+     * che non risultano essere già "gestiti"
      * @return lista di oggetti della classe <code>SegnalazioneBean</code> memorizzata nel database
      */
-    public List<SegnalazioneBean> doRetrieveAllSegnalazione(){
+    public List<SegnalazioneBean> doRetrieveAllSegnalazioneNonGestita(){
 
-        String query="select * from Segnalazione";
+        String query="select * from Segnalazione where gestita= false";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
@@ -151,7 +152,7 @@ public class SegnalazioneDAO {
             return false;
 
         int id= segnalazione.getId();
-        String query= "update Segnalazione set gestita= "+true+" where id= "+ id;
+        String query= "update Segnalazione set gestita= true where id= "+ id;
         QueryManager queryManager= new QueryManager();
         queryManager.update(query);
 
