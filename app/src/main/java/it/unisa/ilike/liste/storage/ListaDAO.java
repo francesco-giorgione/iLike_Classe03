@@ -34,7 +34,7 @@ public class ListaDAO {
         boolean esito;
         QueryManager queryManager= new QueryManager();
 
-        String query= "insert into Lista (nome, email_iscritto, visibilita values ('" +
+        String query= "insert into Liste (nome, email_iscritto, visibilita values ('" +
                 nome + "', '" + emailIscritto+ "', " + visibilita + ");";
 
 
@@ -61,18 +61,20 @@ public class ListaDAO {
     /**
      * Questo metodo consente di cancellare un oggetto <code>ListaBean</code> dalla tabella Lista del database,
      * individuandolo tramite l'id passato come argomento.
-     * @param id id della lista da cancellare dal database
-     * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
-     * true altrimenti
+     * @param nome è il nome della lista da cancellare dal database
+     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista da cancellare dal database
+     * @return true se l'operazione è andata a buon fine, false altrimenti
      */
-    public boolean doDeleteById(int id){
-
-        if (id<1){
+    public boolean doDeleteByKey(String nome, String emailIscritto){
+        if (nome == null || emailIscritto == null){
             return false;
         }
 
         QueryManager queryManager= new QueryManager();
-        String query = "delete from Lista where id = " + id;
+
+        String query = "delete from Liste " +
+                "where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+
         return queryManager.update(query);
     }
 
@@ -89,7 +91,7 @@ public class ListaDAO {
         if (id<1){
             return null;
         }
-        String query= "select * from Lista where id = " + id;
+        String query= "select * from Liste where id = " + id;
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
 
