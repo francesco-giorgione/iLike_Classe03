@@ -23,21 +23,10 @@ public class ListaBean {
      * @param emailIscritto è l'email dell'iscritto cui appartiene la lista
      * @param visibilita indica se la lista deve essere visibile agli altri utenti (true) o meno (false)
      */
-    public ListaBean(String nome, String emailIscritto, Boolean visibilita, ArrayList<ContenutoBean> contenuti) {
+    public ListaBean(String nome, String emailIscritto, Boolean visibilita) {
         this.nome = nome;
         this.emailIscritto = emailIscritto;
         this.visibilita = visibilita;
-        this.contenuti = contenuti;
-    }
-
-    /**
-     * Restituisce una lista la cui collezione di contenuti è vuota
-     * @param nome è il nome della lista
-     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista
-     * @param visibilita indica se la lista deve essere visibile agli altri utenti (true) o meno (false)
-     */
-    public ListaBean(String nome, String emailIscritto, Boolean visibilita) {
-        this(nome, emailIscritto, visibilita, new ArrayList<>());
     }
 
     /**
