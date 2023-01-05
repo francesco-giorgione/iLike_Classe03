@@ -1,24 +1,15 @@
 package it.unisa.ilike.contenuti.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class ContenutoBean {
 
     public ContenutoBean() {
     }
 
-    public ContenutoBean(int id, String titolo, String descrizione, String categoria,
-                         ArrayList<ContenutoBean> contenuti) {
+    public ContenutoBean(int id, String titolo, String descrizione, String categoria) {
         this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.categoria = categoria;
-        this.contenuti = contenuti;
-    }
-
-    public ContenutoBean(int id, String titolo, String descrizione, String categoria) {
-        this(id, titolo, descrizione, categoria, new ArrayList<>());
     }
 
     public int getId() {
@@ -53,13 +44,8 @@ public abstract class ContenutoBean {
         this.categoria = categoria;
     }
 
-    public List<ContenutoBean> getContenuti() { return contenuti; }
-
-    public void setContenuti(List<ContenutoBean> contenuti) { this.contenuti = contenuti; }
-
     private int id;
     private String titolo;
     private String descrizione;
     private String categoria;
-    private List<ContenutoBean> contenuti;
 }
