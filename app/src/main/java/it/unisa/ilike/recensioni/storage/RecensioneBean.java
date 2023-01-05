@@ -4,85 +4,172 @@ import java.util.Date;
 
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
+/**
+ * Questa classe contiene gli attributi e i metodi di utilità relativi alle recensioni
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class RecensioneBean {
 
+    /**
+     * Costruttore senza parametri
+     */
     public RecensioneBean() {
     }
 
+    /**
+     * Costruttore con parametri
+     * @param id
+     * @param testo
+     * @param valutazione
+     * @param data
+     * @param cancellata
+     * @param motivazioneCancellazione
+     * @param emailIscritto
+     * @param idContenuto
+     */
     public RecensioneBean(int id, String testo, int valutazione, Date data,
-                          Boolean cancellata, String motivazione_cancellazione, String email_iscritto, int id_contenuto) {
+                          Boolean cancellata, String motivazioneCancellazione, String emailIscritto, int idContenuto) {
         this.id = id;
         this.testo = testo;
         this.valutazione = valutazione;
         this.data = data;
         this.cancellata = cancellata;
-        this.motivazione_cancellazione = motivazione_cancellazione;
-        this.email_iscritto = email_iscritto;
-        this.id_contenuto=id_contenuto;
+        this.motivazioneCancellazione = motivazioneCancellazione;
+        this.emailIscritto = emailIscritto;
+        this.idContenuto=idContenuto;
     }
 
+    /**
+     * Questo metodo restituisce l'id della recensione
+     * @return id della recensione
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Questo metodo imposta l'id della recensione
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Questo metodo restituisce il testo della recensione
+     * @return testo della recensione
+     */
     public String getTesto() {
         return testo;
     }
 
+    /**
+     * Questo metodo imposta il testo della recensione
+     * @param testo
+     */
     public void setTesto(String testo) {
         this.testo = testo;
     }
 
+    /**
+     * Questo metodo restituisce la valutazione della recensione
+     * @return valutazione della recensione espressa con un intero da 1 a 5
+     */
     public int getValutazione() {
         return valutazione;
     }
 
+    /**
+     * Questo metodo imposta la valutazione della recensione (intero compreso tra 1 e 5)
+     * @param valutazione
+     */
     public void setValutazione(int valutazione) {
         this.valutazione = valutazione;
     }
 
+    /**
+     * Questo metodo restituisce la data in cui è stata scritta la recensione
+     * @return data della recensione
+     */
     public Date getData() {
         return data;
     }
 
+    /**
+     * Questo metodo imposta la data in cui è stata scritta la recensione
+     * @param data
+     */
     public void setData(Date data) {
         this.data = data;
     }
 
+    /**
+     * Questo metodo restituisce il valore booleano dell'attributo cancellata
+     * (true, se la recensione è stata cancellata a seguito di una segnalazione;
+     * false, se la recensione non è stata cancellata)
+     * @return cancellata
+     */
     public Boolean isCancellata() {
         return cancellata;
     }
 
+    /**
+     * Questo metodo imposta il valore booleano dell'attributo cancellata
+     * (true, se la recensione è stata cancellata a seguito di una segnalazione;
+     * false, se la recensione non è stata cancellata)
+     * @param cancellata
+     */
     public void setCancellata(Boolean cancellata) {
         this.cancellata = cancellata;
     }
 
-    public String getMotivazione_cancellazione() {
-        return motivazione_cancellazione;
+    /**
+     * Questo metodo restituisce la motivazione della cancellazione della recensione
+     * @return motivazione della cancellazione
+     */
+    public String getMotivazioneCancellazione() {
+        return motivazioneCancellazione;
     }
 
-    public void setMotivazione_cancellazione(String motivazione_cancellazione) {
-        this.motivazione_cancellazione = motivazione_cancellazione;
+    /**
+     * Questo metodo imposta la motivazione della cancellazione della recensione
+     * @param motivazioneCancellazione
+     */
+    public void setMotivazioneCancellazione(String motivazioneCancellazione) {
+        this.motivazioneCancellazione = motivazioneCancellazione;
     }
 
-    public String getEmail_iscritto() {
-        return email_iscritto;
+    /**
+     * Questo metodo restituisce l'email dell'iscritto che ha scritto la recensione
+     * @return email dell'iscritto
+     */
+    public String getEmailIscritto() {
+        return emailIscritto;
     }
 
-    public void setEmail_iscritto(String email_iscritto) {
-        this.email_iscritto = email_iscritto;
+    /**
+     * Questo metodo imposta l'email dell'iscritto che ha scritto la recensione
+     * @param emailIscritto
+     */
+    public void setEmailIscritto(String emailIscritto) {
+        this.emailIscritto = emailIscritto;
     }
 
-    public int getId_contenuto() {
-        return id_contenuto;
+    /**
+     * Questo metodo restituisce l'id del contenuto a cui è riferita la recensione
+     * @return id del contenuto
+     */
+    public int getIdContenuto() {
+        return idContenuto;
     }
 
-    public void setId_contenuto(int id_contenuto) {
-        this.id_contenuto = id_contenuto;
+    /**
+     * Questo metodo imposta l'id del contenuto a cui è riferita la recensione
+     * @param idContenuto
+     */
+    public void setIdContenuto(int idContenuto) {
+        this.idContenuto = idContenuto;
     }
 
     private int id;
@@ -90,7 +177,7 @@ public class RecensioneBean {
     private int valutazione;
     private Date data;
     private Boolean cancellata;
-    private String motivazione_cancellazione;
-    private String email_iscritto;
-    private int id_contenuto;
+    private String motivazioneCancellazione;
+    private String emailIscritto;
+    private int idContenuto;
 }

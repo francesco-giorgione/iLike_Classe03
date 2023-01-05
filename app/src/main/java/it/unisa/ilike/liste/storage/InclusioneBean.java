@@ -1,42 +1,82 @@
 package it.unisa.ilike.liste.storage;
 
+
+/**
+ * Questa classe contiene gli attributi e i metodi di utilità relativi all'inclusione dei contenuti all'interno
+ * delle liste dell'iscritto
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class InclusioneBean {
 
+    /**
+     * Costruttore senza parametri
+     */
     public InclusioneBean() {
     }
 
-    public InclusioneBean(String nome_lista, String email_iscritto, int id_contenuto) {
-        this.nome_lista = nome_lista;
-        this.email_iscritto = email_iscritto;
-        this.id_contenuto = id_contenuto;
+    /**
+     * Costruttore con parametri
+     * @param nomeLista
+     * @param emailIscritto
+     * @param idContenuto
+     */
+    public InclusioneBean(String nomeLista, String emailIscritto, int idContenuto) {
+        this.nomeLista = nomeLista;
+        this.emailIscritto = emailIscritto;
+        this.idContenuto = idContenuto;
     }
 
-    public String getNome_lista() {
-        return nome_lista;
+    /**
+     * Questo metodo restituisce il nome della lista
+     * @return nome della lista
+     */
+    public String getNomeLista() {
+        return nomeLista;
     }
 
-    public void setNome_lista(String nome_lista) {
-        this.nome_lista = nome_lista;
+    /**
+     * Questo metodo imposta il nome della lista
+     * @param nomeLista
+     */
+    public void setNomeLista(String nomeLista) {
+        this.nomeLista = nomeLista;
     }
 
-    public String getEmail_iscritto() {
-        return email_iscritto;
+    /**
+     * Questo metodo restituisce l'email dell'iscritto a cui appartiene la lista
+     * @return email dell'iscritto
+     */
+    public String getEmailIscritto() {
+        return emailIscritto;
     }
 
-    public void setEmail_iscritto(String email_iscritto) {
-        this.email_iscritto = email_iscritto;
+    /**
+     * Questo metodo imposta l'email dell'iscritto a cui appartiene la lista
+     * @param emailIscritto
+     */
+    public void setEmailIscritto(String emailIscritto) {
+        this.emailIscritto = emailIscritto;
     }
 
-    public int getId_contenuto() {
-        return id_contenuto;
+    /**
+     * Questo metodo restituisce l'id del contenuto appartenente alla lista
+     * @return id del ontenuto
+     */
+    public int getIdContenuto() {
+        return idContenuto;
     }
 
-    public void setId_contenuto(int id_contenuto) {
-        this.id_contenuto = id_contenuto;
+    /**
+     * Questo metodo imposta l'id del contenuto appartenente alla lista
+     * @param idContenuto
+     */
+    public void setIdContenuto(int idContenuto) {
+        this.idContenuto = idContenuto;
     }
 
-    private String nome_lista;
-    private String email_iscritto;
-    private int id_contenuto;
+    private String nomeLista;
+    private String emailIscritto;
+    private int idContenuto;
 
 }
