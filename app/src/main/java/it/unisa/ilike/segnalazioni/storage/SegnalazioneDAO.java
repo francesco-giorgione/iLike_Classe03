@@ -1,12 +1,15 @@
 package it.unisa.ilike.segnalazioni.storage;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
+import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
 public class SegnalazioneDAO {
 
     public boolean doSaveSegnalazione(SegnalazioneBean segnalazione){
+
         if (segnalazione== null){
             return false;
         }
@@ -24,15 +27,30 @@ public class SegnalazioneDAO {
         return queryManager.update(query);
     }
 
-    public boolean doDeleteSegnalazione(SegnalazioneBean segnalazione){
-        if (segnalazione==null){
+    public boolean doDeleteByIdSegnalazione(int id){
+
+        if (id<1){
             return false;
         }
 
-        int idSegnalazione= segnalazione.getId();
         QueryManager queryManager= new QueryManager();
-        String query = "delete from Segnalazione where id = " + idSegnalazione;
+        String query = "delete from Segnalazione where id = " + id;
         return queryManager.update(query);
+    }
+
+    public SegnalazioneBean doRetrieveByIdSegnalazione(int id){
+
+        if (id<0){
+            return null;
+        }
+        String query= "select * from Segnalazione where id = " + id;
+        QueryManager queryManager= new QueryManager();
+        String res= queryManager.select(query);
+
+        Gson gson= new Gson();
+        SegnalazioneBean segnalazione= gson.fromJson(res, SegnalazioneBean.class);
+
+        return segnalazione;
     }
 
     public boolean doUpdateSegnalazione (SegnalazioneBean segnalazione){
@@ -54,10 +72,42 @@ public class SegnalazioneDAO {
         return queryManager.update(query);
     }
 
-    public int doRetrieveMaxIdSegnalazione(){
-        String query = "select max(id) from (select id from Segnalazione)";
+    public List<SegnalazioneBean> doRetrieveAllSegnalazione(){
+
+        String query="select * from Segnalazione";
+
         QueryManager queryManager= new QueryManager();
-        //queryManager.select(query);
-        return -1;
+        String res= queryManager.select(query);
+        Gson gson= new Gson();
+        List<SegnalazioneBean> listToReturn = (List<SegnalazioneBean>) gson.fromJson(res, SegnalazioneBean.class);
+
+        return listToReturn;
+    }
+
+    public int doRetrieveMaxIdSegnalazione(){
+
+        String query = "select max(id) from (select id from Segnalazione)";
+
+        QueryManager queryManager= new QueryManager();
+        String res= queryManager.select(query);
+        Gson gson= new Gson();
+        int id= gson.fromJson(res, int.class);
+
+        return id;
+    }
+
+    public boolean gestisciSegnalazione(SegnalazioneBean segnalazione){
+
+        if (segnalazione==null)
+            return false;
+        if (segnalazione.isGestita()==true)
+            return false;
+
+        int id= segnalazione.getId();
+        String query= "update Segnalazione set gestita= "+true+" where id= "+ id;
+        QueryManager queryManager= new QueryManager();
+        queryManager.update(query);
+
+        return true;
     }
 }
