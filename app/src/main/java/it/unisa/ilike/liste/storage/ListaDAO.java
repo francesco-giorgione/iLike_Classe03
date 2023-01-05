@@ -39,7 +39,7 @@ public class ListaDAO {
 
 
         if(queryManager.update(query)) {
-            if(!lista.getContenuti().isEmpty()) {
+            if(lista.getContenuti() != null && !lista.getContenuti().isEmpty()) {
                 query = "INSERT INTO Inclusioni(nome_lista, email_iscritto, id_contenuto) VALUES ";
 
                 for(ContenutoBean c: lista.getContenuti()) {
