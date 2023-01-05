@@ -1,6 +1,7 @@
 package it.unisa.ilike.recensioni.application;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -33,7 +34,9 @@ public class RecensioneImpl implements RecensioneService{
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     @Override
-    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c) {
+    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
+                    throws NotIscrittoException, TestoTroppoBreveException, InvalidTestoException,
+                                                                            ValutazioneException {
 
         if (!(isIscritto(i))) throw new NotIscrittoException();
         if (testo.length()<3) throw new TestoTroppoBreveException();
@@ -55,8 +58,7 @@ public class RecensioneImpl implements RecensioneService{
     }
 
     /**
-     * Questo metodo consente di aggiungere una segnalazione all'ArrayList segnalazioni contenuto nel
-     * parametro r passato come argomento
+     * Questo metodo consente di aggiungere una nuova segnalazione relativa ad una recensione r
      * @param tipo questo parametro sarà uguale a 0 se la segnalazione è uno Spoiler Alert, 1 altrimenti
      * @param motivazione indica la motivazione per cui l'iscritto ha effettuato la segnalazione
      * @param r indica l'oggetto <code>RecensioneBean</code> cui la segnalaizone si riferisce
@@ -64,7 +66,9 @@ public class RecensioneImpl implements RecensioneService{
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     @Override
-    public boolean aggiungiSegnalazione(int tipo, String motivazione, RecensioneBean r, IscrittoBean i) {
+    public boolean aggiungiSegnalazione(int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
+        throws NotIscrittoException, InvalidTipoException, MotivazioneVuotaException,
+            InvalidMotivazioneException {
 
         if (!(isIscritto(i))) throw new NotIscrittoException();
         if (tipo!=0 && tipo!=1) throw new InvalidTipoException();
@@ -81,18 +85,18 @@ public class RecensioneImpl implements RecensioneService{
     }
 
     /**
-     * Questo metodo permette di ricevere come valore di ritorno un ArrayList contenente oggetti
+     * Questo metodo permette di ricevere come valore di ritorno una lista contenente oggetti
      * della classe <code>RecensioneBean</code> che si riferiscono al contenuto c passato come argomento
      * al metodo
      * @param c contenuto in base al quale vogliamo filtrare la ricerca delle recensioni
-     * @return ArrayList contenente le recensioni che si riferiscono al contenuto c
+     * @return List contenente le recensioni che si riferiscono al contenuto c
      */
     @Override
-    public ArrayList<RecensioneBean> getRecensioniContenuto(ContenutoBean c) {
+    public List<RecensioneBean> getRecensioniContenuto(ContenutoBean c) {
 
         RecensioneDAO recensioneDAO= new RecensioneDAO();
-        ArrayList<RecensioneBean> ListToReturn= new ArrayList<>();
-        ArrayList<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensione();
+        List<RecensioneBean> ListToReturn= new ArrayList<>();
+        List<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensione();
 
         for (RecensioneBean r: recensioni){
             if (r.getId_contenuto()==c.getId())

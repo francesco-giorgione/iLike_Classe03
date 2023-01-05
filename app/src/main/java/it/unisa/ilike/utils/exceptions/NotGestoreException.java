@@ -1,4 +1,4 @@
 package it.unisa.ilike.utils.exceptions;
 
-public class NotGestoreException {
+public class NotGestoreException extends Exception {
 }

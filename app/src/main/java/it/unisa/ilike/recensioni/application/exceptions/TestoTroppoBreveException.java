@@ -1,16 +1,16 @@
 package it.unisa.ilike.recensioni.application.exceptions;
 
 /**
- * Classe che estende RuntimeException
+ * Classe che estende Exception
  *  @version 0.1
  *  @author LuiginaCostante
- *  @see java.lang.RuntimeException
+ *  @see java.lang.Exception
  */
 
-public class TestoTroppoBreveException extends RuntimeException{
+public class TestoTroppoBreveException extends Exception{
 
     /**
-     * Questo metodo serve per lanciare una nuova eccezione di tipo TestoTroppoBreveException.
+     * Questo metodo serve per lanciare una nuova eccezione controllata di tipo TestoTroppoBreveException.
      * Specifica che il testo della recensione da creare contiene un numero di caratteri
      * minore di 3 per cui non può essere considerato valido
      */

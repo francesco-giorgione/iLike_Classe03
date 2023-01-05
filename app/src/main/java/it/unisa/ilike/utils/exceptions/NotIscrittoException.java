@@ -1,4 +1,4 @@
 package it.unisa.ilike.utils.exceptions;
 
-public class NotIscrittoException {
+public class NotIscrittoException extends Exception {
 }
