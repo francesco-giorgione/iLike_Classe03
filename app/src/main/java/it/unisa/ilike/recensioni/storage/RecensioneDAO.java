@@ -1,7 +1,9 @@
 package it.unisa.ilike.recensioni.storage;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+
 import java.util.Date;
+import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
@@ -13,12 +15,13 @@ import it.unisa.ilike.QueryManager;
 
 public class RecensioneDAO {
 
+
     public boolean doSaveRecensione(RecensioneBean recensione){
+
         if (recensione== null){
             return false;
         }
 
-        int id= recensione.getId();
         String testo= recensione.getTesto();
         int valutazione= recensione.getValutazione();
         Date data= recensione.getData();
@@ -29,45 +32,77 @@ public class RecensioneDAO {
         String motivazione_cancellazione=recensione.getMotivazione_cancellazione();
 
         QueryManager queryManager= new QueryManager();
-        String query= "insert into Recensione (id, testo, valutazione, data, cancellata, motivazione_cancellazione, " +
-                "email_iscritto, id_contenuto) values (" +id+ "'" +testo + "'" + valutazione+ "'" + data + "'" +cancellata+
+        String query= "insert into Recensione (testo, valutazione, data, cancellata, motivazione_cancellazione, " +
+                "email_iscritto, id_contenuto) values ('" +testo + "'" + valutazione+ "'" + data + "'" +cancellata+
                 motivazione_cancellazione+ "'" + emailIscritto + "'" + id_contenuto+ ");";
         return queryManager.update(query);
     }
 
-    public boolean doDeleteRecensione(RecensioneBean recensione){
-        if (recensione==null){
+    public boolean doDeleteByIdRecensione(int id){
+
+        if (id<1){
             return false;
         }
 
-        int idRecensione= recensione.getId();
         QueryManager queryManager= new QueryManager();
-        String query = "delete from Recensione where id = " + idRecensione;
+        String query = "delete from Recensione where id = " + id;
         return queryManager.update(query);
     }
 
 
-    public ArrayList<RecensioneBean> doRetrieveByIdRecensione(int id){
+    public RecensioneBean doRetrieveByIdRecensione(int id){
+
         if (id<0){
             return null;
         }
         String query= "select * from Recensione where id = " + id;
         QueryManager queryManager= new QueryManager();
-        //queryManager.select(query);
-        return null;
+        String res= queryManager.select(query);
+
+        Gson gson= new Gson();
+        RecensioneBean recensione= gson.fromJson(res, RecensioneBean.class);
+
+        return recensione;
     }
 
-    public ArrayList<RecensioneBean> doRetrieveAllRecensione(){
+    public List<RecensioneBean> doRetrieveAllRecensione(){
+
         String query="select * from Recensione";
+
         QueryManager queryManager= new QueryManager();
-        //queryManager.select(query);
-        return null;
+        String res= queryManager.select(query);
+        Gson gson= new Gson();
+        List<RecensioneBean> listToReturn = (List<RecensioneBean>) gson.fromJson(res, RecensioneBean.class);
+
+        return listToReturn;
     }
 
     public int doRetrieveMaxIdRecensione(){
+
         String query = "select max(id) from (select id from Recensione)";
+
         QueryManager queryManager= new QueryManager();
-        //queryManager.select(query);
-        return -1;
+        String res= queryManager.select(query);
+        Gson gson= new Gson();
+        int id= gson.fromJson(res, int.class);
+
+        return id;
+    }
+
+    public boolean cancellaRecensione(RecensioneBean recensione){
+
+        if (recensione==null)
+            return false;
+        if (recensione.isCancellata()==false || recensione.getMotivazione_cancellazione()==null)
+            return false;
+
+        int id= recensione.getId();
+        String motivazioneCancellazione= recensione.getMotivazione_cancellazione();
+        String query= "update Recensione set cancellata= "+true+", motivazione_cancellazione= '"+
+                motivazioneCancellazione+"' where id= "+ id;
+        QueryManager queryManager= new QueryManager();
+        queryManager.update(query);
+
+        return true;
     }
 }
