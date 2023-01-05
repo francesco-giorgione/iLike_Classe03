@@ -10,6 +10,11 @@ public class Utils {
     }
 
     // manca reale implementazione
+    public static Boolean isGestore(UtenteBean utente) {
+        return true;
+    }
+
+    // manca reale implementazione
     public static Boolean hasLista(IscrittoBean i, String nome) {
         return false;
     }
