@@ -7,10 +7,10 @@ package it.unisa.ilike.recensioni.application.exceptions;
  *  @see java.lang.RuntimeException
  */
 
-public class InvalidMotivazioneException extends RuntimeException{
+public class InvalidMotivazioneException extends Exception{
 
     /**
-     * Questo metodo serve per lanciare una nuova eccezione di tipo InvalidMotivazioneException.
+     * Questo metodo serve per lanciare una nuova eccezione controllata di tipo InvalidMotivazioneException.
      * Specifica che la motivazione relativa alla segnalazione da inserire contiene un numero di caratteri
      * maggiore di 500 per cui non può essere considerata valida
      */

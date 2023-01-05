@@ -2,7 +2,14 @@ package it.unisa.ilike.recensioni.application;
 
 import java.util.ArrayList;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
+import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
+import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
+import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
+import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
+import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * Interfaccia che esplicita i metodi di servizio relativi alle recensioni
@@ -11,8 +18,12 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
  */
 
 public interface RecensioneService {
-    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c);
-    public boolean aggiungiSegnalazione (int tipo, String motivazione, RecensioneBean r, IscrittoBean i);
+    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
+            throws NotIscrittoException, TestoTroppoBreveException, InvalidTestoException, ValutazioneException;
+
+    public boolean aggiungiSegnalazione (int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
+            throws NotIscrittoException, InvalidTipoException, MotivazioneVuotaException, InvalidMotivazioneException;
+
     public ArrayList<RecensioneBean> getRecensioniContenuto (ContenutoBean c);
 
 }

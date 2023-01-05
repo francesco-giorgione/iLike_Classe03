@@ -33,7 +33,9 @@ public class RecensioneImpl implements RecensioneService{
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     @Override
-    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c) {
+    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
+                    throws NotIscrittoException, TestoTroppoBreveException, InvalidTestoException,
+                                                                            ValutazioneException {
 
         if (!(isIscritto(i))) throw new NotIscrittoException();
         if (testo.length()<3) throw new TestoTroppoBreveException();
@@ -64,7 +66,9 @@ public class RecensioneImpl implements RecensioneService{
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     @Override
-    public boolean aggiungiSegnalazione(int tipo, String motivazione, RecensioneBean r, IscrittoBean i) {
+    public boolean aggiungiSegnalazione(int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
+        throws NotIscrittoException, InvalidTipoException, MotivazioneVuotaException,
+            InvalidMotivazioneException {
 
         if (!(isIscritto(i))) throw new NotIscrittoException();
         if (tipo!=0 && tipo!=1) throw new InvalidTipoException();

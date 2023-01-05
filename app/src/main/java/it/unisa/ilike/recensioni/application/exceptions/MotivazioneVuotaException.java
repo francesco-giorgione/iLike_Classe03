@@ -7,10 +7,10 @@ package it.unisa.ilike.recensioni.application.exceptions;
  *  @see java.lang.RuntimeException
  */
 
-public class MotivazioneVuotaException extends RuntimeException{
+public class MotivazioneVuotaException extends Exception{
 
     /**
-     * Questo metodo serve per lanciare una nuova eccezione di tipo MotivazioneVuotaException.
+     * Questo metodo serve per lanciare una nuova eccezione controllata di tipo MotivazioneVuotaException.
      * Specifica che la motivazione relativa alla segnalazione da inserire contiene un numero di caratteri
      * inferiore ad 1 per cui non può essere considerata valida
      */
