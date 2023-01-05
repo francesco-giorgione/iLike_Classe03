@@ -9,7 +9,7 @@ import it.unisa.ilike.QueryManager;
 
 /**
  * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella Recensioni presente nel database
- * @version 0.3
+ * @version 0.4
  * @author LuiginaCostante
  */
 
@@ -46,13 +46,13 @@ public class RecensioneDAO {
     }
 
 
-    /**
-     * Questo metodo consente di cancellare un oggetto <code>RecensioneBean</code> dalla tabella Recensioni del database,
-     * individuandolo tramite l'id passato come argomento.
+    /*
+
+     * Questo metodo consente di cancellare un oggetto <code>RecensioneBean</code> dalla tabella
+     * Recensioni del database, individuandolo tramite l'id passato come argomento.
      * @param id id della recensione da cancellare dal database
      * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
      * true altrimenti
-     */
 
     public boolean doDeleteByIdRecensione(int id){
 
@@ -63,7 +63,8 @@ public class RecensioneDAO {
         QueryManager queryManager= new QueryManager();
         String query = "delete from Recensioni where id = " + id;
         return queryManager.update(query);
-    }
+    }*/
+
 
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>RecensioneBean</code>
@@ -89,13 +90,14 @@ public class RecensioneDAO {
     }
 
     /**
-     * Questo metodo restituisce tutti gli oggetti della classe <code>RecensioneBean</code> memorizzati nel database
+     * Questo metodo restituisce tutti gli oggetti della classe <code>RecensioneBean</code>
+     * memorizzati nel database che non risultano marcati come "cancellati"
      * @return lista di oggetti della classe <code>RecensioneBean</code> memorizzata nel database
      */
 
-    public List<RecensioneBean> doRetrieveAllRecensione(){
+    public List<RecensioneBean> doRetrieveAllRecensioniNonCancellate(){
 
-        String query="select * from Recensioni";
+        String query="select * from Recensioni where cancellata=false";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);

@@ -21,7 +21,7 @@ import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * Un oggetto <code>RecensioneImpl</code> serve per accedere ai metodi di servizio relativi ad una recensione
- * @version 0.1
+ * @version 0.3
  * @author LuiginaCostante
  */
 
@@ -100,7 +100,7 @@ public class RecensioneImpl implements RecensioneService{
 
         RecensioneDAO recensioneDAO= new RecensioneDAO();
         List<RecensioneBean> ListToReturn= new ArrayList<>();
-        List<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensione();
+        List<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensioniNonCancellate();
 
         for (RecensioneBean r: recensioni){
             if (r.getIdContenuto()==c.getId())
