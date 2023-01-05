@@ -1,5 +1,10 @@
 package it.unisa.ilike.liste.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
+
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle liste di contenuti degli iscritti
  * @author Simona Lo Conte
@@ -14,15 +19,25 @@ public class ListaBean {
     }
 
     /**
-     * Costruttore con parametri
-     * @param nome
-     * @param emailIscritto
-     * @param visibilita
+     * @param nome è il nome della lista
+     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista
+     * @param visibilita indica se la lista deve essere visibile agli altri utenti (true) o meno (false)
      */
-    public ListaBean(String nome, String emailIscritto, Boolean visibilita) {
+    public ListaBean(String nome, String emailIscritto, Boolean visibilita, ArrayList<ContenutoBean> contenuti) {
         this.nome = nome;
         this.emailIscritto = emailIscritto;
         this.visibilita = visibilita;
+        this.contenuti = contenuti;
+    }
+
+    /**
+     * Restituisce una lista la cui collezione di contenuti è vuota
+     * @param nome è il nome della lista
+     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista
+     * @param visibilita indica se la lista deve essere visibile agli altri utenti (true) o meno (false)
+     */
+    public ListaBean(String nome, String emailIscritto, Boolean visibilita) {
+        this(nome, emailIscritto, visibilita, new ArrayList<>());
     }
 
     /**
@@ -77,7 +92,16 @@ public class ListaBean {
         this.visibilita = visibilita;
     }
 
+    public List<ContenutoBean> getContenuti() {
+        return contenuti;
+    }
+
+    public void setContenuti(List<ContenutoBean> contenuti) {
+        this.contenuti = contenuti;
+    }
+
     private String nome;
     private String emailIscritto;
     private Boolean visibilita;
+    private List<ContenutoBean> contenuti;
 }
