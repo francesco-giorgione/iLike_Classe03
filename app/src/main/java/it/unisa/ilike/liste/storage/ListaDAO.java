@@ -81,31 +81,47 @@ public class ListaDAO {
 
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>ListaBean</code>
-     * presente nella tabella Lista del database, dopo averlo individuato tramite l'id passato come argomento
-     * @param id id della lista da cercare nel database
-     * @return null se il parametro id non è valido, l'oggetto lista con chiave primaria uguale ad id
-     * se l'operazione è andata a buon fine
+     * presente nella tabella Lista del database, dopo averlo individuato tramite la chiave
+     * (nome, email iscritto) passata come argomento.
+     * @param nome è il nome della lista da cercare nel database.
+     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista da cercare nel database.
+     * @return la lista cercata se l'operazione va a buon fine, null altrimenti.
      */
-    public ListaBean doRetrieveById(int id){
-
-        if (id<1){
+    public ListaBean doRetrieveByKey(String nome, String emailIscritto){
+        if (nome == null || emailIscritto == null){
             return null;
         }
-        String query= "select * from Liste where id = " + id;
+
+        String query = "select * " +
+                "from Liste " +
+                "where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
 
         Gson gson= new Gson();
-        ListaBean lista= gson.fromJson(res, ListaBean.class);
+        ListaBean lista = gson.fromJson(res, ListaBean.class);
+
+        query = "select C.id as id, C.titolo as titolo, C.descrizione as descrizione, C.categoria as categoria " +
+                "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
+                "join Contenuti C on I.id_contenuto = C.id " +
+                "where L.nome = '" + nome + "' and L.email_iscitto = '" + emailIscritto + "'";
+
+        res = queryManager.select(query);
+
+        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
+        lista.setContenuti(contenuti);
 
         return lista;
     }
+
+
 
     /**
      * Questo metodo restituisce tutti gli oggetti della classe <code>ListaBean</code> memorizzati nel database
      * @return lista di oggetti della classe <code>ListaBean</code> memorizzata nel database
      */
-
+    /*
     public List<ListaBean> doRetrieveAll(){
 
         String query="select * from Lista";
@@ -115,9 +131,17 @@ public class ListaDAO {
         Gson gson= new Gson();
         List<ListaBean> listToReturn = (List<ListaBean>) gson.fromJson(res, ListaBean.class);
 
+        query = "select C.id as id, C.titolo as titolo, C.descrizione as descrizione, C.categoria as categoria " +
+                "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
+                "join Contenuti C on I.id_contenuto = C.id";
+
+        res = queryManager.select(query);
+
+        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
+        listToReturn.setContenuti(contenuti);
+
         return listToReturn;
     }
-
-
+    */
 
 }
