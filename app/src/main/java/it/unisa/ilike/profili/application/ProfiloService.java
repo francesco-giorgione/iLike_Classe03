@@ -1,5 +1,7 @@
 package it.unisa.ilike.profili.application;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
+
 /**
  * Questa interfaccia consente di gestire le informazioni relative al profilo di un iscritto.
  * @author Marta

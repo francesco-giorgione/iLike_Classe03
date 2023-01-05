@@ -1,7 +1,9 @@
 package it.unisa.ilike.profili.application;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
+
 /**
- * Questa classe rapresenta l'implentazione che gestisce le informazioni relative al profilo di un iscritto.
+ * Questa classe rappresenta l'implentazione che gestisce le informazioni relative al profilo di un iscritto.
  * @author Marta
  * @version 0.1
  */
