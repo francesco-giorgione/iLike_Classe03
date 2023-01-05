@@ -28,7 +28,7 @@ public class ListaDAO {
         }
 
         String nome= lista.getNome();
-        String emailIscritto=lista.getEmail_iscritto();
+        String emailIscritto=lista.getEmailIscritto();
         boolean visibilita= lista.isVisibile();
 
 
