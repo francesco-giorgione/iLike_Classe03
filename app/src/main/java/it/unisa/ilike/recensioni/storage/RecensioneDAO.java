@@ -8,13 +8,20 @@ import java.util.List;
 import it.unisa.ilike.QueryManager;
 
 /**
- * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella Recensione presente nel database
- * @version 0.2
+ * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella Recensioni presente nel database
+ * @version 0.4
  * @author LuiginaCostante
  */
 
 public class RecensioneDAO {
 
+    /**
+     * Questo metodo consente di salvare nella tabella Recensioni del database un nuovo oggetto della classe
+     * <code>RecensioneBean</code> passato come argomento
+     * @param recensione oggetto della classe <code>RecensioneBean</code> da salvare nel database
+     * @return false se la recensione passata come argomento è null o se l'operazione NON è andata a buon fine,
+     * true altrimenti
+     */
 
     public boolean doSaveRecensione(RecensioneBean recensione){
 
@@ -32,11 +39,20 @@ public class RecensioneDAO {
         String motivazione_cancellazione=recensione.getMotivazioneCancellazione();
 
         QueryManager queryManager= new QueryManager();
-        String query= "insert into Recensione (testo, valutazione, data, cancellata, motivazione_cancellazione, " +
+        String query= "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, " +
                 "email_iscritto, id_contenuto) values ('" +testo + "', '" + valutazione+ "', '" + data + "', " +cancellata+
                 ", '"+motivazione_cancellazione+ "', '" + emailIscritto + "', " + id_contenuto+ ");";
         return queryManager.update(query);
     }
+
+
+    /*
+
+     * Questo metodo consente di cancellare un oggetto <code>RecensioneBean</code> dalla tabella
+     * Recensioni del database, individuandolo tramite l'id passato come argomento.
+     * @param id id della recensione da cancellare dal database
+     * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
+     * true altrimenti
 
     public boolean doDeleteByIdRecensione(int id){
 
@@ -45,17 +61,25 @@ public class RecensioneDAO {
         }
 
         QueryManager queryManager= new QueryManager();
-        String query = "delete from Recensione where id = " + id;
+        String query = "delete from Recensioni where id = " + id;
         return queryManager.update(query);
-    }
+    }*/
 
+
+    /**
+     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>RecensioneBean</code>
+     * presente nella tabella Recensioni del database, dopo averlo individuato tramite l'id passato come argomento
+     * @param id id della recensione da cercare nel database
+     * @return null se il parametro id non è valido, l'oggetto recensione con chiave primaria uguale ad id
+     * se l'operazione è andata a buon fine
+     */
 
     public RecensioneBean doRetrieveByIdRecensione(int id){
 
         if (id<1){
             return null;
         }
-        String query= "select * from Recensione where id = " + id;
+        String query= "select * from Recensioni where id = " + id;
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
 
@@ -65,9 +89,15 @@ public class RecensioneDAO {
         return recensione;
     }
 
-    public List<RecensioneBean> doRetrieveAllRecensione(){
+    /**
+     * Questo metodo restituisce tutti gli oggetti della classe <code>RecensioneBean</code>
+     * memorizzati nel database che non risultano marcati come "cancellati"
+     * @return lista di oggetti della classe <code>RecensioneBean</code> memorizzata nel database
+     */
 
-        String query="select * from Recensione";
+    public List<RecensioneBean> doRetrieveAllRecensioniNonCancellate(){
+
+        String query="select * from Recensioni where cancellata=false";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
@@ -77,9 +107,14 @@ public class RecensioneDAO {
         return listToReturn;
     }
 
+    /**
+     * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente nella tabella Recensioni del database
+     * @return id con valore maggiore presente nella tabella Recensioni del database
+     */
+
     public int doRetrieveMaxIdRecensione(){
 
-        String query = "select max(id) from (select id from Recensione)";
+        String query = "select max(id) from (select id from Recensioni)";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
@@ -88,6 +123,15 @@ public class RecensioneDAO {
 
         return id;
     }
+
+    /**
+     * Questo metodo consente di marcare come "cancellata" una recensione della tabella Recensioni del database, a seguito
+     * di una decisione presa dal gestore. Permette inoltre di inserire la motivazione della cancellazione relativa alla
+     * recensione passata come argomento al metodo.
+     * @param recensione recensione da marcare come "cancellata"
+     * @return false se la recensione o la motivazione della cancellazione sono nulle, se risulta essere già stata
+     * marcata come "cancellata" o se l'operazione NON è andata a buon fine. True altrimenti
+     */
 
     public boolean cancellaRecensione(RecensioneBean recensione){
 
@@ -98,7 +142,7 @@ public class RecensioneDAO {
 
         int id= recensione.getId();
         String motivazioneCancellazione= recensione.getMotivazioneCancellazione();
-        String query= "update Recensione set cancellata= "+true+", motivazione_cancellazione= '"+
+        String query= "update Recensioni set cancellata= true, motivazione_cancellazione= '"+
                 motivazioneCancellazione+"' where id= "+ id;
         QueryManager queryManager= new QueryManager();
         queryManager.update(query);
