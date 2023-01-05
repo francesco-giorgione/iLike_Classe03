@@ -29,7 +29,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
     public List<SegnalazioneBean> getSegnalazione() {
 
         SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
-        List<SegnalazioneBean> listaSegnalazioniNonGestite  = segnalazioneDAO.doRetrieveAllSegnalazione();
+        List<SegnalazioneBean> listaSegnalazioniNonGestite  = segnalazioneDAO.doRetrieveAllSegnalazioniNonGestite();
 
         return listaSegnalazioniNonGestite;
     }
