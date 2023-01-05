@@ -57,6 +57,7 @@ public class Account {
     /**
      * Questo metodo permette di valutare chi ha effettuato il login
      * @return True se l'attore è l'iscritto, False se l'attore è il gestore, Null se non è stato effettuato il login
+     * @throws AttoreVuotoException nel caso in cui non è stata effettuata la login
      */
     public boolean isIscritto() throws AttoreVuotoException {
         if (iscrittoBean != null)
