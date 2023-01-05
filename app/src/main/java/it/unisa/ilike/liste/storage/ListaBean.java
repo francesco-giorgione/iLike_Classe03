@@ -81,12 +81,30 @@ public class ListaBean {
         this.visibilita = visibilita;
     }
 
+    /**
+     * Restituisce una collezione dei contenuti di una lista.
+     * @return un oggetto List contenente i contenuti che appartengono alla lista.
+     */
     public List<ContenutoBean> getContenuti() {
         return contenuti;
     }
 
+
+    /**
+     * Setta la collezione dei contenuti di una lista
+     * @param contenuti è la collezione dei contenuti da associare alla lista
+     */
     public void setContenuti(List<ContenutoBean> contenuti) {
         this.contenuti = contenuti;
+    }
+
+
+    /**
+     * Aggiunge un contenuto alla collezione dei contenuti della lista.
+     * @param c è il contenuto da aggiungere alla collezione dei contenuti.
+     */
+    public void aggiungiContenuto(ContenutoBean c) {
+        this.contenuti.add(c);
     }
 
     private String nome;
