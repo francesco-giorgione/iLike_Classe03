@@ -8,8 +8,8 @@ import java.util.List;
 import it.unisa.ilike.QueryManager;
 
 /**
- * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella recensioni presente nel database
- * @version 0.1
+ * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella Recensione presente nel database
+ * @version 0.2
  * @author LuiginaCostante
  */
 
@@ -25,16 +25,16 @@ public class RecensioneDAO {
         String testo= recensione.getTesto();
         int valutazione= recensione.getValutazione();
         Date data= recensione.getData();
-        String emailIscritto= recensione.getEmail_iscritto();
-        int id_contenuto= recensione.getId_contenuto();
+        String emailIscritto= recensione.getEmailIscritto();
+        int id_contenuto= recensione.getIdContenuto();
         boolean cancellata= recensione.isCancellata();
 
-        String motivazione_cancellazione=recensione.getMotivazione_cancellazione();
+        String motivazione_cancellazione=recensione.getMotivazioneCancellazione();
 
         QueryManager queryManager= new QueryManager();
         String query= "insert into Recensione (testo, valutazione, data, cancellata, motivazione_cancellazione, " +
-                "email_iscritto, id_contenuto) values ('" +testo + "'" + valutazione+ "'" + data + "'" +cancellata+
-                motivazione_cancellazione+ "'" + emailIscritto + "'" + id_contenuto+ ");";
+                "email_iscritto, id_contenuto) values ('" +testo + "', '" + valutazione+ "', '" + data + "', " +cancellata+
+                ", '"+motivazione_cancellazione+ "', '" + emailIscritto + "', " + id_contenuto+ ");";
         return queryManager.update(query);
     }
 
@@ -52,7 +52,7 @@ public class RecensioneDAO {
 
     public RecensioneBean doRetrieveByIdRecensione(int id){
 
-        if (id<0){
+        if (id<1){
             return null;
         }
         String query= "select * from Recensione where id = " + id;
@@ -93,11 +93,11 @@ public class RecensioneDAO {
 
         if (recensione==null)
             return false;
-        if (recensione.isCancellata()==false || recensione.getMotivazione_cancellazione()==null)
+        if (recensione.isCancellata()==false || recensione.getMotivazioneCancellazione()==null)
             return false;
 
         int id= recensione.getId();
-        String motivazioneCancellazione= recensione.getMotivazione_cancellazione();
+        String motivazioneCancellazione= recensione.getMotivazioneCancellazione();
         String query= "update Recensione set cancellata= "+true+", motivazione_cancellazione= '"+
                 motivazioneCancellazione+"' where id= "+ id;
         QueryManager queryManager= new QueryManager();

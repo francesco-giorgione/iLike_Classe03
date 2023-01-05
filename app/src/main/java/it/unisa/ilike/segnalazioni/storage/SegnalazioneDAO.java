@@ -6,6 +6,12 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
+/**
+ * Un oggetto <code>SegnalazioneDAO</code> serve per interagire con la tabella Segnalazione presente nel database
+ * @version 0.2
+ * @author LuiginaCostante
+ */
+
 public class SegnalazioneDAO {
 
     public boolean doSaveSegnalazione(SegnalazioneBean segnalazione){
@@ -18,8 +24,8 @@ public class SegnalazioneDAO {
         int tipo= segnalazione.getTipo();
         String motivazione= segnalazione.getMotivazione();
         boolean gestita= segnalazione.isGestita();
-        String email_iscritto=segnalazione.getEmail_iscritto();
-        int id_recensione= segnalazione.getId_recensione();
+        String email_iscritto=segnalazione.getEmailIscritto();
+        int id_recensione= segnalazione.getIdRecensione();
 
         QueryManager queryManager= new QueryManager();
         String query= "insert into Segnalazione (id, tipo, motivazione, gestita, email_iscritto, id_recensione) " +
@@ -40,7 +46,7 @@ public class SegnalazioneDAO {
 
     public SegnalazioneBean doRetrieveByIdSegnalazione(int id){
 
-        if (id<0){
+        if (id<1){
             return null;
         }
         String query= "select * from Segnalazione where id = " + id;
@@ -62,8 +68,8 @@ public class SegnalazioneDAO {
         int tipo= segnalazione.getTipo();
         String motivazione= segnalazione.getMotivazione();
         boolean gestita= segnalazione.isGestita();
-        String email_iscritto=segnalazione.getEmail_iscritto();
-        int id_recensione= segnalazione.getId_recensione();
+        String email_iscritto=segnalazione.getEmailIscritto();
+        int id_recensione= segnalazione.getIdRecensione();
 
         QueryManager queryManager= new QueryManager();
         String query= "update Segnalazione set tipo="+tipo+"', motivazione= '"+motivazione+"', gestita= "+gestita+

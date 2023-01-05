@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
@@ -15,6 +16,7 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
+import it.unisa.ilike.utils.Utils;
 import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
@@ -38,7 +40,8 @@ public class RecensioneImpl implements RecensioneService{
                     throws NotIscrittoException, TestoTroppoBreveException, InvalidTestoException,
                                                                             ValutazioneException {
 
-        if (!(isIscritto(i))) throw new NotIscrittoException();
+        Utils u= new Utils();
+        if (!(u.isIscritto(i))) throw new NotIscrittoException();
         if (testo.length()<3) throw new TestoTroppoBreveException();
         if (testo.length()>1000) throw new InvalidTestoException();
         if (valutazione<1 || valutazione>5) throw new ValutazioneException();
@@ -70,7 +73,8 @@ public class RecensioneImpl implements RecensioneService{
         throws NotIscrittoException, InvalidTipoException, MotivazioneVuotaException,
             InvalidMotivazioneException {
 
-        if (!(isIscritto(i))) throw new NotIscrittoException();
+        Utils u= new Utils();
+        if (!(u.isIscritto(i))) throw new NotIscrittoException();
         if (tipo!=0 && tipo!=1) throw new InvalidTipoException();
         if (motivazione.length()<1) throw new MotivazioneVuotaException();
         if (motivazione.length()>500) throw new InvalidMotivazioneException();
@@ -99,7 +103,7 @@ public class RecensioneImpl implements RecensioneService{
         List<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensione();
 
         for (RecensioneBean r: recensioni){
-            if (r.getId_contenuto()==c.getId())
+            if (r.getIdContenuto()==c.getId())
                 ListToReturn.add(r);
         }
 
