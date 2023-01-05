@@ -1,10 +1,10 @@
 package it.unisa.ilike.recensioni.application.exceptions;
 
 /**
- * Classe che estende RuntimeException
+ * Classe che estende Exception
  *  @version 0.1
  *  @author LuiginaCostante
- *  @see java.lang.RuntimeException
+ *  @see java.lang.Exception
  */
 
 public class InvalidTipoException extends Exception{
