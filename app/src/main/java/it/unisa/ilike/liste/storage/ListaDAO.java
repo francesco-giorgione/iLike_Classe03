@@ -15,11 +15,11 @@ import it.unisa.ilike.QueryManager;
 public class ListaDAO {
 
     /**
-     * Questo metodo permette di salvare nella tabella Lista del database un nuovo oggetto <code>ListaBean</code>
-     * passato come argomento.
-     * @param lista nuovo oggetto <code>ListaBean</code> da salvare nel database
-     * @return true se l'operazione è andata a buon fine, false se l'oggetto lista è nullo o se l'operazione non
-     * è andata a buon fine
+     * Questo metodo consente di salvare nella tabella Lista del database un nuovo oggetto della classe
+     * <code>ListaBean</code> passato come argomento.
+     * @param lista nuovo oggetto della classe <code>ListaBean</code> da salvare nel database
+     * @return false se la lista passata come argomento è null o se l'operazione NON è andata a buon fine,
+     * true altrimenti
      */
     public boolean doSave(ListaBean lista){
 
@@ -39,11 +39,11 @@ public class ListaDAO {
     }
 
     /**
-     * Questo metodo consente di cancellare un oggetto <code>ListaBean</code> dalla tabella Lista del database
-     * individuandola tramite l'id passato come argomento.
+     * Questo metodo consente di cancellare un oggetto <code>ListaBean</code> dalla tabella Lista del database,
+     * individuandolo tramite l'id passato come argomento.
      * @param id id della lista da cancellare dal database
-     * @return true se l'operazione è andata a buon fine, false se l'id non è valido o se l'operazione non è
-     * andata a buon fine
+     * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
+     * true altrimenti
      */
     public boolean doDeleteById(int id){
 
@@ -58,10 +58,10 @@ public class ListaDAO {
 
 
     /**
-     * Questo metodo permette di cercare e successivamente restituire un oggetto <code>ListaBean</code>
-     * presente nella tabella Lista del database, dopo averla individuata tramite l'id passato come argomento
+     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>ListaBean</code>
+     * presente nella tabella Lista del database, dopo averlo individuato tramite l'id passato come argomento
      * @param id id della lista da cercare nel database
-     * @return null se il parametro id non è valido, l'oggetto lista contenente il parametro id
+     * @return null se il parametro id non è valido, l'oggetto lista con chiave primaria uguale ad id
      * se l'operazione è andata a buon fine
      */
     public ListaBean doRetrieveById(int id){
@@ -80,8 +80,8 @@ public class ListaDAO {
     }
 
     /**
-     * Questo metodo restituisce tutti gli oggetti <code>ListaBean</code> memorizzati nel database
-     * @return lista di oggetti <code>ListaBean</code> memorizzata nel database
+     * Questo metodo restituisce tutti gli oggetti della classe <code>ListaBean</code> memorizzati nel database
+     * @return lista di oggetti della classe <code>ListaBean</code> memorizzata nel database
      */
 
     public List<ListaBean> doRetrieveAll(){
