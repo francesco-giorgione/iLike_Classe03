@@ -7,7 +7,7 @@ import java.util.List;
 import it.unisa.ilike.QueryManager;
 
 /**
- * Un oggetto <code>SegnalazioneDAO</code> serve per interagire con la tabella Segnalazione presente nel database
+ * Un oggetto <code>SegnalazioneDAO</code> serve per interagire con la tabella Segnalazioni presente nel database
  * @version 0.3
  * @author LuiginaCostante
  */
@@ -15,7 +15,7 @@ import it.unisa.ilike.QueryManager;
 public class SegnalazioneDAO {
 
     /**
-     * Questo metodo consente di salvare nella tabella Segnalazione del database un nuovo oggetto della classe
+     * Questo metodo consente di salvare nella tabella Segnalazioni del database un nuovo oggetto della classe
      * <code>SegnalazioneBean</code> passato come argomento
      * @param segnalazione oggetto della classe <code>SegnalazioneBean</code> da salvare nel database
      * @return false se la segnalazione passata come argomento è null o se l'operazione NON è andata a buon fine,
@@ -36,13 +36,13 @@ public class SegnalazioneDAO {
         int id_recensione= segnalazione.getIdRecensione();
 
         QueryManager queryManager= new QueryManager();
-        String query= "insert into Segnalazione (id, tipo, motivazione, gestita, email_iscritto, id_recensione) " +
+        String query= "insert into Segnalazioni (id, tipo, motivazione, gestita, email_iscritto, id_recensione) " +
                 "values (" +id+ ", "+ tipo + ", '" + motivazione+ "', " + gestita+ ",'" + email_iscritto+ "'," + id_recensione+ ");";
         return queryManager.update(query);
     }
 
     /**
-     * Questo metodo consente di cancellare un oggetto <code>SegnalazioneBean</code> dalla tabella Segnalazione
+     * Questo metodo consente di cancellare un oggetto <code>SegnalazioneBean</code> dalla tabella Segnalazioni
      * del database, individuandolo tramite l'id passato come argomento.
      * @param id id della segnalazione da cancellare dal database
      * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
@@ -56,13 +56,13 @@ public class SegnalazioneDAO {
         }
 
         QueryManager queryManager= new QueryManager();
-        String query = "delete from Segnalazione where id = " + id;
+        String query = "delete from Segnalazioni where id = " + id;
         return queryManager.update(query);
     }
 
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>SegnalazioneBean</code>
-     * presente nella tabella Segnalazione del database, dopo averlo individuato tramite l'id passato come argomento
+     * presente nella tabella Segnalazioni del database, dopo averlo individuato tramite l'id passato come argomento
      * @param id id della segnalazione da cercare nel database
      * @return null se il parametro id non è valido, l'oggetto segnalazione con chiave primaria uguale ad id
      * se l'operazione è andata a buon fine
@@ -73,7 +73,7 @@ public class SegnalazioneDAO {
         if (id<1){
             return null;
         }
-        String query= "select * from Segnalazione where id = " + id;
+        String query= "select * from Segnalazioni where id = " + id;
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
 
@@ -96,7 +96,7 @@ public class SegnalazioneDAO {
         int id_recensione= segnalazione.getIdRecensione();
 
         QueryManager queryManager= new QueryManager();
-        String query= "update Segnalazione set tipo="+tipo+"', motivazione= '"+motivazione+"', gestita= "+gestita+
+        String query= "update Segnalazioni set tipo="+tipo+"', motivazione= '"+motivazione+"', gestita= "+gestita+
                 " email_iscritto=' "+email_iscritto+" where id = " + id;
 
         return queryManager.update(query);
@@ -107,9 +107,9 @@ public class SegnalazioneDAO {
      * che non risultano essere già "gestiti"
      * @return lista di oggetti della classe <code>SegnalazioneBean</code> memorizzata nel database
      */
-    public List<SegnalazioneBean> doRetrieveAllSegnalazioneNonGestita(){
+    public List<SegnalazioneBean> doRetrieveAllSegnalazioniNonGestite(){
 
-        String query="select * from Segnalazione where gestita= false";
+        String query="select * from Segnalazioni where gestita= false";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
@@ -120,13 +120,14 @@ public class SegnalazioneDAO {
     }
 
     /**
-     * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente nella tabella Segnalazione del database
-     * @return id con valore maggiore presente nella tabella Segnalazione del database
+     * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente
+     * nella tabella Segnalazioni del database
+     * @return id con valore maggiore presente nella tabella Segnalazioni del database
      */
 
     public int doRetrieveMaxIdSegnalazione(){
 
-        String query = "select max(id) from (select id from Segnalazione)";
+        String query = "select max(id) from (select id from Segnalazioni)";
 
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
@@ -138,7 +139,7 @@ public class SegnalazioneDAO {
 
     /**
      * Questo metodo consente al gestore di marcare come "gestita" una segnalazione presente
-     * nella tabella Segnalazione del database
+     * nella tabella Segnalazioni del database
      * @param segnalazione segnalazione da marcare come "gestita"
      * @return false se la recensione è nulla, se risulta essere già "gestita"o se l'operazione NON è andata
      * a buon fine. True altrimenti
@@ -152,7 +153,7 @@ public class SegnalazioneDAO {
             return false;
 
         int id= segnalazione.getId();
-        String query= "update Segnalazione set gestita= true where id= "+ id;
+        String query= "update Segnalazioni set gestita= true where id= "+ id;
         QueryManager queryManager= new QueryManager();
         queryManager.update(query);
 
