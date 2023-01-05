@@ -1,10 +1,11 @@
 package it.unisa.ilike.liste.application.exceptions;
 
 /**
- * Classe che estende Exception
- *  @version 0.1
- *  @author FrancescoGiorgione
- *  @see java.lang.Exception
+ * Classe che modella un'eccezione controllata lanciata quando l'iscritto tenta di
+ * assegnare ad una sua nuova lista un nome già in uso da parte dell'iscritto stesso.
+ * @version 0.1
+ * @author FrancescoGiorgione
+ * @see java.lang.Exception
  */
 public class ListaGiaEsistenteException extends Exception {
     /**

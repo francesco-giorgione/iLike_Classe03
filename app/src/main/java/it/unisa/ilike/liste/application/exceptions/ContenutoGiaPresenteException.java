@@ -1,10 +1,11 @@
 package it.unisa.ilike.liste.application.exceptions;
 
 /**
- * Classe che estende Exception
- *  @version 0.1
- *  @author FrancescoGiorgione
- *  @see java.lang.Exception
+ * Classe che modella un'eccezione controllata lanciata quando l'iscritto tenta di
+ * inserire in una lista un contenuto già presente.
+ * @version 0.1
+ * @author FrancescoGiorgione
+ * @see java.lang.Exception
  */
 public class ContenutoGiaPresenteException extends Exception {
     /**

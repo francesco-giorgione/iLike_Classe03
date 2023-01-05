@@ -1,10 +1,11 @@
 package it.unisa.ilike.liste.application.exceptions;
 
 /**
- * Classe che estende Exception
- *  @version 0.1
- *  @author FrancescoGiorgione
- *  @see java.lang.Exception
+ * Classe che modella un'eccezione controllata lanciata quando l'iscritto assegna come nome della
+ * sua nuova lista una stringa contenente un numero di caratteri maggiore di quello consentito.
+ * @version 0.1
+ * @author FrancescoGiorgione
+ * @see java.lang.Exception
  */
 public class InvalidNomeException extends Exception {
     /**
