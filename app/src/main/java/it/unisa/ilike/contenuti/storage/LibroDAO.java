@@ -19,7 +19,7 @@ public class LibroDAO {
 
         QueryManager queryManager= new QueryManager();
 
-        String query = "SELECT * FROM Libro WHERE id=" + id;
+        String query = "SELECT * FROM Libri WHERE id=" + id;
 
         String res = queryManager.select(query);
 
@@ -32,7 +32,7 @@ public class LibroDAO {
 
     public boolean doSave(LibroBean l){
         QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO Libro (id, titolo, descrizione, categoria, autore, isbn, num_pagine) VALUES("+l.getId()+"'," +l.getTitolo() +"',"+l.getDescrizione()+"',"
+        String query = "INSERT INTO Libri (id, titolo, descrizione, categoria, autore, isbn, num_pagine) VALUES("+l.getId()+"'," +l.getTitolo() +"',"+l.getDescrizione()+"',"
                 +l.getCategoria()+"', "+l.getAutore()+"',"+l.getIsbn()+"',"
                 +l.getNumPagine()+");";
 
@@ -42,7 +42,7 @@ public class LibroDAO {
 
     public List<LibroBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM Libro";
+        String query = "SELECT * FROM Libri";
 
         String res = queryManager.select(query);
 
@@ -57,7 +57,7 @@ public class LibroDAO {
     public List<LibroBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
 
-        String query = "SELECT * FROM Libro WHERE categoria=" +categoria;
+        String query = "SELECT * FROM Libri WHERE categoria=" +categoria;
 
         Gson gson = new Gson();
         String res = queryManager.select(query);
@@ -72,7 +72,7 @@ public class LibroDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
 
-        String query = "SELECT * FROM Libro WHERE titolo LIKE '%" + s + "%';";
+        String query = "SELECT * FROM Libri WHERE titolo LIKE '%" + s + "%';";
         String res = queryManager.select(query);
 
         List<LibroBean> listaLibri = (List<LibroBean>) gson.fromJson(res, LibroBean.class);
@@ -82,7 +82,7 @@ public class LibroDAO {
 
 
     public boolean doDeleteById(int id){
-        String query = "DELETE FROM Libro WHERE id=" +id;
+        String query = "DELETE FROM Libri WHERE id=" +id;
 
         QueryManager queryManager = new QueryManager();
 
@@ -90,7 +90,7 @@ public class LibroDAO {
     }
 
     public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from Libro)";
+        String query = "select max(id) from (select id from Libri)";
         QueryManager queryManager= new QueryManager();
 
         String res = queryManager.select(query);

@@ -19,7 +19,7 @@ public class AlbumMusicaleDAO {
 
         QueryManager queryManager= new QueryManager();
 
-        String query = "SELECT * FROM AlbumMusicale WHERE id=" + id;
+        String query = "SELECT * FROM AlbumMusicali WHERE id=" + id;
 
         String res = queryManager.select(query);
 
@@ -32,7 +32,7 @@ public class AlbumMusicaleDAO {
 
     public boolean doSave(AlbumMusicaleBean a){
         QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO AlbumMusicale (id, titolo, descrizione, categoria, artista, data_rilascio, acustica, strumentalita,tempo,valenza,durata) VALUES("
+        String query = "INSERT INTO AlbumMusicali (id, titolo, descrizione, categoria, artista, data_rilascio, acustica, strumentalita,tempo,valenza,durata) VALUES("
                 +a.getId()+"'," +a.getTitolo() +"',"+a.getDescrizione()+"'," +a.getCategoria()+"', "+a.getArtista()+"',"
                 +a.getDataRilascio()+"'," +a.getAcustica()+"',"+a.getStrumentalita()+"'," +a.getTempo()+"', "+a.getValenza()+"', "+a.getDurata()+");";
 
@@ -42,7 +42,7 @@ public class AlbumMusicaleDAO {
 
     public List<AlbumMusicaleBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM AlbumMusicale";
+        String query = "SELECT * FROM AlbumMusicali";
 
         String res = queryManager.select(query);
 
@@ -57,7 +57,7 @@ public class AlbumMusicaleDAO {
     public List<AlbumMusicaleBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
 
-        String query = "SELECT * FROM AlbumMusicale WHERE categoria=" +categoria;
+        String query = "SELECT * FROM AlbumMusicali WHERE categoria=" +categoria;
 
         Gson gson = new Gson();
         String res = queryManager.select(query);
@@ -72,7 +72,7 @@ public class AlbumMusicaleDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
 
-        String query = "SELECT * FROM AlbumMusicale WHERE titolo LIKE '%" + s + "%';";
+        String query = "SELECT * FROM AlbumMusicali WHERE titolo LIKE '%" + s + "%';";
         String res = queryManager.select(query);
 
         List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
@@ -82,7 +82,7 @@ public class AlbumMusicaleDAO {
 
 
     public boolean doDeleteById(int id){
-        String query = "DELETE FROM AlbumMusicale WHERE id=" +id;
+        String query = "DELETE FROM AlbumMusicali WHERE id=" +id;
 
         QueryManager queryManager = new QueryManager();
 
@@ -90,7 +90,7 @@ public class AlbumMusicaleDAO {
     }
 
     public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from AlbumMusicale)";
+        String query = "select max(id) from (select id from AlbumMusicali)";
         QueryManager queryManager= new QueryManager();
 
         String res = queryManager.select(query);
