@@ -116,6 +116,22 @@ public class ListaDAO {
     }
 
 
+    /**
+     * Il metodo esegue un aggiornamento nel database di una lista già esistente.
+     * @param lista è la lista che si vuole aggiornare
+     * @return true se l'aggiornamento va a buon fine, false altrimenti
+     */
+    public boolean doUpdate(ListaBean lista) {
+        if(lista == null) {
+            return false;
+        }
+
+        if(this.doDeleteByKey(lista.getNome(), lista.getEmailIscritto())) {
+            return this.doSave(lista);
+        }
+        else return false;
+    }
+
 
     /**
      * Questo metodo restituisce tutti gli oggetti della classe <code>ListaBean</code> memorizzati nel database
