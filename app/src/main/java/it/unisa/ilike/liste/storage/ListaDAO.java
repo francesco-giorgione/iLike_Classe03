@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
  * Un oggetto <code>ListaDAO</code> serve per interagire con la tabella Lista presente nel database
@@ -16,14 +17,13 @@ public class ListaDAO {
 
     /**
      * Questo metodo consente di salvare nella tabella Lista del database un nuovo oggetto della classe
-     * <code>ListaBean</code> passato come argomento.
+     * <code>ListaBean</code> passato come argomento, considerando i contenuti appartenenti alla lista.
      * @param lista nuovo oggetto della classe <code>ListaBean</code> da salvare nel database
-     * @return false se la lista passata come argomento è null o se l'operazione NON è andata a buon fine,
-     * true altrimenti
+     * @return false se l'inserimento in entrambe le tabelle del db Liste e Inclusioni è avvenuto
+     * correttamente, false altrimenti.
      */
     public boolean doSave(ListaBean lista){
-
-        if (lista== null){
+        if (lista == null){
             return false;
         }
 
@@ -31,11 +31,31 @@ public class ListaDAO {
         String emailIscritto=lista.getEmailIscritto();
         boolean visibilita= lista.isVisibile();
 
-
+        boolean esito;
         QueryManager queryManager= new QueryManager();
+
         String query= "insert into Lista (nome, email_iscritto, visibilita values ('" +
                 nome + "', '" + emailIscritto+ "', " + visibilita + ");";
-        return queryManager.update(query);
+
+
+        if(queryManager.update(query)) {
+            if(!lista.getContenuti().isEmpty()) {
+                query = "INSERT INTO Inclusioni(nome_lista, email_iscritto, id_contenuto) VALUES ";
+
+                for(ContenutoBean c: lista.getContenuti()) {
+                    query += "('" + nome + "', '" + emailIscritto + "', " + c.getId() + "),";
+                }
+
+                query = query.substring(0, query.length() - 1);
+                return queryManager.update(query);
+            }
+            else {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
     /**
