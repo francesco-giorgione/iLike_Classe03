@@ -1,5 +1,11 @@
 package it.unisa.ilike.account.application;
 
+import java.sql.Blob;
+
+import it.unisa.ilike.account.storage.GestoreBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.account.storage.UtenteBean;
+
 /**
  * Un oggetto <code>AccountImpl</code> viene utilizzato per accedere ai servizi di autenticazione.
  * @author Marta
@@ -37,7 +43,7 @@ public class AccountImpl implements AccountService {
      * Questo metodo consente di effettuare il logout dell’utente.
      * @param u rappresenta l'oggetto utente che deve vuole effettuare il logout
      */
-    public void logout(Utente u){
+    public void logout(UtenteBean u){
 
     }
 
