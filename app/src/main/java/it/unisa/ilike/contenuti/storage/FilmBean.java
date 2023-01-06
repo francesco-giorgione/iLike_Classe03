@@ -25,8 +25,8 @@ public class FilmBean extends ContenutoBean{
      * @param regista
      * @param attori
      */
-    public FilmBean(int id, String titolo, String descrizione, String categoria, String annoRilascio, int durata, String paese, String regista, String attori) {
-        super(id, titolo, descrizione, categoria);
+    public FilmBean(int id, String titolo, String descrizione, String categoria, String annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
+        super(id, titolo, descrizione, categoria, valutazioneMedia);
         this.annoRilascio = annoRilascio;
         this.durata = durata;
         this.paese = paese;
