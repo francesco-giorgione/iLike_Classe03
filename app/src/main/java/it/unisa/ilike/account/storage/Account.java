@@ -1,9 +1,5 @@
 package it.unisa.ilike.account.storage;
 
-import androidx.core.app.NavUtils;
-
-import it.unisa.ilike.account.application.exceptions.AttoreVuotoException;
-
 /**
  * Questa classe rapresenta l'oggetto da salvare nel Application Context
  * per valutare se è stato effettuato il login.
@@ -57,15 +53,14 @@ public class Account {
     /**
      * Questo metodo permette di valutare chi ha effettuato il login
      * @return True se l'attore è l'iscritto, False se l'attore è il gestore, Null se non è stato effettuato il login
-     * @throws AttoreVuotoException nel caso in cui non è stata effettuata la login
      */
-    public boolean isIscritto() throws AttoreVuotoException {
+    public Boolean isIscritto() {
         if (iscrittoBean != null)
             return true;
         else
             if (gestoreBean != null)
                 return false;
-        throw new AttoreVuotoException("Non è stato effettuato il login!");
+        return null;
     }
 
     private IscrittoBean iscrittoBean;
