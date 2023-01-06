@@ -12,7 +12,7 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
-public class SerieTVDAO {
+public class SerieTVDAO extends ContenutoDAO {
 
     public SerieTVBean doRetrieveById(int id){
 

@@ -29,7 +29,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      */
     public AlbumMusicaleBean(int id, String titolo, String descrizione, String categoria, String artista, String dataRilascio,
                              String acustica, String strumentalita, String tempo, String valenza, float durata) {
-        super(id, titolo, descrizione, categoria);
+        super(id, titolo, descrizione, categoria, 0);
         this.artista = artista;
         this.dataRilascio = dataRilascio;
         this.acustica = acustica;

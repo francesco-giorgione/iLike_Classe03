@@ -12,7 +12,7 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
-public class LibroDAO {
+public class LibroDAO extends ContenutoDAO {
 
 
     public LibroBean doRetrieveById(int id){
