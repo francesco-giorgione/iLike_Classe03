@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.utils.Utils;
 
 public class FilmDAO extends ContenutoDAO {
 
@@ -35,16 +36,37 @@ public class FilmDAO extends ContenutoDAO {
         return film;
     }
 
-    /*
-    public boolean doSave(FilmBean f){
-
+    /**
+     * Restituisce tutti i film di una certa categoria
+     * @param categoria è la categoria dei film che si vogliono ottenere.
+     * @return una collezione di tutti i film la cui categoria è 'categoria'.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria) {
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("film", categoria);
+        Gson gson = new Gson();
         QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO Film (id, titolo, descrizione, categoria, anno_rilascio, durata, paese, regista, attori) VALUES("+f.getId()+"'," +f.getTitolo() +"',"+f.getDescrizione()+"',"
-                +f.getCategoria()+"', "+f.getAnnoRilascio()+"',"+f.getDurata()+"',"
-                +f.getPaese()+"',"+f.getRegista()+"',"+f.getAttori()+ ");";
-        return queryManager.update(query);
-    }*/
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
+                    "from Film " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            FilmBean f = gson.fromJson(res, FilmBean.class);
+
+            f.setId(id);
+            f.setTitolo(c.getTitolo());
+            f.setDescrizione(c.getDescrizione());
+            f.setCategoria(c.getCategoria());
+
+            contenuti.add(f);
+        }
+
+        return contenuti;
+    }
 
     public List<FilmBean> doRetrieveAll(){
 
@@ -77,9 +99,6 @@ public class FilmDAO extends ContenutoDAO {
 
     public List<FilmBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
-
-        // d'll"a
-        // d\'ll\"a
 
         String query = "SELECT * FROM Film WHERE categoria='" + categoria + "'";
 
@@ -137,23 +156,4 @@ public class FilmDAO extends ContenutoDAO {
         return null;
     }
 
-    /*
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM Film WHERE id=" +id;
-
-        QueryManager queryManager = new QueryManager();
-
-        return queryManager.update(query);
-    }
-
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from Film)";
-        QueryManager queryManager= new QueryManager();
-
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
-
-        return id;
-    }*/
 }
