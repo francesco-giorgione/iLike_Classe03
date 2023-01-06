@@ -22,8 +22,9 @@ public interface ContenutoService {
      * @param minValutazione è la minima valutazione media che devono avere i contenuti che si vogliono selezionare
      * @param maxValutazione è la massima valutazione media che devono avere i contenuti che si vogliono selezionare
      * @return una collezione List dei contenuti aventi una valutazione media che rientra nel range indicato
-     * @throws InvalidValutazioneException
+     * @throws InvalidValutazioneException viene lanciata se il range di valutazione indicato non rientra
+     * nell'intervallo di interi [1, ..., 5] oppure se maxValutazione < minValutazione
      */
-    List<ContenutoBean> getContenuti(Double minValutazione, Double maxValutazione)
+    List<ContenutoBean> getContenuti(double minValutazione, double maxValutazione)
             throws InvalidValutazioneException;
 }
