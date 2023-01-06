@@ -1,9 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".segnalazioni.presentation.VisualizzazioneSegnalazioniActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- HEADER -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/logo"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:text="Le Segnalazioni"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20dip"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dip"
+        android:textSize="25dip"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"/>
+
+    <!--HEADER TABELLA SEGNALAZIONI-->
+    <View
+        android:layout_width="372dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="19dip"
+        android:layout_height="1dp"
+        android:layout_below="@id/textView1"
+        android:background="@android:color/black"/>
+    <LinearLayout
+        android:id="@+id/segnalazioniListHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_below="@id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dip">
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+        <TextView
+            android:id="@+id/nicknameIscrittoHeader"
+            android:text="Nickname iscritto"
+            android:textAlignment="center"
+            android:background="#DBA73D"
+            android:layout_width="160dip"
+            android:textSize="20dip"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+        <TextView
+            android:id="@+id/tipologiaHeader"
+            android:text="Tipologia"
+            android:layout_width="146dip"
+            android:textAlignment="center"
+            android:background="#DBA73D"
+            android:textSize="20dip"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+
+
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+        <TextView
+            android:id="@+id/infoHeader"
+            android:text="Info"
+            android:layout_width="60dip"
+            android:textSize="20dip"
+            android:background="#DBA73D"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="372dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginLeft="20dip"
+        android:layout_height="1dp"
+        android:layout_below="@id/segnalazioniListHeader"
+        android:background="@android:color/black"/>
+
+
+    <!--TABELLA SEGNALAZIONI-->
+    <ListView
+        android:id="@+id/segnalazioniList"
+        android:layout_below="@id/segnalazioniListHeader"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_width="370dip"
+        android:layout_height="450dip">
+
+    </ListView>
+
+
+    <!--NUMERO SEGNALAZIONI GESTITE-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dip"
+        android:layout_below="@id/segnalazioniList"
+        android:layout_marginTop="20dip">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:text="Numero segnalazioni gestite: "
+            android:layout_width="270dip"
+            android:textSize="20dip"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/numerSegnalazioniGestite"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:text="xx"
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+
+    </LinearLayout>
+
+    <!--FOOTER -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="150dip"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="300dip"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
