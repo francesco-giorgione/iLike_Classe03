@@ -72,7 +72,7 @@ public class FilmDAO {
     public List<FilmBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
 
-        String query = "SELECT * FROM Film WHERE categoria=" +categoria;
+        String query = "SELECT * FROM Film WHERE categoria='" + categoria + "'";
 
         Gson gson = new Gson();
         String res = queryManager.select(query);
