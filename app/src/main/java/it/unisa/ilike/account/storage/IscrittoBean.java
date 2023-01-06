@@ -15,7 +15,6 @@ public abstract class IscrittoBean extends UtenteBean {
 
     /**
      * Questo metodo crea un oggetto IscrittoBean
-     * @param id rappresenta l'id a cui è associato dell'iscritto
      * @param email rappresenta il testo contenente l'email dell'iscritto
      * @param password rappresenta il testo contenente la password dell'iscritto
      * @param nickname rappresenta il testo contenente il nickname dell'iscritto
@@ -23,8 +22,8 @@ public abstract class IscrittoBean extends UtenteBean {
      * @param cognome rappresenta il testo contenente il cognome dell'iscritto
      * @param bio rappresenta il testo contenente la bio dell'iscritto
      */
-    public IscrittoBean(int id, String email, String password, String nickname, String nome, String cognome, String bio) {
-        super(id, email, password);
+    public IscrittoBean(String email, String password, String nickname, String nome, String cognome, String bio) {
+        super(email, password);
         this.nickname = nickname;
         this.bio = bio;
         this.nome = nome;

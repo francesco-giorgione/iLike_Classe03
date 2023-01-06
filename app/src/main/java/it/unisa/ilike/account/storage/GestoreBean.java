@@ -9,13 +9,12 @@ public class GestoreBean extends UtenteBean {
 
     /**
      * Questo metodo crea un oggetto GestoreBean
-     * @param id rappresenta l'id a cui è associato il gestore
      * @param email rappresenta il testo contenente l'email del gestore
      * @param password rappresenta il testo contenente la password del gestore
      * @param numSegnalazioniGestite rappresenta il numero di segnalazioni gestite
      */
-    public GestoreBean(int id, String email, String password, int numSegnalazioniGestite) {
-        super(id, email, password);
+    public GestoreBean(String email, String password, int numSegnalazioniGestite) {
+        super(email, password);
         this.numSegnalazioniGestite = numSegnalazioniGestite;
     }
 
