@@ -14,27 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FFF"
-        android:gravity="center" >
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/BarraDiRicercaContenuti"
-            android:layout_width="358dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_toEndOf="@+id/logo" />
-
-        <Button
-            android:id="@+id/CercaContenutoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cerca"
-            android:backgroundTint="#DBA73D"
-            android:layout_alignRight="@id/BarraDiRicercaContenuti"/>
-
+        android:gravity="center">
         <ImageView
             android:id="@+id/logo"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/logo"/>
 
     </RelativeLayout>
@@ -43,6 +28,7 @@
         android:layout_height="1dp"
         android:layout_below="@id/header"
         android:background="@android:color/darker_gray"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,20 +109,20 @@
         android:gravity="center" >
 
         <ImageButton
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             android:layout_marginLeft="5dip"
             android:src="@drawable/icona_chatbot"/>
 
         <ImageButton
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             android:layout_marginLeft="150dip"
             android:src="@drawable/ricerca"/>
 
         <ImageButton
-            android:layout_width="40dip"
-            android:layout_height="40dip"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
             android:layout_marginLeft="300dip"
             android:src="@drawable/icona_profilo"/>
 
