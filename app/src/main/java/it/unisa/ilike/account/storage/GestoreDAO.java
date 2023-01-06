@@ -34,6 +34,29 @@ public class GestoreDAO {
         return gestore;
     }
 
+    /**
+     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>GestoreBean</code>
+     * presente nella tabella Gestori del database, dopo averlo individuato tramite l'email
+     * e la password passati come argomenti
+     * @param email email del gestore da cercare nel database
+     * @param password password crittografata del gestore da cercare nel database
+     * @return null se uno o più parametri non sono validi, l'oggetto gestore se l'operazione è andata a buon fine
+     */
+    public GestoreBean doRetrieveByEmailPassword(String email, String password){
+
+        if (email==null || password==null)
+            return null;
+        else{
+            String query = "select * from Gestori where email = '" + email + "' and password=SHA1('" + password + "')";
+            QueryManager queryManager= new QueryManager();
+            String res= queryManager.select(query);
+            Gson gson= new Gson();
+            GestoreBean gestore= gson.fromJson(res, GestoreBean.class);
+            return gestore;
+        }
+    }
+
+
     /*public boolean doSave(GestoreBean gestore){
 
         String email=gestore.getEmail();

@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".contenuti.presentation.VisualizzazioneHomepageActivity">
 
+
+    <!-- HEADER -->
+
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FE0"
+        android:background="#FFF"
         android:gravity="center" >
 
         <androidx.appcompat.widget.SearchView
@@ -32,10 +35,11 @@
             android:id="@+id/logo"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"/>
 
     </RelativeLayout>
 
+    <!-- FILM -->
 
     <TextView
         android:id="@+id/textView"
@@ -58,34 +62,35 @@
         android:layout_marginRight="10dip">
 
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/textFilm1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
-            android:id="@+id/img1"
+            android:id="@+id/imgFilm1"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text1"
+            android:layout_below="@id/textFilm1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star1"
+            android:id="@+id/starFilm1"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img1"
+            android:layout_below="@id/imgFilm1"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingFilm1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img1"
-            android:layout_alignLeft="@id/star1"
+            android:layout_below="@id/imgFilm1"
+            android:layout_alignLeft="@id/starFilm1"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -103,34 +108,35 @@
         android:layout_marginRight="-150dp">
 
         <TextView
-            android:id="@+id/text2"
+            android:id="@+id/textFilm2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img2"
+            android:id="@+id/imgFilm2"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text2"
+            android:layout_below="@id/textFilm2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star2"
+            android:id="@+id/starFilm2"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img2"
+            android:layout_below="@id/imgFilm2"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingFilm2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img2"
-            android:layout_alignLeft="@id/star2"
+            android:layout_below="@id/imgFilm2"
+            android:layout_alignLeft="@id/starFilm2"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -148,39 +154,42 @@
         android:layout_marginRight="-300dp">
 
         <TextView
-            android:id="@+id/text3"
+            android:id="@+id/textFilm3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img3"
+            android:id="@+id/imgFilm3"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text3"
+            android:layout_below="@id/textFilm3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star3"
+            android:id="@+id/starFilm3"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img3"
+            android:layout_below="@id/imgFilm3"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingFilm3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img3"
-            android:layout_alignLeft="@id/star3"
+            android:layout_below="@id/imgFilm3"
+            android:layout_alignLeft="@id/starFilm3"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
 
     </RelativeLayout>
+
+    <!--LiBRI-->
 
     <TextView
         android:id="@+id/textView1"
@@ -203,34 +212,35 @@
         android:layout_marginRight="10dip">
 
         <TextView
-            android:id="@+id/text4"
+            android:id="@+id/textLibri1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
-            android:id="@+id/img4"
+            android:id="@+id/imgLibri1"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text4"
+            android:layout_below="@id/textLibri1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star4"
+            android:id="@+id/starLibri1"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img4"
+            android:layout_below="@id/imgLibri1"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingLibri1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img4"
-            android:layout_alignLeft="@id/star4"
+            android:layout_below="@id/imgLibri1"
+            android:layout_alignLeft="@id/starLibri1"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -248,34 +258,35 @@
         android:layout_marginRight="-150dp">
 
         <TextView
-            android:id="@+id/text5"
+            android:id="@+id/textLibri2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img5"
+            android:id="@+id/imgLibri2"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text5"
+            android:layout_below="@id/textLibri2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star5"
+            android:id="@+id/starLibri2"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img5"
+            android:layout_below="@id/imgLibri2"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingLibri2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img5"
-            android:layout_alignLeft="@id/star5"
+            android:layout_below="@id/imgLibri2"
+            android:layout_alignLeft="@id/starLibri2"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -293,39 +304,42 @@
         android:layout_marginRight="-300dp">
 
         <TextView
-            android:id="@+id/text6"
+            android:id="@+id/textLibri3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img6"
+            android:id="@+id/imgLibri3"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text6"
+            android:layout_below="@id/textLibri3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star6"
+            android:id="@+id/starLibri3"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img6"
+            android:layout_below="@id/imgLibri3"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingLibri3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img6"
-            android:layout_alignLeft="@id/star6"
+            android:layout_below="@id/imgLibri3"
+            android:layout_alignLeft="@id/starLibri3"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
 
     </RelativeLayout>
+
+    <!--ALBUM -->
 
     <TextView
         android:id="@+id/textView2"
@@ -348,34 +362,35 @@
         android:layout_marginRight="10dip">
 
         <TextView
-            android:id="@+id/text7"
+            android:id="@+id/textAlbum1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
-            android:id="@+id/img7"
+            android:id="@+id/imgAlbum1"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text7"
+            android:layout_below="@id/textAlbum1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star7"
+            android:id="@+id/starAlbum1"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img7"
+            android:layout_below="@id/imgAlbum1"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingAlbum1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img7"
-            android:layout_alignLeft="@id/star7"
+            android:layout_below="@id/imgAlbum1"
+            android:layout_alignLeft="@id/starAlbum1"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -393,34 +408,35 @@
         android:layout_marginRight="-150dp">
 
         <TextView
-            android:id="@+id/text8"
+            android:id="@+id/textAlbum2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img8"
+            android:id="@+id/imgAlbum2"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text8"
+            android:layout_below="@id/textAlbum2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star8"
+            android:id="@+id/starAlbum2"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img8"
+            android:layout_below="@id/imgAlbum2"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
+            android:id="@+id/ratingAlbum2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img8"
-            android:layout_alignLeft="@id/star8"
+            android:layout_below="@id/imgAlbum2"
+            android:layout_alignLeft="@id/starAlbum2"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -438,34 +454,34 @@
         android:layout_marginRight="-300dp">
 
         <TextView
-            android:id="@+id/text9"
+            android:id="@+id/textAlbum3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/img9"
+            android:id="@+id/imgAlbum3"
             android:layout_width="65dp"
             android:layout_height="68dp"
-            android:layout_below="@id/text9"
+            android:layout_below="@id/textAlbum3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/logo" />
 
         <ImageView
-            android:id="@+id/star9"
+            android:id="@+id/starAlbum3"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/img9"
+            android:layout_below="@id/imgAlbum3"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img9"
-            android:layout_alignLeft="@id/star9"
+            android:layout_below="@id/imgAlbum3"
+            android:layout_alignLeft="@id/starAlbum3"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
@@ -477,7 +493,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#FE0"
+        android:background="#FFF"
         android:gravity="center" >
         
         <ImageButton
