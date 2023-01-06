@@ -1,6 +1,13 @@
 package it.unisa.ilike.contenuti.storage;
 
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.utils.Utils;
 
 public class ContenutoDAO {
     /**
@@ -16,5 +23,52 @@ public class ContenutoDAO {
                 "where id = " + idContenuto;
 
         return queryManager.update(query);
+    }
+
+    /**
+     * Esegue il fetch di un contenuto dal database.
+     * @param id è l'id del contenuto che si vuole selezionare dal db
+     * @return un oggetto ContenutoBean contenente l'id, il titolo, la descrizione, la categoria
+     * e la valutazione media del contenuto selezionato.
+     */
+    public ContenutoBean doRetrieveById(int id) {
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+                "from Contenuti " +
+                "where id = " + id;
+
+        String res = queryManager.select(query);
+        return gson.fromJson(res, ContenutoBean.class);
+    }
+
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
+
+    /**
+     * Restituisce una collezione di tutti i contenuti di un certo tipo (es. tutti i film).
+     * @param tipo - è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
+     *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali).
+     * @return un ArrayList contenente tutti i contenuti di un certo tipo (es. film, serie tv, ecc.).
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String tipo, String categoria) {
+        if(!tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album")) {
+            return null;
+        }
+
+        categoria = Utils.addEscape(categoria);
+
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+                "FROM Contenuti " +
+                "where tipo = '" + tipo + "' and categoria = '" + categoria + "'";
+
+        String res = queryManager.select(query);
+        // da controllare cast, probabilmente non funziona
+        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
+        return contenuti;
     }
 }
