@@ -8,6 +8,7 @@
     tools:context=".account.presentation.LoginActivity">
 
     <RelativeLayout
+        android:id="@+id/LoginForm"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true">
@@ -56,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/LoginButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/password"
@@ -65,26 +66,22 @@
             android:layout_marginBottom="50dp"
             android:enabled="false"
             android:text="Login"
-            android:background="#dba73d"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.2" />
-
-        <TextView
-            android:id="@+id/TextRegistrazione"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:textAlignment="center"
-            android:text="Sei un nuovo utente? Registrati"
-            android:textColor="#000000"
-            android:textIsSelectable="true"
-            android:textSize="15dp" />
+            android:backgroundTint="#DBA73D"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/RegistrazioneLink"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="230dp"
+        android:textAlignment="center"
+        android:text="Sei un nuovo utente? Registrati"
+        android:textColor="#000000"
+        android:textIsSelectable="true"
+        android:textSize="15dp"/>
+
 
 </RelativeLayout>

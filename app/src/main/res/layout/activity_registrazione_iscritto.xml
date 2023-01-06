@@ -24,7 +24,7 @@
         android:textSize="25dp"/>
 
     <GridLayout
-        android:id="@+id/form"
+        android:id="@+id/RegistrazioneIscrittoForm"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -136,14 +136,14 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/registrati"
+        android:id="@+id/RegistrazioneButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/form"
+        android:layout_below="@+id/RegistrazioneIscrittoForm"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:enabled="false"
         android:text="Registrati"
-        android:background="#dba73d"/>
+        android:backgroundTint="#DBA73D"/>
 
 </RelativeLayout>
