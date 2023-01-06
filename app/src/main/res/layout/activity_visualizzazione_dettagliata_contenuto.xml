@@ -1,9 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".contenuti.presentation.VisualizzazioneDettagliataContenutoActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            app:srcCompat="@drawable/icona_serietv"/>
+
+        <TextView
+            android:id="@+id/titoloContenuto"
+            android:layout_width="200dip"
+            android:paddingTop="10dip"
+            android:textStyle="bold"
+            android:textSize="22dip"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_height="50dip"
+            android:text="Titolo"/>
+
+
+        <ImageButton
+            android:id="@+id/CercaContenutoButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/icona_aggiungi" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+
+    <RatingBar
+        android:id="@+id/ratingContenuto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20dip"
+        android:numStars="5"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ratingContenuto"
+        android:layout_marginTop="20dip"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/descrizioneContenuto"
+        android:layout_width="match_parent"
+        android:layout_below="@id/ratingContenuto"
+        android:layout_marginTop="20dip"
+        android:layout_height="100dip"
+        android:textSize="22dip"
+        android:textColor="@color/black"
+        android:text="Descrizione"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/descrizioneContenuto"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:id="@+id/layoutRecensioni"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="#D1D1D1"
+        android:layout_below="@id/descrizioneContenuto"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/leRecensioni"
+            android:layout_width="350dip"
+            android:paddingTop="10dip"
+            android:textStyle="bold"
+            android:textSize="22dip"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_height="50dip"
+            android:text="Recensioni"/>
+
+        <ImageButton
+            android:id="@+id/aggiungiRecensioneButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/icona_aggiungi"/>
+
+    </LinearLayout>
+
+
+
+    <!--TABELLA RECENSIONI-->
+    <ListView
+        android:id="@+id/recensioniList"
+        android:layout_below="@id/layoutRecensioni"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_width="370dip"
+        android:layout_height="300dip">
+
+    </ListView>
+
+    <!--FOOTER -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="150dip"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="300dip"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

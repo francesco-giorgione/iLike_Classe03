@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layoutRecensioniList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="20dip"
+                android:layout_height="match_parent"
+                android:src="@drawable/icona_serietv"/>
+
+            <TextView
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip"
+                android:layout_width="300dip"
+                android:layout_height="match_parent"
+                android:text="Nickname iscritto"/>
+
+            <ImageButton
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:src="@drawable/icona_spoiler"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Testo recensione"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dip"
+            android:backgroundTint="#DBA73D"
+            android:text="Spoiler Alert"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/layoutRecensioniList"
+        android:background="@android:color/darker_gray"/>
+
+
+</RelativeLayout>
