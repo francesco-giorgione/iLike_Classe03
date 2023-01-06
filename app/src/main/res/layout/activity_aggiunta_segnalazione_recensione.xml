@@ -1,9 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".recensioni.presentation.AggiuntaSegnalazioneRecensioneActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- HEADER -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center" >
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/BarraDiRicercaContenuti"
+            android:layout_width="358dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/logo" />
+
+        <Button
+            android:id="@+id/CercaContenutoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerca"
+            android:backgroundTint="#DBA73D"
+            android:layout_alignRight="@id/BarraDiRicercaContenuti"/>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            app:srcCompat="@drawable/logo"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+    <RelativeLayout
+        android:id="@+id/SegnalazioneForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/testo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo di segnalazione:"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/tipoSegnalazione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/testo"
+            android:text="Altre segnalazioni/Spoiler alert ( a seconda del pulsante cliccato)"/>
+
+        <EditText
+            android:id="@+id/motivazioneSegnalazione"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tipoSegnalazione"
+            android:hint="Inserisci la motivazione della segnalazione"/>
+
+        <Button
+            android:id="@+id/inviaSegnalazioneButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#DBA73D"
+            android:text="Invia Segnalazione"
+            android:textAlignment="center"
+            android:layout_below="@+id/motivazioneSegnalazione"/>
+
+    </RelativeLayout>
+
+
+    <!--FOOTER -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_marginLeft="150dip"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:layout_width="40dip"
+            android:layout_height="40dip"
+            android:layout_marginLeft="300dip"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
+</RelativeLayout>
