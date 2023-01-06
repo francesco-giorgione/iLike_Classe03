@@ -99,4 +99,41 @@ public class IscrittoDAO {
         return iscritto;
     }
 
+    /**
+     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>IscrittoBean</code>
+     * presente nella tabella Iscritti del database, dopo averlo individuato tramite il nickname o l'email
+     * e la password passati come argomenti
+     * @param nickname nickname dell'iscritto da cercare nel database
+     * @param email email dell'iscritto da cercare nel database
+     * @param password password crittografata dell'iscritto da cercare nel database
+     * @return null se uno o più parametri non sono validi, l'oggetto iscritto se l'operazione è andata a buon fine
+     */
+    public IscrittoBean doRetrieveByUsernamePassword(String nickname, String email, String password){
+
+        if (nickname==null){
+            if (email==null)
+                return null;
+            else{
+                if (password==null)
+                    return null;
+                String query = "select * from Iscritti where email = '" + email + "' and password=SHA1('" + password + "')";
+                QueryManager queryManager= new QueryManager();
+                String res= queryManager.select(query);
+                Gson gson= new Gson();
+                IscrittoBean iscritto= gson.fromJson(res, IscrittoBean.class);
+                return iscritto;
+            }
+        }
+        else{
+            if (password==null)
+                return null;
+            String query = "select * from Iscritti where nickname = '" + nickname + "' and password=SHA1('" + password + "')";
+            QueryManager queryManager= new QueryManager();
+            String res= queryManager.select(query);
+            Gson gson= new Gson();
+            IscrittoBean iscritto= gson.fromJson(res, IscrittoBean.class);
+            return iscritto;
+        }
+    }
+
 }
