@@ -38,7 +38,11 @@
             app:srcCompat="@drawable/logo"/>
 
     </RelativeLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,13 +59,47 @@
             android:text="Testo recensione da cancellare"
             android:layout_marginTop="20dip" />
 
+        <TextView
+            android:id="@+id/textViewSegnalazione"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_below="@id/header"
+            android:text="Testo segnalazione relativo alla recensione"
+            android:layout_marginTop="20dip" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/rifiutaSegnalazioneButton"
+                android:layout_width="200dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:backgroundTint="#DBA73D"
+                android:text="Rifiuta segnalazione"/>
+
+            <Button
+                android:id="@+id/accettaSegnalazioneButton"
+                android:layout_width="200dip"
+                android:layout_marginLeft="210dip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:backgroundTint="#DBA73D"
+                android:text="Accetta segnalazione"/>
+
+        </RelativeLayout>
+
         <!--Cancellazione recensione form-->
+
+        <!-- il form diventa visibile solo dopo il click sul pulsante accettaSegnalazioneButton -->
 
         <EditText
             android:id="@+id/motivazioneCancellazione"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_marginTop="50dip"
+            android:visibility="invisible"
             android:hint="Inserisci la motivazione della cancellazione" />
 
         <Button
@@ -70,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:backgroundTint="#DBA73D"
+            android:visibility="invisible"
             android:text="Cancella recensione"/>
     </LinearLayout>
 
