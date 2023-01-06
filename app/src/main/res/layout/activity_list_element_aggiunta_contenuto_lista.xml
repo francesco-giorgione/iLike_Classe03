@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".liste.presentation.AggiuntaContenutoListaActivity">
+
+    <!--Layout per elenco liste dell'iscritto-->
+
+    <LinearLayout
+        android:id="@+id/layoutRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dip">
+
+        <RadioGroup
+            android:id="@+id/sceltaListaRadioButtonGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/sceltaListaRadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                style="?android:attr/borderlessButtonStyle"
+                android:text="NomeLista1"
+                android:textSize="22dp"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+</RelativeLayout>

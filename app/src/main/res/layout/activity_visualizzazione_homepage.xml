@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cerca"
+            android:backgroundTint="#DBA73D"
             android:layout_alignRight="@id/BarraDiRicercaContenuti"/>
 
         <ImageView
@@ -38,6 +39,11 @@
             app:srcCompat="@drawable/logo"/>
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
 
     <!-- FILM -->
 
@@ -53,7 +59,7 @@
         android:layout_below="@id/header"/>
 
     <RelativeLayout
-        android:id="@+id/layout1"
+        android:id="@+id/VisualizzazioneHomepageListFilm1"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView"
@@ -98,11 +104,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout2"
+        android:id="@+id/VisualizzazioneHomepageListFilm2"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView"
-        android:layout_alignRight="@id/layout1"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListFilm1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-150dp">
@@ -144,11 +150,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout3"
+        android:id="@+id/VisualizzazioneHomepageListFilm3"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView"
-        android:layout_alignRight="@id/layout1"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListFilm1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-300dp">
@@ -203,7 +209,7 @@
         android:layout_below="@id/header"/>
 
     <RelativeLayout
-        android:id="@+id/layout4"
+        android:id="@+id/VisualizzazioneHomepageListLibri1"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView1"
@@ -248,11 +254,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout5"
+        android:id="@+id/VisualizzazioneHomepageListLibri2"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView1"
-        android:layout_alignRight="@id/layout4"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListLibri1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-150dp">
@@ -294,11 +300,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout6"
+        android:id="@+id/VisualizzazioneHomepageListLibri3"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView1"
-        android:layout_alignRight="@id/layout4"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListLibri1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-300dp">
@@ -353,7 +359,7 @@
         android:layout_below="@id/header"/>
 
     <RelativeLayout
-        android:id="@+id/layout7"
+        android:id="@+id/VisualizzazioneHomepageListAlbum1"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView2"
@@ -398,11 +404,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout8"
+        android:id="@+id/VisualizzazioneHomepageListAlbum2"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView2"
-        android:layout_alignRight="@id/layout7"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListAlbum1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-150dp">
@@ -444,11 +450,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout9"
+        android:id="@+id/VisualizzazioneHomepageListAlbum3"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView2"
-        android:layout_alignRight="@id/layout7"
+        android:layout_alignRight="@id/VisualizzazioneHomepageListAlbum1"
         android:layout_marginLeft="5dip"
         android:layout_marginTop="20dp"
         android:layout_marginRight="-300dp">
@@ -498,24 +504,24 @@
         android:layout_alignParentBottom="true"
         android:background="#D1D1D1"
         android:gravity="center" >
-        
+
         <ImageButton
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="5dip"
-            android:src="@drawable/star"/>
+            android:src="@drawable/icona_chatbot"/>
 
         <ImageButton
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/star"/>
+            android:src="@drawable/ricerca"/>
 
         <ImageButton
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="300dip"
-            android:src="@drawable/star"/>
+            android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>
 
