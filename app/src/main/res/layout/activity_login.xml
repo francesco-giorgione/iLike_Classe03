@@ -7,16 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".account.presentation.LoginActivity">
 
+    <!-- HEADER -->
+
     <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true">
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center" >
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+
+    <RelativeLayout
+        android:id="@+id/LoginForm"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/LoginButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/password"
@@ -65,26 +85,22 @@
             android:layout_marginBottom="50dp"
             android:enabled="false"
             android:text="Login"
-            android:background="#dba73d"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.2" />
-
-        <TextView
-            android:id="@+id/TextRegistrazione"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:textAlignment="center"
-            android:text="Sei un nuovo utente? Registrati"
-            android:textColor="#000000"
-            android:textIsSelectable="true"
-            android:textSize="15dp" />
+            android:backgroundTint="#DBA73D"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/RegistrazioneLink"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="230dp"
+        android:textAlignment="center"
+        android:text="Sei un nuovo utente? Registrati"
+        android:textColor="#000000"
+        android:textIsSelectable="true"
+        android:textSize="15dp"/>
+
 
 </RelativeLayout>

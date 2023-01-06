@@ -1,9 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".liste.presentation.CreazioneListaActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- HEADER -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            app:srcCompat="@drawable/logo"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Creazione nuova lista"
+        android:layout_above="@+id/CreazioneListaForm"
+        android:textColor="#DBA73D"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"/>
+
+
+    <GridLayout
+        android:id="@+id/CreazioneListaForm"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_centerInParent="true"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:paddingLeft="50dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dip"
+            android:text="Nome lista:"
+            android:textSize="20dip" />
+
+        <EditText
+            android:id="@+id/nomeLista"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Inserire il nome della lista"
+            android:layout_marginTop="50dip"
+            android:layout_marginLeft="10dip"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Visibilità:"
+            android:textSize="20dip"
+            android:layout_marginTop="20dip"/>
+
+        <RadioGroup
+            android:id="@+id/visibilita"
+            android:layout_width="300dip"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dip"
+            android:layout_marginLeft="10dip">
+
+            <RadioButton
+                android:id="@+id/visibilitaPublic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="public" />
+
+            <RadioButton
+                android:id="@+id/visibilitaPrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="private" />
+        </RadioGroup>
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/CreazioneListaButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CreazioneListaForm"
+        android:text="Crea Lista"
+        android:backgroundTint="#DBA73D"
+        android:layout_centerHorizontal="true"/>
+
+
+    <!--FOOTER -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="150dip"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="300dip"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
