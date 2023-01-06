@@ -16,20 +16,26 @@ import it.unisa.ilike.QueryManager;
 public class FilmDAO extends ContenutoDAO {
 
     public FilmBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM Film WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT anno_rilascio as annoRilascio, durata, paese, regista, attori " +
+                "FROM Film " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        FilmBean f = gson.fromJson(res, FilmBean.class);
+        FilmBean film = gson.fromJson(res, FilmBean.class);
 
-        return f;
+        film.setId(contenuto.getId());
+        film.setTitolo(contenuto.getTitolo());
+        film.setDescrizione(contenuto.getDescrizione());
+        film.setCategoria(contenuto.getCategoria());
+
+        return film;
     }
 
-
+    /*
     public boolean doSave(FilmBean f){
 
         QueryManager queryManager = new QueryManager();
@@ -37,7 +43,7 @@ public class FilmDAO extends ContenutoDAO {
                 +f.getCategoria()+"', "+f.getAnnoRilascio()+"',"+f.getDurata()+"',"
                 +f.getPaese()+"',"+f.getRegista()+"',"+f.getAttori()+ ");";
         return queryManager.update(query);
-    }
+    }*/
 
 
     public List<FilmBean> doRetrieveAll(){
@@ -71,6 +77,9 @@ public class FilmDAO extends ContenutoDAO {
 
     public List<FilmBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
+
+        // d'll"a
+        // d\'ll\"a
 
         String query = "SELECT * FROM Film WHERE categoria='" + categoria + "'";
 
@@ -123,7 +132,12 @@ public class FilmDAO extends ContenutoDAO {
         return listaFilm;
     }
 
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
 
+    /*
     public boolean doDeleteById(int id){
         String query = "DELETE FROM Film WHERE id=" +id;
 
@@ -141,5 +155,5 @@ public class FilmDAO extends ContenutoDAO {
         int id = gson.fromJson(res, int.class);
 
         return id;
-    }
+    }*/
 }
