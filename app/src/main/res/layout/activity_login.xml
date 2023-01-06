@@ -7,17 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".account.presentation.LoginActivity">
 
+    <!-- HEADER -->
+
     <RelativeLayout
-        android:id="@+id/LoginForm"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true">
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FFF"
+        android:gravity="center" >
 
         <ImageView
             android:id="@+id/logo"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/header"
+        android:background="@android:color/darker_gray"/>
+
+
+    <RelativeLayout
+        android:id="@+id/LoginForm"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true">
 
         <TextView
             android:layout_width="wrap_content"
