@@ -503,19 +503,19 @@
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="5dip"
-            android:src="@drawable/iconaChatbot"/>
+            android:src="@drawable/star"/>
 
         <ImageButton
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/iconaRicerca"/>
+            android:src="@drawable/star"/>
 
         <ImageButton
             android:layout_width="40dip"
             android:layout_height="40dip"
             android:layout_marginLeft="300dip"
-            android:src="@drawable/iconaProfilo"/>
+            android:src="@drawable/star"/>
 
     </RelativeLayout>
 
