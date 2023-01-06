@@ -68,31 +68,8 @@ public class FilmDAO extends ContenutoDAO {
         return contenuti;
     }
 
-    public List<FilmBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM Film";
-
-        String res = queryManager.select(query);
-
-        Gson gson = new Gson();
-
-        List<FilmBean> listaFilm = (List<FilmBean>) gson.fromJson(res, FilmBean.class);
-
-        /*
-        int id = resultSet.getInt(1);
-        String titolo = resultSet.getString(2);
-        String descrizione = resultSet.getString(3);
-        String categoria = resultSet.getString(4);
-        String anno_rilascio = resultSet.getString(5);
-        int durata = resultSet.getInt(6);
-        String paese = resultSet.getString(7);
-        String regista = resultSet.getString(8);
-        String attori = resultSet.getString(9);
-
-        listaFilm.add(new FilmBean(id, titolo, descrizione, categoria, anno_rilascio, durata, paese, regista, attori));
-         */
-
-        return listaFilm;
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 

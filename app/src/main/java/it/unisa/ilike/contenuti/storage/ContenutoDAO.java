@@ -50,11 +50,12 @@ public class ContenutoDAO {
     /**
      * Restituisce una collezione di tutti i contenuti di un certo tipo (es. tutti i film).
      * @param tipo - è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
-     *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali).
+     *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali, '%' per
+     *             tutti i tipi).
      * @return un ArrayList contenente tutti i contenuti di un certo tipo (es. film, serie tv, ecc.).
      */
     public List<ContenutoBean> doRetrieveAllByCategoria(String tipo, String categoria) {
-        if(!tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album")) {
+        if(!tipo.equals("%") && !tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album")) {
             return null;
         }
 
@@ -64,13 +65,15 @@ public class ContenutoDAO {
         Gson gson = new Gson();
         String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
                 "FROM Contenuti " +
-                "where tipo = '" + tipo + "' and categoria = '" + categoria + "'";
+                "where tipo like '%" + tipo + "%' and categoria like '%" + categoria + "%'";
 
         String res = queryManager.select(query);
         // da controllare cast, probabilmente non funziona
         List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
         return contenuti;
     }
+
+
 
 
     /**
