@@ -37,6 +37,11 @@ public class SerieTVDAO extends ContenutoDAO {
         return queryManager.update(query);
     }
 
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
+
 
     public List<SerieTVBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();

@@ -29,6 +29,11 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         return a;
     }
 
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
+
 
     public boolean doSave(AlbumMusicaleBean a){
         QueryManager queryManager = new QueryManager();

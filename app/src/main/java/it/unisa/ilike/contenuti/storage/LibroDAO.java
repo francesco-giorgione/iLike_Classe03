@@ -39,6 +39,11 @@ public class LibroDAO extends ContenutoDAO {
         return queryManager.update(query);
     }
 
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
+
 
     public List<LibroBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();
