@@ -13,7 +13,7 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
-public class FilmDAO {
+public class FilmDAO extends ContenutoDAO {
 
     public FilmBean doRetrieveById(int id){
 

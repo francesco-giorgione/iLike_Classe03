@@ -12,7 +12,7 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 
-public class AlbumMusicaleDAO {
+public class AlbumMusicaleDAO extends ContenutoDAO {
 
 
     public AlbumMusicaleBean doRetrieveById(int id){
