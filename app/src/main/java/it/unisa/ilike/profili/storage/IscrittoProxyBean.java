@@ -11,40 +11,38 @@ public class IscrittoProxyBean extends IscrittoBean {
 
     /**
      * Questo metodo crea un oggetto IscrittoBean
-     * @param email    rappresenta il testo contenente l'email dell'iscritto
+     * @param email rappresenta il testo contenente l'email dell'iscritto
      * @param password rappresenta il testo contenente la password dell'iscritto
      * @param nickname rappresenta il testo contenente il nickname dell'iscritto
-     * @param nome     rappresenta il testo contenente il nome dell'iscritto
-     * @param cognome  rappresenta il testo contenente il cognome dell'iscritto
-     * @param bio      rappresenta il testo contenente la bio dell'iscritto
+     * @param nome rappresenta il testo contenente il nome dell'iscritto
+     * @param cognome rappresenta il testo contenente il cognome dell'iscritto
+     * @param bio rappresenta il testo contenente la bio dell'iscritto
      */
     public IscrittoProxyBean(String email, String password, String nickname, String nome, String cognome, String bio) {
         super(email, password, nickname, nome, cognome, bio);
+        this.iscrittoReal = new IscrittoRealBean(email, password, nickname, nome, cognome, bio);
     }
 
     /**
      * Questo metodo permette di accedere alla foto profilo dell'iscritto
-     *
      * @return la foto profilo dell'iscritto
      */
     @Override
     public Blob getFoto() {
-        return null;
+        return this.iscrittoReal.getFoto();
     }
 
     /**
      * Questo metodo permette di modificare la foto profilo
-     *
      * @param foto la nuova foto profilo dell'iscritto
      */
     @Override
     public void setFoto(Blob foto) {
-
+        this.iscrittoReal.setFoto(foto);
     }
 
     /**
      * Questo metodo permette di accedere alle liste dell'iscritto
-     *
      * @return le liste dell'iscritto
      */
     @Override
@@ -54,7 +52,6 @@ public class IscrittoProxyBean extends IscrittoBean {
 
     /**
      * Questo metodo permette di accedere alle recensioni dove l'iscritto è l'autore
-     *
      * @return le recensioni dell'iscritto
      */
     @Override
@@ -64,7 +61,6 @@ public class IscrittoProxyBean extends IscrittoBean {
 
     /**
      * Questo metodo permette di modificare le liste dell'iscritto
-     *
      * @param liste le nuove liste dell'iscritto
      */
     @Override
@@ -74,7 +70,6 @@ public class IscrittoProxyBean extends IscrittoBean {
 
     /**
      * Questo metodo permette di modificare le liste di recensioni  associate all'iscritto
-     *
      * @param recensioni le nuove recensioni dell'iscritto
      */
     @Override

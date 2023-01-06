@@ -1,11 +1,15 @@
 package it.unisa.ilike.liste.storage;
 
+import static it.unisa.ilike.utils.Utils.addEscape;
+
 import com.google.gson.Gson;
 
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoDAO;
+import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>ListaDAO</code> serve per interagire con la tabella Lista presente nel database
@@ -27,16 +31,13 @@ public class ListaDAO {
             return false;
         }
 
-        String nome= lista.getNome();
-        String emailIscritto=lista.getEmailIscritto();
+        String nome = addEscape(lista.getNome());
+        String emailIscritto = addEscape(lista.getEmailIscritto());
         boolean visibilita= lista.isVisibile();
-
-        boolean esito;
         QueryManager queryManager= new QueryManager();
 
-        String query= "insert into Liste (nome, email_iscritto, visibilita values ('" +
-                nome + "', '" + emailIscritto+ "', " + visibilita + ");";
-
+        String query= "insert into Liste (nome, email_iscritto, visibilita " +
+                "values ('" + nome + "', '" + emailIscritto+ "', " + visibilita + ");";
 
         if(queryManager.update(query)) {
             if(lista.getContenuti() != null && !lista.getContenuti().isEmpty()) {
@@ -70,10 +71,12 @@ public class ListaDAO {
             return false;
         }
 
+        nome = addEscape(nome);
+        emailIscritto = addEscape(emailIscritto);
+
         QueryManager queryManager= new QueryManager();
 
-        String query = "delete from Liste " +
-                "where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+        String query = "delete from Liste where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
 
         return queryManager.update(query);
     }
@@ -91,9 +94,10 @@ public class ListaDAO {
         if (nome == null || emailIscritto == null){
             return null;
         }
+        nome = addEscape(nome);
+        emailIscritto = addEscape(emailIscritto);
 
-        String query = "select * " +
-                "from Liste " +
+        String query = "select * from Liste " +
                 "where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
 
         QueryManager queryManager= new QueryManager();
@@ -104,8 +108,7 @@ public class ListaDAO {
 
         query = "select C.id as id, C.titolo as titolo, C.descrizione as descrizione, C.categoria as categoria " +
                 "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
-                "join Contenuti C on I.id_contenuto = C.id " +
-                "where L.nome = '" + nome + "' and L.email_iscitto = '" + emailIscritto + "'";
+                "join Contenuti C on I.id_contenuto = C.id where L.nome = '" + nome + "' and L.email_iscitto = '" + emailIscritto + "'";
 
         res = queryManager.select(query);
 
@@ -134,30 +137,25 @@ public class ListaDAO {
 
 
     /**
-     * Questo metodo restituisce tutti gli oggetti della classe <code>ListaBean</code> memorizzati nel database
-     * @return lista di oggetti della classe <code>ListaBean</code> memorizzata nel database
+     * Questo metodo restituisce tutti gli oggetti della classe <code>ListaBean</code> riferiti ad un Iscritto memorizzati nel database
+     * @param email rappresenta l'email dell'iscritto
+     * @return lista di oggetti della classe <code>ListaBean</code> riferiti ad un Iscritto memorizzata nel database
      */
-    /*
-    public List<ListaBean> doRetrieveAll(){
-
-        String query="select * from Lista";
-
+    public List<ListaBean> doRetrieveListeByEmailIscritto(String email){
+        email = addEscape(email);
+        String query="select * from Lista where email_iscritto= '" + email + "'";
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
         Gson gson= new Gson();
         List<ListaBean> listToReturn = (List<ListaBean>) gson.fromJson(res, ListaBean.class);
 
-        query = "select C.id as id, C.titolo as titolo, C.descrizione as descrizione, C.categoria as categoria " +
-                "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
-                "join Contenuti C on I.id_contenuto = C.id";
-
-        res = queryManager.select(query);
-
-        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
-        listToReturn.setContenuti(contenuti);
+        for(ListaBean lista: listToReturn){
+            ContenutoDAO contenutoDAO = new ContenutoDAO();
+            lista.setContenuti(contenutoDAO.doRetrieveByLista(lista.getNome(), email));
+        }
 
         return listToReturn;
     }
-    */
+
 
 }
