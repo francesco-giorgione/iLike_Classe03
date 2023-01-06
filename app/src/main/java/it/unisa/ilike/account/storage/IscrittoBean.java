@@ -14,7 +14,7 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
 public abstract class IscrittoBean extends UtenteBean {
 
     /**
-     * Questo metodo crea un oggetto IscrittoBean
+     * Questo metodo crea un oggetto <code>IscrittoBean</code>
      * @param email rappresenta il testo contenente l'email dell'iscritto
      * @param password rappresenta il testo contenente la password dell'iscritto
      * @param nickname rappresenta il testo contenente il nickname dell'iscritto

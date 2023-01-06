@@ -1,17 +1,19 @@
 package it.unisa.ilike.account.storage;
 
-import com.google.gson.Gson;
+import static it.unisa.ilike.utils.Utils.addEscape;
 
+import com.google.gson.Gson;
 import it.unisa.ilike.QueryManager;
 
 /**
  * Un oggetto <code>GestoreDAO</code> serve per interagire con la tabella Gestori presente nel database
- * @version 0.1
+ * @version 0.2
  * @author LuiginaCostante
  */
 
 public class GestoreDAO {
 
+    /*
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>GestoreBean</code>
      * presente nella tabella Gestori del database, dopo averlo individuato tramite l'email passata come argomento
@@ -19,7 +21,7 @@ public class GestoreDAO {
      * @return null se il parametro email non è valido, l'oggetto gestore con chiave primaria uguale ad email
      * se l'operazione è andata a buon fine
      */
-
+    /*
     public GestoreBean doRetrieveByEmail(String email){
 
         if(email == null){
@@ -33,6 +35,8 @@ public class GestoreDAO {
         GestoreBean gestore= gson.fromJson(res, GestoreBean.class);
         return gestore;
     }
+    */
+
 
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>GestoreBean</code>
@@ -44,16 +48,28 @@ public class GestoreDAO {
      */
     public GestoreBean doRetrieveByEmailPassword(String email, String password){
 
-        if (email==null || password==null)
+        if (email == null || password == null)
             return null;
         else{
-            String query = "select * from Gestori where email = '" + email + "' and password=SHA1('" + password + "')";
+            email = addEscape(email);
+            String query = "select * from Gestori where email= '" + email + "' and password= '" + password + "'";
             QueryManager queryManager= new QueryManager();
             String res= queryManager.select(query);
             Gson gson= new Gson();
             GestoreBean gestore= gson.fromJson(res, GestoreBean.class);
             return gestore;
         }
+    }
+
+    /**
+     * Questo metodo permette di modificare il Gestore memorizzato nel Database
+     * @param gestore oggetto GestoreBean da modificare
+     * @return True se l'operazione è andata a buon fine, False altrimenti
+     */
+    public boolean doUpdate(GestoreBean gestore) {
+        String query = "update Gestori set num_segnalazioni_gestite where email= '" + addEscape(gestore.getEmail())+ "'";
+        QueryManager queryManager= new QueryManager();
+        return queryManager.update(query);
     }
 
 

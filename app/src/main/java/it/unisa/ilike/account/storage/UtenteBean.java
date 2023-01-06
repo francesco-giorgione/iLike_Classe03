@@ -37,21 +37,6 @@ public abstract class UtenteBean {
         return this.password;
     }
 
-    /**
-     * Questo metodo permette di codificare la password dell'utente
-     * @param passwordUtente password inserita dall'utente da codificare
-     * @throws NoSuchAlgorithmException è generata quando un particolare algoritmo crittografico
-     * richiesto non è disponibile nell'ambiente.
-     */
-    public void setPassword(String passwordUtente) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("SHA-512");
-        byte[] hashedPwd = digest.digest(passwordUtente.getBytes(StandardCharsets.UTF_8));
-        StringBuilder builder = new StringBuilder();
-        for(byte bit: hashedPwd){
-            builder.append(String.format("%02x", bit));
-        }
-        this.password = builder.toString();
-    }
 
     private String email, password;
 }
