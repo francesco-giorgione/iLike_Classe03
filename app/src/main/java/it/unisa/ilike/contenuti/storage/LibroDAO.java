@@ -49,19 +49,6 @@ public class LibroDAO extends ContenutoDAO {
         return null;
     }
 
-    public List<LibroBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM Libri";
-
-        String res = queryManager.select(query);
-
-        Gson gson = new Gson();
-
-        List<LibroBean> listaLibri = (List<LibroBean>) gson.fromJson(res, LibroBean.class);
-
-        return listaLibri;
-    }
-
 
     /**
      * Restituisce una collezione dei libri di una data categoria.
@@ -93,6 +80,15 @@ public class LibroDAO extends ContenutoDAO {
         }
 
         return contenuti;
+    }
+
+
+    /**
+     * Restituisce tutti i libri del catalogo.
+     * @return un oggetto List contenente tutti i LibroBean del catalogo.
+     */
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
