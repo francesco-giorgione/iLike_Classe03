@@ -72,6 +72,10 @@ public class FilmDAO extends ContenutoDAO {
         return contenuti;
     }
 
+    /**
+     * Restituisce tutti i film del catalogo.
+     * @return un oggetto List contenente tutti i FilmBean del catalogo.
+     */
     public List<ContenutoBean> doRetrieveAll(){
         return this.doRetrieveAllByCategoria("%", "%");
     }
