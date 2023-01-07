@@ -11,6 +11,8 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
+import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
@@ -22,10 +24,6 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
-
-    private RecensioneBean recensione;
-    private SegnalazioneBean segnalazione;
-    private Account account;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,4 +96,32 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             startActivityForResult(i, 878);
         }
     }
+
+    public void onClickVisualizzaSegnalazioni(View view) {
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+        i.putExtra("account", (Serializable) account);
+        startActivity(i);
+    }
+
+
+    public void onClickHomepage(View view) {
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", (Serializable) account);
+        startActivity(i);
+    }
+
+    public void onClickLogout(View view) {
+        AccountService accountService = new AccountImpl();
+        account = accountService.logout(account.getGestoreBean());
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", (Serializable) account);
+        startActivity(i);
+    }
+
+    private RecensioneBean recensione;
+    private SegnalazioneBean segnalazione;
+    private Account account;
 }
