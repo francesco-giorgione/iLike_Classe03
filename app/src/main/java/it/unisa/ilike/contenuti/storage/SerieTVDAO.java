@@ -15,27 +15,25 @@ import it.unisa.ilike.QueryManager;
 public class SerieTVDAO extends ContenutoDAO {
 
     public SerieTVBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM SerieTV WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                "FROM SerieTV " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        SerieTVBean s = gson.fromJson(res, SerieTVBean.class);
+        SerieTVBean serieTV = gson.fromJson(res, SerieTVBean.class);
 
-        return s;
+        serieTV.setId(contenuto.getId());
+        serieTV.setTitolo(contenuto.getTitolo());
+        serieTV.setDescrizione(contenuto.getDescrizione());
+        serieTV.setCategoria(contenuto.getCategoria());
+
+        return serieTV;
     }
 
-
-    public boolean doSave(SerieTVBean s){
-        QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO SerieTV (id, titolo, descrizione, categoria, anno_rilascio, num_stagioni) VALUES("+s.getId()+"'," +s.getTitolo() +"',"+s.getDescrizione()+"',"
-                +s.getCategoria()+"', "+s.getAnnoRilascio()+"',"+s.getNumStagioni()+");";
-
-        return queryManager.update(query);
-    }
 
     // da implementare
     public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
@@ -81,26 +79,6 @@ public class SerieTVDAO extends ContenutoDAO {
         List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res, SerieTVBean.class);
 
         return listaSerie;
-    }
-
-
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM SerieTV WHERE id=" +id;
-
-        QueryManager queryManager = new QueryManager();
-
-        return queryManager.update(query);
-    }
-
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from SerieTV)";
-        QueryManager queryManager= new QueryManager();
-
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
-
-        return id;
     }
 
 }
