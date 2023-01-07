@@ -14,19 +14,34 @@ import it.unisa.ilike.QueryManager;
 
 public class AlbumMusicaleDAO extends ContenutoDAO {
 
-
+    /**
+     * Restituisce l'album musicale avente un dato id.
+     * @param id è l'id dell'album musicale che si vuole selezionare dal db
+     * @return un oggetto AlbumMusicaleBean contenente le informazioni relative all'album
+     * musicale selezionato.
+     */
     public AlbumMusicaleBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM AlbumMusicali WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                "FROM AlbumMusicali " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        AlbumMusicaleBean a = gson.fromJson(res, AlbumMusicaleBean.class);
+        AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
 
-        return a;
+        if(am == null) {
+            return null;
+        }
+
+        am.setId(contenuto.getId());
+        am.setTitolo(contenuto.getTitolo());
+        am.setDescrizione(contenuto.getDescrizione());
+        am.setCategoria(contenuto.getCategoria());
+
+        return am;
     }
 
     // da implementare
