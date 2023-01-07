@@ -101,7 +101,6 @@
     </LinearLayout>
 
     <!--FOOTER -->
-
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
