@@ -26,6 +26,34 @@ public class ContenutoDAO {
     }
 
     /**
+     * Restituisce la valutazione media corrente di un dato contenuto.
+     * @param idContenuto è l'id del contenuto di cui si vuole ottenere la valutazione media.
+     * @return la valutazione media del contenuto avente come id 'id'.
+     */
+    public Double doRetrieveValutazioneMediaAggiornata(int idContenuto) {
+        class RisultatoQuery {
+            public Double getValutazioneMedia() {
+                return valutazioneMedia;
+            }
+
+            public void setValutazioneMedia(Double valutazioneMedia) {
+                this.valutazioneMedia = valutazioneMedia;
+            }
+
+            Double valutazioneMedia;
+        }
+
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "select valutazione_media as valutazioneMedia" +
+                "from Contenuti " +
+                "where id = " + idContenuto;
+
+        String res = queryManager.select(query);
+        return gson.fromJson(res, RisultatoQuery.class).getValutazioneMedia();
+    }
+
+    /**
      * Esegue il fetch di un contenuto dal database.
      * @param id è l'id del contenuto che si vuole selezionare dal db
      * @return un oggetto ContenutoBean contenente l'id, il titolo, la descrizione, la categoria
