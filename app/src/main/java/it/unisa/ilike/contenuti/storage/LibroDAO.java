@@ -125,23 +125,4 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM Libri WHERE id=" +id;
-
-        QueryManager queryManager = new QueryManager();
-
-        return queryManager.update(query);
-    }
-
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from Libri)";
-        QueryManager queryManager= new QueryManager();
-
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
-
-        return id;
-    }
-
 }
