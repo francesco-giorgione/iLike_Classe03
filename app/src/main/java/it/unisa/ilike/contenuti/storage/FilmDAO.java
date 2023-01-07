@@ -28,6 +28,10 @@ public class FilmDAO extends ContenutoDAO {
         Gson gson = new Gson();
         FilmBean film = gson.fromJson(res, FilmBean.class);
 
+        if(film == null) {
+            return null;
+        }
+
         film.setId(contenuto.getId());
         film.setTitolo(contenuto.getTitolo());
         film.setDescrizione(contenuto.getDescrizione());
