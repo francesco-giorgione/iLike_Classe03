@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".segnalazioni.presentation.CancellazioneRecensioneActivity">
+    tools:context=".segnalazioni.presentation.GestioneSegnalazioniActivity">
 
     <!-- HEADER -->
 
@@ -112,7 +112,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="5dip"
-            android:src="@drawable/icona_chatbot"/>
+            android:src="@drawable/icona_altre_segnalazioni"/>
 
         <ImageButton
             android:layout_width="50dip"
