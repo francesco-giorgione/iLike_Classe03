@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -18,7 +19,6 @@ import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
-import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
@@ -76,7 +76,8 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         SegnalazioneService segnalazioneService = new SegnalazioneImpl();
         boolean isValidate = true;
 
-        String motivazione = null;
+        EditText editText = findViewById(R.id.motivazioneCancellazione);
+        String motivazione = editText.toString();
 
         try {
             segnalazioneService.cancellaRecensione(segnalazione, motivazione, account.getGestoreBean());
