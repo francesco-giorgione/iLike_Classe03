@@ -70,6 +70,28 @@ public class ContenutoDAO {
     }
 
 
+    /**
+     * Restituisce una collezione di tutti i contenuti aventi una valutazione rientrante in un dato
+     * intervallo.
+     * @param minValutazione è la minima valutazione media che deve avere un contenuto affinché
+     *                       sia selezionato.
+     * @param maxValutazione è la massima valutazione media che deve avere un contenuto affinché
+     *      *                sia selezionato.
+     * @return un ArrayList contenente tutti i contenuti aventi una valutazione media compatibile
+     * con quella richiesta.
+     */
+    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione) {
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+                "FROM Contenuti " +
+                "where valutazione_media >= " + minValutazione + " and valutazione_media <= " + maxValutazione;
+
+        String res = queryManager.select(query);
+        // da controllare cast, probabilmente non funziona
+        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
+        return contenuti;
+    }
 
 
     /**
