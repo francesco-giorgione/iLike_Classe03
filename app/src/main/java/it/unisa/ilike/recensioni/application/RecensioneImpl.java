@@ -82,7 +82,7 @@ public class RecensioneImpl implements RecensioneService{
         SegnalazioneDAO segnalazioneDAO= new SegnalazioneDAO();
         int id=segnalazioneDAO.doRetrieveMaxIdSegnalazione();
 
-        SegnalazioneBean segnalazione= new SegnalazioneBean(id+1, tipo, motivazione, false, i.getEmail(), r.getId());
+        SegnalazioneBean segnalazione= new SegnalazioneBean(id+1, tipo, motivazione, false, i, r);
         segnalazioneDAO.doSaveSegnalazione(segnalazione);
 
         return true;
