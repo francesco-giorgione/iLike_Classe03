@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -26,7 +27,6 @@ public class RecensioneDAO {
      * true altrimenti
      */
     public boolean doSaveRecensione(RecensioneBean recensione){
-
         if (recensione== null){
             return false;
         }
@@ -43,7 +43,14 @@ public class RecensioneDAO {
         String query= "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, email_iscritto, id_contenuto) " +
                 "values ('" + testo + "', '" + valutazione+ "', '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
                 + emailIscritto + "', " + id_contenuto+ ");";
-        return queryManager.update(query);
+
+        ContenutoDAO contenutoDAO = new ContenutoDAO();
+
+        if(queryManager.update(query)) {
+            return contenutoDAO.doUpdateValutazioneMedia(contenutoDAO.
+                    calcolaValutazioneMediaAggiornata(recensione.getContenuto().getId(), recensione.getValutazione()));
+        }
+        else return false;
     }
 
 
