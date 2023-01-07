@@ -77,6 +77,44 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         return contenuti;
     }
 
+
+    /**
+     * Restituisce tutti gli album musicali aventi una valutazione media rientrante in un dato intervallo.
+     * @param minValutazione è la è la minima valutazione media che deve avere un album musicale affinché
+     * sia selezionato.
+     * @param maxValutazione è la massima valutazione media che deve avere un album musicale affinché
+     * sia selezionato.
+     * @return un ArrayList contenente tutti gli album musicali aventi una valutazione media compatibile
+     * con quella richiesta.
+     */
+    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
+
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                    "from AlbumMusicali " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+
+            am.setId(id);
+            am.setTitolo(c.getTitolo());
+            am.setDescrizione(c.getDescrizione());
+            am.setCategoria(c.getCategoria());
+
+            contenuti.add(am);
+        }
+
+        return contenuti;
+    }
+
+
     /**
      * Restituisce tutti gli album musicali del catalogo.
      * @return un oggetto List contenente tutti gli AlbumMusicaleBean del catalogo.
