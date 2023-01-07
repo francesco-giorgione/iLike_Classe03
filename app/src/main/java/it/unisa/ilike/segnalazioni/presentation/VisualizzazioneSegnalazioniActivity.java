@@ -1,12 +1,11 @@
 package it.unisa.ilike.segnalazioni.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import it.unisa.ilike.R;
-import it.unisa.ilike.account.storage.Account;
 
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         //inizio da login
         Intent i = getIntent();
         setReturnIntent();
-        Account account = (Account) getIntent().getExtras().getSerializable("account");
+        //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
     }
 
