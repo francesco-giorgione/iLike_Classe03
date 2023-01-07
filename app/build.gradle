@@ -28,7 +28,7 @@ android {
         }
 
         python{
-            buildPython "Applicazioni/Python311"
+            buildPython "/Applications/Python311"
         }
     }
 

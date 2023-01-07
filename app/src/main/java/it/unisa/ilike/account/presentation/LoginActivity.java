@@ -1,28 +1,6 @@
 package it.unisa.ilike.account.presentation;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
-import it.unisa.ilike.account.presentation.R;
-import it.unisa.ilike.account.presentation.databinding.ActivityLogin2Binding;
-
-public class LoginActivity extends AppCompatActivity {
+/*public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLogin2Binding binding;
@@ -30,7 +8,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getApplicationContext();
+        getApplicationContext();*/
 
 //        binding = ActivityLogin2Binding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
@@ -118,15 +96,14 @@ public class LoginActivity extends AppCompatActivity {
 //                        passwordEditText.getText().toString());
 //            }
 //        });
-    }
+//    }
 //
 //    private void updateUiWithUser(LoggedInUserView model) {
 //        String welcome = getString(R.string.welcome) + model.getDisplayName();
-//        // TODO : initiate successful logged in experience
 //        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 //    }
 //
 //    private void showLoginFailed(@StringRes Integer errorString) {
 //        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
 //    }
-}
+// }

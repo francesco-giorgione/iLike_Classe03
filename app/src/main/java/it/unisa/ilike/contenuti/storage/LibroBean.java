@@ -24,7 +24,7 @@ public class LibroBean extends ContenutoBean{
      * @param numPagine
      */
     public LibroBean(int id, String titolo, String descrizione, String categoria, String autore, String isbn, int numPagine) {
-        super(id, titolo, descrizione, categoria);
+        super(id, titolo, descrizione, categoria,0);
         this.autore = autore;
         this.isbn = isbn;
         this.numPagine = numPagine;
