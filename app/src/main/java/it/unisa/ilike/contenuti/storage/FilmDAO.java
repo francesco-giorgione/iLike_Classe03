@@ -15,7 +15,11 @@ import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.utils.Utils;
 
 public class FilmDAO extends ContenutoDAO {
-
+    /**
+     * Esegue il fetch di un film dal database.
+     * @param id è l'id del contenuto che si vuole selezionare dal db
+     * @return un oggetto FilmBean contenente le informazioni del film selezionato.
+     */
     public FilmBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
@@ -27,6 +31,10 @@ public class FilmDAO extends ContenutoDAO {
         String res = queryManager.select(query);
         Gson gson = new Gson();
         FilmBean film = gson.fromJson(res, FilmBean.class);
+
+        if(film == null) {
+            return null;
+        }
 
         film.setId(contenuto.getId());
         film.setTitolo(contenuto.getTitolo());
@@ -68,11 +76,20 @@ public class FilmDAO extends ContenutoDAO {
         return contenuti;
     }
 
+    /**
+     * Restituisce tutti i film del catalogo.
+     * @return un oggetto List contenente tutti i FilmBean del catalogo.
+     */
     public List<ContenutoBean> doRetrieveAll(){
         return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
+    /**
+     * Restituisce una collezione di film che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente i FilmBean selezionati.
+     */
     public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("film", titolo);
         Gson gson = new Gson();

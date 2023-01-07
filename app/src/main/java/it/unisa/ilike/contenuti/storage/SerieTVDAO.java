@@ -14,28 +14,35 @@ import it.unisa.ilike.QueryManager;
 
 public class SerieTVDAO extends ContenutoDAO {
 
+    /**
+     * Restituisce la serie tv avente un dato id.
+     * @param id è l'id del contenuto che si vuole selezionare dal db.
+     * @return un oggetto SerieTVBean contenente i dati relativi alla serie tv avente come id 'id'.
+     */
     public SerieTVBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM SerieTV WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                "FROM SerieTV " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        SerieTVBean s = gson.fromJson(res, SerieTVBean.class);
+        SerieTVBean serieTV = gson.fromJson(res, SerieTVBean.class);
 
-        return s;
+        if(serieTV == null) {
+            return null;
+        }
+
+        serieTV.setId(contenuto.getId());
+        serieTV.setTitolo(contenuto.getTitolo());
+        serieTV.setDescrizione(contenuto.getDescrizione());
+        serieTV.setCategoria(contenuto.getCategoria());
+
+        return serieTV;
     }
 
-
-    public boolean doSave(SerieTVBean s){
-        QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO SerieTV (id, titolo, descrizione, categoria, anno_rilascio, num_stagioni) VALUES("+s.getId()+"'," +s.getTitolo() +"',"+s.getDescrizione()+"',"
-                +s.getCategoria()+"', "+s.getAnnoRilascio()+"',"+s.getNumStagioni()+");";
-
-        return queryManager.update(query);
-    }
 
     // da implementare
     public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
@@ -43,64 +50,78 @@ public class SerieTVDAO extends ContenutoDAO {
     }
 
 
-    public List<SerieTVBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM SerieTV";
-
-        String res = queryManager.select(query);
-
+    /**
+     * Restituisce una collezione delle serie tv di una data categoria.
+     * @param categoria è la categoria in base alla quale si vogliono selezionare le serie tv.
+     * @return un oggetto ArrayList contenente i SerieTVBean selezionati sulla base della categoria.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("serie_tv", categoria);
         Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res, SerieTVBean.class);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        return listaSerie;
+            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                    "from SerieTV " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
+
+            stv.setId(id);
+            stv.setTitolo(c.getTitolo());
+            stv.setDescrizione(c.getDescrizione());
+            stv.setCategoria(c.getCategoria());
+
+            contenuti.add(stv);
+        }
+
+        return contenuti;
     }
 
 
-    public List<SerieTVBean> doRetrieveByCategoria(String categoria){
-        QueryManager queryManager = new QueryManager();
-
-        String query = "SELECT * FROM SerieTV WHERE categoria=" +categoria;
-
-        Gson gson = new Gson();
-        String res = queryManager.select(query);
-
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res,SerieTVBean.class);
-
-        return listaSerie;
+    /**
+     * Restituisce tutte le serie tv del catalogo.
+     * @return un oggetto List contenente tutti i SerieTVBean del catalogo.
+     */
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
-    public List<SerieTVBean> search(String s){
-        QueryManager queryManager = new QueryManager();
+    /**
+     * Restituisce una collezione di serie tv che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente i SerieTVBean selezionati.
+     */
+    public List<ContenutoBean> search(String titolo){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("serie_tv", titolo);
         Gson gson = new Gson();
-
-        String query = "SELECT * FROM SerieTV WHERE titolo LIKE '%" + s + "%';";
-        String res = queryManager.select(query);
-
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res, SerieTVBean.class);
-
-        return listaSerie;
-    }
-
-
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM SerieTV WHERE id=" +id;
-
         QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        return queryManager.update(query);
-    }
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from SerieTV)";
-        QueryManager queryManager= new QueryManager();
+            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                    "from SerieTV " +
+                    "where id = " + id;
 
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
+            String res = queryManager.select(query);
+            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
 
-        return id;
+            stv.setId(id);
+            stv.setTitolo(c.getTitolo());
+            stv.setDescrizione(c.getDescrizione());
+            stv.setCategoria(c.getCategoria());
+
+            contenuti.add(stv);
+        }
+
+        return contenuti;
     }
 
 }
