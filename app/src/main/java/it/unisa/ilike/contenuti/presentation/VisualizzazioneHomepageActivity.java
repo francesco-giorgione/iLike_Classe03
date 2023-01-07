@@ -25,7 +25,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //inizio da login
         Intent i = getIntent();
         setReturnIntent();
-        Account account = (Account) getIntent().getExtras().getSerializable("account");
+        //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
     }
 
