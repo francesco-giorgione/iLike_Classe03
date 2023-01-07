@@ -42,7 +42,7 @@ public class ListaDAO {
         }
 
         String nome = addEscape(lista.getNome());
-        String emailIscritto = addEscape(lista.getEmailIscritto());
+        String emailIscritto = addEscape(lista.getIscritto().getEmail());
         boolean visibilita= lista.isVisibile();
         QueryManager queryManager= new QueryManager();
 
@@ -155,7 +155,7 @@ public class ListaDAO {
             return false;
         }
 
-        if(this.doDeleteByKey(lista.getNome(), lista.getEmailIscritto())) {
+        if(this.doDeleteByKey(lista.getNome(), lista.getIscritto().getEmail())) {
             return this.doSave(lista);
         }
         else return false;
