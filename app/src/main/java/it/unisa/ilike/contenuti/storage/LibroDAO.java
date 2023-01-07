@@ -92,16 +92,36 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
-    public List<LibroBean> search(String s){
-        QueryManager queryManager = new QueryManager();
+    /**
+     * Restituisce una collezione dei libri che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente i LibroBean selezionati.
+     */
+    public List<ContenutoBean> search(String titolo){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("libro", titolo);
         Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        String query = "SELECT * FROM Libri WHERE titolo LIKE '%" + s + "%';";
-        String res = queryManager.select(query);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        List<LibroBean> listaLibri = (List<LibroBean>) gson.fromJson(res, LibroBean.class);
+            String query = "select autore, isbn, num_pagine as numPagine " +
+                    "from Libri " +
+                    "where id = " + id;
 
-        return listaLibri;
+            String res = queryManager.select(query);
+            LibroBean l = gson.fromJson(res, LibroBean.class);
+
+            l.setId(id);
+            l.setTitolo(c.getTitolo());
+            l.setDescrizione(c.getDescrizione());
+            l.setCategoria(c.getCategoria());
+
+            contenuti.add(l);
+        }
+
+        return contenuti;
     }
 
 
