@@ -49,8 +49,6 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
 
     public void onClickAggiungiRecensione(View view) {
-
-//        TextView username = findViewById(R.id.valutazioneContenuto);
         RatingBar rBar = findViewById(R.id.valutazioneContenuto);
         int valutazioneContenuto = rBar.getNumStars();
         TextView descTextView = findViewById(R.id.testoRecensione);
