@@ -54,8 +54,22 @@ public class ContenutoImpl implements ContenutoService {
             throw new InvalidValutazioneException();
         }
 
-        // da implementare
+        FilmDAO filmDAO = new FilmDAO();
+        SerieTVDAO serieTVDAO = new SerieTVDAO();
+        LibroDAO libroDAO = new LibroDAO();
+        AlbumMusicaleDAO albumMusicaleDAO = new AlbumMusicaleDAO();
 
-        return null;
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) filmDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) serieTVDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        ArrayList<ContenutoBean> libri = (ArrayList<ContenutoBean>) libroDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        ArrayList<ContenutoBean> albumMusicali = (ArrayList<ContenutoBean>) albumMusicaleDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+
+        ArrayList<ContenutoBean> res = new ArrayList<>();
+        res.addAll(film);
+        res.addAll(serieTV);
+        res.addAll(libri);
+        res.addAll(albumMusicali);
+
+        return res;
     }
 }
