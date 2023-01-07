@@ -2,6 +2,7 @@ package it.unisa.ilike.recensioni.storage;
 
 import java.util.Date;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
@@ -25,19 +26,19 @@ public class RecensioneBean {
      * @param data
      * @param cancellata
      * @param motivazioneCancellazione
-     * @param emailIscritto
-     * @param idContenuto
+     * @param iscritto
+     * @param contenuto
      */
     public RecensioneBean(int id, String testo, int valutazione, Date data,
-                          Boolean cancellata, String motivazioneCancellazione, String emailIscritto, int idContenuto) {
+                          Boolean cancellata, String motivazioneCancellazione, IscrittoBean iscritto, ContenutoBean contenuto) {
         this.id = id;
         this.testo = testo;
         this.valutazione = valutazione;
         this.data = data;
         this.cancellata = cancellata;
         this.motivazioneCancellazione = motivazioneCancellazione;
-        this.emailIscritto = emailIscritto;
-        this.idContenuto=idContenuto;
+        this.iscritto = iscritto;
+        this.contenuto=contenuto;
     }
 
     /**
@@ -141,35 +142,36 @@ public class RecensioneBean {
     }
 
     /**
-     * Questo metodo restituisce l'email dell'iscritto che ha scritto la recensione
+     * Questo metodo restituisce l'iscritto autore della recensione
      * @return email dell'iscritto
      */
-    public String getEmailIscritto() {
-        return emailIscritto;
+    public IscrittoBean getIscritto() {
+        return iscritto;
     }
 
     /**
-     * Questo metodo imposta l'email dell'iscritto che ha scritto la recensione
-     * @param emailIscritto
+     * Questo metodo imposta l'iscritto autore della recensione
+     * @param iscritto è l'oggetto IscrittoBean da associare alla recensione
      */
-    public void setEmailIscritto(String emailIscritto) {
-        this.emailIscritto = emailIscritto;
+    public void setIscritto(IscrittoBean iscritto) {
+        this.iscritto = iscritto;
     }
 
     /**
-     * Questo metodo restituisce l'id del contenuto a cui è riferita la recensione
-     * @return id del contenuto
+     * Questo metodo restituisce il a cui è riferita la recensione.
+     * @return un oggetto ContenutoBean contenente le informazioni relative al contenuto cui è
+     * riferita la recensione.
      */
-    public int getIdContenuto() {
-        return idContenuto;
+    public ContenutoBean getContenuto() {
+        return contenuto;
     }
 
     /**
-     * Questo metodo imposta l'id del contenuto a cui è riferita la recensione
-     * @param idContenuto
+     * Questo metodo imposta il contenuto a cui è riferita la recensione
+     * @param contenuto è l'oggetto bean associato alla recensione.
      */
-    public void setIdContenuto(int idContenuto) {
-        this.idContenuto = idContenuto;
+    public void setContenuto(ContenutoBean contenuto) {
+        this.contenuto = contenuto;
     }
 
     private int id;
@@ -178,6 +180,6 @@ public class RecensioneBean {
     private Date data;
     private Boolean cancellata;
     private String motivazioneCancellazione;
-    private String emailIscritto;
-    private int idContenuto;
+    private IscrittoBean iscritto;
+    private ContenutoBean contenuto;
 }
