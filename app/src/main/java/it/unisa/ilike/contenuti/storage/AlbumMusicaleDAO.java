@@ -89,40 +89,39 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
      */
     public List<ContenutoBean> doRetrieveAll(){
         return this.doRetrieveAllByCategoria("%", "%");
-    }}
+    }
 
 
-    public List<AlbumMusicaleBean> search(String s){
-        QueryManager queryManager = new QueryManager();
+    /**
+     * Restituisce una collezione degli album musicali che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
+     */
+    public List<ContenutoBean> search(String titolo){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("album", titolo);
         Gson gson = new Gson();
-
-        String query = "SELECT * FROM AlbumMusicali WHERE titolo LIKE '%" + s + "%';";
-        String res = queryManager.select(query);
-
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
-
-        return listaAlbum;
-    }
-
-
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM AlbumMusicali WHERE id=" +id;
-
         QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        return queryManager.update(query);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                    "from AlbumMusicali " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+
+            am.setId(id);
+            am.setTitolo(c.getTitolo());
+            am.setDescrizione(c.getDescrizione());
+            am.setCategoria(c.getCategoria());
+
+            contenuti.add(am);
+        }
+
+        return contenuti;
     }
-
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from AlbumMusicali)";
-        QueryManager queryManager= new QueryManager();
-
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
-
-        return id;
-    }
-
 
 }
