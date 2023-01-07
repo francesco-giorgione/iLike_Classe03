@@ -70,6 +70,7 @@
             android:backgroundTint="#DBA73D"
             android:text="Invia Segnalazione"
             android:textAlignment="center"
+            android:onClick="onClickInviaSegnalazione"
             android:layout_below="@+id/motivazioneSegnalazione"/>
 
     </RelativeLayout>
