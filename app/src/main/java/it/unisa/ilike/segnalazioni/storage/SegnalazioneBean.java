@@ -1,5 +1,8 @@
 package it.unisa.ilike.segnalazioni.storage;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
+
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle segnalazioni delle recensioni
  * @author Simona Lo Conte
@@ -19,17 +22,17 @@ public class SegnalazioneBean {
      * @param tipo
      * @param motivazione
      * @param gestita
-     * @param emailIscritto
-     * @param idRecensione
+     * @param iscritto
+     * @param recensione
      */
     public SegnalazioneBean(int id, int tipo, String motivazione, Boolean gestita,
-                            String emailIscritto, int idRecensione) {
+                            IscrittoBean iscritto, RecensioneBean recensione) {
         this.id = id;
         this.tipo = tipo;
         this.motivazione = motivazione;
         this.gestita = gestita;
-        this.emailIscritto = emailIscritto;
-        this.idRecensione = idRecensione;
+        this.iscritto = iscritto;
+        this.recensione = recensione;
     }
 
     /**
@@ -104,38 +107,38 @@ public class SegnalazioneBean {
      * Questo metodo restituisce l'email dell'iscritto che ha scritto la recensione
      * @return email dell'iscritto
      */
-    public String getEmailIscritto() {
-        return emailIscritto;
+    public IscrittoBean iscritto() {
+        return iscritto;
     }
 
     /**
-     * Questo metodo imposta l'email dell'iscritto che ha scritto la recensione
-     * @param emailIscritto
+     * Questo metodo imposta l'iscritto autore della recensione.
+     * @param iscritto è il bean contenente le informazioni dell'iscritto autore della recensione.
      */
-    public void setEmailIscritto(String emailIscritto) {
-        this.emailIscritto = emailIscritto;
+    public void setIscritto(IscrittoBean iscritto) {
+        this.iscritto = iscritto;
     }
 
     /**
      * Questo metodo restituisce l'id della recensione a cui è riferita la segnalazione
      * @return id della recensione
      */
-    public int getIdRecensione() {
-        return idRecensione;
+    public RecensioneBean getRecensione() {
+        return recensione;
     }
 
     /**
-     * Questo metodo imposta l'id della recensione a cui è riferita la segnalazione
-     * @param idRecensione
+     * Questo metodo imposta la recensione a cui è riferita la segnalazione
+     * @param recensione è l'oggetto bean contenente le informazioni relative alla recensione.
      */
-    public void setIdRecensione(int idRecensione) {
-        this.idRecensione = idRecensione;
+    public void setRecensione(RecensioneBean recensione) {
+        this.recensione = recensione;
     }
 
     private int id;
     private int tipo;
     private String motivazione;
     private Boolean gestita;
-    private String emailIscritto;
-    private int idRecensione;
+    private IscrittoBean iscritto;
+    private RecensioneBean recensione;
 }
