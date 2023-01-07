@@ -31,7 +31,7 @@ public class ListaImpl implements ListaService {
         if(nome.length() > 50)          { throw new InvalidNomeException(); }
         if(Utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
 
-        ListaBean lista = new ListaBean(nome, i.getEmail(), pubblica);
+        ListaBean lista = new ListaBean(nome, i, pubblica);
         lista.setContenuti(new ArrayList<>());
         ListaDAO dao = new ListaDAO();
 
