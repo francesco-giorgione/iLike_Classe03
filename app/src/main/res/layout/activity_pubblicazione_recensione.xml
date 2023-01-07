@@ -83,32 +83,36 @@
         android:background="@android:color/darker_gray"/>
 
     <!--DETTAGLI RECENSIONE DA SCRIVERE-->
+
+
+    <!--FOOTER -->
+
     <RatingBar
         android:id="@+id/valutazioneContenuto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/descrizioneContenuto"
-        android:layout_marginTop="50dip"
-        android:numStars="5"/>
+        android:layout_marginTop="95dp"
+        android:numStars="5" />
 
     <EditText
         android:id="@+id/testoRecensione"
-        android:layout_marginTop="20px"
         android:layout_width="match_parent"
+        android:layout_height="127dp"
         android:layout_below="@id/valutazioneContenuto"
-        android:layout_height="wrap_content"
-        android:hint="inserisci qui il testo della tua recensione"/>
+        android:layout_marginTop="36dp"
+        android:hint="inserisci qui il testo della tua recensione" />
 
     <Button
         android:id="@+id/pubblicaRecensioneButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#DBA73D"
         android:layout_below="@id/testoRecensione"
-        android:text="Pubbica recensione"/>
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#DBA73D"
+        android:onClick="onClickAggiungiRecensione"
+        android:text="Pubbica recensione" />
 
-
-    <!--FOOTER -->
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -127,12 +131,14 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
+            android:onClick="onClickHomepage"
             android:src="@drawable/ricerca"/>
 
         <ImageButton
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>
