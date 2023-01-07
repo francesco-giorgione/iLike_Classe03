@@ -18,6 +18,16 @@ public class CreazioneListaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_creazione_lista);
     }
 
+    private void setReturnIntent() {
+        Intent data = new Intent();
+        setResult(RESULT_OK,data);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
