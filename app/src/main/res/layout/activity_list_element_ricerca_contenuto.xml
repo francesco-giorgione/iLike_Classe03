@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="40dip"
         android:layout_height="match_parent"
-        android:src="@drawable/icona_serieTV"/>
+        android:src="@drawable/icona_serietv"/>
 
     <TextView
         android:paddingLeft="20dip"
