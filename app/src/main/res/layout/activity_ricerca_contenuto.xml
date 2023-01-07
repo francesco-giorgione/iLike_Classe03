@@ -65,6 +65,7 @@
             android:backgroundTint="@color/white"
             android:textColor="#DBA73D"
             android:textStyle="bold"
+            android:enabled="false"
             android:text="Iscritti"/>
 
     </LinearLayout>
@@ -72,10 +73,44 @@
     <ListView
         android:id="@+id/contenutiList"
         android:layout_width="wrap_content"
-        android:layout_height="631dp"
+        android:layout_height="550dp"
         android:layout_below="@id/filtroRicerca"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip">
     </ListView>
+
+    <!--FOOTER -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:id="@+id/homepageButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="150dip"
+            android:onClick="onClickHomepage"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:id="@+id/profiloButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
