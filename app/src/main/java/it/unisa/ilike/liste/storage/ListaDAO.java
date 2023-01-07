@@ -4,11 +4,16 @@ import static it.unisa.ilike.utils.Utils.addEscape;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -83,9 +88,10 @@ public class ListaDAO {
 
 
     /**
-     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>ListaBean</code>
+     * Restituisce un oggetto della classe <code>ListaBean</code>
      * presente nella tabella Lista del database, dopo averlo individuato tramite la chiave
-     * (nome, email iscritto) passata come argomento.
+     * (nome, email iscritto) passata come argomento. Nella collezione dei contenuti sono inseriti
+     * i ContenutiBean contenenti le informazioni relative ai contenuti appartenenti alla lista.
      * @param nome è il nome della lista da cercare nel database.
      * @param emailIscritto è l'email dell'iscritto cui appartiene la lista da cercare nel database.
      * @return la lista cercata se l'operazione va a buon fine, null altrimenti.
@@ -94,26 +100,60 @@ public class ListaDAO {
         if (nome == null || emailIscritto == null){
             return null;
         }
+
         nome = addEscape(nome);
         emailIscritto = addEscape(emailIscritto);
 
-        String query = "select * from Liste " +
-                "where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+         String query = "select L.visibilita as visibilita, L.nome as nome, L.email_iscritto as emailIscritto, I.id_contenuto " +
+                "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
+                "where L.nome = '" + nome + "' and L.email_iscritto = '" + emailIscritto + "'";
 
         QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-
+        String res = queryManager.select(query);
         Gson gson= new Gson();
         ListaBean lista = gson.fromJson(res, ListaBean.class);
+        lista.setContenuti(new ArrayList<>());
 
-        query = "select C.id as id, C.titolo as titolo, C.descrizione as descrizione, C.categoria as categoria " +
-                "from Liste L join Inclusioni I on I.nome_lista = L.nome and I.email_iscritto = L.email_iscritto " +
-                "join Contenuti C on I.id_contenuto = C.id where L.nome = '" + nome + "' and L.email_iscitto = '" + emailIscritto + "'";
+        for(ContenutoBean c: lista.getContenuti()) {
+            int id = c.getId();
+            ContenutoBean toAdd = null;
 
-        res = queryManager.select(query);
+            if(c instanceof FilmBean) {
+                query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
+                        "from Film " +
+                        "where id = " + id;
 
-        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
-        lista.setContenuti(contenuti);
+                res = queryManager.select(query);
+                toAdd = gson.fromJson(res, FilmBean.class);
+            }
+            else if(c instanceof SerieTVBean) {
+                query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                        "from SerieTV " +
+                        "where id = " + id;
+
+                res = queryManager.select(query);
+                toAdd = gson.fromJson(res, SerieTVBean.class);
+            }
+            else if(c instanceof LibroBean) {
+                query = "select autore, isbn, num_pagine as numPagine " +
+                        "from Libri " +
+                        "where id = " + id;
+
+                res = queryManager.select(query);
+                toAdd = gson.fromJson(res, LibroBean.class);
+            }
+            else if(c instanceof AlbumMusicaleBean) {
+                query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                        "from AlbumMusicali " +
+                        "where id = " + id;
+
+                res = queryManager.select(query);
+                toAdd = gson.fromJson(res, AlbumMusicaleBean.class);
+            }
+
+            toAdd.setId(id);
+            lista.getContenuti().add(toAdd);
+        }
 
         return lista;
     }
