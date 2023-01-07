@@ -1,12 +1,14 @@
 package it.unisa.ilike.account.storage;
 
+import java.io.Serializable;
+
 /**
- * Questa classe rapresenta l'oggetto da salvare nel Application Context
+ * Questa classe rapresenta l'oggetto che identifica se è stato effettuato il login
  * per valutare se è stato effettuato il login.
  * @author Marta
  * @version 0.1
  */
-public class Account {
+public class Account implements Serializable {
 
     /**
      * Questo metodo crea un oggetto Account.

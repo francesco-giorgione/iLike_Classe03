@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
@@ -22,7 +23,19 @@ public class VisualizzazioneHomepageActivity extends Activity {
 
         //getApplicationContext();
 
+        //inizio da login
+        Intent i = getIntent();
+        setReturnIntent();
+        Account account = (Account) getIntent().getExtras().getSerializable("account");
+        //fine da login
     }
+
+    //inizio da login
+    private void setReturnIntent() {
+        Intent data = new Intent();
+        setResult(RESULT_OK,data);
+    }
+    //fine da login
 
     public void onClickProfilo(View v){
         Intent i = new Intent();
