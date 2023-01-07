@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>SegnalazioneDAO</code> serve per interagire con la tabella Segnalazioni presente nel database
@@ -22,16 +23,15 @@ public class SegnalazioneDAO {
      * true altrimenti
      */
     public boolean doSaveSegnalazione(SegnalazioneBean segnalazione){
-
         if (segnalazione== null){
             return false;
         }
 
         int id = segnalazione.getId();
         int tipo = segnalazione.getTipo();
-        String motivazione = segnalazione.getMotivazione();
+        String motivazione = Utils.addEscape(segnalazione.getMotivazione());
         boolean gestita = segnalazione.isGestita();
-        String email_iscritto = segnalazione.getRecensione().getIscritto().getEmail();
+        String email_iscritto = Utils.addEscape(segnalazione.getRecensione().getIscritto().getEmail());
         int id_recensione = segnalazione.getRecensione().getId();
 
         QueryManager queryManager= new QueryManager();
