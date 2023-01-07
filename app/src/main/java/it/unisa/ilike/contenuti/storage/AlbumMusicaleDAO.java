@@ -44,12 +44,6 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         return am;
     }
 
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
-    }
-
-
     /**
      * Restituisce una collezione degli album musicali di una data categoria.
      * @param categoria è la categoria sulla base della quale si vogliono selezionare gli album musicali.

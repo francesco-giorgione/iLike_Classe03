@@ -44,12 +44,6 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
-    }
-
-
     /**
      * Restituisce una collezione dei libri di una data categoria.
      * @param categoria è la categoria sulla base della quale si vogliono selezionare i libri.

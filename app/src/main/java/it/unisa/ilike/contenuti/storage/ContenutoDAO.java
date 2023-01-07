@@ -42,10 +42,6 @@ public class ContenutoDAO {
         return gson.fromJson(res, ContenutoBean.class);
     }
 
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
-    }
 
     /**
      * Restituisce una collezione di tutti i contenuti di un certo tipo (es. tutti i film).

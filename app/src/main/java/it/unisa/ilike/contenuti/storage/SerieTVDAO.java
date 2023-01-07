@@ -44,12 +44,6 @@ public class SerieTVDAO extends ContenutoDAO {
     }
 
 
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
-    }
-
-
     /**
      * Restituisce una collezione delle serie tv di una data categoria.
      * @param categoria è la categoria in base alla quale si vogliono selezionare le serie tv.
