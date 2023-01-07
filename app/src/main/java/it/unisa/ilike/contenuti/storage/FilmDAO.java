@@ -15,7 +15,11 @@ import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.utils.Utils;
 
 public class FilmDAO extends ContenutoDAO {
-
+    /**
+     * Esegue il fetch di un film dal database.
+     * @param id è l'id del contenuto che si vuole selezionare dal db
+     * @return un oggetto FilmBean contenente le informazioni del film selezionato.
+     */
     public FilmBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
