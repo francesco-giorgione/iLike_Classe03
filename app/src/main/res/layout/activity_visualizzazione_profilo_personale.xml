@@ -1,9 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id="@+id/VisualizzazioneDettagliataProfiloPersonale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".profili.presentation.VisualizzazioneProfiloPersonaleActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- HEADER -->
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:background="#FFF" >
+
+        <ImageButton
+            android:id="@+id/AltroButton"
+            android:layout_width="37dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="372dp"
+            android:layout_marginTop="-5dp"
+            android:src="@drawable/icona_more"
+            android:backgroundTint="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nickname"
+            android:textColor="#DBA73D"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="40dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="30dp"
+        android:layout_height="3dp"
+        android:layout_below="@id/header"
+        android:layout_marginRight="70dp"
+        android:background="@android:color/darker_gray" />
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="3dp"
+        android:layout_below="@id/header"
+        android:layout_marginLeft="120dp"
+        android:background="@android:color/darker_gray" />
+
+
+    <ImageView
+        android:id="@+id/icona"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icona_utente"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"/>
+
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Info"
+        android:layout_marginLeft="150dp"
+        android:layout_below="@id/icona"/>
+
+    <LinearLayout
+        android:id="@+id/liste"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/infoTextView"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Le liste"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/aggiungi_30" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/elencoListeIscritto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/liste"
+        android:layout_marginLeft="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome lista 1"
+                android:textSize="15dp"
+                android:layout_marginTop="10dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/info20"
+                android:layout_marginLeft="250dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome lista 2"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/info20"
+                android:layout_marginLeft="250dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome lista 3"
+                android:textSize="15dp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/info20"
+                android:layout_marginLeft="250dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/linea"
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/elencoListeIscritto"
+        android:background="@android:color/darker_gray" />
+    <RelativeLayout
+        android:id="@+id/recensioniList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linea">
+
+        <TextView
+            android:id="@+id/recensioniText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Le recensioni"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"/>
+
+        <ListView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/recensioniText">
+
+            <!-- Inserire la lista di recensioni -->
+
+        </ListView>
+
+
+
+    </RelativeLayout>
+
+    <!--FOOTER -->
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D1D1D1"
+        android:gravity="center" >
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:src="@drawable/icona_chatbot"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="150dip"
+            android:src="@drawable/ricerca"/>
+
+        <ImageButton
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="300dip"
+            android:src="@drawable/icona_profilo"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+
