@@ -14,34 +14,33 @@ import it.unisa.ilike.QueryManager;
 
 public class LibroDAO extends ContenutoDAO {
 
-
+    /**
+     * Restituisce il libro avente un dato id.
+     * @param id è l'id del contenuto che si vuole selezionare dal db
+     * @return un oggetto LibroBean contenente le informazioni relative al libro selezionato.
+     */
     public LibroBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM Libri WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT autore, isbn, num_pagine as numPagine " +
+                "FROM Libri " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        LibroBean l = gson.fromJson(res, LibroBean.class);
+        LibroBean libro = gson.fromJson(res, LibroBean.class);
 
-        return l;
-    }
+        if(libro == null) {
+            return null;
+        }
 
+        libro.setId(contenuto.getId());
+        libro.setTitolo(contenuto.getTitolo());
+        libro.setDescrizione(contenuto.getDescrizione());
+        libro.setCategoria(contenuto.getCategoria());
 
-    public boolean doSave(LibroBean l){
-        QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO Libri (id, titolo, descrizione, categoria, autore, isbn, num_pagine) VALUES("+l.getId()+"'," +l.getTitolo() +"',"+l.getDescrizione()+"',"
-                +l.getCategoria()+"', "+l.getAutore()+"',"+l.getIsbn()+"',"
-                +l.getNumPagine()+");";
-
-        return queryManager.update(query);
-    }
-
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
+        return libro;
     }
 
 
