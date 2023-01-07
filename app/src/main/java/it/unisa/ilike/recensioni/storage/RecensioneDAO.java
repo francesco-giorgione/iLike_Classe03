@@ -34,8 +34,8 @@ public class RecensioneDAO {
         String testo = addEscape(recensione.getTesto());
         int valutazione = recensione.getValutazione();
         Date data = recensione.getData();
-        String emailIscritto = addEscape(recensione.getEmailIscritto());
-        int id_contenuto = recensione.getIdContenuto();
+        String emailIscritto = addEscape(recensione.getIscritto().getEmail());
+        int id_contenuto = recensione.getContenuto().getId();
         boolean cancellata = recensione.isCancellata();
 
         String motivazione_cancellazione=recensione.getMotivazioneCancellazione();
@@ -47,7 +47,7 @@ public class RecensioneDAO {
         ContenutoDAO contenutoDAO = new ContenutoDAO();
 
         if(queryManager.update(query)) {
-            return contenutoDAO.doUpdateValutazioneMedia(contenutoDAO.
+            return contenutoDAO.doUpdateValutazioneMedia(recensione.getContenuto().getId(), contenutoDAO.
                     calcolaValutazioneMediaAggiornata(recensione.getContenuto().getId(), recensione.getValutazione()));
         }
         else return false;

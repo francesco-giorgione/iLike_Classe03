@@ -16,7 +16,7 @@ public class ContenutoDAO {
      * @param valutazioneMedia è la nuova valutazione media del contenuto.
      * @return true se l'aggiornamento è eseguito con successo, false altrimenti.
      */
-    public boolean doUpdateValutazioneMedia(int idContenuto, float valutazioneMedia) {
+    public boolean doUpdateValutazioneMedia(int idContenuto, double valutazioneMedia) {
         QueryManager queryManager = new QueryManager();
         String query = "update Contenuti " +
                 "set valutazione_media = " + valutazioneMedia + " " +
