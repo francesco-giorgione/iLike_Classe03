@@ -20,7 +20,7 @@
             android:id="@+id/logo"
             android:layout_width="50dip"
             android:layout_height="50dip"
-            app:srcCompat="@drawable/icona_serieTV"/>
+            app:srcCompat="@drawable/icona_serietv"/>
 
         <TextView
             android:id="@+id/titoloContenuto"
@@ -59,14 +59,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/ratingContenuto"
+        android:layout_below="@id/valutazioneMediaContenuto"
         android:layout_marginTop="20dip"
         android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/descrizioneContenuto"
         android:layout_width="match_parent"
-        android:layout_below="@id/ratingContenuto"
+        android:layout_below="@id/valutazioneMediaContenuto"
         android:layout_marginTop="20dip"
         android:layout_height="100dip"
         android:textColor="@color/black"
