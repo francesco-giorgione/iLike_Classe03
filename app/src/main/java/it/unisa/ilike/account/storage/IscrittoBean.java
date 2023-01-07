@@ -3,13 +3,14 @@ package it.unisa.ilike.account.storage;
 import java.sql.Blob;
 import java.util.List;
 
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 /**
  * Questa classe rappresenta l'iscritto di iLike.
  * @author Marta
- * @version 0.1
+ * @version 0.2
  */
 public abstract class IscrittoBean extends UtenteBean {
 
@@ -97,6 +98,28 @@ public abstract class IscrittoBean extends UtenteBean {
      * @param foto la nuova foto profilo dell'iscritto
      */
     public abstract void setFoto(Blob foto);
+
+    /**
+     * Questo metodo permette di aggiungere una nuova lista ad un iscritto
+     * @param listaBean rappresenta l'oggetto ListaBean da aggiungerre all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public abstract boolean addLista(ListaBean listaBean);
+
+    /**
+     * Questo metodo permette di aggiungere una nuovo contenuto in una lista di un iscritto
+     * @param listaBean rappresenta l'oggetto ListaBean a cui va aggiunto il contenuto
+     * @param contenutoBean rappresenta l'oggetto ContenutoBean da aggiungere alla lista
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public abstract boolean addContenutoLista(ContenutoBean contenutoBean, ListaBean listaBean);
+
+    /**
+     * Questo metodo permette di aggiungere una nuova recensione ad un iscritto
+     * @param recensioneBean rappresenta l'oggetto RecensioneBean da aggiungere all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public abstract boolean addRecensione(RecensioneBean recensioneBean);
 
     private String nickname, nome, cognome, bio;
 }
