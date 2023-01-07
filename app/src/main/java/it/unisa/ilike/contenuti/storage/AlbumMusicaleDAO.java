@@ -83,18 +83,13 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         return contenuti;
     }
 
-    public List<AlbumMusicaleBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM AlbumMusicali";
-
-        String res = queryManager.select(query);
-
-        Gson gson = new Gson();
-
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
-
-        return listaAlbum;
-    }
+    /**
+     * Restituisce tutti gli album musicali del catalogo.
+     * @return un oggetto List contenente tutti gli AlbumMusicaleBean del catalogo.
+     */
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
+    }}
 
 
     public List<AlbumMusicaleBean> search(String s){
