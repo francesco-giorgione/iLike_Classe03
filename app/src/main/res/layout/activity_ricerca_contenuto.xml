@@ -101,7 +101,7 @@
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
             android:onClick="onClickHomepage"
-            android:src="@drawable/ricerca"/>
+            android:src="@drawable/icona_home"/>
 
         <ImageButton
             android:id="@+id/profiloButton"

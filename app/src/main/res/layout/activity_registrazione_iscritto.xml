@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FFF"
-        android:gravity="center" >
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/logo"
@@ -161,6 +161,7 @@
         android:layout_marginTop="10dp"
         android:enabled="false"
         android:text="Registrati"
+        android:onClick="onClickRegistrazioneIscritto"
         android:backgroundTint="#DBA73D"/>
 
 </RelativeLayout>
