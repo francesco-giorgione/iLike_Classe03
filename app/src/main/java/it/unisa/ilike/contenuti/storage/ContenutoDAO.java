@@ -30,27 +30,44 @@ public class ContenutoDAO {
      * @param idContenuto è l'id del contenuto di cui si vuole ottenere la valutazione media.
      * @return la valutazione media del contenuto avente come id 'id'.
      */
-    public Double doRetrieveValutazioneMediaAggiornata(int idContenuto) {
+    public double calcolaValutazioneMediaAggiornata(int idContenuto, int newValutazione) {
         class RisultatoQuery {
-            public Double getValutazioneMedia() {
-                return valutazioneMedia;
+            public int getNumRecensioni() {
+                return numRecensioni;
             }
 
-            public void setValutazioneMedia(Double valutazioneMedia) {
-                this.valutazioneMedia = valutazioneMedia;
+            public void setNumRecensioni(int numRecensioni) {
+                this.numRecensioni = numRecensioni;
             }
 
-            Double valutazioneMedia;
+            public void setNumRecensioni(Integer numRecensioni) {
+                this.numRecensioni = numRecensioni;
+            }
+
+            public Integer getSommaValutazioni() {
+                return sommaValutazioni;
+            }
+
+            public void setSommaValutazioni(Integer sommaValutazioni) {
+                this.sommaValutazioni = sommaValutazioni;
+            }
+
+            Integer numRecensioni;
+            Integer sommaValutazioni;
         }
 
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
-        String query = "select valutazione_media as valutazioneMedia" +
-                "from Contenuti " +
-                "where id = " + idContenuto;
+
+        String query = "select count(valutazione) as numRecensioni, sum(valutazione) as sommaValutazioni " +
+                "from Recensioni " +
+                "where id_contenuto = " + idContenuto;
 
         String res = queryManager.select(query);
-        return gson.fromJson(res, RisultatoQuery.class).getValutazioneMedia();
+        int numRecensioni = gson.fromJson(res, RisultatoQuery.class).getNumRecensioni() + 1;
+        int sommaValutazioni = gson.fromJson(res, RisultatoQuery.class).getSommaValutazioni() + newValutazione;
+
+        return (double) (sommaValutazioni / numRecensioni);
     }
 
     /**
