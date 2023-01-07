@@ -6,12 +6,17 @@ import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.IscrittoDAO;
-import it.unisa.ilike.contenuti.storage.LibroDAO;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
+/**
+ * Questa classe rappresenta la reale implementazione di IscrittoBean
+ * @author Marta
+ * @version 0.2
+ */
 public class IscrittoRealBean extends IscrittoBean {
 
     /**
@@ -114,6 +119,40 @@ public class IscrittoRealBean extends IscrittoBean {
         this.foto = foto;
     }
 
+    /**
+     * Questo metodo permette di aggiungere una nuova recensione ad un iscritto
+     * @param recensioneBean rappresenta l'oggetto RecensioneBean da aggiungere all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addRecensione(RecensioneBean recensioneBean){
+        return this.recensioni.add(recensioneBean);
+    }
+
+    /**
+     * Questo metodo permette di aggiungere una nuovo contenuto in una lista di un iscritto
+     * @param listaBean rappresenta l'oggetto ListaBean a cui va aggiunto il contenuto
+     * @param contenutoBean rappresenta l'oggetto ContenutoBean da aggiungere alla lista
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addContenutoLista(ContenutoBean contenutoBean, ListaBean listaBean){
+        for (int i = 0; i < this.liste.size(); i++){
+            ListaBean listaCurr = this.liste.get(i);
+            if(listaCurr.getNome() == listaBean.getNome() && listaCurr.getEmailIscritto() == listaBean.getEmailIscritto()){
+                this.liste.get(i).aggiungiContenuto(contenutoBean);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Questo metodo permette di aggiungere una nuova lista ad un iscritto
+     * @param listaBean rappresenta l'oggetto ListaBean da aggiungerre all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addLista(ListaBean listaBean){
+        return this.liste.add(listaBean);
+    }
 
     private List<ListaBean> liste;
     private List<RecensioneBean> recensioni;
