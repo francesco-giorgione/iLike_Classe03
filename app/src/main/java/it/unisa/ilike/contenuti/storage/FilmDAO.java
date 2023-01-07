@@ -83,7 +83,7 @@ public class FilmDAO extends ContenutoDAO {
      * sia selezionato.
      * @param maxValutazione è la massima valutazione media che deve avere un film affinché
      * sia selezionato.
-     * @return un ArrayList contenente tutti i contenuti aventi una valutazione media compatibile
+     * @return un ArrayList contenente tutti i film aventi una valutazione media compatibile
      * con quella richiesta.
      */
     public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione) {
