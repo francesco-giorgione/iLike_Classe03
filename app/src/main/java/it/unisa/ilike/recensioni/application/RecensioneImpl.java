@@ -50,7 +50,7 @@ public class RecensioneImpl implements RecensioneService{
         int id= recensioneDAO.doRetrieveMaxIdRecensione();
         Date data= new Date();
 
-        RecensioneBean recensione= new RecensioneBean(id+1, testo, valutazione, data, false, null, i.getEmail(), c.getId());
+        RecensioneBean recensione= new RecensioneBean(id+1, testo, valutazione, data, false, null, i, c);
 
         if (recensione!=null){
             if (recensioneDAO.doSaveRecensione(recensione))
@@ -103,7 +103,7 @@ public class RecensioneImpl implements RecensioneService{
         List<RecensioneBean> recensioni= recensioneDAO.doRetrieveAllRecensioniNonCancellate();
 
         for (RecensioneBean r: recensioni){
-            if (r.getIdContenuto()==c.getId())
+            if (r.getContenuto().getId() == c.getId())
                 ListToReturn.add(r);
         }
 
