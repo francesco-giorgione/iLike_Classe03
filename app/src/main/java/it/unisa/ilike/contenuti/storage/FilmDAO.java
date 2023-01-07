@@ -81,6 +81,11 @@ public class FilmDAO extends ContenutoDAO {
     }
 
 
+    /**
+     * Restituisce una collezione di film che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente i FilmBean selezionati.
+     */
     public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("film", titolo);
         Gson gson = new Gson();
