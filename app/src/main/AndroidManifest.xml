@@ -14,83 +14,79 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ILike"
         tools:targetApi="31">
+
         <activity
-            android:name=".VisualizzazioneDettaglioSegnalazioneActivity"
+            android:name=".segnalazioni.presentation.GestioneSegnalazioniActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".CancellazioneRecensioneActivity"
+            android:name=".segnalazioni.presentation.VisualizzazioneSegnalazioniActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".VisualizzazioneSegnalazioniActivity"
+            android:name=".liste.presentation.VisualizzazioneContenutiListaPersonaleActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".VisualizzazioneContenutiListaPersonaleActivity"
+            android:name=".liste.presentation.AggiuntaContenutoListaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".AggiuntaContenutoListaActivity"
+            android:name=".liste.presentation.CreazioneListaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".CreazioneListaActivity"
+            android:name=".contenuti.presentation.RicercaContenutoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".RicercaContenutoActivity"
+            android:name=".contenuti.presentation.VisualizzazioneDettagliataContenutoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".VisualizzazioneDettagliataContenutoActivity"
+            android:name=".recensioni.presentation.AggiuntaSegnalazioneRecensioneActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".VisualizzazioneHomepageActivity"
+            android:name=".recensioni.presentation.PubblicazioneRecensioneActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".AggiuntaSegnalazioneRecensioneActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".PubblicazioneRecensioneActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".profili.presentation.VisualizzazioneProfiloPersonaleActivity"
             android:exported="false">
@@ -98,17 +94,23 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".RegistrazioneIscrittoActivity"
+            android:name=".account.presentation.RegistrazioneIscrittoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:name=".account.presentation.LoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
         <activity
             android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
             android:exported="true">
