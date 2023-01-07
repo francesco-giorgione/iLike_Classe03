@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
@@ -40,12 +39,12 @@ public class VisualizzazioneHomepageActivity extends Activity {
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivityForResult(i, 878);
+        startActivity(i);
     }
 
     public void onClickSearchBar(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RicercaContenutoActivity.class);
-        startActivityForResult(i, 879);
+        startActivity(i);
     }
 }

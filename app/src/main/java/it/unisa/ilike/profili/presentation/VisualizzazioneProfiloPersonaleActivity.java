@@ -14,12 +14,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         setContentView(R.layout.activity_visualizzazione_profilo_personale);
 
         Intent i = getIntent();
-        setReturnIntent();
-    }
-
-    private void setReturnIntent() {
-        Intent data = new Intent();
-        setResult(RESULT_OK,data);
     }
 
     @Override
