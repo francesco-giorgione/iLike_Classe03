@@ -60,7 +60,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         if(motivazione.length() > 300)
             throw new InvalidMotivazioneException();
 
-        int idRecensione = s.getIdRecensione();
+        int idRecensione = s.getRecensione().getId();
         RecensioneDAO recensioneDAO = new RecensioneDAO();
         RecensioneBean r = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
 
@@ -88,7 +88,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         if(!(utils.isGestore(g)))
             throw new NotGestoreException();
 
-        int idRecensione = s.getIdRecensione();
+        int idRecensione = s.getRecensione().getId();
         RecensioneDAO recensioneDAO = new RecensioneDAO();
         RecensioneBean r = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
 
