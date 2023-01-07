@@ -14,19 +14,34 @@ import it.unisa.ilike.QueryManager;
 
 public class AlbumMusicaleDAO extends ContenutoDAO {
 
-
+    /**
+     * Restituisce l'album musicale avente un dato id.
+     * @param id è l'id dell'album musicale che si vuole selezionare dal db
+     * @return un oggetto AlbumMusicaleBean contenente le informazioni relative all'album
+     * musicale selezionato.
+     */
     public AlbumMusicaleBean doRetrieveById(int id){
+        ContenutoBean contenuto = super.doRetrieveById(id);
 
-        QueryManager queryManager= new QueryManager();
-
-        String query = "SELECT * FROM AlbumMusicali WHERE id=" + id;
+        QueryManager queryManager = new QueryManager();
+        String query = "SELECT artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                "FROM AlbumMusicali " +
+                "WHERE id = " + contenuto.getId();
 
         String res = queryManager.select(query);
-
         Gson gson = new Gson();
-        AlbumMusicaleBean a = gson.fromJson(res, AlbumMusicaleBean.class);
+        AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
 
-        return a;
+        if(am == null) {
+            return null;
+        }
+
+        am.setId(contenuto.getId());
+        am.setTitolo(contenuto.getTitolo());
+        am.setDescrizione(contenuto.getDescrizione());
+        am.setCategoria(contenuto.getCategoria());
+
+        return am;
     }
 
     // da implementare
@@ -35,75 +50,78 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
     }
 
 
-    public boolean doSave(AlbumMusicaleBean a){
-        QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO AlbumMusicali (id, titolo, descrizione, categoria, artista, data_rilascio, acustica, strumentalita,tempo,valenza,durata) VALUES("
-                +a.getId()+"'," +a.getTitolo() +"',"+a.getDescrizione()+"'," +a.getCategoria()+"', "+a.getArtista()+"',"
-                +a.getDataRilascio()+"'," +a.getAcustica()+"',"+a.getStrumentalita()+"'," +a.getTempo()+"', "+a.getValenza()+"', "+a.getDurata()+");";
-
-        return queryManager.update(query);
-    }
-
-
-    public List<AlbumMusicaleBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM AlbumMusicali";
-
-        String res = queryManager.select(query);
-
+    /**
+     * Restituisce una collezione degli album musicali di una data categoria.
+     * @param categoria è la categoria sulla base della quale si vogliono selezionare gli album musicali.
+     * @return un ArrayList di oggetti AlbumMusicaleBean corrispondenti agli album musicali selezionati
+     * in base a 'categoria'.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("album", categoria);
         Gson gson = new Gson();
-
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
-
-        return listaAlbum;
-    }
-
-
-    public List<AlbumMusicaleBean> doRetrieveByCategoria(String categoria){
         QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        String query = "SELECT * FROM AlbumMusicali WHERE categoria=" +categoria;
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        Gson gson = new Gson();
-        String res = queryManager.select(query);
+            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                    "from AlbumMusicali " +
+                    "where id = " + id;
 
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res,AlbumMusicaleBean.class);
+            String res = queryManager.select(query);
+            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
 
-        return listaAlbum;
+            am.setId(id);
+            am.setTitolo(c.getTitolo());
+            am.setDescrizione(c.getDescrizione());
+            am.setCategoria(c.getCategoria());
+
+            contenuti.add(am);
+        }
+
+        return contenuti;
+    }
+
+    /**
+     * Restituisce tutti gli album musicali del catalogo.
+     * @return un oggetto List contenente tutti gli AlbumMusicaleBean del catalogo.
+     */
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
-    public List<AlbumMusicaleBean> search(String s){
+    /**
+     * Restituisce una collezione degli album musicali che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
+     */
+    public List<ContenutoBean> search(String titolo){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("album", titolo);
+        Gson gson = new Gson();
         QueryManager queryManager = new QueryManager();
-        Gson gson = new Gson();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        String query = "SELECT * FROM AlbumMusicali WHERE titolo LIKE '%" + s + "%';";
-        String res = queryManager.select(query);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
+            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                    "from AlbumMusicali " +
+                    "where id = " + id;
 
-        return listaAlbum;
+            String res = queryManager.select(query);
+            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+
+            am.setId(id);
+            am.setTitolo(c.getTitolo());
+            am.setDescrizione(c.getDescrizione());
+            am.setCategoria(c.getCategoria());
+
+            contenuti.add(am);
+        }
+
+        return contenuti;
     }
-
-
-    public boolean doDeleteById(int id){
-        String query = "DELETE FROM AlbumMusicali WHERE id=" +id;
-
-        QueryManager queryManager = new QueryManager();
-
-        return queryManager.update(query);
-    }
-
-    public int doRetrieveMaxId(){
-        String query = "select max(id) from (select id from AlbumMusicali)";
-        QueryManager queryManager= new QueryManager();
-
-        String res = queryManager.select(query);
-        Gson gson = new Gson();
-        int id = gson.fromJson(res, int.class);
-
-        return id;
-    }
-
 
 }
