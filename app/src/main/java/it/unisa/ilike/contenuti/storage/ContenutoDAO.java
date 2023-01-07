@@ -26,6 +26,34 @@ public class ContenutoDAO {
     }
 
     /**
+     * Restituisce la valutazione media corrente di un dato contenuto.
+     * @param idContenuto è l'id del contenuto di cui si vuole ottenere la valutazione media.
+     * @return la valutazione media del contenuto avente come id 'id'.
+     */
+    public Double doRetrieveValutazioneMediaAggiornata(int idContenuto) {
+        class RisultatoQuery {
+            public Double getValutazioneMedia() {
+                return valutazioneMedia;
+            }
+
+            public void setValutazioneMedia(Double valutazioneMedia) {
+                this.valutazioneMedia = valutazioneMedia;
+            }
+
+            Double valutazioneMedia;
+        }
+
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "select valutazione_media as valutazioneMedia" +
+                "from Contenuti " +
+                "where id = " + idContenuto;
+
+        String res = queryManager.select(query);
+        return gson.fromJson(res, RisultatoQuery.class).getValutazioneMedia();
+    }
+
+    /**
      * Esegue il fetch di un contenuto dal database.
      * @param id è l'id del contenuto che si vuole selezionare dal db
      * @return un oggetto ContenutoBean contenente l'id, il titolo, la descrizione, la categoria
@@ -70,6 +98,28 @@ public class ContenutoDAO {
     }
 
 
+    /**
+     * Restituisce una collezione di tutti i contenuti aventi una valutazione rientrante in un dato
+     * intervallo.
+     * @param minValutazione è la minima valutazione media che deve avere un contenuto affinché
+     *                       sia selezionato.
+     * @param maxValutazione è la massima valutazione media che deve avere un contenuto affinché
+     *      *                sia selezionato.
+     * @return un ArrayList contenente tutti i contenuti aventi una valutazione media compatibile
+     * con quella richiesta.
+     */
+    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione) {
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+                "FROM Contenuti " +
+                "where valutazione_media >= " + minValutazione + " and valutazione_media <= " + maxValutazione;
+
+        String res = queryManager.select(query);
+        // da controllare cast, probabilmente non funziona
+        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
+        return contenuti;
+    }
 
 
     /**

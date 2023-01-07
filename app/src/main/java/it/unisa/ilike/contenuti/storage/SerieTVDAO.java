@@ -78,6 +78,43 @@ public class SerieTVDAO extends ContenutoDAO {
 
 
     /**
+     * Restituisce tutte le serie tv aventi una valutazione media rientrante in un dato intervallo.
+     * @param minValutazione è la è la minima valutazione media che deve avere una serie tv affinché
+     * sia selezionata.
+     * @param maxValutazione è la massima valutazione media che deve avere una serie tv affinché
+     * sia selezionata.
+     * @return un ArrayList contenente tutte le serie tv aventi una valutazione media compatibile
+     * con quella richiesta.
+     */
+    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
+
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                    "from SerieTV " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
+
+            stv.setId(id);
+            stv.setTitolo(c.getTitolo());
+            stv.setDescrizione(c.getDescrizione());
+            stv.setCategoria(c.getCategoria());
+
+            contenuti.add(stv);
+        }
+
+        return contenuti;
+    }
+
+
+    /**
      * Restituisce tutte le serie tv del catalogo.
      * @return un oggetto List contenente tutti i SerieTVBean del catalogo.
      */
