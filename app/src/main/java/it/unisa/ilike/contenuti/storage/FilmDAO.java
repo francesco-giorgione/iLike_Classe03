@@ -117,9 +117,5 @@ public class FilmDAO extends ContenutoDAO {
         return contenuti;
     }
 
-    // da implementare
-    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
-        return null;
-    }
 
 }

@@ -4,6 +4,7 @@ import static it.unisa.ilike.utils.Utils.addEscape;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,19 +184,59 @@ public class ListaDAO {
      */
     public List<ListaBean> doRetrieveListeByEmailIscritto(String email){
         email = addEscape(email);
-        String query="select * from Lista where email_iscritto= '" + email + "'";
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        List<ListaBean> listToReturn = (List<ListaBean>) gson.fromJson(res, ListaBean.class);
 
-        for(ListaBean lista: listToReturn){
-            ContenutoDAO contenutoDAO = new ContenutoDAO();
-            lista.setContenuti(contenutoDAO.doRetrieveByLista(lista.getNome(), email));
+        String query = "select email_iscritto as emailIscritto, nome " +
+                "from Liste " +
+                "where email_iscritto= '" + email + "'";
+
+        QueryManager queryManager= new QueryManager();
+        String res = queryManager.select(query);
+        Gson gson = new Gson();
+        List<ListaBean> toReturn = new ArrayList<>();
+
+        ListaPrimaryKeyCollection listaPrimaryKeyCollection = gson.fromJson(res, ListaPrimaryKeyCollection.class);
+
+        for(ListaPrimaryKey key: listaPrimaryKeyCollection.chiavi){
+            toReturn.add(this.doRetrieveByKey(key.getNome(), key.getEmailIscritto()));
         }
 
-        return listToReturn;
+        return toReturn;
     }
 
+    private class ListaPrimaryKey {
+        public ListaPrimaryKey() {}
 
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getEmailIscritto() {
+            return emailIscritto;
+        }
+
+        public void setEmailIscritto(String emailIscritto) {
+            this.emailIscritto = emailIscritto;
+        }
+
+        String nome;
+        String emailIscritto;
+    }
+
+    private class ListaPrimaryKeyCollection {
+        public ListaPrimaryKeyCollection() {}
+
+        public List<ListaPrimaryKey> getChiavi() {
+            return chiavi;
+        }
+
+        public void setChiavi(List<ListaPrimaryKey> chiavi) {
+            this.chiavi = chiavi;
+        }
+
+        List<ListaPrimaryKey> chiavi;
+    }
 }
