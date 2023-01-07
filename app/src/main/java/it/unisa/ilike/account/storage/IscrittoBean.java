@@ -69,12 +69,6 @@ public abstract class IscrittoBean extends UtenteBean {
     public abstract Blob getFoto();
 
     /**
-     * Questo metodo permette di modificare la foto profilo
-     * @param foto la nuova foto profilo dell'iscritto
-     */
-    public abstract void setFoto(Blob foto);
-
-    /**
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
@@ -97,6 +91,12 @@ public abstract class IscrittoBean extends UtenteBean {
      * @param recensioni le nuove recensioni dell'iscritto
      */
     public abstract void setRecensioni(List<RecensioneBean> recensioni);
+
+    /**
+     * Questo metodo permette di modificare la foto profilo
+     * @param foto la nuova foto profilo dell'iscritto
+     */
+    public abstract void setFoto(Blob foto);
 
     private String nickname, nome, cognome, bio;
 }

@@ -1,15 +1,18 @@
 package it.unisa.ilike.recensioni.storage;
 
+import static it.unisa.ilike.utils.Utils.addEscape;
+
 import com.google.gson.Gson;
 
 import java.util.Date;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>RecensioneDAO</code> serve per interagire con la tabella Recensioni presente nel database
- * @version 0.4
+ * @version 0.5
  * @author LuiginaCostante
  */
 
@@ -22,26 +25,24 @@ public class RecensioneDAO {
      * @return false se la recensione passata come argomento è null o se l'operazione NON è andata a buon fine,
      * true altrimenti
      */
-
     public boolean doSaveRecensione(RecensioneBean recensione){
 
         if (recensione== null){
             return false;
         }
 
-        String testo= recensione.getTesto();
-        int valutazione= recensione.getValutazione();
-        Date data= recensione.getData();
-        String emailIscritto= recensione.getEmailIscritto();
-        int id_contenuto= recensione.getIdContenuto();
-        boolean cancellata= recensione.isCancellata();
+        String testo = addEscape(recensione.getTesto());
+        int valutazione = recensione.getValutazione();
+        Date data = recensione.getData();
+        String emailIscritto = addEscape(recensione.getEmailIscritto());
+        int id_contenuto = recensione.getIdContenuto();
+        boolean cancellata = recensione.isCancellata();
 
         String motivazione_cancellazione=recensione.getMotivazioneCancellazione();
-
         QueryManager queryManager= new QueryManager();
-        String query= "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, " +
-                "email_iscritto, id_contenuto) values ('" +testo + "', '" + valutazione+ "', '" + data + "', " +cancellata+
-                ", '"+motivazione_cancellazione+ "', '" + emailIscritto + "', " + id_contenuto+ ");";
+        String query= "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, email_iscritto, id_contenuto) " +
+                "values ('" + testo + "', '" + valutazione+ "', '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
+                + emailIscritto + "', " + id_contenuto+ ");";
         return queryManager.update(query);
     }
 
@@ -73,7 +74,6 @@ public class RecensioneDAO {
      * @return null se il parametro id non è valido, l'oggetto recensione con chiave primaria uguale ad id
      * se l'operazione è andata a buon fine
      */
-
     public RecensioneBean doRetrieveByIdRecensione(int id){
 
         if (id<1){
@@ -82,7 +82,6 @@ public class RecensioneDAO {
         String query= "select * from Recensioni where id = " + id;
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
-
         Gson gson= new Gson();
         RecensioneBean recensione= gson.fromJson(res, RecensioneBean.class);
 
@@ -94,11 +93,9 @@ public class RecensioneDAO {
      * memorizzati nel database che non risultano marcati come "cancellati"
      * @return lista di oggetti della classe <code>RecensioneBean</code> memorizzata nel database
      */
-
     public List<RecensioneBean> doRetrieveAllRecensioniNonCancellate(){
 
         String query="select * from Recensioni where cancellata=false";
-
         QueryManager queryManager= new QueryManager();
         String res= queryManager.select(query);
         Gson gson= new Gson();
@@ -111,7 +108,6 @@ public class RecensioneDAO {
      * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente nella tabella Recensioni del database
      * @return id con valore maggiore presente nella tabella Recensioni del database
      */
-
     public int doRetrieveMaxIdRecensione(){
 
         String query = "select max(id) from (select id from Recensioni)";
@@ -132,7 +128,6 @@ public class RecensioneDAO {
      * @return false se la recensione o la motivazione della cancellazione sono nulle, se risulta essere già stata
      * marcata come "cancellata" o se l'operazione NON è andata a buon fine. True altrimenti
      */
-
     public boolean cancellaRecensione(RecensioneBean recensione){
 
         if (recensione==null)
@@ -141,12 +136,29 @@ public class RecensioneDAO {
             return false;
 
         int id= recensione.getId();
-        String motivazioneCancellazione= recensione.getMotivazioneCancellazione();
+        String motivazioneCancellazione= addEscape(recensione.getMotivazioneCancellazione());
         String query= "update Recensioni set cancellata= true, motivazione_cancellazione= '"+
                 motivazioneCancellazione+"' where id= "+ id;
         QueryManager queryManager= new QueryManager();
         queryManager.update(query);
 
         return true;
+    }
+
+    /**
+     * Questo metodo consente di receperare dal DataBase tutte le recensioni di cui l'iscritto ne è l'autore
+     * @param email rappresenta l'email dell'iscritto autore delle recensioni
+     * @return la lista di recensioni scritte dall'iscritto
+     */
+    public List<RecensioneBean> doRetriveRecensioniByEmailIscritto(String email){
+
+        email = addEscape(email);
+        String query="select * from Recensioni where email_iscritto = " + email + "'";
+        QueryManager queryManager= new QueryManager();
+        String res= queryManager.select(query);
+        Gson gson= new Gson();
+        List<RecensioneBean> listToReturn = (List<RecensioneBean>) gson.fromJson(res, RecensioneBean.class);
+
+        return listToReturn;
     }
 }

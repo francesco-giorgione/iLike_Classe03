@@ -33,21 +33,12 @@ public class IscrittoProxyBean extends IscrittoBean {
     }
 
     /**
-     * Questo metodo permette di modificare la foto profilo
-     * @param foto la nuova foto profilo dell'iscritto
-     */
-    @Override
-    public void setFoto(Blob foto) {
-        this.iscrittoReal.setFoto(foto);
-    }
-
-    /**
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
     @Override
     public List<ListaBean> getListe() {
-        return null;
+        return this.iscrittoReal.getListe();
     }
 
     /**
@@ -56,7 +47,7 @@ public class IscrittoProxyBean extends IscrittoBean {
      */
     @Override
     public List<RecensioneBean> getRecensioni() {
-        return null;
+        return this.iscrittoReal.getRecensioni();
     }
 
     /**
@@ -65,7 +56,7 @@ public class IscrittoProxyBean extends IscrittoBean {
      */
     @Override
     public void setListe(List<ListaBean> liste) {
-
+        this.iscrittoReal.setListe(liste);
     }
 
     /**
@@ -74,8 +65,18 @@ public class IscrittoProxyBean extends IscrittoBean {
      */
     @Override
     public void setRecensioni(List<RecensioneBean> recensioni) {
-
+        this.iscrittoReal.setRecensioni(recensioni);
     }
+
+    /**
+     * Questo metodo permette di modificare la foto profilo
+     * @param foto la nuova foto profilo dell'iscritto
+     */
+    @Override
+    public void setFoto(Blob foto) {
+        this.iscrittoReal.setFoto(foto);
+    }
+
 
     private IscrittoRealBean iscrittoReal;
 }

@@ -13,7 +13,7 @@ import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>ListaDAO</code> serve per interagire con la tabella Lista presente nel database
- * @version 0.1
+ * @version 0.2
  * @author LuiginaCostante
  */
 
