@@ -76,6 +76,43 @@ public class FilmDAO extends ContenutoDAO {
         return contenuti;
     }
 
+
+    /**
+     * Restituisce tutti i film aventi una valutazione media rientrante in un dato intervallo.
+     * @param minValutazione è la è la minima valutazione media che deve avere un film affinché
+     * sia selezionato.
+     * @param maxValutazione è la massima valutazione media che deve avere un film affinché
+     * sia selezionato.
+     * @return un ArrayList contenente tutti i contenuti aventi una valutazione media compatibile
+     * con quella richiesta.
+     */
+    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione) {
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
+
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
+                    "from Film " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            FilmBean f = gson.fromJson(res, FilmBean.class);
+
+            f.setId(id);
+            f.setTitolo(c.getTitolo());
+            f.setDescrizione(c.getDescrizione());
+            f.setCategoria(c.getCategoria());
+
+            contenuti.add(f);
+        }
+
+        return contenuti;
+    }
+
     /**
      * Restituisce tutti i film del catalogo.
      * @return un oggetto List contenente tutti i FilmBean del catalogo.
