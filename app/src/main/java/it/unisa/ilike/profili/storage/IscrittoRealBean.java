@@ -57,7 +57,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di accedere alla foto profilo dell'iscritto
      * @return la foto profilo dell'iscritto
      */
-    @Override
     public Blob getFoto() {
         if(this.foto == null){
             IscrittoDAO iscrittoDAO = new IscrittoDAO();
@@ -70,7 +69,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
-    @Override
     public List<ListaBean> getListe() {
         if(this.liste == null){
             ListaDAO listaDAO = new ListaDAO();
@@ -83,7 +81,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di accedere alle recensioni dove l'iscritto è l'autore
      * @return le recensioni dell'iscritto
      */
-    @Override
     public List<RecensioneBean> getRecensioni() {
         if(this.recensioni == null){
             RecensioneDAO recensioneDAO = new RecensioneDAO();
@@ -96,7 +93,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di modificare le liste dell'iscritto
      * @param liste le nuove liste dell'iscritto
      */
-    @Override
     public void setListe(List<ListaBean> liste) {
         this.liste = liste;
     }
@@ -105,7 +101,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di modificare le liste di recensioni  associate all'iscritto
      * @param recensioni le nuove recensioni dell'iscritto
      */
-    @Override
     public void setRecensioni(List<RecensioneBean> recensioni) {
         this.recensioni = recensioni;
     }
@@ -114,7 +109,6 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di modificare la foto profilo
      * @param foto la nuova foto profilo dell'iscritto
      */
-    @Override
     public void setFoto(Blob foto) {
         this.foto = foto;
     }
