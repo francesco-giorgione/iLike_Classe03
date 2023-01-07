@@ -3,6 +3,7 @@ package it.unisa.ilike.liste.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
@@ -20,12 +21,12 @@ public class ListaBean {
 
     /**
      * @param nome è il nome della lista
-     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista
+     * @param iscritto è il bean contenente le informazioni sull'iscritto cui appartiene la lista.
      * @param visibilita indica se la lista deve essere visibile agli altri utenti (true) o meno (false)
      */
-    public ListaBean(String nome, String emailIscritto, Boolean visibilita) {
+    public ListaBean(String nome, IscrittoBean iscritto, Boolean visibilita) {
         this.nome = nome;
-        this.emailIscritto = emailIscritto;
+        this.iscritto = iscritto;
         this.visibilita = visibilita;
     }
 
@@ -46,19 +47,19 @@ public class ListaBean {
     }
 
     /**
-     * Questo metodo restituisce l'email dell'iscritto a cui appartiene la lista
-     * @return email dell'iscritto
+     * Questo metodo restituisce l'iscritto a cui appartiene la lista.
+     * @return bean contenente le informazioni dell'iscritto cui appartiene la lista.
      */
-    public String getEmailIscritto() {
-        return emailIscritto;
+    public IscrittoBean getIscritto() {
+        return iscritto;
     }
 
     /**
      * Questo metodo imposta l'email dell'iscritto a cui appartiene la lista
-     * @param emailIscritto
+     * @param iscritto
      */
-    public void setEmailIscritto(String emailIscritto) {
-        this.emailIscritto = emailIscritto;
+    public void setIscritto(IscrittoBean iscritto) {
+        this.iscritto = iscritto;
     }
 
     /**
@@ -108,7 +109,7 @@ public class ListaBean {
     }
 
     private String nome;
-    private String emailIscritto;
+    private IscrittoBean iscritto;
     private Boolean visibilita;
     private List<ContenutoBean> contenuti;
 }
