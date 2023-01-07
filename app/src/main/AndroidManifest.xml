@@ -17,7 +17,9 @@
 
         <activity
             android:name=".segnalazioni.presentation.GestioneSegnalazioniActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -25,7 +27,9 @@
 
         <activity
             android:name=".segnalazioni.presentation.VisualizzazioneSegnalazioniActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -33,7 +37,9 @@
 
         <activity
             android:name=".liste.presentation.VisualizzazioneContenutiListaPersonaleActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -41,7 +47,9 @@
 
         <activity
             android:name=".liste.presentation.AggiuntaContenutoListaActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -49,7 +57,9 @@
 
         <activity
             android:name=".liste.presentation.CreazioneListaActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -57,7 +67,9 @@
 
         <activity
             android:name=".contenuti.presentation.RicercaContenutoActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -65,7 +77,9 @@
 
         <activity
             android:name=".contenuti.presentation.VisualizzazioneDettagliataContenutoActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -73,7 +87,9 @@
 
         <activity
             android:name=".recensioni.presentation.AggiuntaSegnalazioneRecensioneActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -81,7 +97,9 @@
 
         <activity
             android:name=".recensioni.presentation.PubblicazioneRecensioneActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -89,7 +107,9 @@
 
         <activity
             android:name=".profili.presentation.VisualizzazioneProfiloPersonaleActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -97,7 +117,9 @@
 
         <activity
             android:name=".account.presentation.RegistrazioneIscrittoActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -105,7 +127,9 @@
 
         <activity
             android:name=".account.presentation.LoginActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -113,7 +137,9 @@
 
         <!-- <activity
             android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
-            android:exported="false">
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -121,7 +147,9 @@
 
         <activity
             android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
