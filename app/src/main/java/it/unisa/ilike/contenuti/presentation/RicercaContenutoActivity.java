@@ -23,6 +23,13 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         homepageButton= findViewById(R.id.homepageButton);
 
         Intent i = getIntent();
+        setReturnIntent();
+
+    }
+
+    private void setReturnIntent() {
+        Intent data = new Intent();
+        setResult(RESULT_OK,data);
     }
 
     @Override

@@ -35,9 +35,10 @@
 
 
         <ImageButton
-            android:id="@+id/CercaContenutoButton"
+            android:id="@+id/aggiungiContenutoAllaListaButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:onClick="onClickAggiungiContenutoAllaLista"
             android:src="@drawable/icona_aggiungi" />
 
     </LinearLayout>
@@ -101,6 +102,7 @@
             android:id="@+id/aggiungiRecensioneButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:onClick="onClickAggiungiRecensione"
             android:src="@drawable/icona_aggiungi"/>
 
     </LinearLayout>
@@ -134,15 +136,19 @@
             android:src="@drawable/icona_chatbot"/>
 
         <ImageButton
+            android:id="@+id/homepageButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:onClick="onClickHomepage"
             android:layout_marginLeft="150dip"
             android:src="@drawable/ricerca"/>
 
         <ImageButton
+            android:id="@+id/profiloButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>
