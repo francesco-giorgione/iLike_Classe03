@@ -19,12 +19,12 @@
         android:background="#FFF" >
 
         <ImageButton
-            android:id="@+id/AltroButton"
+            android:id="@+id/LogoutButton"
             android:layout_width="37dp"
             android:layout_height="29dp"
-            android:layout_marginLeft="372dp"
-            android:layout_marginTop="-5dp"
-            android:src="@drawable/icona_more"
+            android:layout_marginLeft="380dp"
+            android:src="@drawable/icona_logout"
+            android:onClick="onClickLogout"
             android:backgroundTint="@color/white"/>
 
         <TextView
@@ -92,18 +92,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:src="@drawable/aggiungi_30" />
+            android:src="@drawable/aggiungi_30"
+            android:onClick="onClickAggiungiLista"/>
 
     </LinearLayout>
 
-    <LinearLayout
+    <ListView
         android:id="@+id/elencoListeIscritto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/liste"
-        android:layout_marginLeft="20dp">
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/liste">
 
+        <!-- singolo elemento
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,49 +126,10 @@
 
         </LinearLayout>
 
+        -->
+    </ListView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nome lista 2"
-                android:textSize="15dp"
-                android:layout_marginTop="5dp"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/info20"
-                android:layout_marginLeft="250dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nome lista 3"
-                android:textSize="15dp"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/info20"
-                android:layout_marginLeft="250dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
 
     <View
         android:id="@+id/linea"
@@ -227,12 +188,14 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/ricerca"/>
+            android:onClick="onClickHomepage"
+            android:src="@drawable/icona_home"/>
 
         <ImageButton
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>

@@ -45,12 +45,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLista"
+        android:layout_marginTop="10dp"
         android:text="Contenuti della lista"
-        android:textSize="20dp"
-        android:textColor="#DBA73D"
         android:textAlignment="center"
-        android:layout_marginTop="15dip"
-        android:layout_below="@id/textViewLista"/>
+        android:textColor="#DBA73D"
+        android:textSize="20dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -128,12 +128,14 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/ricerca"/>
+            android:onClick="onClickHomepage"
+            android:src="@drawable/icona_home"/>
 
         <ImageButton
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>

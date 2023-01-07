@@ -42,8 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="62dp"
             android:layout_below="@id/header"
-            android:text="Testo recensione da cancellare"
-            android:layout_marginTop="20dip" />
+            android:layout_marginTop="20dip"
+            android:text="Testo recensione da cancellare" />
 
         <TextView
             android:id="@+id/textViewSegnalazione"
@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:backgroundTint="#DBA73D"
+                android:onClick="onClickRifiutaSegnalazione"
                 android:text="Rifiuta segnalazione"/>
 
             <Button
@@ -72,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:backgroundTint="#DBA73D"
+                android:onClick="onClickAccettaSegnalazione"
                 android:text="Accetta segnalazione"/>
 
         </RelativeLayout>
@@ -118,7 +120,7 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="150dip"
-            android:src="@drawable/ricerca"/>
+            android:src="@drawable/icona_home"/>
 
         <ImageButton
             android:layout_width="50dip"
