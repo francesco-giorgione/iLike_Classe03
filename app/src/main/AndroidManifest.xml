@@ -111,6 +111,14 @@
                 android:value="" />
         </activity>
 
+        <!-- <activity
+            android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> -->
+
         <activity
             android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
             android:exported="true">

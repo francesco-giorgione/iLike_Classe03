@@ -23,7 +23,6 @@
             app:srcCompat="@drawable/logo"/>
 
     </RelativeLayout>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -104,11 +103,11 @@
         android:layout_below="@+id/CreazioneListaForm"
         android:text="Crea Lista"
         android:backgroundTint="#DBA73D"
+        android:onClick="creaLista"
         android:layout_centerHorizontal="true"/>
 
 
     <!--FOOTER -->
-
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -124,18 +123,21 @@
             android:src="@drawable/icona_chatbot"/>
 
         <ImageButton
+            android:id="@+id/homepageButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:onClick="onClickHomepage"
             android:layout_marginLeft="150dip"
             android:src="@drawable/ricerca"/>
 
         <ImageButton
+            android:id="@+id/profiloButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="300dip"
+            android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
 
     </RelativeLayout>
-
 
 </RelativeLayout>
