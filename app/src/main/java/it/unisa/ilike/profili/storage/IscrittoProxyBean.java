@@ -4,9 +4,15 @@ import java.sql.Blob;
 import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
+/**
+ * Questa classe rappresenta il Proxy di IscrittoBean.
+ * @author Marta
+ * @version 0.2
+ */
 public class IscrittoProxyBean extends IscrittoBean {
 
     /**
@@ -20,15 +26,17 @@ public class IscrittoProxyBean extends IscrittoBean {
      */
     public IscrittoProxyBean(String email, String password, String nickname, String nome, String cognome, String bio) {
         super(email, password, nickname, nome, cognome, bio);
-        this.iscrittoReal = new IscrittoRealBean(email, password, nickname, nome, cognome, bio);
+        this.iscrittoReal = null;
     }
 
     /**
      * Questo metodo permette di accedere alla foto profilo dell'iscritto
      * @return la foto profilo dell'iscritto
      */
-    @Override
     public Blob getFoto() {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         return this.iscrittoReal.getFoto();
     }
 
@@ -36,8 +44,10 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
-    @Override
     public List<ListaBean> getListe() {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         return this.iscrittoReal.getListe();
     }
 
@@ -45,8 +55,10 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di accedere alle recensioni dove l'iscritto è l'autore
      * @return le recensioni dell'iscritto
      */
-    @Override
     public List<RecensioneBean> getRecensioni() {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         return this.iscrittoReal.getRecensioni();
     }
 
@@ -54,8 +66,10 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di modificare le liste dell'iscritto
      * @param liste le nuove liste dell'iscritto
      */
-    @Override
     public void setListe(List<ListaBean> liste) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         this.iscrittoReal.setListe(liste);
     }
 
@@ -63,8 +77,10 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di modificare le liste di recensioni  associate all'iscritto
      * @param recensioni le nuove recensioni dell'iscritto
      */
-    @Override
     public void setRecensioni(List<RecensioneBean> recensioni) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         this.iscrittoReal.setRecensioni(recensioni);
     }
 
@@ -72,9 +88,48 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di modificare la foto profilo
      * @param foto la nuova foto profilo dell'iscritto
      */
-    @Override
     public void setFoto(Blob foto) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         this.iscrittoReal.setFoto(foto);
+    }
+
+    /**
+     * Questo metodo permette di aggiungere una nuova lista ad un iscritto
+     * @param listaBean rappresenta l'oggetto ListaBean da aggiungerre all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addLista(ListaBean listaBean) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
+        return this.iscrittoReal.addLista(listaBean);
+    }
+
+    /**
+     * Questo metodo permette di aggiungere una nuovo contenuto in una lista di un iscritto
+     * @param contenutoBean rappresenta l'oggetto ContenutoBean da aggiungere alla lista
+     * @param listaBean     rappresenta l'oggetto ListaBean a cui va aggiunto il contenuto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addContenutoLista(ContenutoBean contenutoBean, ListaBean listaBean) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
+        return this.iscrittoReal.addContenutoLista(contenutoBean, listaBean);
+    }
+
+    /**
+     * Questo metodo permette di aggiungere una nuova recensione ad un iscritto
+     * @param recensioneBean rappresenta l'oggetto RecensioneBean da aggiungere all'iscritto
+     * @return true se l'operazione è andata a buon fine, false altrimenti
+     */
+    public boolean addRecensione(RecensioneBean recensioneBean) {
+        if (this.iscrittoReal == null)
+            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
+                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
+        return this.iscrittoReal.addRecensione(recensioneBean);
     }
 
 

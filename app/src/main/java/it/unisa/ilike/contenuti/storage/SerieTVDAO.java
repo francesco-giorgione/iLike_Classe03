@@ -14,6 +14,11 @@ import it.unisa.ilike.QueryManager;
 
 public class SerieTVDAO extends ContenutoDAO {
 
+    /**
+     * Restituisce la serie tv avente un dato id.
+     * @param id è l'id del contenuto che si vuole selezionare dal db.
+     * @return un oggetto SerieTVBean contenente i dati relativi alla serie tv avente come id 'id'.
+     */
     public SerieTVBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
@@ -25,6 +30,10 @@ public class SerieTVDAO extends ContenutoDAO {
         String res = queryManager.select(query);
         Gson gson = new Gson();
         SerieTVBean serieTV = gson.fromJson(res, SerieTVBean.class);
+
+        if(serieTV == null) {
+            return null;
+        }
 
         serieTV.setId(contenuto.getId());
         serieTV.setTitolo(contenuto.getTitolo());
@@ -41,44 +50,78 @@ public class SerieTVDAO extends ContenutoDAO {
     }
 
 
-    public List<SerieTVBean> doRetrieveAll(){
-        QueryManager queryManager = new QueryManager();
-        String query = "SELECT * FROM SerieTV";
-
-        String res = queryManager.select(query);
-
+    /**
+     * Restituisce una collezione delle serie tv di una data categoria.
+     * @param categoria è la categoria in base alla quale si vogliono selezionare le serie tv.
+     * @return un oggetto ArrayList contenente i SerieTVBean selezionati sulla base della categoria.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("serie_tv", categoria);
         Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res, SerieTVBean.class);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        return listaSerie;
+            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                    "from SerieTV " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
+
+            stv.setId(id);
+            stv.setTitolo(c.getTitolo());
+            stv.setDescrizione(c.getDescrizione());
+            stv.setCategoria(c.getCategoria());
+
+            contenuti.add(stv);
+        }
+
+        return contenuti;
     }
 
 
-    public List<SerieTVBean> doRetrieveByCategoria(String categoria){
-        QueryManager queryManager = new QueryManager();
-
-        String query = "SELECT * FROM SerieTV WHERE categoria=" +categoria;
-
-        Gson gson = new Gson();
-        String res = queryManager.select(query);
-
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res,SerieTVBean.class);
-
-        return listaSerie;
+    /**
+     * Restituisce tutte le serie tv del catalogo.
+     * @return un oggetto List contenente tutti i SerieTVBean del catalogo.
+     */
+    public List<ContenutoBean> doRetrieveAll(){
+        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
-    public List<SerieTVBean> search(String s){
-        QueryManager queryManager = new QueryManager();
+    /**
+     * Restituisce una collezione di serie tv che matchano con un dato titolo.
+     * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
+     * @return un ArrayList contenente i SerieTVBean selezionati.
+     */
+    public List<ContenutoBean> search(String titolo){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("serie_tv", titolo);
         Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        String query = "SELECT * FROM SerieTV WHERE titolo LIKE '%" + s + "%';";
-        String res = queryManager.select(query);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        List<SerieTVBean> listaSerie = (List<SerieTVBean>) gson.fromJson(res, SerieTVBean.class);
+            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
+                    "from SerieTV " +
+                    "where id = " + id;
 
-        return listaSerie;
+            String res = queryManager.select(query);
+            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
+
+            stv.setId(id);
+            stv.setTitolo(c.getTitolo());
+            stv.setDescrizione(c.getDescrizione());
+            stv.setCategoria(c.getCategoria());
+
+            contenuti.add(stv);
+        }
+
+        return contenuti;
     }
 
 }

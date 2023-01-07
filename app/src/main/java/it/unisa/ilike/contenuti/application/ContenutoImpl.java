@@ -33,8 +33,8 @@ public class ContenutoImpl implements ContenutoService {
         LibroDAO libroDAO = new LibroDAO();
         AlbumMusicaleDAO albumMusicaleDAO = new AlbumMusicaleDAO();
 
-        ArrayList<FilmBean> film = (ArrayList<FilmBean>) filmDAO.doRetrieveByCategoria(categoria);
-        ArrayList<SerieTVBean> serieTV = (ArrayList<SerieTVBean>) serieTVDAO.doRetrieveByCategoria(categoria);
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) filmDAO.doRetrieveAllByCategoria(categoria);
+        ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) serieTVDAO.doRetrieveAllByCategoria(categoria);
         ArrayList<LibroBean> libri = (ArrayList<LibroBean>) libroDAO.doRetrieveByCategoria(categoria);
         ArrayList<AlbumMusicaleBean> albumMusicali = (ArrayList<AlbumMusicaleBean>) albumMusicaleDAO.doRetrieveByCategoria(categoria);
 
