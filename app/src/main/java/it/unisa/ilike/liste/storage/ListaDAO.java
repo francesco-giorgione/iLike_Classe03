@@ -10,11 +10,15 @@ import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
+import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
+import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -120,40 +124,21 @@ public class ListaDAO {
             ContenutoBean toAdd = null;
 
             if(c instanceof FilmBean) {
-                query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
-                        "from Film " +
-                        "where id = " + id;
-
-                res = queryManager.select(query);
-                toAdd = gson.fromJson(res, FilmBean.class);
+                toAdd = new FilmDAO().doRetrieveById(id);
             }
             else if(c instanceof SerieTVBean) {
-                query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
-                        "from SerieTV " +
-                        "where id = " + id;
-
-                res = queryManager.select(query);
-                toAdd = gson.fromJson(res, SerieTVBean.class);
+                toAdd = new SerieTVDAO().doRetrieveById(id);
             }
             else if(c instanceof LibroBean) {
-                query = "select autore, isbn, num_pagine as numPagine " +
-                        "from Libri " +
-                        "where id = " + id;
-
-                res = queryManager.select(query);
-                toAdd = gson.fromJson(res, LibroBean.class);
+                toAdd = new LibroDAO().doRetrieveById(id);
             }
             else if(c instanceof AlbumMusicaleBean) {
-                query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                        "from AlbumMusicali " +
-                        "where id = " + id;
-
-                res = queryManager.select(query);
-                toAdd = gson.fromJson(res, AlbumMusicaleBean.class);
+                toAdd = new AlbumMusicaleDAO().doRetrieveById(id);
             }
 
-            toAdd.setId(id);
-            lista.getContenuti().add(toAdd);
+            if(toAdd != null) {
+                lista.getContenuti().add(toAdd);
+            }
         }
 
         return lista;
