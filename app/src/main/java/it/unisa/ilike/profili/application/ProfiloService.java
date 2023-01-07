@@ -1,6 +1,7 @@
 package it.unisa.ilike.profili.application;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * Questa interfaccia consente di gestire le informazioni relative al profilo di un iscritto.
@@ -8,5 +9,5 @@ import it.unisa.ilike.account.storage.IscrittoBean;
  * @version 0.1
  */
 public interface ProfiloService {
-    public IscrittoBean getIscrittoReal(IscrittoBean i);
+    public IscrittoBean getIscrittoReal(IscrittoBean i) throws NotIscrittoException;
 }
