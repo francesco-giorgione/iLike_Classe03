@@ -21,19 +21,18 @@ public class SegnalazioneDAO {
      * @return false se la segnalazione passata come argomento è null o se l'operazione NON è andata a buon fine,
      * true altrimenti
      */
-
     public boolean doSaveSegnalazione(SegnalazioneBean segnalazione){
 
         if (segnalazione== null){
             return false;
         }
 
-        int id= segnalazione.getId();
-        int tipo= segnalazione.getTipo();
-        String motivazione= segnalazione.getMotivazione();
-        boolean gestita= segnalazione.isGestita();
-        String email_iscritto=segnalazione.getEmailIscritto();
-        int id_recensione= segnalazione.getIdRecensione();
+        int id = segnalazione.getId();
+        int tipo = segnalazione.getTipo();
+        String motivazione = segnalazione.getMotivazione();
+        boolean gestita = segnalazione.isGestita();
+        String email_iscritto = segnalazione.getRecensione().getIscritto().getEmail();
+        int id_recensione = segnalazione.getRecensione().getId();
 
         QueryManager queryManager= new QueryManager();
         String query= "insert into Segnalazioni (id, tipo, motivazione, gestita, email_iscritto, id_recensione) " +
