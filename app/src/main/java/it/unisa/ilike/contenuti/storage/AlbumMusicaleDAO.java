@@ -50,15 +50,38 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
     }
 
 
-    public boolean doSave(AlbumMusicaleBean a){
+    /**
+     * Restituisce una collezione degli album musicali di una data categoria.
+     * @param categoria è la categoria sulla base della quale si vogliono selezionare gli album musicali.
+     * @return un ArrayList di oggetti AlbumMusicaleBean corrispondenti agli album musicali selezionati
+     * in base a 'categoria'.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("album", categoria);
+        Gson gson = new Gson();
         QueryManager queryManager = new QueryManager();
-        String query = "INSERT INTO AlbumMusicali (id, titolo, descrizione, categoria, artista, data_rilascio, acustica, strumentalita,tempo,valenza,durata) VALUES("
-                +a.getId()+"'," +a.getTitolo() +"',"+a.getDescrizione()+"'," +a.getCategoria()+"', "+a.getArtista()+"',"
-                +a.getDataRilascio()+"'," +a.getAcustica()+"',"+a.getStrumentalita()+"'," +a.getTempo()+"', "+a.getValenza()+"', "+a.getDurata()+");";
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        return queryManager.update(query);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
+
+            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
+                    "from AlbumMusicali " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+
+            am.setId(id);
+            am.setTitolo(c.getTitolo());
+            am.setDescrizione(c.getDescrizione());
+            am.setCategoria(c.getCategoria());
+
+            contenuti.add(am);
+        }
+
+        return contenuti;
     }
-
 
     public List<AlbumMusicaleBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();
@@ -69,20 +92,6 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         Gson gson = new Gson();
 
         List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res, AlbumMusicaleBean.class);
-
-        return listaAlbum;
-    }
-
-
-    public List<AlbumMusicaleBean> doRetrieveByCategoria(String categoria){
-        QueryManager queryManager = new QueryManager();
-
-        String query = "SELECT * FROM AlbumMusicali WHERE categoria=" +categoria;
-
-        Gson gson = new Gson();
-        String res = queryManager.select(query);
-
-        List<AlbumMusicaleBean> listaAlbum = (List<AlbumMusicaleBean>) gson.fromJson(res,AlbumMusicaleBean.class);
 
         return listaAlbum;
     }
