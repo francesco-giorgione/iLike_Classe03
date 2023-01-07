@@ -44,6 +44,11 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
+    // da implementare
+    public List<ContenutoBean> doRetrieveByLista(String nomeLista, String emailIscritto) {
+        return null;
+    }
+
     public List<LibroBean> doRetrieveAll(){
         QueryManager queryManager = new QueryManager();
         String query = "SELECT * FROM Libri";
@@ -58,17 +63,36 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
-    public List<LibroBean> doRetrieveByCategoria(String categoria){
-        QueryManager queryManager = new QueryManager();
-
-        String query = "SELECT * FROM Libri WHERE categoria=" +categoria;
-
+    /**
+     * Restituisce una collezione dei libri di una data categoria.
+     * @param categoria è la categoria sulla base della quale si vogliono selezionare i libri.
+     * @return un ArrayList di oggetti LibroBean corrispondenti ai libri selezionati in base a 'categoria'.
+     */
+    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
+        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("libro", categoria);
         Gson gson = new Gson();
-        String res = queryManager.select(query);
+        QueryManager queryManager = new QueryManager();
+        List<ContenutoBean> contenuti = new ArrayList<>();
 
-        List<LibroBean> listaLibri = (List<LibroBean>) gson.fromJson(res,LibroBean.class);
+        for(ContenutoBean c: film) {
+            int id = c.getId();
 
-        return listaLibri;
+            String query = "select autore, isbn, num_pagine as numPagine " +
+                    "from Libri " +
+                    "where id = " + id;
+
+            String res = queryManager.select(query);
+            LibroBean l = gson.fromJson(res, LibroBean.class);
+
+            l.setId(id);
+            l.setTitolo(c.getTitolo());
+            l.setDescrizione(c.getDescrizione());
+            l.setCategoria(c.getCategoria());
+
+            contenuti.add(l);
+        }
+
+        return contenuti;
     }
 
 
