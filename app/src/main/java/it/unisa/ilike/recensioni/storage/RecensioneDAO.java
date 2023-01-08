@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.utils.Utils;
 
@@ -18,6 +19,90 @@ import it.unisa.ilike.utils.Utils;
  */
 
 public class RecensioneDAO {
+    /**
+     * Modella il risultato della query eseguita in doRetrieveByIdRecensione. Consente cioè
+     * di convertire il risultato dal formato json in un oggetto Java.
+     */
+    private class RisultatoQuery1 {
+        public RisultatoQuery1(int id, int valutazione, int cancellata, int idContenuto, String testo, Object data, String motivazioneCancellazione, String emailIscritto) {
+            this.id = id;
+            this.valutazione = valutazione;
+            this.cancellata = cancellata;
+            this.idContenuto = idContenuto;
+            this.testo = testo;
+            this.data = data;
+            this.motivazioneCancellazione = motivazioneCancellazione;
+            this.emailIscritto = emailIscritto;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getValutazione() {
+            return valutazione;
+        }
+
+        public void setValutazione(int valutazione) {
+            this.valutazione = valutazione;
+        }
+
+        public int getCancellata() {
+            return cancellata;
+        }
+
+        public void setCancellata(int cancellata) {
+            this.cancellata = cancellata;
+        }
+
+        public int getIdContenuto() {
+            return idContenuto;
+        }
+
+        public void setIdContenuto(int idContenuto) {
+            this.idContenuto = idContenuto;
+        }
+
+        public String getTesto() {
+            return testo;
+        }
+
+        public void setTesto(String testo) {
+            this.testo = testo;
+        }
+
+        public Object getData() {
+            return data;
+        }
+
+        public void setData(Object data) {
+            this.data = data;
+        }
+
+        public String getMotivazioneCancellazione() {
+            return motivazioneCancellazione;
+        }
+
+        public void setMotivazioneCancellazione(String motivazioneCancellazione) {
+            this.motivazioneCancellazione = motivazioneCancellazione;
+        }
+
+        public String getEmailIscritto() {
+            return emailIscritto;
+        }
+
+        public void setEmailIscritto(String emailIscritto) {
+            this.emailIscritto = emailIscritto;
+        }
+
+        Integer id, valutazione, cancellata, idContenuto;
+        String testo, motivazioneCancellazione, emailIscritto;
+        Object data;
+    }
 
     /**
      * Questo metodo consente di salvare nella tabella Recensioni del database un nuovo oggetto della classe
@@ -54,26 +139,6 @@ public class RecensioneDAO {
     }
 
 
-    /*
-
-     * Questo metodo consente di cancellare un oggetto <code>RecensioneBean</code> dalla tabella
-     * Recensioni del database, individuandolo tramite l'id passato come argomento.
-     * @param id id della recensione da cancellare dal database
-     * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
-     * true altrimenti
-
-    public boolean doDeleteByIdRecensione(int id){
-
-        if (id<1){
-            return false;
-        }
-
-        QueryManager queryManager= new QueryManager();
-        String query = "delete from Recensioni where id = " + id;
-        return queryManager.update(query);
-    }*/
-
-
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>RecensioneBean</code>
      * presente nella tabella Recensioni del database, dopo averlo individuato tramite l'id passato come argomento
@@ -82,15 +147,31 @@ public class RecensioneDAO {
      * se l'operazione è andata a buon fine
      */
     public RecensioneBean doRetrieveByIdRecensione(int id){
-
-        if (id<1){
+        if (id < 1){
             return null;
         }
-        String query= "select * from Recensioni where id = " + id;
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        RecensioneBean recensione= gson.fromJson(res, RecensioneBean.class);
+
+        String query = "select id, testo, valutazione, data, cancellata, motivazione_cancellazione as motivazioneCancellazione, email_iscritto as emailIscritto, id_contenuto as idContenuto " +
+                "from Recensioni " +
+                "where id = " + id;
+
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String jsonRes = queryManager.select(query);
+
+        RisultatoQuery1[] res = gson.fromJson(jsonRes, RisultatoQuery1[].class);
+
+        if(res.length == 0) {
+            return null;
+        }
+
+        RisultatoQuery1 tmpRes = res[0];
+        RecensioneBean recensione = new RecensioneBean(tmpRes.id, tmpRes.testo, tmpRes.valutazione,
+                Utils.getBeanData(tmpRes.data.toString().substring(6, 16)), tmpRes.cancellata == 1,
+                tmpRes.motivazioneCancellazione, null, null);
+
+        recensione.setIscritto(new IscrittoDAO().doRetrieveByEmail(tmpRes.emailIscritto));
+        recensione.setContenuto(new ContenutoDAO().doRetrieveById(tmpRes.idContenuto));
 
         return recensione;
     }
