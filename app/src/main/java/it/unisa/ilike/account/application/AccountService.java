@@ -15,13 +15,11 @@ import it.unisa.ilike.account.storage.UtenteBean;
 /**
  * Interfaccia esplicita i metodi di servizio per effettuare operazioni di autenticazione.
  * @author Marta
- * @version 0.1
+ * @version 0.2
  */
 public interface AccountService {
 
     public Account login(String email, String password) throws CredenzialiVuoteException, CredenzialiErrateException;
-    public IscrittoBean getIscritto();
-    public GestoreBean getGestore();
     public Account logout(UtenteBean u);
     public Account registrazioneIscritto(String email, String password, String nome, String cognome, String nickname, String bio, Blob foto) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException;
 
