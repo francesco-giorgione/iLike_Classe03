@@ -2,6 +2,7 @@ package it.unisa.ilike.segnalazioni.storage;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
@@ -19,6 +20,9 @@ public class SegnalazioneDAO {
     private class RisultatoQuery {
         int id, tipo, gestita, idRecensione;
         String motivazione, emailIscritto;
+    }
+    private class RisultatoQuery2 {
+        int id;
     }
 
     /**
@@ -85,15 +89,21 @@ public class SegnalazioneDAO {
      * @return lista di oggetti della classe <code>SegnalazioneBean</code> memorizzata nel database
      */
     public List<SegnalazioneBean> doRetrieveAllSegnalazioniNonGestite(){
+        String query = "select id " +
+                "from Segnalazioni " +
+                "where gestita = 0";
 
-        String query="select * from Segnalazioni where gestita= false";
-
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
+        List<SegnalazioneBean> segnalazioni = new ArrayList<>();
         Gson gson= new Gson();
-        List<SegnalazioneBean> listToReturn = (List<SegnalazioneBean>) gson.fromJson(res, SegnalazioneBean.class);
+        QueryManager queryManager= new QueryManager();
+        String jsonRes = queryManager.select(query);
+        RisultatoQuery2[] res = gson.fromJson(jsonRes, RisultatoQuery2[].class);
 
-        return listToReturn;
+        for(RisultatoQuery2 curr: res) {
+            segnalazioni.add(this.doRetrieveByIdSegnalazione(curr.id));
+        }
+
+        return segnalazioni;
     }
 
 
