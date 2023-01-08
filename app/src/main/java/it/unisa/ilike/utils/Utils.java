@@ -53,4 +53,15 @@ public class Utils {
         String[] tmp = getStringaData(data).split("/");
         return "20" + tmp[2] + "-" + tmp[1] + "-" + tmp[0];
     }
+
+
+    /**
+     * A partire da una data in formato sql, restituisce un oggetto Date.
+     * @param data in formato sql.
+     * @return oggetto Date corrispondente alla data ricevuta.
+     */
+    public static Date getBeanData(String data) {
+        String[] tmp = data.split("-");
+        return new Date(Integer.parseInt(tmp[0]) - 1900, Integer.parseInt(tmp[1]) - 1, Integer.parseInt(tmp[2]));
+    }
 }
