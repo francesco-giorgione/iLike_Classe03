@@ -153,7 +153,7 @@
     <!--SERIE TV-->
 
     <RelativeLayout
-        android:id="@+id/VisualizzazioneHomepageListFilm3"
+        android:id="@+id/VisualizzazioneHomepageListSerie1"
         android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_below="@id/textView"
@@ -163,35 +163,35 @@
         android:layout_marginRight="-300dp">
 
         <TextView
-            android:id="@+id/textFilm3"
+            android:id="@+id/textSerie1"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
-            android:id="@+id/imgFilm3"
+            android:id="@+id/imgSerie1"
             android:layout_width="25dp"
             android:layout_height="28dp"
-            android:layout_below="@id/textFilm3"
+            android:layout_below="@id/textSerie1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
             android:src="@drawable/icona_serietv" />
 
         <ImageView
-            android:id="@+id/starFilm3"
+            android:id="@+id/starSerie1"
             android:layout_width="20dip"
             android:layout_height="20dip"
-            android:layout_below="@id/imgFilm3"
+            android:layout_below="@id/imgSerie1"
             android:layout_marginTop="15dp"
             android:src="@drawable/star" />
 
         <TextView
-            android:id="@+id/ratingFilm3"
+            android:id="@+id/ratingSerie1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imgFilm3"
-            android:layout_alignLeft="@id/starFilm3"
+            android:layout_below="@id/imgSerie1"
+            android:layout_alignLeft="@id/starSerie1"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:text="4,5" />
