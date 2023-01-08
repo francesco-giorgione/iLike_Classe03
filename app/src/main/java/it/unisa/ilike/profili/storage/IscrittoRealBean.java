@@ -131,7 +131,7 @@ public class IscrittoRealBean extends IscrittoBean {
     public boolean addContenutoLista(ContenutoBean contenutoBean, ListaBean listaBean){
         for (int i = 0; i < this.liste.size(); i++){
             ListaBean listaCurr = this.liste.get(i);
-            if(listaCurr.getNome() == listaBean.getNome() && listaCurr.getEmailIscritto() == listaBean.getEmailIscritto()){
+            if(listaCurr.getNome().equals(listaBean.getNome()) && listaCurr.getIscritto().getEmail().equals(listaBean.getIscritto().getEmail())){
                 this.liste.get(i).aggiungiContenuto(contenutoBean);
                 return true;
             }

@@ -497,7 +497,6 @@
 
 
     <!--FOOTER -->
-
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -506,11 +505,24 @@
         android:background="#D1D1D1"
         android:gravity="center" >
 
+
+        <!--Questo button verrà reso invisibile nel momento in cui un gestore effettua il login-->
         <ImageButton
+            android:id="@+id/chatBotButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:layout_marginLeft="5dip"
             android:src="@drawable/icona_chatbot"/>
+
+        <!--Questo button verrà reso visibile solo nel momento in cui un gestore effettua il login-->
+        <ImageButton
+            android:id="@+id/VisualizzaSegnalazioniButton"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="5dip"
+            android:onClick="onClickVisualizzaSegnalazioni"
+            android:visibility="invisible"
+            android:src="@drawable/icona_altre_segnalazioni"/>
 
         <ImageButton
             android:layout_width="50dip"

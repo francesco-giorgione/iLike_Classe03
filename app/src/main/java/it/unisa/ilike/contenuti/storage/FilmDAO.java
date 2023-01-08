@@ -18,7 +18,7 @@ public class FilmDAO extends ContenutoDAO {
     /**
      * Esegue il fetch di un film dal database.
      * @param id è l'id del contenuto che si vuole selezionare dal db
-     * @return un oggetto FilmBean contenente le informazioni del film selezionato.
+     * @return un oggetto FilmBean contenente le informazioni del film selezionato, null se il film non viene trovato.
      */
     public FilmBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
@@ -28,13 +28,15 @@ public class FilmDAO extends ContenutoDAO {
                 "FROM Film " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        FilmBean film = gson.fromJson(res, FilmBean.class);
+        String jsonRes = queryManager.select(query);
+        FilmBean[] res = gson.fromJson(jsonRes, FilmBean[].class);
 
-        if(film == null) {
+        if(res.length == 0) {
             return null;
         }
+
+        FilmBean film = res[0];
 
         film.setId(contenuto.getId());
         film.setTitolo(contenuto.getTitolo());
@@ -45,80 +47,18 @@ public class FilmDAO extends ContenutoDAO {
     }
 
     /**
-     * Restituisce tutti i film di una certa categoria
-     * @param categoria è la categoria dei film che si vogliono ottenere.
-     * @return una collezione di tutti i film la cui categoria è 'categoria'.
+     * Restituisce una collezione dei 3 film aventi la massima valutazione media.
+     * @return un ArrayList contenente 3 oggetti FilmBean.
      */
-    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria) {
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("film", categoria);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+    public List<ContenutoBean> doRetrieveTop3() {
+        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("film");
+        List<ContenutoBean> topFilm = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
-                    "from Film " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            FilmBean f = gson.fromJson(res, FilmBean.class);
-
-            f.setId(id);
-            f.setTitolo(c.getTitolo());
-            f.setDescrizione(c.getDescrizione());
-            f.setCategoria(c.getCategoria());
-
-            contenuti.add(f);
+        for(ContenutoBean c : contenuti) {
+            topFilm.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
-    }
-
-
-    /**
-     * Restituisce tutti i film aventi una valutazione media rientrante in un dato intervallo.
-     * @param minValutazione è la è la minima valutazione media che deve avere un film affinché
-     * sia selezionato.
-     * @param maxValutazione è la massima valutazione media che deve avere un film affinché
-     * sia selezionato.
-     * @return un ArrayList contenente tutti i film aventi una valutazione media compatibile
-     * con quella richiesta.
-     */
-    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione) {
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
-
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
-                    "from Film " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            FilmBean f = gson.fromJson(res, FilmBean.class);
-
-            f.setId(id);
-            f.setTitolo(c.getTitolo());
-            f.setDescrizione(c.getDescrizione());
-            f.setCategoria(c.getCategoria());
-
-            contenuti.add(f);
-        }
-
-        return contenuti;
-    }
-
-    /**
-     * Restituisce tutti i film del catalogo.
-     * @return un oggetto List contenente tutti i FilmBean del catalogo.
-     */
-    public List<ContenutoBean> doRetrieveAll(){
-        return this.doRetrieveAllByCategoria("%", "%");
+        return topFilm;
     }
 
 

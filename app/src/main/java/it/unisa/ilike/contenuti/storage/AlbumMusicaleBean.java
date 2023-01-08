@@ -27,9 +27,9 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * @param valenza
      * @param durata
      */
-    public AlbumMusicaleBean(int id, String titolo, String descrizione, String categoria, String artista, String dataRilascio,
-                             String acustica, String strumentalita, String tempo, String valenza, float durata) {
-        super(id, titolo, descrizione, categoria, 0);
+    public AlbumMusicaleBean(int id, String titolo, String descrizione, String categoria, String artista, double valutazioneMedia, String dataRilascio,
+                             double acustica, double strumentalita, double tempo, double valenza, float durata) {
+        super(id, titolo, descrizione, categoria, valutazioneMedia);
         this.artista = artista;
         this.dataRilascio = dataRilascio;
         this.acustica = acustica;
@@ -75,7 +75,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo restituisce l'acustica dell'album musicale
      * @return acustica dell'album musicale
      */
-    public String getAcustica() {
+    public double getAcustica() {
         return acustica;
     }
 
@@ -83,7 +83,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo imposta l'acustica dell'album musicale
      * @param acustica
      */
-    public void setAcustica(String acustica) {
+    public void setAcustica(double acustica) {
         this.acustica = acustica;
     }
 
@@ -91,7 +91,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo restituisce la strumentalità dell'album musicale
      * @return strumentalità dell'album musicale
      */
-    public String getStrumentalita() {
+    public double getStrumentalita() {
         return strumentalita;
     }
 
@@ -99,7 +99,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo imposta la strumentalità dell'album musicale
      * @param strumentalita
      */
-    public void setStrumentalita(String strumentalita) {
+    public void setStrumentalita(double strumentalita) {
         this.strumentalita = strumentalita;
     }
 
@@ -107,7 +107,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo restituisce il tempo dell'album musicale
      * @return tempo dell'album musicale
      */
-    public String getTempo() {
+    public double getTempo() {
         return tempo;
     }
 
@@ -115,7 +115,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo imposta il tempo dell'album musicale
      * @param tempo
      */
-    public void setTempo(String tempo) {
+    public void setTempo(double tempo) {
         this.tempo = tempo;
     }
 
@@ -123,7 +123,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo restituisce la valenza dell'album musicale
      * @return valenza dell'album musicale
      */
-    public String getValenza() {
+    public double getValenza() {
         return valenza;
     }
 
@@ -131,7 +131,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo imposta la valenza dell'album musicale
      * @param valenza
      */
-    public void setValenza(String valenza) {
+    public void setValenza(double valenza) {
         this.valenza = valenza;
     }
 
@@ -139,7 +139,7 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo restituisce la durata dell'album musicale
      * @return durata dell'album musicale
      */
-    public float getDurata() {
+    public double getDurata() {
         return durata;
     }
 
@@ -147,17 +147,17 @@ public class AlbumMusicaleBean extends ContenutoBean{
      * Questo metodo imposta la durata dell'album musicale
      * @param durata
      */
-    public void setDurata(float durata) {
+    public void setDurata(double durata) {
         this.durata = durata;
     }
 
     private String artista;
     private String dataRilascio;
-    private String acustica;
-    private String strumentalita;
-    private String tempo;
-    private String valenza;
-    private float durata;
+    private double acustica;
+    private double strumentalita;
+    private double tempo;
+    private double valenza;
+    private double durata;
 
 
 }

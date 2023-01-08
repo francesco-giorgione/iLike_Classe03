@@ -8,11 +8,14 @@ import android.widget.ImageButton;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.segnalazioni.presentation.VisualizzazioneSegnalazioniActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
 
     ImageButton profiloButton;
     ImageButton barraDiRicerca;
+    ImageButton chatBotButton;
+    ImageButton visualizzaSegnalazioniButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,17 @@ public class VisualizzazioneHomepageActivity extends Activity {
 
         profiloButton= findViewById(R.id.profiloButton);
         barraDiRicerca= findViewById(R.id.BarraDiRicercaContenutiHomePage);
+        visualizzaSegnalazioniButton= findViewById(R.id.VisualizzaSegnalazioniButton);
+        chatBotButton=findViewById(R.id.chatBotButton);
+
+        // se l'utente loggato è un gestore
+        //visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+        //chatBotButton.setVisibility(View.INVISIBLE);
+        //altrimenti
+        //visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+        //chatBotButton.setVisibility(View.VISIBLE);
+
+
 
         //inizio da login
         Intent i = getIntent();
@@ -45,6 +59,12 @@ public class VisualizzazioneHomepageActivity extends Activity {
     public void onClickSearchBar(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RicercaContenutoActivity.class);
+        startActivity(i);
+    }
+
+    public void onClickVisualizzaSegnalazioni (View v){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
         startActivity(i);
     }
 }

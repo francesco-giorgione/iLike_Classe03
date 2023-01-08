@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             else
                 if(account.isIscritto() != null){
                     Intent i = new Intent();
-                    i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+                    i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", (Serializable) account);
                     startActivityForResult(i, 878);
                 }

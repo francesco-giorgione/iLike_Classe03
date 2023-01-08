@@ -5,7 +5,7 @@ public abstract class ContenutoBean {
     public ContenutoBean() {
     }
 
-    public ContenutoBean(int id, String titolo, String descrizione, String categoria, float valutazioneMedia) {
+    public ContenutoBean(int id, String titolo, String descrizione, String categoria, double valutazioneMedia) {
         this.id = id;
         this.titolo = titolo;
         this.descrizione = descrizione;
@@ -45,11 +45,11 @@ public abstract class ContenutoBean {
         this.categoria = categoria;
     }
 
-    public float getValutazioneMedia() {
+    public double getValutazioneMedia() {
         return valutazioneMedia;
     }
 
-    public void setValutazioneMedia(float valutazioneMedia) {
+    public void setValutazioneMedia(double valutazioneMedia) {
         this.valutazioneMedia = valutazioneMedia;
     }
 
@@ -57,5 +57,5 @@ public abstract class ContenutoBean {
     private String titolo;
     private String descrizione;
     private String categoria;
-    private float valutazioneMedia;
+    private double valutazioneMedia;
 }

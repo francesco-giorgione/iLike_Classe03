@@ -22,8 +22,8 @@ public class SerieTVBean extends ContenutoBean{
      * @param annoRilascio
      * @param numStagioni
      */
-    public SerieTVBean(int id, String titolo, String descrizione, String categoria, String annoRilascio, int numStagioni) {
-        super(id, titolo, descrizione, categoria);
+    public SerieTVBean(int id, String titolo, String descrizione, String categoria, double valutazioneMedia, int annoRilascio, String numStagioni) {
+        super(id, titolo, descrizione, categoria, valutazioneMedia);
         this.annoRilascio = annoRilascio;
         this.numStagioni = numStagioni;
     }
@@ -32,7 +32,7 @@ public class SerieTVBean extends ContenutoBean{
      * Questo metodo restituisce l'anno di rilascio della serie TV
      * @return anno di rilascio della serie TV
      */
-    public String getAnnoRilascio() {
+    public int getAnnoRilascio() {
         return annoRilascio;
     }
 
@@ -40,7 +40,7 @@ public class SerieTVBean extends ContenutoBean{
      * Questo metodo imposta l'anno di rilascio della serie TV
      * @param annoRilascio
      */
-    public void setAnnoRilascio(String annoRilascio) {
+    public void setAnnoRilascio(int annoRilascio) {
         this.annoRilascio = annoRilascio;
     }
 
@@ -48,7 +48,7 @@ public class SerieTVBean extends ContenutoBean{
      * Questo metodo restituisce il numero di stagioni della serie TV
      * @return numero di stagioni della serie TV
      */
-    public int getNumStagioni() {
+    public String getNumStagioni() {
         return numStagioni;
     }
 
@@ -56,10 +56,10 @@ public class SerieTVBean extends ContenutoBean{
      * Questo metodo imposta il numero di stagioni della serie TV
      * @param numStagioni
      */
-    public void setNumStagioni(int numStagioni) {
+    public void setNumStagioni(String numStagioni) {
         this.numStagioni = numStagioni;
     }
 
-    private String annoRilascio;
-    private int numStagioni;
+    private int annoRilascio;
+    private String numStagioni;
 }

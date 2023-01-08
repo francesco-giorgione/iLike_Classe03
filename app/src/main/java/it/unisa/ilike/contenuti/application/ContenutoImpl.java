@@ -3,7 +3,6 @@ package it.unisa.ilike.contenuti.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.application.exceptions.InvalidValutazioneException;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -37,32 +36,6 @@ public class ContenutoImpl implements ContenutoService {
         ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) serieTVDAO.doRetrieveAllByCategoria(categoria);
         ArrayList<ContenutoBean> libri = (ArrayList<ContenutoBean>) libroDAO.doRetrieveAllByCategoria(categoria);
         ArrayList<ContenutoBean> albumMusicali = (ArrayList<ContenutoBean>) albumMusicaleDAO.doRetrieveAllByCategoria(categoria);
-
-        ArrayList<ContenutoBean> res = new ArrayList<>();
-        res.addAll(film);
-        res.addAll(serieTV);
-        res.addAll(libri);
-        res.addAll(albumMusicali);
-
-        return res;
-    }
-
-    /** @inheritDoc */
-    @Override
-    public List<ContenutoBean> getContenuti(double minValutazione, double maxValutazione) throws InvalidValutazioneException {
-        if(minValutazione <= 0 || maxValutazione > 5 || maxValutazione < minValutazione) {
-            throw new InvalidValutazioneException();
-        }
-
-        FilmDAO filmDAO = new FilmDAO();
-        SerieTVDAO serieTVDAO = new SerieTVDAO();
-        LibroDAO libroDAO = new LibroDAO();
-        AlbumMusicaleDAO albumMusicaleDAO = new AlbumMusicaleDAO();
-
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) filmDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) serieTVDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        ArrayList<ContenutoBean> libri = (ArrayList<ContenutoBean>) libroDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        ArrayList<ContenutoBean> albumMusicali = (ArrayList<ContenutoBean>) albumMusicaleDAO.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
 
         ArrayList<ContenutoBean> res = new ArrayList<>();
         res.addAll(film);
