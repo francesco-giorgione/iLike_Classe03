@@ -17,10 +17,19 @@ import it.unisa.ilike.utils.Utils;
  */
 
 public class SegnalazioneDAO {
+    /**
+     * Modella il risultato della query eseguita in doRetrieveByIdSegnalazione. Consente cioè
+     * di convertire il risultato dal formato json in un oggetto Java.
+     */
     private class RisultatoQuery {
         int id, tipo, gestita, idRecensione;
         String motivazione, emailIscritto;
     }
+
+    /**
+     * Modella il risultato della query eseguita in doRetrieveAllSegnalazioniNonGestite. Consente cioè
+     * di convertire il risultato dal formato json in un oggetto Java.
+     */
     private class RisultatoQuery2 {
         int id;
     }
