@@ -18,7 +18,7 @@ public class FilmDAO extends ContenutoDAO {
     /**
      * Esegue il fetch di un film dal database.
      * @param id è l'id del contenuto che si vuole selezionare dal db
-     * @return un oggetto FilmBean contenente le informazioni del film selezionato.
+     * @return un oggetto FilmBean contenente le informazioni del film selezionato, null se il film non viene trovato.
      */
     public FilmBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
@@ -28,13 +28,15 @@ public class FilmDAO extends ContenutoDAO {
                 "FROM Film " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        FilmBean film = gson.fromJson(res, FilmBean.class);
+        String jsonRes = queryManager.select(query);
+        FilmBean[] res = gson.fromJson(jsonRes, FilmBean[].class);
 
-        if(film == null) {
+        if(res.length == 0) {
             return null;
         }
+
+        FilmBean film = res[0];
 
         film.setId(contenuto.getId());
         film.setTitolo(contenuto.getTitolo());
