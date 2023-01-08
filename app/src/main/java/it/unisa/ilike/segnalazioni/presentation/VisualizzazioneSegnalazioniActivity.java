@@ -28,7 +28,7 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         setReturnIntent();
         account = (Account) getIntent().getExtras().getSerializable("account");
         GestoreBean gestoreBean = account.getGestoreBean();
-        TextView numerSegnalazioniTextView = findViewById(R.id.textViewTestoRecensione);
+        TextView numerSegnalazioniTextView = (TextView) findViewById(R.id.numerSegnalazioniGestite);
         numerSegnalazioniTextView.setText(gestoreBean.getNumSegnalazioniGestite());
     }
 
