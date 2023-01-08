@@ -1,8 +1,6 @@
 package it.unisa.ilike.contenuti.application;
 
 import java.util.List;
-
-import it.unisa.ilike.contenuti.application.exceptions.InvalidValutazioneException;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
