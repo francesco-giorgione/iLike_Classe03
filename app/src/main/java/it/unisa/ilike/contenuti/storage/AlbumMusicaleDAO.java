@@ -29,20 +29,22 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
                 "FROM AlbumMusicali " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+        String jsonRes = queryManager.select(query);
+        AlbumMusicaleBean[] res = gson.fromJson(jsonRes, AlbumMusicaleBean[].class);
 
-        if(am == null) {
+        if(res.length == 0) {
             return null;
         }
 
-        am.setId(contenuto.getId());
-        am.setTitolo(contenuto.getTitolo());
-        am.setDescrizione(contenuto.getDescrizione());
-        am.setCategoria(contenuto.getCategoria());
+        AlbumMusicaleBean albumMusicale = res[0];
 
-        return am;
+        albumMusicale.setId(contenuto.getId());
+        albumMusicale.setTitolo(contenuto.getTitolo());
+        albumMusicale.setDescrizione(contenuto.getDescrizione());
+        albumMusicale.setCategoria(contenuto.getCategoria());
+
+        return albumMusicale;
     }
 
 
