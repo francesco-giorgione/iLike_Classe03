@@ -49,6 +49,21 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
 
 
     /**
+     * Restituisce una collezione dei 3 album musicali aventi la massima valutazione media.
+     * @return un ArrayList contenente 3 oggetti AlbumMusicaleBean.
+     */
+    public List<ContenutoBean> doRetrieveTop3() {
+        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("album");
+        List<ContenutoBean> topAlbum = new ArrayList<>();
+
+        for(ContenutoBean c : contenuti) {
+            topAlbum.add(this.doRetrieveById(c.getId()));
+        }
+
+        return topAlbum;
+    }
+
+    /**
      * Restituisce una collezione degli album musicali che matchano con un dato titolo.
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
