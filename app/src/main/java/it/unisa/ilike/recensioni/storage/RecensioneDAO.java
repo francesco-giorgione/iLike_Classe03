@@ -234,20 +234,4 @@ public class RecensioneDAO {
         return true;
     }
 
-    /**
-     * Questo metodo consente di receperare dal DataBase tutte le recensioni di cui l'iscritto ne è l'autore
-     * @param email rappresenta l'email dell'iscritto autore delle recensioni
-     * @return la lista di recensioni scritte dall'iscritto
-     */
-    public List<RecensioneBean> doRetriveRecensioniByEmailIscritto(String email){
-
-        email = addEscape(email);
-        String query="select * from Recensioni where email_iscritto = " + email + "'";
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        List<RecensioneBean> listToReturn = (List<RecensioneBean>) gson.fromJson(res, RecensioneBean.class);
-
-        return listToReturn;
-    }
 }
