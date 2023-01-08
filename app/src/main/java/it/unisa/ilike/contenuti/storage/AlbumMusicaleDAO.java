@@ -69,30 +69,14 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
      * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
      */
     public List<ContenutoBean> search(String titolo){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("album", titolo);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+        ArrayList<ContenutoBean> album = (ArrayList<ContenutoBean>) super.search("album", titolo);
+        List<ContenutoBean> albumCercati = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                    "from AlbumMusicali " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
-
-            am.setId(id);
-            am.setTitolo(c.getTitolo());
-            am.setDescrizione(c.getDescrizione());
-            am.setCategoria(c.getCategoria());
-
-            contenuti.add(am);
+        for(ContenutoBean c: album) {
+            albumCercati.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return albumCercati;
     }
 
 }
