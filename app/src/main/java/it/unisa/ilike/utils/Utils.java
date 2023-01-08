@@ -1,5 +1,9 @@
 package it.unisa.ilike.utils;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.UtenteBean;
 
@@ -28,5 +32,25 @@ public class Utils {
     public static String addEscape(String str) {
         String newStr = str.replace("'", "\\'");
         return newStr.replace("\"", "\\\"");
+    }
+
+    /**
+     * Restituisce la data di input in formato dd/mm/aa.
+     * @param data è l'oggetto Date da convertire in stringa.
+     * @return una stringa contenente la data in formato dd/mm/aa.
+     */
+    public static String getStringaData(Date data) {
+        return DateFormat.getDateInstance(DateFormat.SHORT, Locale.ITALY).format(data);
+    }
+
+
+    /**
+     * Restituisce la data di input in formato aaaa/mm/dd.
+     * @param data è l'oggetto Date da convertire in stringa.
+     * @return una stringa contenente la data in formato aaaa/mm/dd.
+     */
+    public static String getStringaDataForSql(Date data) {
+        String[] tmp = getStringaData(data).split("/");
+        return "20" + tmp[2] + "-" + tmp[1] + "-" + tmp[0];
     }
 }

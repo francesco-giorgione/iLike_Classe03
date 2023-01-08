@@ -26,7 +26,7 @@ import it.unisa.ilike.profili.storage.IscrittoRealBean;
 /**
  * Un oggetto <code>AccountImpl</code> viene utilizzato per accedere ai servizi di autenticazione.
  * @author Marta
- * @version 0.1
+ * @version 0.2
  */
 public class AccountImpl implements AccountService {
 
@@ -41,6 +41,7 @@ public class AccountImpl implements AccountService {
         return matcher.matches();
     }
 
+
     /**
      * Questo metodo controlla se l'email rispetta i vincoli imposti
      * @param email rappresenta la string inserita dall'iscrtto per l'email
@@ -51,6 +52,7 @@ public class AccountImpl implements AccountService {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+
 
     /**
      * Questo metodo controlla se la password rispetta i vincoli imposti
@@ -63,6 +65,7 @@ public class AccountImpl implements AccountService {
         return matcher.matches();
     }
 
+
     /**
      * Questo metodo controlla se il nome rispetta i vincoli imposti
      * @param nome rappresenta la string inserita dall'iscrtto per il nome
@@ -74,6 +77,7 @@ public class AccountImpl implements AccountService {
         return matcher.matches();
     }
 
+
     /**
      * Questo metodo controlla se il cognome rispetta i vincoli imposti
      * @param cognome rappresenta la string inserita dall'iscrtto per il cognome
@@ -84,6 +88,7 @@ public class AccountImpl implements AccountService {
         Matcher matcher = pattern.matcher(cognome);
         return matcher.matches();
     }
+
 
     /**
      * Questo metodo permette di codificare la password dell'utente
@@ -139,23 +144,6 @@ public class AccountImpl implements AccountService {
 
 
     /**
-     * Questo metodo restituisce un bean contenente le informazioni dell’iscritto
-     * a meno della foto profilo, delle liste e delle recensioni ad esso associato.
-     * @return l'oggetto IscrittoBean recuperata dal DB
-     */
-    public IscrittoBean getIscritto(){
-        return this.account.getIscrittoBean();
-    }
-
-    /**
-     * Questo metodo restituisce un bean contenente le informazioni del gestore.
-     * @return l'oggetto GestoreBean recuperata dal DB
-     */
-    public GestoreBean getGestore(){
-        return this.account.getGestoreBean();
-    }
-
-    /**
      * Questo metodo consente di effettuare il logout dell’utente.
      * @param u rappresenta l'oggetto utente che deve vuole effettuare il logout
      */
@@ -174,9 +162,9 @@ public class AccountImpl implements AccountService {
             GestoreDAO gestoreDAO = new GestoreDAO();
             gestoreDAO.doUpdate(gestore);
         }
-        this.account = new Account(null, null);
-        return this.account;
+        return new Account(null, null);
     }
+
 
     /**
      * Questo metodo consente di effettuare la registrazione di un iscritto.
@@ -214,15 +202,12 @@ public class AccountImpl implements AccountService {
 
                     IscrittoDAO iscrittoDAO = new IscrittoDAO();
                     iscrittoDAO.doSave(iscritto);
-                    this.account = new Account(iscritto, null);
-                    return this.account;
+                     Account account = new Account(iscritto, null);
+                    return account;
 
                 }else throw new DatiIscrittoVuotiException();
             }else throw new PasswordVuotaException();
         }
         else throw new EmailVuotaException();
-
     }
-
-    private Account account;
 }

@@ -29,101 +29,39 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
                 "FROM AlbumMusicali " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
+        String jsonRes = queryManager.select(query);
+        AlbumMusicaleBean[] res = gson.fromJson(jsonRes, AlbumMusicaleBean[].class);
 
-        if(am == null) {
+        if(res.length == 0) {
             return null;
         }
 
-        am.setId(contenuto.getId());
-        am.setTitolo(contenuto.getTitolo());
-        am.setDescrizione(contenuto.getDescrizione());
-        am.setCategoria(contenuto.getCategoria());
+        AlbumMusicaleBean albumMusicale = res[0];
 
-        return am;
+        albumMusicale.setId(contenuto.getId());
+        albumMusicale.setTitolo(contenuto.getTitolo());
+        albumMusicale.setDescrizione(contenuto.getDescrizione());
+        albumMusicale.setCategoria(contenuto.getCategoria());
+
+        return albumMusicale;
     }
 
+
     /**
-     * Restituisce una collezione degli album musicali di una data categoria.
-     * @param categoria è la categoria sulla base della quale si vogliono selezionare gli album musicali.
-     * @return un ArrayList di oggetti AlbumMusicaleBean corrispondenti agli album musicali selezionati
-     * in base a 'categoria'.
+     * Restituisce una collezione dei 3 album musicali aventi la massima valutazione media.
+     * @return un ArrayList contenente 3 oggetti AlbumMusicaleBean.
      */
-    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("album", categoria);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+    public List<ContenutoBean> doRetrieveTop3() {
+        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("album");
+        List<ContenutoBean> topAlbum = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                    "from AlbumMusicali " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
-
-            am.setId(id);
-            am.setTitolo(c.getTitolo());
-            am.setDescrizione(c.getDescrizione());
-            am.setCategoria(c.getCategoria());
-
-            contenuti.add(am);
+        for(ContenutoBean c : contenuti) {
+            topAlbum.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return topAlbum;
     }
-
-
-    /**
-     * Restituisce tutti gli album musicali aventi una valutazione media rientrante in un dato intervallo.
-     * @param minValutazione è la è la minima valutazione media che deve avere un album musicale affinché
-     * sia selezionato.
-     * @param maxValutazione è la massima valutazione media che deve avere un album musicale affinché
-     * sia selezionato.
-     * @return un ArrayList contenente tutti gli album musicali aventi una valutazione media compatibile
-     * con quella richiesta.
-     */
-    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
-
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                    "from AlbumMusicali " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
-
-            am.setId(id);
-            am.setTitolo(c.getTitolo());
-            am.setDescrizione(c.getDescrizione());
-            am.setCategoria(c.getCategoria());
-
-            contenuti.add(am);
-        }
-
-        return contenuti;
-    }
-
-
-    /**
-     * Restituisce tutti gli album musicali del catalogo.
-     * @return un oggetto List contenente tutti gli AlbumMusicaleBean del catalogo.
-     */
-    public List<ContenutoBean> doRetrieveAll(){
-        return this.doRetrieveAllByCategoria("%", "%");
-    }
-
 
     /**
      * Restituisce una collezione degli album musicali che matchano con un dato titolo.
@@ -131,30 +69,14 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
      * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
      */
     public List<ContenutoBean> search(String titolo){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("album", titolo);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+        ArrayList<ContenutoBean> album = (ArrayList<ContenutoBean>) super.search("album", titolo);
+        List<ContenutoBean> albumCercati = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                    "from AlbumMusicali " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            AlbumMusicaleBean am = gson.fromJson(res, AlbumMusicaleBean.class);
-
-            am.setId(id);
-            am.setTitolo(c.getTitolo());
-            am.setDescrizione(c.getDescrizione());
-            am.setCategoria(c.getCategoria());
-
-            contenuti.add(am);
+        for(ContenutoBean c: album) {
+            albumCercati.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return albumCercati;
     }
 
 }
