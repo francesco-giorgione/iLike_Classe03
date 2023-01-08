@@ -116,17 +116,14 @@ public class SegnalazioneDAO {
      */
 
     public boolean gestisciSegnalazione(SegnalazioneBean segnalazione){
-
         if (segnalazione==null)
             return false;
-        if (segnalazione.isGestita()==true)
-            return false;
 
-        int id= segnalazione.getId();
-        String query= "update Segnalazioni set gestita= true where id= "+ id;
-        QueryManager queryManager= new QueryManager();
-        queryManager.update(query);
+        int id = segnalazione.getId();
+        String query = "update Segnalazioni " +
+                "set gestita = 1 " +
+                "where id = " + id;
 
-        return true;
+        return new QueryManager().update(query);
     }
 }
