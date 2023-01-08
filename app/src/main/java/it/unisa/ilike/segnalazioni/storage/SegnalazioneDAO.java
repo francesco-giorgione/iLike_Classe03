@@ -83,6 +83,7 @@ public class SegnalazioneDAO {
         return segnalazione;
     }
 
+
     /**
      * Questo metodo restituisce tutti gli oggetti della classe <code>SegnalazioneBean</code> memorizzati nel database
      * che non risultano essere già "gestiti"
@@ -114,7 +115,6 @@ public class SegnalazioneDAO {
      * @return false se la recensione è nulla, se risulta essere già "gestita"o se l'operazione NON è andata
      * a buon fine. True altrimenti
      */
-
     public boolean gestisciSegnalazione(SegnalazioneBean segnalazione){
         if (segnalazione==null)
             return false;
