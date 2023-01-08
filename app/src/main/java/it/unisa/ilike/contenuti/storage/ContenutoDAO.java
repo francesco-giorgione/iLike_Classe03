@@ -11,6 +11,12 @@ import it.unisa.ilike.utils.Utils;
 
 public class ContenutoDAO {
     /**
+     * Estende la classe ContenutoBean senza modificarne il comportamento. Consente al DAO di
+     * istanziare oggetti ContenutoBean in modo da costruire i bean da restituire in modo incrementale.
+     */
+    private class NotAbstractContenutoBean extends ContenutoBean {}
+
+    /**
      * Aggiorna nel database la valutazione media di un contenuto.
      * @param idContenuto è l'id del contenuto di cui si vuole aggiornare la valutazione media.
      * @param valutazioneMedia è la nuova valutazione media del contenuto.
@@ -83,8 +89,13 @@ public class ContenutoDAO {
                 "from Contenuti " +
                 "where id = " + id;
 
-        String res = queryManager.select(query);
-        return gson.fromJson(res, ContenutoBean.class);
+        String jsonRes = queryManager.select(query);
+        NotAbstractContenutoBean[] res = gson.fromJson(jsonRes, NotAbstractContenutoBean[].class);
+
+        if(res.length > 0) {
+            return res[0];
+        }
+        else return null;
     }
 
 
