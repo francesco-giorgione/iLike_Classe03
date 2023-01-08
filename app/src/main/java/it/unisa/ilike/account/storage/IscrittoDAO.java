@@ -117,30 +117,34 @@ public class IscrittoDAO {
      * @return null se uno o più parametri non sono validi, l'oggetto iscritto se l'operazione è andata a buon fine
      */
     public IscrittoProxyBean doRetrieveByUsernamePassword(String nickname, String email, String password){
+        if(password == null || (nickname == null && email == null)) {
+            return null;
+        }
         String query;
-        if (nickname==null){
-            if (email==null)
-                return null;
-            else{
-                if (password==null)
-                    return null;
-                query = "select email, password, nickname, nome, cognome, bio " +
-                        "from Iscritti where email = '" + email + "' and password= '" + password + "'";
-            }
+
+        if(email != null) {
+            email = Utils.addEscape(email);
+            query = "select email, password, nickname, nome, cognome, bio " +
+                    "from Iscritti " +
+                    "where email = '" + email + "' and password = '" + password + "'";
         }
         else{
-            if (password==null)
-                return null;
-            nickname = addEscape(nickname);
+            nickname = Utils.addEscape(nickname);
             query = "select email, password, nickname, nome, cognome, bio " +
-                    "from Iscritti where nickname = '" + nickname + "' and password= '" + password + "'";
+                    "from Iscritti " +
+                    "where nickname = '" + nickname + "' and password = '" + password + "'";
 
         }
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        IscrittoProxyBean iscritto= gson.fromJson(res, IscrittoProxyBean.class);
-        return iscritto;
+
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String jsonRes = queryManager.select(query);
+        IscrittoProxyBean[] res = gson.fromJson(jsonRes, IscrittoProxyBean[].class);
+
+        if(res.length == 0) {
+            return null;
+        }
+        return res[0];
     }
 
     /**
