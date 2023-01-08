@@ -27,16 +27,15 @@ public class SegnalazioneDAO {
             return false;
         }
 
-        int id = segnalazione.getId();
         int tipo = segnalazione.getTipo();
         String motivazione = Utils.addEscape(segnalazione.getMotivazione());
-        boolean gestita = segnalazione.isGestita();
+        int gestita = segnalazione.isGestita() ? 1 : 0;
         String email_iscritto = Utils.addEscape(segnalazione.getRecensione().getIscritto().getEmail());
         int id_recensione = segnalazione.getRecensione().getId();
 
         QueryManager queryManager= new QueryManager();
-        String query= "insert into Segnalazioni (id, tipo, motivazione, gestita, email_iscritto, id_recensione) " +
-                "values (" +id+ ", "+ tipo + ", '" + motivazione+ "', " + gestita+ ",'" + email_iscritto+ "'," + id_recensione+ ");";
+        String query= "insert into Segnalazioni (tipo, motivazione, gestita, email_iscritto, id_recensione) " +
+                "values (" + tipo + ", '" + motivazione+ "', " + gestita+ ",'" + email_iscritto+ "'," + id_recensione+ ");";
         return queryManager.update(query);
     }
 
