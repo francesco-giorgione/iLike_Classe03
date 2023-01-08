@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
@@ -100,29 +101,28 @@ public class ContenutoDAO {
 
 
     /**
-     * Restituisce una collezione di tutti i contenuti di un certo tipo (es. tutti i film).
+     * Restituisce una collezione dei 3 contenuti di un certo tipo (es. tutti i film)
+     * aventi la massima valutazione media.
      * @param tipo - è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
      *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali, '%' per
      *             tutti i tipi).
-     * @return un ArrayList contenente tutti i contenuti di un certo tipo (es. film, serie tv, ecc.).
+     * @return un ArrayList contenente 3 contenuti di un certo tipo (es. film, serie tv, ecc.).
      */
-    public List<ContenutoBean> doRetrieveAllByCategoria(String tipo, String categoria) {
+    public List<ContenutoBean> doRetrieveTop3ByTipo(String tipo) {
         if(!tipo.equals("%") && !tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album")) {
             return null;
         }
 
-        categoria = Utils.addEscape(categoria);
-
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
-        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+        String query = "SELECT top 3 id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
                 "FROM Contenuti " +
-                "where tipo like '%" + tipo + "%' and categoria like '%" + categoria + "%'";
+                "where tipo like '%" + tipo + "%' " +
+                "order by valutazione_media desc";
 
-        String res = queryManager.select(query);
-        // da controllare cast, probabilmente non funziona
-        List<ContenutoBean> contenuti = (List<ContenutoBean>) gson.fromJson(res, ContenutoBean.class);
-        return contenuti;
+        String jsonRes = queryManager.select(query);
+        NotAbstractContenutoBean[] res = gson.fromJson(jsonRes, NotAbstractContenutoBean[].class);
+        return new ArrayList<>(Arrays.asList(res));
     }
 
 
