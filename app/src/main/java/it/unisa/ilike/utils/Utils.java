@@ -35,11 +35,22 @@ public class Utils {
     }
 
     /**
-     * Restituisce la data di input in formato dd/mm/aaaa.
+     * Restituisce la data di input in formato dd/mm/aa.
      * @param data è l'oggetto Date da convertire in stringa.
-     * @return una stringa contenente la data in formato dd/mm/aaaa.
+     * @return una stringa contenente la data in formato dd/mm/aa.
      */
     public static String getStringaData(Date data) {
         return DateFormat.getDateInstance(DateFormat.SHORT, Locale.ITALY).format(data);
+    }
+
+
+    /**
+     * Restituisce la data di input in formato aaaa/mm/dd.
+     * @param data è l'oggetto Date da convertire in stringa.
+     * @return una stringa contenente la data in formato aaaa/mm/dd.
+     */
+    public static String getStringaDataForSql(Date data) {
+        String[] tmp = getStringaData(data).split("/");
+        return "20" + tmp[2] + "-" + tmp[1] + "-" + tmp[0];
     }
 }
