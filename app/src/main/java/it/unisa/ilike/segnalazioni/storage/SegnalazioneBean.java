@@ -107,7 +107,7 @@ public class SegnalazioneBean {
      * Questo metodo restituisce l'email dell'iscritto che ha scritto la recensione
      * @return email dell'iscritto
      */
-    public IscrittoBean iscritto() {
+    public IscrittoBean getIscritto() {
         return iscritto;
     }
 
