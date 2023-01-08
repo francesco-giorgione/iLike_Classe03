@@ -218,17 +218,17 @@ public class RecensioneDAO {
      * marcata come "cancellata" o se l'operazione NON è andata a buon fine. True altrimenti
      */
     public boolean cancellaRecensione(RecensioneBean recensione){
-
-        if (recensione==null)
+        if (recensione == null || recensione.getMotivazioneCancellazione() == null) {
             return false;
-        if (recensione.isCancellata()==false || recensione.getMotivazioneCancellazione()==null)
-            return false;
+        }
 
-        int id= recensione.getId();
-        String motivazioneCancellazione= addEscape(recensione.getMotivazioneCancellazione());
-        String query= "update Recensioni set cancellata= true, motivazione_cancellazione= '"+
-                motivazioneCancellazione+"' where id= "+ id;
-        QueryManager queryManager= new QueryManager();
+        int id = recensione.getId();
+        String motivazioneCancellazione = Utils.addEscape(recensione.getMotivazioneCancellazione());
+
+        String query = "update Recensioni set cancellata = 1, motivazione_cancellazione = '" +
+                motivazioneCancellazione + "' where id = " + id;
+
+        QueryManager queryManager = new QueryManager();
         queryManager.update(query);
 
         return true;
