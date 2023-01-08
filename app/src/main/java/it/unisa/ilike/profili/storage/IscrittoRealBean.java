@@ -72,8 +72,7 @@ public class IscrittoRealBean extends IscrittoBean {
      */
     public List<ListaBean> getListe() {
         if(this.liste == null){
-            ListaDAO listaDAO = new ListaDAO();
-            this.liste = listaDAO.doRetrieveListeByEmailIscritto(this.getEmail());
+            this.liste = new IscrittoDAO().doRetrieveListe(this.getEmail());
         }
         return this.liste;
     }
@@ -84,8 +83,7 @@ public class IscrittoRealBean extends IscrittoBean {
      */
     public List<RecensioneBean> getRecensioni() {
         if(this.recensioni == null){
-            RecensioneDAO recensioneDAO = new RecensioneDAO();
-            this.recensioni = recensioneDAO.doRetriveRecensioniByEmailIscritto(this.getEmail());
+            this.recensioni = new IscrittoDAO().doRetrieveRecensioni(this.getEmail());
         }
         return this.recensioni;
     }
