@@ -27,13 +27,15 @@ public class SerieTVDAO extends ContenutoDAO {
                 "FROM SerieTV " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        SerieTVBean serieTV = gson.fromJson(res, SerieTVBean.class);
+        String jsonRes = queryManager.select(query);
+        SerieTVBean[] res = gson.fromJson(jsonRes, SerieTVBean[].class);
 
-        if(serieTV == null) {
+        if(res.length == 0) {
             return null;
         }
+        
+        SerieTVBean serieTV = res[0];
 
         serieTV.setId(contenuto.getId());
         serieTV.setTitolo(contenuto.getTitolo());
