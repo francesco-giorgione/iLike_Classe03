@@ -96,23 +96,6 @@ public class SegnalazioneDAO {
         return listToReturn;
     }
 
-    /**
-     * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente
-     * nella tabella Segnalazioni del database
-     * @return id con valore maggiore presente nella tabella Segnalazioni del database
-     */
-
-    public int doRetrieveMaxIdSegnalazione(){
-
-        String query = "select max(id) from (select id from Segnalazioni)";
-
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        int id= gson.fromJson(res, int.class);
-
-        return id;
-    }
 
     /**
      * Questo metodo consente al gestore di marcare come "gestita" una segnalazione presente
