@@ -46,6 +46,21 @@ public class FilmDAO extends ContenutoDAO {
         return film;
     }
 
+    /**
+     * Restituisce una collezione dei 3 film aventi la massima valutazione media.
+     * @return un ArrayList contenente 3 oggetti FilmBean.
+     */
+    public List<ContenutoBean> doRetrieveTop3() {
+        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("film");
+        List<ContenutoBean> topFilm = new ArrayList<>();
+
+        for(ContenutoBean c : contenuti) {
+            topFilm.add(this.doRetrieveById(c.getId()));
+        }
+
+        return topFilm;
+    }
+
 
     /**
      * Restituisce una collezione di film che matchano con un dato titolo.
