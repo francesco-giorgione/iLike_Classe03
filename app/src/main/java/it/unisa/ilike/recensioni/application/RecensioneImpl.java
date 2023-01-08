@@ -47,14 +47,12 @@ public class RecensioneImpl implements RecensioneService{
         if (valutazione<1 || valutazione>5) throw new ValutazioneException();
 
         RecensioneDAO recensioneDAO= new RecensioneDAO();
-        int id= recensioneDAO.doRetrieveMaxIdRecensione();
         Date data= new Date();
 
-        RecensioneBean recensione= new RecensioneBean(id+1, testo, valutazione, data, false, null, i, c);
+        RecensioneBean recensione= new RecensioneBean(-1, testo, valutazione, data, false, null, i, c);
 
         if (recensione!=null){
-            if (recensioneDAO.doSaveRecensione(recensione))
-                return true;
+            return recensioneDAO.doSaveRecensione(recensione);
         }
 
         return false;
@@ -80,9 +78,8 @@ public class RecensioneImpl implements RecensioneService{
         if (motivazione.length()>500) throw new InvalidMotivazioneException();
 
         SegnalazioneDAO segnalazioneDAO= new SegnalazioneDAO();
-        int id=segnalazioneDAO.doRetrieveMaxIdSegnalazione();
 
-        SegnalazioneBean segnalazione= new SegnalazioneBean(id+1, tipo, motivazione, false, i, r);
+        SegnalazioneBean segnalazione= new SegnalazioneBean(-1, tipo, motivazione, false, i, r);
         segnalazioneDAO.doSaveSegnalazione(segnalazione);
 
         return true;
