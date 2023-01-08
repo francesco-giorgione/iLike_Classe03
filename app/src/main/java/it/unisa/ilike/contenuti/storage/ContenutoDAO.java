@@ -18,6 +18,36 @@ public class ContenutoDAO {
     private class NotAbstractContenutoBean extends ContenutoBean {}
 
     /**
+     * Modella il risultato della query eseguita in calcolaValutazioneMediaAggiornata. Consente cioè
+     * di convertire il risultato dal formato json in un oggetto Java.
+     */
+    private class RisultatoQuery {
+        public RisultatoQuery(Integer numRecensioni, Integer sommaValutazioni) {
+            this.numRecensioni = numRecensioni;
+            this.sommaValutazioni = sommaValutazioni;
+        }
+
+        public Integer getNumRecensioni() {
+            return numRecensioni;
+        }
+
+        public void setNumRecensioni(Integer numRecensioni) {
+            this.numRecensioni = numRecensioni;
+        }
+
+        public Integer getSommaValutazioni() {
+            return sommaValutazioni;
+        }
+
+        public void setSommaValutazioni(Integer sommaValutazioni) {
+            this.sommaValutazioni = sommaValutazioni;
+        }
+
+        Integer numRecensioni;
+        Integer sommaValutazioni;
+    }
+
+    /**
      * Aggiorna nel database la valutazione media di un contenuto.
      * @param idContenuto è l'id del contenuto di cui si vuole aggiornare la valutazione media.
      * @param valutazioneMedia è la nuova valutazione media del contenuto.
@@ -38,30 +68,6 @@ public class ContenutoDAO {
      * @return la valutazione media del contenuto avente come id 'id'.
      */
     public double calcolaValutazioneMediaAggiornata(int idContenuto, int newValutazione) {
-        class RisultatoQuery {
-            public int getNumRecensioni() {
-                return numRecensioni;
-            }
-
-            public void setNumRecensioni(int numRecensioni) {
-                this.numRecensioni = numRecensioni;
-            }
-
-            public void setNumRecensioni(Integer numRecensioni) {
-                this.numRecensioni = numRecensioni;
-            }
-
-            public Integer getSommaValutazioni() {
-                return sommaValutazioni;
-            }
-
-            public void setSommaValutazioni(Integer sommaValutazioni) {
-                this.sommaValutazioni = sommaValutazioni;
-            }
-
-            Integer numRecensioni;
-            Integer sommaValutazioni;
-        }
 
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
@@ -70,10 +76,17 @@ public class ContenutoDAO {
                 "from Recensioni " +
                 "where id_contenuto = " + idContenuto;
 
-        String res = queryManager.select(query);
-        int numRecensioni = gson.fromJson(res, RisultatoQuery.class).getNumRecensioni() + 1;
-        int sommaValutazioni = gson.fromJson(res, RisultatoQuery.class).getSommaValutazioni() + newValutazione;
+        String jsonRes = queryManager.select(query);
+        RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
 
+        Integer numRecensioni = res[0].getNumRecensioni() + 1;
+        Integer sommaValutazioni = res[0].getSommaValutazioni();
+
+        if(sommaValutazioni == null) {
+            sommaValutazioni = 0;
+        }
+
+        sommaValutazioni += newValutazione;
         return (double) (sommaValutazioni / numRecensioni);
     }
 
