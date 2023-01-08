@@ -69,30 +69,13 @@ public class FilmDAO extends ContenutoDAO {
      */
     public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("film", titolo);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+        List<ContenutoBean> filmCercati = new ArrayList<>();
 
         for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select anno_rilascio as annoRilascio, durata, paese, regista, attori " +
-                    "from Film " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            FilmBean f = gson.fromJson(res, FilmBean.class);
-
-            f.setId(id);
-            f.setTitolo(c.getTitolo());
-            f.setDescrizione(c.getDescrizione());
-            f.setCategoria(c.getCategoria());
-
-            contenuti.add(f);
+            filmCercati.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return filmCercati;
     }
-
 
 }
