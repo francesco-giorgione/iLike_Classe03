@@ -39,24 +39,6 @@ public class SegnalazioneDAO {
         return queryManager.update(query);
     }
 
-    /**
-     * Questo metodo consente di cancellare un oggetto <code>SegnalazioneBean</code> dalla tabella Segnalazioni
-     * del database, individuandolo tramite l'id passato come argomento.
-     * @param id id della segnalazione da cancellare dal database
-     * @return false se l'id passato come argomento è null o se l'operazione NON è andata a buon fine,
-     * true altrimenti
-     */
-
-    public boolean doDeleteByIdSegnalazione(int id){
-
-        if (id<1){
-            return false;
-        }
-
-        QueryManager queryManager= new QueryManager();
-        String query = "delete from Segnalazioni where id = " + id;
-        return queryManager.update(query);
-    }
 
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>SegnalazioneBean</code>
@@ -80,25 +62,6 @@ public class SegnalazioneDAO {
 
         return segnalazione;
     }
-
-    /*public boolean doUpdateSegnalazione (SegnalazioneBean segnalazione){
-        if (segnalazione== null){
-            return false;
-        }
-
-        int id= segnalazione.getId();
-        int tipo= segnalazione.getTipo();
-        String motivazione= segnalazione.getMotivazione();
-        boolean gestita= segnalazione.isGestita();
-        String email_iscritto=segnalazione.getEmailIscritto();
-        int id_recensione= segnalazione.getIdRecensione();
-
-        QueryManager queryManager= new QueryManager();
-        String query= "update Segnalazioni set tipo="+tipo+"', motivazione= '"+motivazione+"', gestita= "+gestita+
-                " email_iscritto=' "+email_iscritto+" where id = " + id;
-
-        return queryManager.update(query);
-    }*/
 
     /**
      * Questo metodo restituisce tutti gli oggetti della classe <code>SegnalazioneBean</code> memorizzati nel database
