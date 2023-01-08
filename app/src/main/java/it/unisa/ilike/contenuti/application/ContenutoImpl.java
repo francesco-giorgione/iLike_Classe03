@@ -3,7 +3,6 @@ package it.unisa.ilike.contenuti.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.application.exceptions.InvalidValutazioneException;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
