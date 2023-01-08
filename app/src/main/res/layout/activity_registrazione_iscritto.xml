@@ -60,19 +60,18 @@
             android:id="@+id/email"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Email"
             android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"
-            />
+            android:selectAllOnFocus="true" />
 
         <EditText
             android:id="@+id/nickname"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Nickname"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"/>
+            android:selectAllOnFocus="true" />
 
         <TextView
             android:labelFor="@+id/password"
@@ -86,19 +85,19 @@
             android:id="@+id/password"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="@string/prompt_password"
             android:inputType="textPassword"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"/>
+            android:selectAllOnFocus="true" />
 
         <EditText
             android:id="@+id/repeatPassword"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Ripeti password"
             android:inputType="textPassword"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"/>
+            android:selectAllOnFocus="true" />
 
         <TextView
             android:labelFor="@+id/nome"
@@ -113,42 +112,49 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
             android:hint="Nome"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"/>
+            android:selectAllOnFocus="true" />
 
         <EditText
             android:id="@+id/cognome"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:hint="Cognome"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="15dp"
+            android:hint="Cognome" />
 
         <TextView
             android:labelFor="@+id/bio"
             android:text="Bio"></TextView>
 
-        <TextView
-            android:labelFor="@+id/foto"
-            android:text="Foto"></TextView>
+        <!--Button to open the image selector-->
+        <Button
+            android:id="@+id/BSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="SELECT IMAGE"
+            android:backgroundTint="#D1D1D1"
+            android:textColor="#DBA73D"
+            android:textSize="12dp" />
+
 
         <EditText
             android:id="@+id/bio"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:hint="Dati personali"
             android:inputType="textEmailAddress"
-            android:selectAllOnFocus="true"
-            android:layout_marginBottom="15dp"/>
-
-        <EditText
-            android:id="@+id/foto"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:hint="Foto"
             android:selectAllOnFocus="true" />
+
+        <!--ImageView to preview the selected image-->
+        <ImageView
+            android:id="@+id/IVPreviewImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"/>
 
     </GridLayout>
 
@@ -158,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/RegistrazioneIscrittoForm"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:enabled="false"
         android:text="Registrati"
         android:onClick="onClickRegistrazioneIscritto"
