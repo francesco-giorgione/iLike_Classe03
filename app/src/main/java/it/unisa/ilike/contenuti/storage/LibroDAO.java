@@ -27,13 +27,15 @@ public class LibroDAO extends ContenutoDAO {
                 "FROM Libri " +
                 "WHERE id = " + contenuto.getId();
 
-        String res = queryManager.select(query);
         Gson gson = new Gson();
-        LibroBean libro = gson.fromJson(res, LibroBean.class);
+        String jsonRes = queryManager.select(query);
+        LibroBean[] res = gson.fromJson(jsonRes, LibroBean[].class);
 
-        if(libro == null) {
+        if(res.length == 0) {
             return null;
         }
+
+        LibroBean libro = res[0];
 
         libro.setId(contenuto.getId());
         libro.setTitolo(contenuto.getTitolo());
@@ -41,85 +43,6 @@ public class LibroDAO extends ContenutoDAO {
         libro.setCategoria(contenuto.getCategoria());
 
         return libro;
-    }
-
-
-    /**
-     * Restituisce una collezione dei libri di una data categoria.
-     * @param categoria è la categoria sulla base della quale si vogliono selezionare i libri.
-     * @return un ArrayList di oggetti LibroBean corrispondenti ai libri selezionati in base a 'categoria'.
-     */
-    public List<ContenutoBean> doRetrieveAllByCategoria(String categoria){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByCategoria("libro", categoria);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
-
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select autore, isbn, num_pagine as numPagine " +
-                    "from Libri " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            LibroBean l = gson.fromJson(res, LibroBean.class);
-
-            l.setId(id);
-            l.setTitolo(c.getTitolo());
-            l.setDescrizione(c.getDescrizione());
-            l.setCategoria(c.getCategoria());
-
-            contenuti.add(l);
-        }
-
-        return contenuti;
-    }
-
-
-    /**
-     * Restituisce tutti i libri aventi una valutazione media rientrante in un dato intervallo.
-     * @param minValutazione è la è la minima valutazione media che deve avere un libro affinché
-     * sia selezionato.
-     * @param maxValutazione è la massima valutazione media che deve avere un libro affinché
-     * sia selezionato.
-     * @return un ArrayList contenente tutti i libri aventi una valutazione media compatibile
-     * con quella richiesta.
-     */
-    public List<ContenutoBean> doRetrieveAllByValutazioneMedia(double minValutazione, double maxValutazione){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.doRetrieveAllByValutazioneMedia(minValutazione, maxValutazione);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
-
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select autore, isbn, num_pagine as numPagine " +
-                    "from Libri " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            LibroBean l = gson.fromJson(res, LibroBean.class);
-
-            l.setId(id);
-            l.setTitolo(c.getTitolo());
-            l.setDescrizione(c.getDescrizione());
-            l.setCategoria(c.getCategoria());
-
-            contenuti.add(l);
-        }
-
-        return contenuti;
-    }
-
-
-    /**
-     * Restituisce tutti i libri del catalogo.
-     * @return un oggetto List contenente tutti i LibroBean del catalogo.
-     */
-    public List<ContenutoBean> doRetrieveAll(){
-        return this.doRetrieveAllByCategoria("%", "%");
     }
 
 
