@@ -48,7 +48,10 @@ public class GestoreDAO {
      * @return True se l'operazione è andata a buon fine, False altrimenti
      */
     public boolean doUpdate(GestoreBean gestore) {
-        String query = "update Gestori set num_segnalazioni_gestite where email= '" + addEscape(gestore.getEmail())+ "'";
+        String query = "update Gestori " +
+                "set num_segnalazioni_gestite = " + gestore.getNumSegnalazioniGestite() + " " +
+                "where email = '" + addEscape(gestore.getEmail())+ "'";
+
         QueryManager queryManager= new QueryManager();
         return queryManager.update(query);
     }
