@@ -1,5 +1,6 @@
 package it.unisa.ilike.profili.storage;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class IscrittoRealBean extends IscrittoBean {
      * @param foto rappresenta la foto profilo dell'iscritto
      */
     public IscrittoRealBean(String email, String password, String nickname, String nome, String cognome,
-                            String bio, Blob foto) {
+                            String bio, InputStream foto) {
         super(email, password, nickname, nome, cognome, bio);
         this.foto = foto;
         this.recensioni = new ArrayList<>();
@@ -57,7 +58,7 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di accedere alla foto profilo dell'iscritto
      * @return la foto profilo dell'iscritto
      */
-    public Blob getFoto() {
+    public InputStream getFoto() {
         if(this.foto == null){
             IscrittoDAO iscrittoDAO = new IscrittoDAO();
             this.foto = iscrittoDAO.doRetriveFoto(this.getEmail());
@@ -109,7 +110,7 @@ public class IscrittoRealBean extends IscrittoBean {
      * Questo metodo permette di modificare la foto profilo
      * @param foto la nuova foto profilo dell'iscritto
      */
-    public void setFoto(Blob foto) {
+    public void setFoto(InputStream foto) {
         this.foto = foto;
     }
 
@@ -150,5 +151,5 @@ public class IscrittoRealBean extends IscrittoBean {
 
     private List<ListaBean> liste;
     private List<RecensioneBean> recensioni;
-    private Blob foto;
+    private InputStream foto;
 }

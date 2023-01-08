@@ -1,5 +1,6 @@
 package it.unisa.ilike.profili.storage;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di accedere alla foto profilo dell'iscritto
      * @return la foto profilo dell'iscritto
      */
-    public Blob getFoto() {
+    public InputStream getFoto() {
         if (this.iscrittoReal == null)
             this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
                     this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
@@ -88,7 +89,7 @@ public class IscrittoProxyBean extends IscrittoBean {
      * Questo metodo permette di modificare la foto profilo
      * @param foto la nuova foto profilo dell'iscritto
      */
-    public void setFoto(Blob foto) {
+    public void setFoto(InputStream foto) {
         if (this.iscrittoReal == null)
             this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
                     this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
