@@ -71,18 +71,18 @@
         <TextView
             android:id="@+id/textFilm1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
             android:id="@+id/imgFilm1"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textFilm1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_film" />
 
         <ImageView
             android:id="@+id/starFilm1"
@@ -117,18 +117,18 @@
         <TextView
             android:id="@+id/textFilm2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgFilm2"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textFilm2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_film" />
 
         <ImageView
             android:id="@+id/starFilm2"
@@ -150,6 +150,8 @@
 
     </RelativeLayout>
 
+    <!--SERIE TV-->
+
     <RelativeLayout
         android:id="@+id/VisualizzazioneHomepageListFilm3"
         android:layout_width="95dp"
@@ -163,18 +165,18 @@
         <TextView
             android:id="@+id/textFilm3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgFilm3"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textFilm3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_serietv" />
 
         <ImageView
             android:id="@+id/starFilm3"
@@ -196,7 +198,7 @@
 
     </RelativeLayout>
 
-    <!--LiBRI-->
+    <!--LIBRI-->
 
     <TextView
         android:id="@+id/textView1"
@@ -221,18 +223,18 @@
         <TextView
             android:id="@+id/textLibri1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
             android:id="@+id/imgLibri1"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textLibri1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_libro" />
 
         <ImageView
             android:id="@+id/starLibri1"
@@ -267,18 +269,18 @@
         <TextView
             android:id="@+id/textLibri2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgLibri2"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textLibri2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_libro" />
 
         <ImageView
             android:id="@+id/starLibri2"
@@ -313,18 +315,18 @@
         <TextView
             android:id="@+id/textLibri3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgLibri3"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textLibri3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_libro" />
 
         <ImageView
             android:id="@+id/starLibri3"
@@ -371,18 +373,18 @@
         <TextView
             android:id="@+id/textAlbum1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:textAlignment="center"
             android:text="Titolo"/>
 
         <ImageView
             android:id="@+id/imgAlbum1"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textAlbum1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_musica" />
 
         <ImageView
             android:id="@+id/starAlbum1"
@@ -417,18 +419,18 @@
         <TextView
             android:id="@+id/textAlbum2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgAlbum2"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textAlbum2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_musica" />
 
         <ImageView
             android:id="@+id/starAlbum2"
@@ -463,18 +465,18 @@
         <TextView
             android:id="@+id/textAlbum3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:text="Titolo"
             android:textAlignment="center" />
 
         <ImageView
             android:id="@+id/imgAlbum3"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
+            android:layout_width="25dp"
+            android:layout_height="28dp"
             android:layout_below="@id/textAlbum3"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
+            android:src="@drawable/icona_musica" />
 
         <ImageView
             android:id="@+id/starAlbum3"
