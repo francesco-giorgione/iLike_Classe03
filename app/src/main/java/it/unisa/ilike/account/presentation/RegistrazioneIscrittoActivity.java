@@ -1,17 +1,14 @@
 package it.unisa.ilike.account.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.accounts.Account;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -20,10 +17,54 @@ import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
 import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
 
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
+
+    /**
+     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
+     * contenuto in AccountImpl. Questo è necessario in quanto il metodo in questione richiama metodi
+     * delle classi IscrittoDAO e GestoreDAO. In Android non è consentito fare operazioni di accesso
+     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
+     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
+     */
+    private class GsonResultRegistrazione extends AsyncTask<String, Void, Account> {
+
+        Account account;
+
+        /**
+         * Consente di recuperare un oggetto Account utilizzando il metodo di servizio login della
+         * classe AccountImpl
+         * @param string array di stringhe contenente email, password, nome, cognome, nickname, bio, foto
+         * @return l'account utente se l'operazione è andata a buon fine, null altrimenti
+         */
+        @Override
+        protected Account doInBackground(String... string) {
+            AccountImpl accountImpl = new AccountImpl();
+            try {
+                this.account= accountImpl.registrazioneIscritto(string[0], string[1], string[2],
+                        string[3], string[4], string[5], string[6]);
+            } catch (EmailVuotaException e) {
+                return null;
+            } catch (PasswordVuotaException e) {
+                return null;
+            } catch (DatiIscrittoVuotiException e) {
+                return null;
+            }
+            return account;
+        }
+
+        /**
+         * Metodo che restituisce l'account utente memorizzato nella classe come variabile d'istanza
+         * @return il valore della variabile d'istanza account
+         */
+        public Account getAccount(){
+            while (this.account==null);
+            return this.account;
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +102,25 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         String bio = b.toString();
 
         //aggiungere foto
+        Blob fotoBlob= null;
+
+        //conversione da blob a stringa
+        byte[] bdata = new byte[0];
+        try {
+            bdata = fotoBlob.getBytes(1, (int) fotoBlob.length());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        String foto = new String(bdata);
 
         //controlli eccezioni
 
-        /*
-        AccountImpl accountImpl = new AccountImpl();
+        if (!(password.equals(repeatPassword)));
+            //errore
 
-        Account account = accountImpl.registrazioneIscritto(email, password, nome, cognome, nickname, bio, //foto);
-        */
+        String [] s= {email, password, nome, cognome, nickname, bio, foto};
+        GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
+        Account account= g.getAccount();
 
 
         Intent i = new Intent();

@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         protected Account doInBackground(String... string) {
             AccountImpl accountImpl = new AccountImpl();
             try {
-                return accountImpl.login(string[0], string[1]);
+                this.account= accountImpl.login(string[0], string[1]);
+                return account;
             } catch (CredenzialiVuoteException e) {
                 //ritorno al login e messaggio
                 checkLogin=false;

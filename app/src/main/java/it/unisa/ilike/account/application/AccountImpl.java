@@ -178,8 +178,10 @@ public class AccountImpl implements AccountService {
      * @return l'oggetto Account se la registrazione è andata a buon fine, Null altrimenti
      */
     public Account registrazioneIscritto(String email, String password, String nome,
-                                         String cognome, String nickname, String bio, Blob foto)
+                                         String cognome, String nickname, String bio, String foto)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
+
+        //NOTA --> la foto passata come argomento è una stringa occorre fare la conversione in Blob
         IscrittoBean iscritto;
         String passwordCrittografata = null;
 
