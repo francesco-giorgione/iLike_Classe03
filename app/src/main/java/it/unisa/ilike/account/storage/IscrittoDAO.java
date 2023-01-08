@@ -6,9 +6,14 @@ import com.google.gson.Gson;
 
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.profili.storage.IscrittoProxyBean;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -18,6 +23,9 @@ import it.unisa.ilike.utils.Utils;
  */
 
 public class IscrittoDAO {
+    private class RisultatoQuery {
+        int id;
+    }
 
     /**
      * Questo metodo consente di salvare nella tabella Iscritti del database un nuovo oggetto della classe
@@ -59,54 +67,6 @@ public class IscrittoDAO {
         return queryManager.update(query);
     }
 
-    /*
-    /**
-     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>IscrittoBean</code>
-     * presente nella tabella Iscritti del database, dopo averlo individuato tramite l'email passata come argomento
-     * @param email email dell'scritto da cercare nel database
-     * @return null se il parametro email non è valido, l'oggetto iscritto con chiave primaria uguale ad email
-     * se l'operazione è andata a buon fine
-     */
-    /*
-    public IscrittoBean doRetrieveByEmail(String email){
-
-        if(email == null){
-            return null;
-        }
-
-        String query = "select * from Iscritti where email = '" + email + "' ";
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        IscrittoBean iscritto= gson.fromJson(res, IscrittoBean.class);
-        return iscritto;
-    }
-    */
-
-    /*
-    /**
-     * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>IscrittoBean</code>
-     * presente nella tabella Iscritti del database, dopo averlo individuato tramite il nickname passato come argomento
-     * @param nickname nickname dell'scritto da cercare nel database
-     * @return null se il parametro nickname non è valido, l'oggetto iscritto con nickname uguale alla variabile passata
-     * come argomento al metodo se l'operazione è andata a buon fine
-     */
-    /*
-    public IscrittoBean doRetrieveByNickname(String nickname){
-
-        if(nickname == null){
-            return null;
-        }
-
-        String query = "select * from Iscritti where nickname = '" + nickname + "' ";
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        IscrittoBean iscritto= gson.fromJson(res, IscrittoBean.class);
-        return iscritto;
-    }
-    */
-
     /**
      * Questo metodo permette di cercare e successivamente restituire un oggetto della classe <code>IscrittoBean</code>
      * presente nella tabella Iscritti del database, dopo averlo individuato tramite il nickname o l'email
@@ -147,23 +107,6 @@ public class IscrittoDAO {
         return res[0];
     }
 
-    /**
-     * Questo metodo permette di caricare la foto profilo dell'utente
-     * @param email rappresenta l'email (chiave primaria) dell'utente
-     * @return la foto profilo dell'utente con formato Blob
-     */
-    public InputStream doRetriveFoto(String email){
-        email = addEscape(email);
-        String query = "select foto " +
-                "from Iscritti " +
-                "where email = '" + email + "'";
-
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        String res = queryManager.select(query);
-
-        return gson.fromJson(res, InputStream.class);
-    }
 
     /**
      * Restituisce l'iscritto avente una data email.
@@ -190,5 +133,56 @@ public class IscrittoDAO {
         if(res.length == 0)
             return null;
         return res[0];
+    }
+
+
+    /**
+     * Questo metodo permette di caricare la foto profilo dell'utente
+     * @param email rappresenta l'email (chiave primaria) dell'utente
+     * @return la foto profilo dell'utente con formato Blob
+     */
+    public InputStream doRetriveFoto(String email){
+        email = addEscape(email);
+        String query = "select foto " +
+                "from Iscritti " +
+                "where email = '" + email + "'";
+
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String res = queryManager.select(query);
+
+        return gson.fromJson(res, InputStream.class);
+    }
+
+
+    // da implementare
+    public List<ListaBean> doRetrieveListe(String email) {
+        return null;
+    }
+
+
+    /**
+     * Il metodo restituisce una collezione delle recensioni scritte da un iscritto avente una
+     * data mail.
+     * @param email è l'email dell'iscritto di cui si vogliono selezionare le recensioni scritte.
+     * @return un oggetto ArrayList<RecensioneBean>
+     */
+    public List<RecensioneBean> doRetrieveRecensioni(String email) {
+        email = Utils.addEscape(email);
+        String query = "select id " +
+                "from Recensioni " +
+                "where email_iscritto = '" + email + "'";
+
+        List<RecensioneBean> recensioni = new ArrayList<>();
+        RecensioneDAO recensioneDAO = new RecensioneDAO();
+        Gson gson = new Gson();
+        String jsonRes = new QueryManager().select(query);
+        RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
+
+        for(RisultatoQuery curr: res) {
+            recensioni.add(recensioneDAO.doRetrieveByIdRecensione(curr.id));
+        }
+
+        return recensioni;
     }
 }
