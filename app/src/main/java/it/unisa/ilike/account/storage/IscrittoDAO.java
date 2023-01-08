@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.profili.storage.IscrittoProxyBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
@@ -25,6 +27,9 @@ import it.unisa.ilike.utils.Utils;
 public class IscrittoDAO {
     private class RisultatoQuery {
         int id;
+    }
+    private class RisultatoQuery2 {
+        String emailIscritto, nomeLista;
     }
 
     /**
@@ -155,9 +160,28 @@ public class IscrittoDAO {
     }
 
 
-    // da implementare
+    /**
+     * Il metodo restituisce una collezione delle liste appartenenti all'iscritto avente una
+     * data mail.
+     * @param email è l'email dell'iscritto di cui si vogliono selezionare le recensioni scritte.
+     * @return un oggetto ArrayList<ListaBean>
+     */
     public List<ListaBean> doRetrieveListe(String email) {
-        return null;
+        email = Utils.addEscape(email);
+        String query = "select email_iscritto as emailIscritto, nome as nomeLista " +
+                "from Liste " +
+                "where email_iscritto = '" + email + "'";
+
+        List<ListaBean> liste = new ArrayList<>();
+        Gson gson = new Gson();
+        String jsonRes = new QueryManager().select(query);
+        RisultatoQuery2[] res = gson.fromJson(jsonRes, RisultatoQuery2[].class);
+
+        for(RisultatoQuery2 curr: res) {
+            liste.add(new ListaDAO().doRetrieveByKey(curr.nomeLista, curr.emailIscritto));
+        }
+
+        return liste;
     }
 
 
