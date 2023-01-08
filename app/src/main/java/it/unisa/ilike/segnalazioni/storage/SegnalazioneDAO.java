@@ -53,7 +53,6 @@ public class SegnalazioneDAO {
      * @return null se il parametro id non è valido, l'oggetto segnalazione con chiave primaria uguale ad id
      * se l'operazione è andata a buon fine
      */
-
     public SegnalazioneBean doRetrieveByIdSegnalazione(int id){
         if (id < 1){
             return null;
