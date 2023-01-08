@@ -34,8 +34,8 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         Account account;
 
         /**
-         * Consente di recuperare un oggetto Account utilizzando il metodo di servizio login della
-         * classe AccountImpl
+         * Consente di recuperare un oggetto Account utilizzando il metodo di servizio registrazioneIscritto
+         * della classe AccountImpl
          * @param string array di stringhe contenente email, password, nome, cognome, nickname, bio, foto
          * @return l'account utente se l'operazione è andata a buon fine, null altrimenti
          */

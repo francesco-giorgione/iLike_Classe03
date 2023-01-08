@@ -16,7 +16,7 @@
         android:background="#FFF"
         android:gravity="center" >
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
             android:id="@+id/BarraDiRicercaContenuti"
             android:layout_width="358dp"
             android:layout_height="wrap_content"
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cerca"
+            android:onClick="onClickCercaContenuto"
             android:backgroundTint="#DBA73D"
             android:layout_alignRight="@id/BarraDiRicercaContenuti"/>
 
