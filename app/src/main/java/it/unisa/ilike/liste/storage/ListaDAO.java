@@ -41,32 +41,28 @@ public class ListaDAO {
             return false;
         }
 
-        String nome = addEscape(lista.getNome());
-        String emailIscritto = addEscape(lista.getIscritto().getEmail());
-        boolean visibilita= lista.isVisibile();
+        String nome = Utils.addEscape(lista.getNome());
+        String emailIscritto = Utils.addEscape(lista.getIscritto().getEmail());
+        int visibilita = lista.isVisibile() ? 1 : 0;
         QueryManager queryManager= new QueryManager();
 
-        String query= "insert into Liste (nome, email_iscritto, visibilita " +
+        String query = "insert into Liste (nome, email_iscritto, visibilita) " +
                 "values ('" + nome + "', '" + emailIscritto+ "', " + visibilita + ");";
 
         if(queryManager.update(query)) {
-            if(lista.getContenuti() != null && !lista.getContenuti().isEmpty()) {
-                query = "INSERT INTO Inclusioni(nome_lista, email_iscritto, id_contenuto) VALUES ";
-
-                for(ContenutoBean c: lista.getContenuti()) {
-                    query += "('" + nome + "', '" + emailIscritto + "', " + c.getId() + "),";
-                }
-
-                query = query.substring(0, query.length() - 1);
-                return queryManager.update(query);
-            }
-            else {
+            if(lista.getContenuti() == null || lista.getContenuti().isEmpty()) {
                 return true;
             }
+
+            query = "INSERT INTO Inclusioni(nome_lista, email_iscritto, id_contenuto) VALUES ";
+
+            for(ContenutoBean c: lista.getContenuti()) {
+                query += "('" + nome + "', '" + emailIscritto + "', " + c.getId() + "),";
+            }
+
+            return queryManager.update(query.substring(0, query.length() - 1));
         }
-        else {
-            return false;
-        }
+        else return false;
     }
 
     /**
