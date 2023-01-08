@@ -8,6 +8,7 @@ import java.sql.Blob;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.profili.storage.IscrittoProxyBean;
+import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>IscrittoDAO</code> serve per interagire con la tabella Iscritti presente nel database
@@ -154,5 +155,33 @@ public class IscrittoDAO {
         Gson gson= new Gson();
         Blob foto = gson.fromJson(res, Blob.class);
         return foto;
+    }
+
+    /**
+     * Restituisce l'iscritto avente una data email.
+     * @param email è l'email dell'iscritto che si vuole selezionare.
+     * @return un oggetto IscrittoBean contenente le informazioni dell'iscritto selezionato,
+     * null se non esiste un iscritto avente email 'email'.
+     */
+    public IscrittoBean doRetrieveByEmail(String email) {
+        if(email == null) {
+            return null;
+        }
+
+        email = Utils.addEscape(email);
+        String query = "select email, nickname, nome, cognome, bio " +
+                "from Iscritti " +
+                "where email = '" + email + "'";
+
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String jsonRes = queryManager.select(query);
+        System.out.println(jsonRes);
+
+        IscrittoProxyBean[] res = gson.fromJson(jsonRes, IscrittoProxyBean[].class);
+
+        if(res.length == 0)
+            return null;
+        return res[0];
     }
 }
