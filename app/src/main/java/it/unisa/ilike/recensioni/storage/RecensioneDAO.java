@@ -4,6 +4,7 @@ import static it.unisa.ilike.utils.Utils.addEscape;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -105,6 +106,14 @@ public class RecensioneDAO {
     }
 
     /**
+     * Modella il risultato della query eseguita in doRetrieveAllRecensioniNonCancellate. Consente cioè
+     * di convertire il risultato dal formato json in un oggetto Java.
+     */
+    private class RisultatoQuery2 {
+        int id;
+    }
+
+    /**
      * Questo metodo consente di salvare nella tabella Recensioni del database un nuovo oggetto della classe
      * <code>RecensioneBean</code> passato come argomento
      * @param recensione oggetto della classe <code>RecensioneBean</code> da salvare nel database
@@ -182,14 +191,21 @@ public class RecensioneDAO {
      * @return lista di oggetti della classe <code>RecensioneBean</code> memorizzata nel database
      */
     public List<RecensioneBean> doRetrieveAllRecensioniNonCancellate(){
+        String query = "select id from Recensioni where " +
+                "cancellata = " + 0;
 
-        String query="select * from Recensioni where cancellata=false";
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        List<RecensioneBean> listToReturn = (List<RecensioneBean>) gson.fromJson(res, RecensioneBean.class);
+        List<RecensioneBean> recensioni = new ArrayList<>();
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String jsonRes = queryManager.select(query);
 
-        return listToReturn;
+        RisultatoQuery2[] res = gson.fromJson(jsonRes, RisultatoQuery2[].class);
+
+        for(RisultatoQuery2 curr: res) {
+            recensioni.add(this.doRetrieveByIdRecensione(curr.id));
+        }
+
+        return recensioni;
     }
 
     /**
