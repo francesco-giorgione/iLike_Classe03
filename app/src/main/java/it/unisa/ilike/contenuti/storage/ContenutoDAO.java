@@ -117,12 +117,12 @@ public class ContenutoDAO {
      * Restituisce una collezione dei 3 contenuti di un certo tipo (es. tutti i film)
      * aventi la massima valutazione media.
      * @param tipo - è il tipo del contenuto di cui si vuole eseguire il fetch ('film' per film,
-     *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali, '%' per
+     *             'serie_tv' per serie tv, 'libro' per libri, 'album' per album musicali, '%' per
      *             tutti i tipi).
      * @return un ArrayList contenente 3 contenuti di un certo tipo (es. film, serie tv, ecc.).
      */
     public List<ContenutoBean> doRetrieveTop3ByTipo(String tipo) {
-        if(!tipo.equals("%") && !tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album")) {
+        if(!tipo.equals("%") && !tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libro") && !tipo.equals("album")) {
             return null;
         }
 
@@ -142,13 +142,13 @@ public class ContenutoDAO {
     /**
      * Restituisce una collezione di contenuti di un certo tipo (es. film) che matchano con un dato titolo.
      * @param tipo è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
-     *      *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali, '%' per tutti i tipi).
+     *      *             'serie_tv' per serie tv, 'libro' per libri, 'album' per album musicali, '%' per tutti i tipi).
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente tutti i contenuti di un certo tipo (es. film, serie tv, ecc.)
      * e che matchano con 'titolo'.
      */
     public List<ContenutoBean> search(String tipo, String titolo) {
-        if(!tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libri") && !tipo.equals("album") && !tipo.equals("%")) {
+        if(!tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libro") && !tipo.equals("album") && !tipo.equals("%")) {
             return null;
         }
 
