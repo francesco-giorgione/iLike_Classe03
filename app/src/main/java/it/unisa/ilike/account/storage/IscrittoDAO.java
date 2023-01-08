@@ -176,7 +176,6 @@ public class IscrittoDAO {
         Gson gson = new Gson();
         QueryManager queryManager = new QueryManager();
         String jsonRes = queryManager.select(query);
-        System.out.println(jsonRes);
 
         IscrittoProxyBean[] res = gson.fromJson(jsonRes, IscrittoProxyBean[].class);
 
