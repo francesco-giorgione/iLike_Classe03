@@ -67,30 +67,14 @@ public class LibroDAO extends ContenutoDAO {
      * @return un ArrayList contenente i LibroBean selezionati.
      */
     public List<ContenutoBean> search(String titolo){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("libro", titolo);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+        ArrayList<ContenutoBean> libri = (ArrayList<ContenutoBean>) super.search("libro", titolo);
+        List<ContenutoBean> libriCercati = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select autore, isbn, num_pagine as numPagine " +
-                    "from Libri " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            LibroBean l = gson.fromJson(res, LibroBean.class);
-
-            l.setId(id);
-            l.setTitolo(c.getTitolo());
-            l.setDescrizione(c.getDescrizione());
-            l.setCategoria(c.getCategoria());
-
-            contenuti.add(l);
+        for(ContenutoBean c: libri) {
+            libriCercati.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return libriCercati;
     }
 
 
