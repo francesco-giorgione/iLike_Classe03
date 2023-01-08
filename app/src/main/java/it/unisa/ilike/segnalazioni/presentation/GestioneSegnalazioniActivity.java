@@ -27,7 +27,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizzazione_segnalazioni);
+        setContentView(R.layout.activity_gestione_segnalazione);
 
 
         Intent i = getIntent();
