@@ -165,6 +165,11 @@ public class AccountImpl implements AccountService {
         return new Account(null, null);
     }
 
+    @Override
+    public Account registrazioneIscritto(String email, String password, String nome, String cognome, String nickname, String bio, Blob foto) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
+        return null;
+    }
+
 
     /**
      * Questo metodo consente di effettuare la registrazione di un iscritto.
@@ -199,7 +204,8 @@ public class AccountImpl implements AccountService {
                         iscritto = new IscrittoProxyBean(email, passwordCrittografata, nickname, nome, cognome, bio);
                     }
                     else {
-                        iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, foto);
+                        //iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, foto);
+                        iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, null);
                     }
 
                     IscrittoDAO iscrittoDAO = new IscrittoDAO();
