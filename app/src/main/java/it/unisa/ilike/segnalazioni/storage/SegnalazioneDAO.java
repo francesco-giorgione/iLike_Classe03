@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.account.storage.IscrittoDAO;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -14,6 +16,10 @@ import it.unisa.ilike.utils.Utils;
  */
 
 public class SegnalazioneDAO {
+    private class RisultatoQuery {
+        int id, tipo, gestita, idRecensione;
+        String motivazione, emailIscritto;
+    }
 
     /**
      * Questo metodo consente di salvare nella tabella Segnalazioni del database un nuovo oggetto della classe
@@ -49,16 +55,27 @@ public class SegnalazioneDAO {
      */
 
     public SegnalazioneBean doRetrieveByIdSegnalazione(int id){
-
-        if (id<1){
+        if (id < 1){
             return null;
         }
-        String query= "select * from Segnalazioni where id = " + id;
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
+
+        String query= "select id, tipo, motivazione, gestita, email_iscritto as emailIscritto, id_recensione as idRecensione " +
+                "from Segnalazioni " +
+                "where id = " + id;
 
         Gson gson= new Gson();
-        SegnalazioneBean segnalazione= gson.fromJson(res, SegnalazioneBean.class);
+        QueryManager queryManager= new QueryManager();
+        String jsonRes = queryManager.select(query);
+        RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
+
+        if(res.length == 0) {
+            return null;
+        }
+
+        RisultatoQuery tmpRes = res[0];
+        SegnalazioneBean segnalazione = new SegnalazioneBean(tmpRes.id, tmpRes.tipo, tmpRes.motivazione, tmpRes.gestita == 1, null, null);
+        segnalazione.setIscritto(new IscrittoDAO().doRetrieveByEmail(tmpRes.emailIscritto));
+        segnalazione.setRecensione(new RecensioneDAO().doRetrieveByIdRecensione(tmpRes.idRecensione));
 
         return segnalazione;
     }
