@@ -65,28 +65,6 @@ public class ListaDAO {
         else return false;
     }
 
-    /**
-     * Questo metodo consente di cancellare un oggetto <code>ListaBean</code> dalla tabella Lista del database,
-     * individuandolo tramite l'id passato come argomento.
-     * @param nome è il nome della lista da cancellare dal database
-     * @param emailIscritto è l'email dell'iscritto cui appartiene la lista da cancellare dal database
-     * @return true se l'operazione è andata a buon fine, false altrimenti
-     */
-    public boolean doDeleteByKey(String nome, String emailIscritto){
-        if (nome == null || emailIscritto == null){
-            return false;
-        }
-
-        nome = addEscape(nome);
-        emailIscritto = addEscape(emailIscritto);
-
-        QueryManager queryManager= new QueryManager();
-
-        String query = "delete from Liste where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
-
-        return queryManager.update(query);
-    }
-
 
     /**
      * Restituisce un oggetto della classe <code>ListaBean</code>
