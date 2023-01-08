@@ -116,7 +116,7 @@ public class ContenutoDAO {
     /**
      * Restituisce una collezione dei 3 contenuti di un certo tipo (es. tutti i film)
      * aventi la massima valutazione media.
-     * @param tipo - è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
+     * @param tipo - è il tipo del contenuto di cui si vuole eseguire il fetch ('film' per film,
      *             'serie_tv' per serie tv, 'libri' per libri, 'album' per album musicali, '%' per
      *             tutti i tipi).
      * @return un ArrayList contenente 3 contenuti di un certo tipo (es. film, serie tv, ecc.).
