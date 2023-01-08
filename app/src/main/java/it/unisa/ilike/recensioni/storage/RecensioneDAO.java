@@ -1,16 +1,14 @@
 package it.unisa.ilike.recensioni.storage;
 
-import static it.unisa.ilike.utils.Utils.addEscape;
-
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
+import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.utils.Utils;
 
 /**

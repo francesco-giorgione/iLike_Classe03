@@ -4,6 +4,7 @@ import static it.unisa.ilike.utils.Utils.addEscape;
 
 import com.google.gson.Gson;
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.account.application.GestoreBean;
 
 /**
  * Un oggetto <code>GestoreDAO</code> serve per interagire con la tabella Gestori presente nel database

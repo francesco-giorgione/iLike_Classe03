@@ -1,11 +1,11 @@
-package it.unisa.ilike.contenuti.storage;
+package it.unisa.ilike.contenuti.application;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi agli album musicali
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class AlbumMusicaleBean extends ContenutoBean{
+public class AlbumMusicaleBean extends ContenutoBean {
 
     /**
      * Costruttore senza parametri

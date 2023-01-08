@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.storage;
+package it.unisa.ilike.contenuti.application;
 
 public abstract class ContenutoBean {
 

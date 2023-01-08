@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
 
 public class RicercaContenutoActivity extends AppCompatActivity {

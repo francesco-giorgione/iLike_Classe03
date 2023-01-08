@@ -2,6 +2,9 @@ package it.unisa.ilike.account.storage;
 
 import java.io.Serializable;
 
+import it.unisa.ilike.account.application.GestoreBean;
+import it.unisa.ilike.account.application.IscrittoBean;
+
 /**
  * Questa classe rapresenta l'oggetto che identifica se è stato effettuato il login
  * per valutare se è stato effettuato il login.

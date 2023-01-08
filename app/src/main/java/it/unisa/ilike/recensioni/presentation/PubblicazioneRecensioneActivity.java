@@ -1,7 +1,5 @@
 package it.unisa.ilike.recensioni.presentation;
 
-import static it.unisa.ilike.R.id.valutazioneContenuto;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +14,7 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.liste.presentation.AggiuntaContenutoListaActivity;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;

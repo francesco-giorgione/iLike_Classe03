@@ -2,9 +2,7 @@ package it.unisa.ilike.profili.application;
 
 import static it.unisa.ilike.utils.Utils.isIscritto;
 
-import it.unisa.ilike.account.storage.IscrittoBean;
-import it.unisa.ilike.profili.storage.IscrittoProxyBean;
-import it.unisa.ilike.profili.storage.IscrittoRealBean;
+import it.unisa.ilike.account.application.IscrittoBean;
 import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**

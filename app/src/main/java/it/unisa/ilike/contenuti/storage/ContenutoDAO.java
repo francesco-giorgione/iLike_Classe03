@@ -2,12 +2,12 @@ package it.unisa.ilike.contenuti.storage;
 
 import com.google.gson.Gson;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
 import it.unisa.ilike.utils.Utils;
 
 public class ContenutoDAO {

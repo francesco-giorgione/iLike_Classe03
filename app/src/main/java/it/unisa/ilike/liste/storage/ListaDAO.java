@@ -4,22 +4,17 @@ import static it.unisa.ilike.utils.Utils.addEscape;
 
 import com.google.gson.Gson;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.account.storage.IscrittoDAO;
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
-import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
-import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
+import it.unisa.ilike.liste.application.ListaBean;
 import it.unisa.ilike.utils.Utils;
 
 /**

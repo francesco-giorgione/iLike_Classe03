@@ -1,7 +1,6 @@
 package it.unisa.ilike.contenuti.application;
 
 import java.util.List;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
  * L'interfaccia espone i servizi relativi alla gestione dei contenuti.

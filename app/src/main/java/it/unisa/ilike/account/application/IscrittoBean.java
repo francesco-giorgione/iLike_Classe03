@@ -1,12 +1,11 @@
-package it.unisa.ilike.account.storage;
+package it.unisa.ilike.account.application;
 
 import java.io.InputStream;
-import java.sql.Blob;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.liste.application.ListaBean;
+import it.unisa.ilike.recensioni.application.RecensioneBean;
 
 /**
  * Questa classe rappresenta l'iscritto di iLike.

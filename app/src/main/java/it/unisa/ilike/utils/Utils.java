@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import it.unisa.ilike.account.storage.IscrittoBean;
-import it.unisa.ilike.account.storage.UtenteBean;
+import it.unisa.ilike.account.application.IscrittoBean;
+import it.unisa.ilike.account.application.UtenteBean;
 
 public class Utils {
     // manca reale implementazione

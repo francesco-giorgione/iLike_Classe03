@@ -13,8 +13,7 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.account.storage.GestoreBean;
-import it.unisa.ilike.account.storage.GestoreDAO;
+import it.unisa.ilike.account.application.GestoreBean;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {

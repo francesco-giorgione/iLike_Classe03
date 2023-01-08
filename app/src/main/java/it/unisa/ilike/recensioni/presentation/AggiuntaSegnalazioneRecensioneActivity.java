@@ -12,13 +12,12 @@ import java.io.Serializable;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneDettagliataContenutoActivity;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {

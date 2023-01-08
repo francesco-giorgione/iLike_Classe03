@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.account.application.AccountImpl;
-import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.account.storage.UtenteBean;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.liste.presentation.CreazioneListaActivity;
 

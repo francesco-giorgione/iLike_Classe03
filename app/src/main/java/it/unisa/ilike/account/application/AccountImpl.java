@@ -13,15 +13,12 @@ import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
 import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.account.storage.GestoreDAO;
-import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.IscrittoDAO;
-import it.unisa.ilike.account.storage.UtenteBean;
-import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.liste.application.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
-import it.unisa.ilike.profili.storage.IscrittoProxyBean;
-import it.unisa.ilike.profili.storage.IscrittoRealBean;
+import it.unisa.ilike.profili.application.IscrittoProxyBean;
+import it.unisa.ilike.profili.application.IscrittoRealBean;
 
 /**
  * Un oggetto <code>AccountImpl</code> viene utilizzato per accedere ai servizi di autenticazione.

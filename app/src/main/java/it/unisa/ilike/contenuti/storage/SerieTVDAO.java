@@ -2,15 +2,12 @@ package it.unisa.ilike.contenuti.storage;
 
 import com.google.gson.Gson;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.contenuti.application.SerieTVBean;
 
 public class SerieTVDAO extends ContenutoDAO {
 

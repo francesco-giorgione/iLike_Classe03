@@ -2,12 +2,11 @@ package it.unisa.ilike.segnalazioni.application;
 
 import java.util.List;
 
-import it.unisa.ilike.account.storage.GestoreBean;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.account.application.GestoreBean;
+import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 import it.unisa.ilike.utils.Utils;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;

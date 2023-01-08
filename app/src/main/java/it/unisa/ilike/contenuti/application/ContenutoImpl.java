@@ -3,14 +3,9 @@ package it.unisa.ilike.contenuti.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
-import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 
 /**

@@ -1,11 +1,13 @@
-package it.unisa.ilike.contenuti.storage;
+package it.unisa.ilike.contenuti.application;
+
+import it.unisa.ilike.contenuti.application.ContenutoBean;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle serie TV
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class SerieTVBean extends ContenutoBean{
+public class SerieTVBean extends ContenutoBean {
 
     /**
      * Costruttore senza parametri

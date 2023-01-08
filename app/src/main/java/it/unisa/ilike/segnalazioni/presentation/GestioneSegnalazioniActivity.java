@@ -15,12 +15,12 @@ import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
+import it.unisa.ilike.segnalazioni.application.SegnalazioneBean;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
