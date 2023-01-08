@@ -67,30 +67,14 @@ public class SerieTVDAO extends ContenutoDAO {
      * @return un ArrayList contenente i SerieTVBean selezionati.
      */
     public List<ContenutoBean> search(String titolo){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("serie_tv", titolo);
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        List<ContenutoBean> contenuti = new ArrayList<>();
+        ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) super.search("serie_tv", titolo);
+        List<ContenutoBean> serieTVCercate = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
-            int id = c.getId();
-
-            String query = "select anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
-                    "from SerieTV " +
-                    "where id = " + id;
-
-            String res = queryManager.select(query);
-            SerieTVBean stv = gson.fromJson(res, SerieTVBean.class);
-
-            stv.setId(id);
-            stv.setTitolo(c.getTitolo());
-            stv.setDescrizione(c.getDescrizione());
-            stv.setCategoria(c.getCategoria());
-
-            contenuti.add(stv);
+        for(ContenutoBean c: serieTV) {
+            serieTVCercate.add(this.doRetrieveById(c.getId()));
         }
 
-        return contenuti;
+        return serieTVCercate;
     }
 
 }
