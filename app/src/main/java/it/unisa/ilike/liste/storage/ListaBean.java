@@ -105,6 +105,10 @@ public class ListaBean {
      * @param c è il contenuto da aggiungere alla collezione dei contenuti.
      */
     public void aggiungiContenuto(ContenutoBean c) {
+        if(this.contenuti == null) {
+            this.contenuti = new ArrayList<>();
+        }
+
         this.contenuti.add(c);
     }
 
