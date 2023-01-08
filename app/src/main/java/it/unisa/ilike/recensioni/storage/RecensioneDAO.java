@@ -208,21 +208,6 @@ public class RecensioneDAO {
         return recensioni;
     }
 
-    /**
-     * Questo metodo restituisce un intero che rappresenta l'id con valore maggiore presente nella tabella Recensioni del database
-     * @return id con valore maggiore presente nella tabella Recensioni del database
-     */
-    public int doRetrieveMaxIdRecensione(){
-
-        String query = "select max(id) from (select id from Recensioni)";
-
-        QueryManager queryManager= new QueryManager();
-        String res= queryManager.select(query);
-        Gson gson= new Gson();
-        int id= gson.fromJson(res, int.class);
-
-        return id;
-    }
 
     /**
      * Questo metodo consente di marcare come "cancellata" una recensione della tabella Recensioni del database, a seguito
