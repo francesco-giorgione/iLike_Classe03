@@ -39,7 +39,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         @Override
         protected ContenutoBean[] doInBackground(String... string) {
             ContenutoImpl contenutoImpl = new ContenutoImpl();
-            //this.contenutoBeans= contenutoImpl.getContenuti(string[0]);
+            //this.contenutoBeans= contenutoImpl.search(string[0], string[1]);
             return contenutoBeans;
         }
 
