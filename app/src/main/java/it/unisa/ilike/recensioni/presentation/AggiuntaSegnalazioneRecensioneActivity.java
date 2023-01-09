@@ -27,7 +27,7 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio aggiungiSegnalazione
      * contenuto in RecensioneService. Questo è necessario in quanto il metodo in questione richiama metodi
-     * delle classi SegnalazioneDAO. In Android non è consentito fare operazioni di accesso
+     * della classe SegnalazioneDAO. In Android non è consentito fare operazioni di accesso
      * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
      * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
      */
@@ -36,8 +36,8 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         Boolean isValidate = true;
 
         /**
-         * Consente di recuperare di utilizzare il metodo aggiungiSegnalazione di RecensioneService
-         * e di memorizzarne l'esito nella variabile di istanza isValidate;
+         * Consente di utilizzare il metodo aggiungiSegnalazione di RecensioneServiceve di memorizzarne
+         * l'esito nella variabile di istanza isValidate;
          * @param string array di stringhe contenente il tipo di segnalazione e la motivazione della
          *               segnalazione
          * @return true se l'operazione è andata a buon fine, false altrimenti
