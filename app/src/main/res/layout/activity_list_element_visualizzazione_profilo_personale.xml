@@ -20,11 +20,12 @@
                 android:src="@drawable/icona_serietv"/>
 
             <TextView
+                android:id="@+id/nomeContenuto"
                 android:paddingLeft="10dip"
                 android:paddingTop="10dip"
                 android:layout_width="300dip"
                 android:layout_height="match_parent"
-                android:text="Nickname iscritto"/>
+                android:text="Nome contenuto"/>
         </LinearLayout>
 
         <TextView
