@@ -22,4 +22,12 @@ public interface ContenutoService {
      */
     List<ContenutoBean> getTop3(int tipo);
 
+
+    /**
+     * Restituisce una collezione dei contenuti il cui titolo matcha con un dato titolo.
+     * @param titolo è il titolo in base a cui si vuole eseguire la ricerca.
+     * @return un ArrayList di oggetti ContenutoBean.
+     */
+    List<ContenutoBean> cerca(String titolo);
+
 }
