@@ -30,4 +30,14 @@ public interface ContenutoService {
      */
     List<ContenutoBean> cerca(String titolo);
 
+
+    /**
+     * Restituisce una collezione dei contenuti di un dato tipo il cui titolo matcha con un dato titolo.
+     * @param titolo è il titolo in base a cui si vuole eseguire la ricerca.
+     * @param tipo è il tipo del contenuto che si vuole selezionare: 0 per film, 1 per serie tv,
+     * 2 per libri, 3 per album musicali.
+     * @return un ArrayList di oggetti ContenutoBean.
+     */
+    List<ContenutoBean> cerca(String titolo, int tipo);
+
 }
