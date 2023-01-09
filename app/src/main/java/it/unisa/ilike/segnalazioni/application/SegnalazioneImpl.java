@@ -9,8 +9,6 @@ import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneExce
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
-import it.unisa.ilike.utils.Utils;
-import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 /**
  * Questa classe permette di usare i metodi relativi alle segnalazioni
@@ -48,12 +46,12 @@ public class SegnalazioneImpl implements SegnalazioneService{
      */
     @Override
     public Boolean cancellaRecensione(SegnalazioneBean s, String motivazione, GestoreBean g)
-            throws NotGestoreException, it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException, it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException {
+            throws it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException, it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException {
 
-        Utils utils = new Utils();
+        if(s == null || g == null) {
+            return false;
+        }
 
-        if(!(utils.isGestore(g)))
-            throw new NotGestoreException();
         if(motivazione.length() < 1)
             throw new MotivazioneVuotaException();
         if(motivazione.length() > 300)
@@ -79,12 +77,10 @@ public class SegnalazioneImpl implements SegnalazioneService{
      * @return valore booleano che descrive l'esito dell'operazione
      */
     @Override
-    public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g) throws NotGestoreException{
-
-        Utils utils = new Utils();
-
-        if(!(utils.isGestore(g)))
-            throw new NotGestoreException();
+    public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g) {
+        if(s == null || g == null) {
+            return false;
+        }
 
         int idRecensione = s.getRecensione().getId();
         RecensioneDAO recensioneDAO = new RecensioneDAO();
@@ -93,10 +89,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         s.setGestita(true);
         g.incrementaNumSegnalazioniGestite();
 
-        if(!r.isCancellata())
-            return true;
-        else
-            return false;
+        return !r.isCancellata();
     }
 
 }

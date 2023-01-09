@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
-import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 /**
  * Interfaccia che contiene i metodi relativi alle segnalazioni
@@ -16,8 +15,7 @@ public interface SegnalazioneService {
 
     public List<SegnalazioneBean> getSegnalazione();
     public Boolean cancellaRecensione(SegnalazioneBean s, String motivazione, GestoreBean g)
-            throws NotGestoreException, it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException, it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
-    public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g)
-            throws NotGestoreException;
+            throws it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException, it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
+    public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g);
 
 }
