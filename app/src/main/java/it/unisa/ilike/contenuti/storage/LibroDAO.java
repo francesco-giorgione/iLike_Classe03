@@ -19,7 +19,7 @@ public class LibroDAO extends ContenutoDAO {
 
         QueryManager queryManager = new QueryManager();
         String query = "SELECT autore, isbn, num_pagine as numPagine " +
-                "FROM Libri " +
+                "FROM LibriView " +
                 "WHERE id = " + contenuto.getId();
 
         Gson gson = new Gson();

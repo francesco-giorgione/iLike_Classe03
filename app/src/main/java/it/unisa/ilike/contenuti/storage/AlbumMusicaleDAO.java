@@ -20,7 +20,7 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
 
         QueryManager queryManager = new QueryManager();
         String query = "SELECT artista, data_rilascio as dataRilascio, acustica, strumentalita, tempo, valenza, durata " +
-                "FROM AlbumMusicali " +
+                "FROM AlbumMusicaliView " +
                 "WHERE id = " + contenuto.getId();
 
         Gson gson = new Gson();

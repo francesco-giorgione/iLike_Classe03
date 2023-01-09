@@ -19,7 +19,7 @@ public class SerieTVDAO extends ContenutoDAO {
 
         QueryManager queryManager = new QueryManager();
         String query = "SELECT anno_rilascio as annoRilascio, num_stagioni as numStagioni " +
-                "FROM SerieTV " +
+                "FROM SerieTVView " +
                 "WHERE id = " + contenuto.getId();
 
         Gson gson = new Gson();

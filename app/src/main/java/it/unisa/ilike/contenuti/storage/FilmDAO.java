@@ -19,7 +19,7 @@ public class FilmDAO extends ContenutoDAO {
 
         QueryManager queryManager = new QueryManager();
         String query = "SELECT anno_rilascio as annoRilascio, durata, paese, regista, attori " +
-                "FROM Film " +
+                "FROM FilmView " +
                 "WHERE id = " + contenuto.getId();
 
         Gson gson = new Gson();
