@@ -65,7 +65,12 @@ public abstract class ContenutoBean {
     }
 
     public boolean aggiungiRecensione(RecensioneBean recensione) {
-        return new RecensioneDAO().doSaveRecensione(recensione);
+        if(new RecensioneDAO().doSaveRecensione(recensione)) {
+            this.recensioni.add(recensione);
+            return true;
+        }
+
+        return false;
     }
 
 
