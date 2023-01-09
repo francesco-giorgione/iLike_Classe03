@@ -11,51 +11,44 @@ import android.widget.TextView;
 import java.util.List;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.contenuti.storage.FilmDAO;
-import it.unisa.ilike.contenuti.storage.LibroDAO;
-import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.segnalazioni.application.VisualizzazioneSegnalazioniActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
 
     /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata ad alcuni metodi
-     * delle classi FilmDAO, SerieTVDAO, AlbumMusicaleDAO e LibroDAO. In Android non è consentito
+     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo getTop3
+     * della classe <code>ContenutoService</code>. In Android non è consentito
      * fare operazioni di accesso alla rete nel main thread; dato che questa activity si trova
      * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
-     * usufruire dei metodi di cui sopra.
+     * usufruire del metodo di cui sopra.
      */
-    private class GsonResultFilm extends AsyncTask<String, Void, List<ContenutoBean>> {
+    private class GsonResultTop3Contenuti extends AsyncTask<String, Void, List<ContenutoBean>> {
 
         List<ContenutoBean> top3;
 
         /**
          * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
-         * il metodo i metodi delle classi FilmDAO, SerieTVDAO, AlbumMusicaleDAO e LibroDAO.
+         * il metodo il metodo getTop3 della classe <code>ContenutoService</code>.
          * @param string array di stringhe contenente la categoria di contenuti da recuperare dal DB
          * @return una lista di oggetti <code>ContenutoBean</code>
          */
         @Override
         protected List<ContenutoBean> doInBackground(String... string) {
+            ContenutoService contenutoService= new ContenutoImpl();
             if (string[0].equalsIgnoreCase("film")) {
-                FilmDAO dao= new FilmDAO();
-                this.top3 = dao.doRetrieveTop3();
+                this.top3 = contenutoService.getTop3(0);
             }
             else if (string[0].equalsIgnoreCase("serieTV")){
-                SerieTVDAO dao= new SerieTVDAO();
-                this.top3= dao.doRetrieveTop3();
-            }
-            else if (string[0].equalsIgnoreCase("album")){
-                AlbumMusicaleDAO dao= new AlbumMusicaleDAO();
-                this.top3= dao.doRetrieveTop3();
+                this.top3 = contenutoService.getTop3(1);
             }
             else if (string[0].equalsIgnoreCase("libro")){
-                LibroDAO dao= new LibroDAO();
-                this.top3=dao.doRetrieveTop3();
+                this.top3 = contenutoService.getTop3(2);
+            }
+            else if (string[0].equalsIgnoreCase("album")){
+                this.top3 = contenutoService.getTop3(3);
             }
             return this.top3;
         }
@@ -102,7 +95,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //fine da login
 
         String[] s= {"film"};
-        GsonResultFilm g= (GsonResultFilm) new GsonResultFilm().execute(s);
+        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
         List<ContenutoBean> top3Film= g.getContenuti();
 
         //FILM 1
@@ -120,7 +113,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));
 
         s[0]="serieTv";
-        g= (GsonResultFilm) new GsonResultFilm().execute(s);
+        g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
         List<ContenutoBean> top3SerieTV= g.getContenuti();
 
 
