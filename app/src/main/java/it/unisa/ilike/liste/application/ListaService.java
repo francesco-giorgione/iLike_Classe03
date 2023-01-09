@@ -23,7 +23,6 @@ public interface ListaService {
      * @param nome è il nome della lista che si vuole creare.
      * @param pubblica stabilisce se la lista creata deve essere pubblica o privata.
      * @return un booleano che descrive l'esito dell'operazione.
-     * @throws NotIscrittoException se i non è un iscritto.
      * @throws NomeVuotoException se 'nome' è una stringa vuota.
      * @throws InvalidNomeException se 'nome' ha un numero di caratteri maggiore di 50.
      * @throws ListaGiaEsistenteException se l'iscritto ha già una lista di nome 'nome'.

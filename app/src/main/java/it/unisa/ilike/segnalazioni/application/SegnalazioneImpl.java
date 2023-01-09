@@ -43,7 +43,6 @@ public class SegnalazioneImpl implements SegnalazioneService{
      * @param motivazione testo che motiva la cancellazione della recensione
      * @param g gestore che si occupa della cancellazione della recensione
      * @return valore booleano che descrive l'esito dell'operazione
-     * @throws NotGestoreException
      * @throws it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException
      * @throws it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException
      */
@@ -78,7 +77,6 @@ public class SegnalazioneImpl implements SegnalazioneService{
      * @param s segnalazione da rifiutare
      * @param g gestore che si occupa di rifiutare la segnalazione
      * @return valore booleano che descrive l'esito dell'operazione
-     * @throws NotGestoreException
      */
     @Override
     public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g) throws NotGestoreException{
