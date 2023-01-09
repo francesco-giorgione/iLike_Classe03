@@ -1,5 +1,10 @@
 package it.unisa.ilike.contenuti.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import it.unisa.ilike.recensioni.application.RecensioneBean;
+
 public abstract class ContenutoBean {
 
     public ContenutoBean() {
@@ -11,6 +16,7 @@ public abstract class ContenutoBean {
         this.descrizione = descrizione;
         this.categoria = categoria;
         this.valutazioneMedia = valutazioneMedia;
+        this.recensioni = new ArrayList<>();
     }
 
     public int getId() {
@@ -53,9 +59,18 @@ public abstract class ContenutoBean {
         this.valutazioneMedia = valutazioneMedia;
     }
 
+    public List<RecensioneBean> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(List<RecensioneBean> recensioni) {
+        this.recensioni = recensioni;
+    }
+
     private int id;
     private String titolo;
     private String descrizione;
     private String categoria;
     private double valutazioneMedia;
+    private List<RecensioneBean> recensioni;
 }
