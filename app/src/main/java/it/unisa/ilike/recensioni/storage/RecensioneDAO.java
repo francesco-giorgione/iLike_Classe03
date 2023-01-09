@@ -232,4 +232,34 @@ public class RecensioneDAO {
         return true;
     }
 
+
+    /**
+     * Questo metodo restituisce tutti gli oggetti della classe <code>RecensioneBean</code>
+     * memorizzati nel database contenenti le informazioni relative alle recensioni che
+     * si riferiscono ad un contenuto avente un dato id.
+     * @param idContenuto è l'id del contenuto di cui si vogliono ottenere le recensioni.
+     * @return lista di oggetti della classe <code>RecensioneBean</code> memorizzata nel database
+     */
+    public List<RecensioneBean> doRetrieveRecensioniByIdContenuto(int idContenuto) {
+        if(idContenuto < 0) {
+            return new ArrayList<>();
+        }
+
+        String query = "select id from Recensioni where " +
+                "id_contenuto = " + idContenuto;
+
+        List<RecensioneBean> recensioni = new ArrayList<>();
+        Gson gson = new Gson();
+        QueryManager queryManager = new QueryManager();
+        String jsonRes = queryManager.select(query);
+
+        RisultatoQuery2[] res = gson.fromJson(jsonRes, RisultatoQuery2[].class);
+
+        for(RisultatoQuery2 curr: res) {
+            recensioni.add(this.doRetrieveByIdRecensione(curr.id));
+        }
+
+        return recensioni;
+    }
+
 }
