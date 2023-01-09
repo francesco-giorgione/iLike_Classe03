@@ -12,7 +12,6 @@ import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.utils.Utils;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * La classe implementa i servizi relativi alla gestione delle liste.
@@ -24,9 +23,12 @@ public class ListaImpl implements ListaService {
     /** @inheritDoc */
     @Override
     public boolean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
-            NotIscrittoException, NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException {
+            NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException {
 
-        if(!Utils.isIscritto(i))        { throw new NotIscrittoException(); }
+        if(i == null) {
+            return false;
+        }
+
         if(nome.length() == 0)          { throw new NomeVuotoException(); }
         if(nome.length() > 50)          { throw new InvalidNomeException(); }
         if(Utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }

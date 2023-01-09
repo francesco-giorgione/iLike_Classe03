@@ -9,7 +9,6 @@ import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * L'interfaccia espone i servizi relativi alla gestione delle liste.
@@ -27,7 +26,7 @@ public interface ListaService {
      * @throws InvalidNomeException se 'nome' ha un numero di caratteri maggiore di 50.
      * @throws ListaGiaEsistenteException se l'iscritto ha già una lista di nome 'nome'.
      */
-    boolean creaLista(IscrittoBean i, String nome, boolean pubblica) throws NotIscrittoException,
+    boolean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
             NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException;
 
     /**
