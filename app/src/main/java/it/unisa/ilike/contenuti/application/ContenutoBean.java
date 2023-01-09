@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
 public abstract class ContenutoBean {
 
@@ -60,7 +61,7 @@ public abstract class ContenutoBean {
     }
 
     public List<RecensioneBean> getRecensioni() {
-        return recensioni;
+        return new RecensioneDAO().doRetrieveRecensioniByIdContenuto(this.id);
     }
 
     public void setRecensioni(List<RecensioneBean> recensioni) {
