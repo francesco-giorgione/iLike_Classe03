@@ -3,15 +3,18 @@ package it.unisa.ilike.contenuti.application;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -27,9 +30,9 @@ public class RicercaContenutoActivity extends AppCompatActivity {
      * thread occorre creare questa classe che estende <code>AsyncTask</code> per usufruire dei
      * metodi di cui sopra.
      */
-    private class GsonResultRicerca extends AsyncTask<String, Void, ContenutoBean[]> {
+    private class GsonResultRicerca extends AsyncTask<String, Void, List<ContenutoBean>> {
 
-        ContenutoBean[] contenutoBeans;
+        List<ContenutoBean> contenutoBeans;
 
         /**
          * Consente di recuperare un array di oggetti <code>ContenutoBean</code> utilizzando
@@ -38,9 +41,23 @@ public class RicercaContenutoActivity extends AppCompatActivity {
          * @return un array di oggetti <code>ContenutoBean</code>
          */
         @Override
-        protected ContenutoBean[] doInBackground(String... string) {
+        protected List<ContenutoBean> doInBackground(String... string) {
             ContenutoImpl contenutoImpl = new ContenutoImpl();
-            //this.contenutoBeans= contenutoImpl.search(string[0], string[1]);
+            if (string[0].equalsIgnoreCase("noFilter")) {
+                this.contenutoBeans = contenutoImpl.cerca(string[0]);
+            }
+            else {
+                int tipo=-1;
+                if (string[1].equalsIgnoreCase("film"))
+                    tipo=0;
+                else if (string[1].equalsIgnoreCase("serieTV"))
+                    tipo=1;
+                else if (string[1].equalsIgnoreCase("libro"))
+                    tipo=2;
+                else if (string[1].equalsIgnoreCase("album musicale"))
+                    tipo=3;
+                this.contenutoBeans = contenutoImpl.cerca(string[0], tipo);
+            }
             return contenutoBeans;
         }
 
@@ -49,9 +66,23 @@ public class RicercaContenutoActivity extends AppCompatActivity {
          * d'istanza
          * @return il valore della variabile d'istanza contenutoBeans
          */
-        public ContenutoBean[] getContenuti(){
+        public List<ContenutoBean> getContenuti(){
             while (this.contenutoBeans==null);
             return this.contenutoBeans;
+        }
+
+        @Override
+        protected void onPostExecute(List<ContenutoBean> contenutoBeans) {
+            ArrayList<ContenutoBean> contenutiTrovati= (ArrayList<ContenutoBean>) contenutoBeans;
+
+            if (contenutiTrovati.size()>0) {
+                for (ContenutoBean c : contenutiTrovati)
+                    adapter.add(c);
+                Log.d("TestContenutiRicerca", contenutiTrovati.toString());
+            }
+            else
+                Toast.makeText(getApplicationContext(), "Nessun contenuto trovato", Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -59,6 +90,9 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     ImageButton homepageButton;
     SearchView barraDiRicercaContenuti;
     ImageButton filtro;
+    String filtroRicerca= "noFilter";
+    ListView contenutiList;
+    RicercaContenutoAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +102,12 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         homepageButton= findViewById(R.id.homepageButton);
         barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
         filtro= findViewById(R.id.filtroRicerca);
+        contenutiList= findViewById(R.id.contenutiList);
+
+        adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
+                new ArrayList<ContenutoBean>());
+
+        contenutiList.setAdapter(adapter);
 
         filtro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,19 +115,16 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 PopupMenu menu= new PopupMenu(RicercaContenutoActivity.this, filtro);
 
                 menu.getMenuInflater().inflate(R.menu.menu_ricerca, menu.getMenu());
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        System.out.println(item.getTitle().toString());
-                        return true;                    }
-                });
+                menu.setOnMenuItemClickListener(item -> {
+                    adapter.clear();
+                    filtroRicerca=item.getTitle().toString();
+                    return true;});
                 menu.show();
             }
         });
 
-
-        Intent i = getIntent();
-        setReturnIntent();
+        //Intent i = getIntent();
+        //setReturnIntent();
 
     }
 
@@ -114,13 +151,11 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     }
 
     public void onClickCercaContenuto(View v){
-        String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
 
-        GsonResultRicerca g= (GsonResultRicerca) new GsonResultRicerca().execute(testoBarraDiRicerca);
-        ContenutoBean[] list= g.getContenuti();
-        ArrayList<ContenutoBean> contenutiTrovati= new ArrayList<>();
-        for (ContenutoBean c: list){
-            contenutiTrovati.add(c);
-        }
+        String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
+        String[] s={testoBarraDiRicerca, filtroRicerca};
+        GsonResultRicerca g;
+        g= (GsonResultRicerca) new GsonResultRicerca().execute(s);
+
     }
 }
