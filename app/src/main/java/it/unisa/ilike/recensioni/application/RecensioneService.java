@@ -10,7 +10,6 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**
  * Interfaccia che esplicita i metodi di servizio relativi alle recensioni
@@ -21,11 +20,9 @@ import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 public interface RecensioneService {
 
     public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
-            throws NotIscrittoException, TestoTroppoBreveException, InvalidTestoException, ValutazioneException;
+            throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException;
 
     public boolean aggiungiSegnalazione (int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
-            throws NotIscrittoException, InvalidTipoException, MotivazioneVuotaException, InvalidMotivazioneException;
-
-    public List<RecensioneBean> getRecensioniContenuto (ContenutoBean c);
+            throws InvalidTipoException, MotivazioneVuotaException, InvalidMotivazioneException;
 
 }
