@@ -1,12 +1,14 @@
 package it.unisa.ilike.segnalazioni.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 
@@ -16,19 +18,121 @@ import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.segnalazioni.application.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.segnalazioni.application.SegnalazioneBean;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
+
+    /**
+     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio cancellaRecensione
+     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
+     * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
+     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
+     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
+     */
+    private class GsonResultCancellaRecensione extends AsyncTask<String, Void, Boolean> {
+
+        Boolean isValidate = true;
+
+        /**
+         * Consente di utilizzare il metodo cancellaRecensione di SegnalazioneService e di memorizzarne
+         * l'esito nella variabile di istanza isValidate;
+         * @param strings array di stringhe contenente la motivazione di cancellazione
+         * @return true se l'operazione è andata a buon fine, false altrimenti
+         */
+        @Override
+        protected Boolean doInBackground(String...  strings) {
+            SegnalazioneService segnalazioneService = new SegnalazioneImpl();
+
+            try {
+                segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
+            } catch (NotGestoreException e) {
+                isValidate=false;
+                e.printStackTrace();
+            } catch (MotivazioneVuotaException e) {
+                // messaggio errore
+                isValidate=false;
+                e.printStackTrace();
+            } catch (InvalidMotivazioneException e) {
+                // messaggio errore
+                isValidate=false;
+                e.printStackTrace();
+            }
+
+            return isValidate;
+        }
+
+        /**
+         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
+         * ha terminato la sua esecuzione
+         * @return il valore della variabile d'istanza isValidate
+         */
+        public Boolean isValidate(){
+            while (this.isValidate==null);
+            return this.isValidate;
+        }
+
+    }
+
+
+    /**
+     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio rifiutaSegnalazione
+     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
+     * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
+     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
+     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
+     */
+    private class GsonResultRifiutaSegnalazione extends AsyncTask<Void, Void, Boolean> {
+
+        Boolean isValidate = true;
+
+        /**
+         * Consente di utilizzare il metodo rifiutaSegnalazione di SegnalazioneService e di memorizzarne
+         * l'esito nella variabile di istanza isValidate;
+         * @param v non occorrono argomenti a questo metodo ma AsyncTask richiede di specificare sempre
+         *          3 paramtri. In questo caso v rappresenta un segnaposto per gli argomenti mancanti.
+         * @return true se l'operazione è andata a buon fine, false altrimenti
+         */
+        @Override
+        protected Boolean doInBackground(Void...  v) {
+
+            SegnalazioneService segnalazioneService = new SegnalazioneImpl();
+            try {
+                segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
+            } catch (NotGestoreException e) {
+                // messaggio errore
+                isValidate = false;
+                e.printStackTrace();
+            }
+
+            return isValidate;
+        }
+
+        /**
+         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
+         * ha terminato la sua esecuzione
+         * @return il valore della variabile d'istanza isValidate
+         */
+        public Boolean isValidate(){
+            while (this.isValidate==null);
+            return this.isValidate;
+        }
+
+    }
+
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestione_segnalazione);
 
+        motivazioneCancellazione= findViewById(R.id.motivazioneCancellazione);
+        cancellaRecensioneButton= findViewById(R.id.cancellaRecensioneButton);
 
         Intent i = getIntent();
         setReturnIntent();
@@ -51,15 +155,12 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
     public void onClickRifiutaSegnalazione(View view) {
-        SegnalazioneService segnalazioneService = new SegnalazioneImpl();
-        boolean isValidate = true;
-        try {
-            segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
-        } catch (NotGestoreException e) {
-            // messaggio errore
-            isValidate = false;
-            e.printStackTrace();
-        }
+        boolean isValidate;
+
+        GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione)
+                new GsonResultRifiutaSegnalazione().execute(new Void[0]);
+
+        isValidate=g.isValidate();
 
         if (isValidate){
             Intent i = new Intent();
@@ -71,25 +172,20 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
     public void onClickAccettaSegnalazione(View view) {
 
-        SegnalazioneService segnalazioneService = new SegnalazioneImpl();
-        boolean isValidate = true;
+        motivazioneCancellazione.setVisibility(View.VISIBLE);
+        cancellaRecensioneButton.setVisibility(View.VISIBLE);
+    }
 
-        EditText editText = findViewById(R.id.motivazioneCancellazione);
-        String motivazione = editText.toString();
 
-        try {
-            segnalazioneService.cancellaRecensione(segnalazione, motivazione, account.getGestoreBean());
-        } catch (NotGestoreException e) {
-            e.printStackTrace();
-        } catch (MotivazioneVuotaException e) {
-            // messaggio errore
-            e.printStackTrace();
-        } catch (InvalidMotivazioneException e) {
-            // messaggio errore
-            e.printStackTrace();
-        }
+    public void onClickCancellaRecensione (View v){
 
-        if (isValidate){
+        String motivazione = motivazioneCancellazione.toString();
+        String[] s= {motivazione};
+
+        GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
+        boolean isValidate= g.isValidate();
+
+        if (isValidate) {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
             i.putExtra("account", (Serializable) account);
@@ -124,4 +220,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     private RecensioneBean recensione;
     private SegnalazioneBean segnalazione;
     private Account account;
+    private EditText motivazioneCancellazione;
+   private Button cancellaRecensioneButton;
 }

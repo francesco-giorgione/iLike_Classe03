@@ -96,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:backgroundTint="#DBA73D"
+            android:onClick="onClickCancellaRecensione"
             android:visibility="invisible"
             android:text="Cancella recensione"/>
     </LinearLayout>

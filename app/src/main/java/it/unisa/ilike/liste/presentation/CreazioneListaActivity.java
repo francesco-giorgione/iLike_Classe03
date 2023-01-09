@@ -101,7 +101,7 @@ public class CreazioneListaActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    //da finire (implementato solo il collegamento di ritorno)
+    //da finire
     public void onClickCreaLista(View v){
         TextView nomeLista= findViewById(R.id.nomeLista);
         RadioButton visibilitaPublic= findViewById(R.id.visibilitaPublic);
@@ -118,7 +118,6 @@ public class CreazioneListaActivity extends AppCompatActivity {
             //errore
         }
 
-        //??aggiungere controllo nomeLista e iscritto
 
         Account account = (Account) getIntent().getExtras().getSerializable("account");
         IscrittoBean iscritto= account.getIscrittoBean();
