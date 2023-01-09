@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/film"
+            android:title="Film" />
+
+        <item
+            android:id="@+id/serieTV"
+            android:title="serieTV" />
+
+        <item
+            android:id="@+id/libri"
+            android:title="Libri" />
+
+        <item
+            android:id="@+id/album"
+            android:title="Album musicali" />
+
+    </menu>

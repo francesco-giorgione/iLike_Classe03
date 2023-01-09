@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FFF"
+        android:background="#D1D1D1"
         android:gravity="center" >
 
         <SearchView
@@ -21,7 +21,7 @@
             android:layout_width="358dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
-            android:layout_toEndOf="@+id/logo" />
+            android:layout_toEndOf="@+id/filtroRicerca" />
 
         <Button
             android:id="@+id/CercaContenutoButton"
@@ -32,10 +32,11 @@
             android:backgroundTint="#DBA73D"
             android:layout_alignRight="@id/BarraDiRicercaContenuti"/>
 
-        <ImageView
-            android:id="@+id/logo"
+        <ImageButton
+            android:id="@+id/filtroRicerca"
             android:paddingTop="15dip"
             android:layout_width="40dip"
+            android:onClick="onClickFiltraRicerca"
             android:layout_height="40dip"
             app:srcCompat="@drawable/icona_filtro"/>
 
@@ -46,8 +47,9 @@
         android:layout_below="@id/header"
         android:background="@android:color/darker_gray"/>
 
+
     <LinearLayout
-        android:id="@+id/filtroRicerca"
+        android:id="@+id/filtroRicercaContenuto"
         android:layout_below="@id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -75,7 +77,7 @@
         android:id="@+id/contenutiList"
         android:layout_width="wrap_content"
         android:layout_height="550dp"
-        android:layout_below="@id/filtroRicerca"
+        android:layout_below="@id/filtroRicercaContenuto"
         android:layout_marginLeft="20dip"
         android:layout_marginRight="20dip">
     </ListView>
