@@ -10,16 +10,6 @@ import it.unisa.ilike.account.storage.UtenteBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 
 public class Utils {
-    // manca reale implementazione
-    public static Boolean isIscritto(UtenteBean utente) {
-        return true;
-    }
-
-    // manca reale implementazione
-    public static Boolean isGestore(UtenteBean utente) {
-        return true;
-    }
-
 
     /**
      * Il metodo restituisce true se l'iscritto dato ha già una lista di nome 'nome', false altrimenti.
