@@ -11,9 +11,10 @@ import android.widget.TextView;
 import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.contenuti.application.FilmBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
@@ -98,7 +99,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //inizio da login
         Intent i = getIntent();
         setReturnIntent();
-        //Account account = (Account) getIntent().getExtras().getSerializable("account");
+        Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
         String[] s= {"film"};
@@ -122,7 +123,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
         s[0]="serieTv";
         g= (GsonResultFilm) new GsonResultFilm().execute(s);
         List<ContenutoBean> top3SerieTV= g.getContenuti();
-
 
 
     }

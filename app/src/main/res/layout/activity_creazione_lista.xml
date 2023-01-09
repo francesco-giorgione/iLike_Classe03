@@ -97,13 +97,13 @@
     </GridLayout>
 
     <Button
-        android:id="@+id/CreazioneListaButton"
+        android:id="@+id/creazioneListaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/CreazioneListaForm"
         android:text="Crea Lista"
         android:backgroundTint="#DBA73D"
-        android:onClick="creaLista"
+        android:onClick="onClickCreaLista"
         android:layout_centerHorizontal="true"/>
 
 
