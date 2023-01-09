@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -27,41 +28,71 @@ public class VisualizzazioneHomepageActivity extends Activity {
      * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
      * usufruire del metodo di cui sopra.
      */
-    private class GsonResultTop3Contenuti extends AsyncTask<String, Void, List<ContenutoBean>> {
+    private class GsonResultTop3Contenuti extends AsyncTask<Void, Void, Void> {
 
-        List<ContenutoBean> top3;
+        //List<ContenutoBean> top3;
+        List<ContenutoBean> top3Film;
+        List<ContenutoBean> top3SerieTV;
+        List<ContenutoBean> top3Album;
+        List<ContenutoBean> top3Libri;
 
         /**
          * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
          * il metodo il metodo getTop3 della classe <code>ContenutoService</code>.
-         * @param string array di stringhe contenente la categoria di contenuti da recuperare dal DB
+         * @param voids
          * @return una lista di oggetti <code>ContenutoBean</code>
          */
+
         @Override
-        protected List<ContenutoBean> doInBackground(String... string) {
+        protected Void doInBackground(Void... voids) {
             ContenutoService contenutoService= new ContenutoImpl();
-            if (string[0].equalsIgnoreCase("film")) {
-                this.top3 = contenutoService.getTop3(0);
-            }
-            else if (string[0].equalsIgnoreCase("serieTV")){
-                this.top3 = contenutoService.getTop3(1);
-            }
-            else if (string[0].equalsIgnoreCase("libro")){
-                this.top3 = contenutoService.getTop3(2);
-            }
-            else if (string[0].equalsIgnoreCase("album")){
-                this.top3 = contenutoService.getTop3(3);
-            }
-            return this.top3;
+            this.top3Film=contenutoService.getTop3(0);
+            this.top3SerieTV=contenutoService.getTop3(1);
+            this.top3Libri=contenutoService.getTop3(2);
+            this.top3Album=contenutoService.getTop3(3);
+            return null;
         }
 
         /**
          * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
          * @return il valore della variabile d'istanza top3
          */
-        public List<ContenutoBean> getContenuti(){
-            while (this.top3==null);
-            return this.top3;
+        /*public List<ContenutoBean> getTop3Film(){
+            while (top3Film==null);
+            return top3Film;
+        }
+
+        public List<ContenutoBean> getTop3SerieTV() {
+            while (top3SerieTV==null);
+            return top3SerieTV;
+        }
+
+        public List<ContenutoBean> getTop3Album() {
+            while (top3Album==null);
+            return top3Album;
+        }
+
+        public List<ContenutoBean> getTop3Libri() {
+            while (top3Libri==null);
+            return top3Libri;
+        }*/
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+            TextView titoloFilm1= findViewById(R.id.textFilm1);
+            FilmBean film1= (FilmBean) top3Film.get(0);
+            titoloFilm1.setText(film1.getTitolo());
+            TextView ratingFilm1 = findViewById(R.id.ratingFilm1);
+            //Log.d("MyDebug", ""+film1.getValutazioneMedia());
+            ratingFilm1.setText(String.valueOf(film1.getValutazioneMedia()));
+
+            //FILM 2
+            TextView titoloFilm2= findViewById(R.id.textFilm2);
+            FilmBean film2= (FilmBean) top3Film.get(1);
+            titoloFilm2.setText(film2.getTitolo());
+            TextView ratingFilm2 = findViewById(R.id.ratingFilm2);
+            ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));
         }
     }
 
@@ -96,28 +127,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
-        String[] s= {"film"};
-        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
-        List<ContenutoBean> top3Film= g.getContenuti();
-
-        //FILM 1
-        TextView titoloFilm1= findViewById(R.id.textFilm1);
-        FilmBean film1= (FilmBean) top3Film.get(0);
-        titoloFilm1.setText(film1.getTitolo());
-        TextView ratingFilm1 = findViewById(R.id.ratingFilm1);
-        ratingFilm1.setText(String.valueOf(film1.getValutazioneMedia()));
-
-        //FILM 2
-        TextView titoloFilm2= findViewById(R.id.textFilm2);
-        FilmBean film2= (FilmBean) top3Film.get(1);
-        titoloFilm2.setText(film2.getTitolo());
-        TextView ratingFilm2 = findViewById(R.id.ratingFilm2);
-        ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));
-
-        s[0]="serieTv";
-        g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
-        List<ContenutoBean> top3SerieTV= g.getContenuti();
-
+        //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
 
     }
 
