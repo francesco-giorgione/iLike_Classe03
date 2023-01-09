@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.account.storage.UtenteBean;
+import it.unisa.ilike.liste.storage.ListaBean;
 
 public class Utils {
     // manca reale implementazione
@@ -18,8 +20,20 @@ public class Utils {
         return true;
     }
 
-    // manca reale implementazione
+
+    /**
+     * Il metodo restituisce true se l'iscritto dato ha già una lista di nome 'nome', false altrimenti.
+     * Il controllo eseguito NON è case-sensitive.
+     * @param i è l'iscritto sulle cui liste si vuole eseguire la verifica.
+     * @param nome è il nome che si vuole verificare.
+     * @return true se l'iscritto ha già una lista di nome 'nome', false altrimenti.
+     */
     public static Boolean hasLista(IscrittoBean i, String nome) {
+        for(ListaBean curr: new IscrittoDAO().doRetrieveListe(i.getEmail())) {
+            if(curr.getNome().equalsIgnoreCase(nome)) {
+                return true;
+            }
+        }
         return false;
     }
 
