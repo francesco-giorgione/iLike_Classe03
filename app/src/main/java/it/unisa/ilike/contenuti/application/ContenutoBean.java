@@ -74,6 +74,7 @@ public abstract class ContenutoBean {
     }
 
 
+
     private int id;
     private String titolo;
     private String descrizione;
