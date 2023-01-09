@@ -2,7 +2,8 @@ package it.unisa.ilike.segnalazioni.application;
 
 import java.util.List;
 
-import it.unisa.ilike.account.application.GestoreBean;
+import it.unisa.ilike.account.storage.GestoreBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 /**

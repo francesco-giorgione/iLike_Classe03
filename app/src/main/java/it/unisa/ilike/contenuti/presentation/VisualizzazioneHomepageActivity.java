@@ -12,8 +12,8 @@ import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
-import it.unisa.ilike.contenuti.application.FilmBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroDAO;

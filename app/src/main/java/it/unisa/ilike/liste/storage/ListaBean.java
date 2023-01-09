@@ -1,10 +1,10 @@
-package it.unisa.ilike.liste.application;
+package it.unisa.ilike.liste.storage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.account.application.IscrittoBean;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle liste di contenuti degli iscritti

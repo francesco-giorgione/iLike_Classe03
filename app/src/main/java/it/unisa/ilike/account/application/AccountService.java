@@ -8,6 +8,7 @@ import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
 import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
 import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.account.storage.UtenteBean;
 
 /**
  * Interfaccia esplicita i metodi di servizio per effettuare operazioni di autenticazione.

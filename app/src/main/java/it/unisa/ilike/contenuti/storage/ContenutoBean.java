@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.application;
+package it.unisa.ilike.contenuti.storage;
 
 import java.util.ArrayList;
 import java.util.List;

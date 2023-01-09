@@ -1,6 +1,4 @@
-package it.unisa.ilike.contenuti.application;
-
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+package it.unisa.ilike.contenuti.storage;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle serie TV

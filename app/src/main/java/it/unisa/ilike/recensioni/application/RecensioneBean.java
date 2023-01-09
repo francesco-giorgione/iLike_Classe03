@@ -2,8 +2,8 @@ package it.unisa.ilike.recensioni.application;
 
 import java.util.Date;
 
-import it.unisa.ilike.account.application.IscrittoBean;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle recensioni

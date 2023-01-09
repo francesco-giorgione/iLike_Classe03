@@ -1,4 +1,4 @@
-package it.unisa.ilike.account.application;
+package it.unisa.ilike.account.storage;
 
 /**
  * Questa classe rappresenta il gestore di iLike.

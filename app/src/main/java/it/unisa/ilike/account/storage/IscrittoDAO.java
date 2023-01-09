@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
-import it.unisa.ilike.account.application.IscrittoBean;
-import it.unisa.ilike.liste.application.ListaBean;
+import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
-import it.unisa.ilike.profili.application.IscrittoProxyBean;
+import it.unisa.ilike.profili.storage.IscrittoProxyBean;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.utils.Utils;

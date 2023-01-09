@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
-import it.unisa.ilike.contenuti.application.FilmBean;
 
 public class FilmDAO extends ContenutoDAO {
     /**

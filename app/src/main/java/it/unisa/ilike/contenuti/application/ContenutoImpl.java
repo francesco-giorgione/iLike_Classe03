@@ -2,13 +2,11 @@ package it.unisa.ilike.contenuti.application;
 
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;

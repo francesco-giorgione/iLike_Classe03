@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-import it.unisa.ilike.account.application.IscrittoBean;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
@@ -13,7 +13,7 @@ import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaExceptio
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
-import it.unisa.ilike.segnalazioni.application.SegnalazioneBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 import it.unisa.ilike.utils.Utils;
 import it.unisa.ilike.utils.exceptions.NotIscrittoException;

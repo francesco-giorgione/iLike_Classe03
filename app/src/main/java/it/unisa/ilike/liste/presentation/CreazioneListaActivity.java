@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.account.application.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.liste.application.ListaImpl;

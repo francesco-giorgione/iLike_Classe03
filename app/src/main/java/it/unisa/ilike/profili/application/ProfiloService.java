@@ -1,6 +1,6 @@
 package it.unisa.ilike.profili.application;
 
-import it.unisa.ilike.account.application.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 /**

@@ -1,10 +1,10 @@
-package it.unisa.ilike.account.application;
+package it.unisa.ilike.account.storage;
 
 import java.io.InputStream;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.application.ContenutoBean;
-import it.unisa.ilike.liste.application.ListaBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
 
 /**

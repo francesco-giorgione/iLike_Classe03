@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;

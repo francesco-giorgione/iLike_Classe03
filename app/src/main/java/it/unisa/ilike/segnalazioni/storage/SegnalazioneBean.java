@@ -1,6 +1,6 @@
-package it.unisa.ilike.segnalazioni.application;
+package it.unisa.ilike.segnalazioni.storage;
 
-import it.unisa.ilike.account.application.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
 
 /**

@@ -1,4 +1,4 @@
-package it.unisa.ilike.account.application;
+package it.unisa.ilike.account.storage;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

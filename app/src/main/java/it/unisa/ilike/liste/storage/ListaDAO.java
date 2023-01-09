@@ -9,12 +9,11 @@ import java.util.ArrayList;
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
-import it.unisa.ilike.liste.application.ListaBean;
 import it.unisa.ilike.utils.Utils;
 
 /**

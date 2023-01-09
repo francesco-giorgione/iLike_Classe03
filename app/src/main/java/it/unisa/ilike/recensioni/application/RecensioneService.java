@@ -2,8 +2,8 @@ package it.unisa.ilike.recensioni.application;
 
 import java.util.List;
 
-import it.unisa.ilike.account.application.IscrittoBean;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;

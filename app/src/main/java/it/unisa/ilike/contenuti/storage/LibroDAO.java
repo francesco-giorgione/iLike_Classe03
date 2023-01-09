@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.QueryManager;
-import it.unisa.ilike.contenuti.application.ContenutoBean;
-import it.unisa.ilike.contenuti.application.LibroBean;
 
 public class LibroDAO extends ContenutoDAO {
 

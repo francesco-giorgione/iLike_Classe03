@@ -18,7 +18,7 @@ import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
-import it.unisa.ilike.segnalazioni.application.SegnalazioneBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;

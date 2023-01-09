@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.application;
+package it.unisa.ilike.contenuti.storage;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi agli album musicali
