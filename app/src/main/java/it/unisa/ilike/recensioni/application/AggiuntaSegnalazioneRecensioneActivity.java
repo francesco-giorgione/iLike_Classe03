@@ -1,4 +1,4 @@
-package it.unisa.ilike.recensioni.presentation;
+package it.unisa.ilike.recensioni.application;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.presentation.VisualizzazioneDettagliataContenutoActivity;
+import it.unisa.ilike.contenuti.application.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;

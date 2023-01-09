@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.presentation;
+package it.unisa.ilike.contenuti.application;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,15 +11,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
-import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
-import it.unisa.ilike.segnalazioni.presentation.VisualizzazioneSegnalazioniActivity;
+import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.segnalazioni.application.VisualizzazioneSegnalazioniActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
 
@@ -99,7 +98,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //inizio da login
         Intent i = getIntent();
         setReturnIntent();
-        Account account = (Account) getIntent().getExtras().getSerializable("account");
+        //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
         String[] s= {"film"};

@@ -16,7 +16,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".segnalazioni.presentation.GestioneSegnalazioniActivity"
+            android:name=".segnalazioni.application.GestioneSegnalazioniActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-            android:name=".segnalazioni.presentation.VisualizzazioneSegnalazioniActivity"
+            android:name=".segnalazioni.application.VisualizzazioneSegnalazioniActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -36,7 +36,7 @@
         </activity>
 
         <activity
-            android:name=".liste.presentation.VisualizzazioneContenutiListaPersonaleActivity"
+            android:name=".liste.application.VisualizzazioneContenutiListaPersonaleActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -46,7 +46,7 @@
         </activity>
 
         <activity
-            android:name=".liste.presentation.AggiuntaContenutoListaActivity"
+            android:name=".liste.application.AggiuntaContenutoListaActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -56,7 +56,7 @@
         </activity>
 
         <activity
-            android:name=".liste.presentation.CreazioneListaActivity"
+            android:name=".liste.application.CreazioneListaActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -66,7 +66,7 @@
         </activity>
 
         <activity
-            android:name=".contenuti.presentation.RicercaContenutoActivity"
+            android:name=".contenuti.application.RicercaContenutoActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -76,7 +76,7 @@
         </activity>
 
         <activity
-            android:name=".contenuti.presentation.VisualizzazioneDettagliataContenutoActivity"
+            android:name=".contenuti.application.VisualizzazioneDettagliataContenutoActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -86,7 +86,7 @@
         </activity>
 
         <activity
-            android:name=".recensioni.presentation.AggiuntaSegnalazioneRecensioneActivity"
+            android:name=".recensioni.application.AggiuntaSegnalazioneRecensioneActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -96,7 +96,7 @@
         </activity>
 
         <activity
-            android:name=".recensioni.presentation.PubblicazioneRecensioneActivity"
+            android:name=".recensioni.application.PubblicazioneRecensioneActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -106,7 +106,7 @@
         </activity>
 
         <activity
-            android:name=".profili.presentation.VisualizzazioneProfiloPersonaleActivity"
+            android:name=".profili.application.VisualizzazioneProfiloPersonaleActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -116,7 +116,7 @@
         </activity>
 
         <activity
-            android:name=".account.presentation.RegistrazioneIscrittoActivity"
+            android:name=".account.application.RegistrazioneIscrittoActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -126,7 +126,7 @@
         </activity>
 
         <activity
-            android:name=".account.presentation.LoginActivity"
+            android:name=".account.application.LoginActivity"
             android:exported="false"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -146,7 +146,7 @@
         </activity> -->
 
         <activity
-            android:name=".contenuti.presentation.VisualizzazioneHomepageActivity"
+            android:name=".contenuti.application.VisualizzazioneHomepageActivity"
             android:exported="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait">

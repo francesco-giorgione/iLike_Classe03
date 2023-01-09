@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.presentation;
+package it.unisa.ilike.contenuti.application;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,9 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
 
 public class RicercaContenutoActivity extends AppCompatActivity {
 
