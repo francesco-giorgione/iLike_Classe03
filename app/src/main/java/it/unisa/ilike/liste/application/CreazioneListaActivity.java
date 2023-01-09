@@ -18,7 +18,6 @@ import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 public class CreazioneListaActivity extends AppCompatActivity {
 
@@ -49,8 +48,6 @@ public class CreazioneListaActivity extends AppCompatActivity {
             boolean pubblica= (boolean) objects[2];
             try {
                 this.listaCreata= listaImpl.creaLista(i, nome, pubblica);
-            } catch (NotIscrittoException e) {
-                this.listaCreata=false;
             } catch (NomeVuotoException e) {
                 this.listaCreata=false;
             } catch (InvalidNomeException e) {
