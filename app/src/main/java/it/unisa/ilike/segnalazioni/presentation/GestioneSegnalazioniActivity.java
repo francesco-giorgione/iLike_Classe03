@@ -29,24 +29,23 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio cancellaRecensione
-     * contenuto in RecensioneService. Questo è necessario in quanto il metodo in questione richiama metodi
+     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
      * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
      * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
      * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
      */
-    private class GsonResultValidate extends AsyncTask<String, Void, Boolean> {
+    private class GsonResultCancellaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
 
         /**
-         * Consente di utilizzare il metodo cancellaRecensione di RecensioneService e di memorizzarne
+         * Consente di utilizzare il metodo cancellaRecensione di SegnalazioneService e di memorizzarne
          * l'esito nella variabile di istanza isValidate;
-         * @param strings array di stringhe contenente la motivazione di cacnellazione
+         * @param strings array di stringhe contenente la motivazione di cancellazione
          * @return true se l'operazione è andata a buon fine, false altrimenti
          */
         @Override
         protected Boolean doInBackground(String...  strings) {
-
             SegnalazioneService segnalazioneService = new SegnalazioneImpl();
 
             try {
@@ -80,6 +79,53 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio rifiutaSegnalazione
+     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
+     * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
+     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
+     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
+     */
+    private class GsonResultRifiutaSegnalazione extends AsyncTask<Void, Void, Boolean> {
+
+        Boolean isValidate = true;
+
+        /**
+         * Consente di utilizzare il metodo rifiutaSegnalazione di SegnalazioneService e di memorizzarne
+         * l'esito nella variabile di istanza isValidate;
+         * @param v non occorrono argomenti a questo metodo ma AsyncTask richiede di specificare sempre
+         *          3 paramtri. In questo caso v rappresenta un segnaposto per gli argomenti mancanti.
+         * @return true se l'operazione è andata a buon fine, false altrimenti
+         */
+        @Override
+        protected Boolean doInBackground(Void...  v) {
+
+            SegnalazioneService segnalazioneService = new SegnalazioneImpl();
+            try {
+                segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
+            } catch (NotGestoreException e) {
+                // messaggio errore
+                isValidate = false;
+                e.printStackTrace();
+            }
+
+            return isValidate;
+        }
+
+        /**
+         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
+         * ha terminato la sua esecuzione
+         * @return il valore della variabile d'istanza isValidate
+         */
+        public Boolean isValidate(){
+            while (this.isValidate==null);
+            return this.isValidate;
+        }
+
+    }
+
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,15 +155,12 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
     public void onClickRifiutaSegnalazione(View view) {
-        SegnalazioneService segnalazioneService = new SegnalazioneImpl();
-        boolean isValidate = true;
-        try {
-            segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
-        } catch (NotGestoreException e) {
-            // messaggio errore
-            isValidate = false;
-            e.printStackTrace();
-        }
+        boolean isValidate;
+
+        GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione)
+                new GsonResultRifiutaSegnalazione().execute(new Void[0]);
+
+        isValidate=g.isValidate();
 
         if (isValidate){
             Intent i = new Intent();
@@ -139,7 +182,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         String motivazione = motivazioneCancellazione.toString();
         String[] s= {motivazione};
 
-        GsonResultValidate g= (GsonResultValidate) new GsonResultValidate().execute(s);
+        GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
         boolean isValidate= g.isValidate();
 
         if (isValidate) {
