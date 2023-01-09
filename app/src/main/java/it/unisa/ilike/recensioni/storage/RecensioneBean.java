@@ -1,4 +1,4 @@
-package it.unisa.ilike.recensioni.application;
+package it.unisa.ilike.recensioni.storage;
 
 import java.util.Date;
 

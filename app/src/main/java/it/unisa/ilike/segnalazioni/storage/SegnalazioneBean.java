@@ -1,7 +1,7 @@
 package it.unisa.ilike.segnalazioni.storage;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
-import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi alle segnalazioni delle recensioni

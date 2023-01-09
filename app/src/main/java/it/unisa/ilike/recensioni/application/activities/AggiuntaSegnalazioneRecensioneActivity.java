@@ -1,4 +1,4 @@
-package it.unisa.ilike.recensioni.application;
+package it.unisa.ilike.recensioni.application.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,8 +12,8 @@ import java.io.Serializable;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.VisualizzazioneDettagliataContenutoActivity;
-import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;

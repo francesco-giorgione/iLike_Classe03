@@ -1,7 +1,5 @@
 package it.unisa.ilike.recensioni.application;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
@@ -12,10 +10,10 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
-import it.unisa.ilike.utils.Utils;
 
 /**
  * Un oggetto <code>RecensioneImpl</code> serve per accedere ai metodi di servizio relativi ad una recensione

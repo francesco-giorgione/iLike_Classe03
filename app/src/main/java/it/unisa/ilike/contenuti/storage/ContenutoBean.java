@@ -3,7 +3,7 @@ package it.unisa.ilike.contenuti.storage;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
 public abstract class ContenutoBean {

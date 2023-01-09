@@ -1,4 +1,4 @@
-package it.unisa.ilike.segnalazioni.application;
+package it.unisa.ilike.segnalazioni.application.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,8 +16,10 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
+import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;

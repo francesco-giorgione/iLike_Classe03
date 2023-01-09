@@ -8,7 +8,6 @@ import java.util.List;
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
-import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.utils.Utils;
 
 /**

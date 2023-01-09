@@ -5,7 +5,7 @@ import java.util.List;
 
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.recensioni.application.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 /**
  * Questa classe rappresenta l'iscritto di iLike.

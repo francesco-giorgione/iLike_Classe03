@@ -1,4 +1,4 @@
-package it.unisa.ilike.account.application;
+package it.unisa.ilike.account.application.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,11 +13,12 @@ import java.sql.Blob;
 import java.sql.SQLException;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
 import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 

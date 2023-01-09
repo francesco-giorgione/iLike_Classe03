@@ -1,7 +1,5 @@
 package it.unisa.ilike.recensioni.application;
 
-import java.util.List;
-
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
@@ -10,6 +8,7 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 /**
  * Interfaccia che esplicita i metodi di servizio relativi alle recensioni

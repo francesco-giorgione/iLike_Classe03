@@ -1,4 +1,4 @@
-package it.unisa.ilike.liste.application;
+package it.unisa.ilike.liste.application.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,11 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class CreazioneListaActivity extends AppCompatActivity {
 

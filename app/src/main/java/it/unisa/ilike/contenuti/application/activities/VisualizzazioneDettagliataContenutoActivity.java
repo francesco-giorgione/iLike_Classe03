@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.application;
+package it.unisa.ilike.contenuti.application.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,9 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.liste.application.AggiuntaContenutoListaActivity;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
-import it.unisa.ilike.recensioni.application.PubblicazioneRecensioneActivity;
+import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
+import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 
 public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivity {
 

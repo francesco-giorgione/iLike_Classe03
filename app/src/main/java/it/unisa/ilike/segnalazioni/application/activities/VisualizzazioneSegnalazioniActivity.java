@@ -1,4 +1,4 @@
-package it.unisa.ilike.segnalazioni.application;
+package it.unisa.ilike.segnalazioni.application.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.GestoreBean;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 

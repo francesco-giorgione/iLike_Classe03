@@ -1,4 +1,4 @@
-package it.unisa.ilike.account.application;
+package it.unisa.ilike.account.application.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
+import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
 import it.unisa.ilike.account.application.exceptions.CredenzialiVuoteException;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

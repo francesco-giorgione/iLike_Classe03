@@ -1,4 +1,4 @@
-package it.unisa.ilike.profili.application;
+package it.unisa.ilike.profili.application.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.liste.application.CreazioneListaActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 

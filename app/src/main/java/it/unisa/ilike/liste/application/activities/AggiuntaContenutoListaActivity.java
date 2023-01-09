@@ -1,4 +1,4 @@
-package it.unisa.ilike.liste.application;
+package it.unisa.ilike.liste.application.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +7,28 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
-public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatActivity {
+public class AggiuntaContenutoListaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizzazione_contenuti_lista_personale);
+        setContentView(R.layout.activity_aggiunta_contenuto_lista);
+
+        Intent i = getIntent();
+        setReturnIntent();
+    }
+
+    private void setReturnIntent() {
+        Intent data = new Intent();
+        setResult(RESULT_OK,data);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     public void onClickProfilo(View v){

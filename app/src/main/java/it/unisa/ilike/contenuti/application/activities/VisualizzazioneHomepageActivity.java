@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.application;
+package it.unisa.ilike.contenuti.application.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,10 +11,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.contenuti.application.ContenutoImpl;
+import it.unisa.ilike.contenuti.application.ContenutoService;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
-import it.unisa.ilike.segnalazioni.application.VisualizzazioneSegnalazioniActivity;
+import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnalazioniActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {
 
