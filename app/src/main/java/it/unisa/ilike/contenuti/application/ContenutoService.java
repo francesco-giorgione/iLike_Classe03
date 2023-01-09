@@ -9,9 +9,17 @@ import java.util.List;
  */
 public interface ContenutoService {
     /**
-     * @param categoria è la categoria dei contenuti che si vogliono selezionare
-     * @return una collezione List dei contenuti della categoria indicata
+     * Restituisce una collezione dei 3 contenuti aventi la massima valutazione media.
+     * @return un ArrayList di oggetti ContenutoBean.
      */
-    List<ContenutoBean> getContenuti(String categoria);
+    List<ContenutoBean> getTop3();
+
+    /**
+     * Restituisce una collezione dei 3 contenuti aventi la massima valutazione media.
+     * @param tipo descrive il tipo dei contenuti che si vogliono selezionare (0 per film, 1 per
+     *             serie tv, 2 per libri, 3 per album musicali).
+     * @return un ArrayList di oggetti ContenutoBean.
+     */
+    List<ContenutoBean> getTop3(int tipo);
 
 }
