@@ -64,9 +64,10 @@ public abstract class ContenutoBean {
         return new RecensioneDAO().doRetrieveRecensioniByIdContenuto(this.id);
     }
 
-    public void setRecensioni(List<RecensioneBean> recensioni) {
-        this.recensioni = recensioni;
+    public boolean aggiungiRecensione(RecensioneBean recensione) {
+        return new RecensioneDAO().doSaveRecensione(recensione);
     }
+
 
     private int id;
     private String titolo;
