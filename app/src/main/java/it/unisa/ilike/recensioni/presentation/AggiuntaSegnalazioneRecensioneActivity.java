@@ -36,7 +36,7 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         Boolean isValidate = true;
 
         /**
-         * Consente di utilizzare il metodo aggiungiSegnalazione di RecensioneServiceve di memorizzarne
+         * Consente di utilizzare il metodo aggiungiSegnalazione di RecensioneService e di memorizzarne
          * l'esito nella variabile di istanza isValidate;
          * @param string array di stringhe contenente il tipo di segnalazione e la motivazione della
          *               segnalazione
