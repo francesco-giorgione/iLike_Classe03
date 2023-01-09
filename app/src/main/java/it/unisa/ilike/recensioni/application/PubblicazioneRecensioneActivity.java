@@ -1,4 +1,4 @@
-package it.unisa.ilike.recensioni.presentation;
+package it.unisa.ilike.recensioni.application;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,12 +13,10 @@ import java.io.Serializable;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.contenuti.application.VisualizzazioneDettagliataContenutoActivity;
+import it.unisa.ilike.contenuti.application.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.presentation.VisualizzazioneDettagliataContenutoActivity;
-import it.unisa.ilike.contenuti.presentation.VisualizzazioneHomepageActivity;
-import it.unisa.ilike.profili.presentation.VisualizzazioneProfiloPersonaleActivity;
-import it.unisa.ilike.recensioni.application.RecensioneImpl;
-import it.unisa.ilike.recensioni.application.RecensioneService;
+import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
