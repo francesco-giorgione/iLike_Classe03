@@ -6,12 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 
 public class RicercaContenutoAdapter extends ArrayAdapter<ContenutoBean> {
     private LayoutInflater inflater;
@@ -35,10 +39,18 @@ public class RicercaContenutoAdapter extends ArrayAdapter<ContenutoBean> {
 
         TextView nomeContenuto= v.findViewById(R.id.nomeContenuto);
         TextView valutazioneMedia= v.findViewById(R.id.valutazioneMedia);
+        ImageView img= v.findViewById(R.id.img);
 
         nomeContenuto.setText(c.getTitolo());
         valutazioneMedia.setText(String.valueOf(c.getValutazioneMedia()));
-
+        if (c instanceof FilmBean)
+            img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_film));
+        else if (c instanceof SerieTVBean)
+            img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_serietv));
+        else if (c instanceof LibroBean)
+            img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_libro));
+        else
+            img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_musica));
         nomeContenuto.setTag(position);
         valutazioneMedia.setTag(position);
 

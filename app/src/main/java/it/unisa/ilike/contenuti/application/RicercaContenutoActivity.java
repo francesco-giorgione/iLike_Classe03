@@ -43,7 +43,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         @Override
         protected List<ContenutoBean> doInBackground(String... string) {
             ContenutoImpl contenutoImpl = new ContenutoImpl();
-            if (string[0].equalsIgnoreCase("noFilter")) {
+            if (string[1].equalsIgnoreCase("noFilter")) {
                 this.contenutoBeans = contenutoImpl.cerca(string[0]);
             }
             else {
@@ -57,6 +57,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 else if (string[1].equalsIgnoreCase("album musicale"))
                     tipo=3;
                 this.contenutoBeans = contenutoImpl.cerca(string[0], tipo);
+                filtroRicerca="noFilter";
             }
             return contenutoBeans;
         }

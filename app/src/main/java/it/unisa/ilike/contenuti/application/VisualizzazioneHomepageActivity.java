@@ -40,23 +40,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
          * @param voids
          * @return una lista di oggetti <code>ContenutoBean</code>
          */
-        /*@Override
-        protected List<ContenutoBean> doInBackground(String... string) {
-            ContenutoService contenutoService= new ContenutoImpl();
-            if (string[0].equalsIgnoreCase("film")) {
-                this.top3 = contenutoService.getTop3(0);
-            }
-            else if (string[0].equalsIgnoreCase("serieTV")){
-                this.top3 = contenutoService.getTop3(1);
-            }
-            else if (string[0].equalsIgnoreCase("libro")){
-                this.top3 = contenutoService.getTop3(2);
-            }
-            else if (string[0].equalsIgnoreCase("album")){
-                this.top3 = contenutoService.getTop3(3);
-            }
-            return this.top3;
-        }*/
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -142,34 +125,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
-        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
-        /*List<ContenutoBean> top3Film= g.getTop3Film();
-        List<ContenutoBean> top3Serie= g.getTop3SerieTV();
-        List<ContenutoBean> top3Lirbi= g.getTop3Libri();
-        List<ContenutoBean> top3Album= g.getTop3Album();
-
-        String[] s= {"film"};
-        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
-        List<ContenutoBean> top3Film= g.getContenuti();
-
-        //FILM 1
-        TextView titoloFilm1= findViewById(R.id.textFilm1);
-        FilmBean film1= (FilmBean) top3Film.get(0);
-        titoloFilm1.setText(film1.getTitolo());
-        TextView ratingFilm1 = findViewById(R.id.ratingFilm1);
-        ratingFilm1.setText(String.valueOf(film1.getValutazioneMedia()));
-
-        //FILM 2
-        TextView titoloFilm2= findViewById(R.id.textFilm2);
-        FilmBean film2= (FilmBean) top3Film.get(1);
-        titoloFilm2.setText(film2.getTitolo());
-        TextView ratingFilm2 = findViewById(R.id.ratingFilm2);
-        ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));*/
-
-        /*s[0]="serieTv";
-        g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(s);
-        List<ContenutoBean> top3SerieTV= g.getContenuti();*/
-
+        //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
 
     }
 
