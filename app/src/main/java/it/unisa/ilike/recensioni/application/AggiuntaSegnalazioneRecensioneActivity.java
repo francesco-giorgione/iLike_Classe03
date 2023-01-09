@@ -19,7 +19,6 @@ import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
@@ -50,10 +49,6 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
             int tipo= Integer.parseInt(string[0]);
             try {
                 recensioneService.aggiungiSegnalazione(tipo, string[1], recensione, account.getIscrittoBean());
-            } catch (NotIscrittoException e) {
-                //messaggio errore
-                isValidate = false;
-                e.printStackTrace();
             } catch (InvalidTipoException e) {
                 //messaggio errore
                 isValidate = false;

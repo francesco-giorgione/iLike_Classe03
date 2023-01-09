@@ -21,7 +21,6 @@ import it.unisa.ilike.recensioni.application.RecensioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
-import it.unisa.ilike.utils.exceptions.NotGestoreException;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
@@ -48,9 +47,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
             try {
                 segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
-            } catch (NotGestoreException e) {
-                isValidate=false;
-                e.printStackTrace();
             } catch (MotivazioneVuotaException e) {
                 // messaggio errore
                 isValidate=false;
@@ -99,13 +95,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void...  v) {
 
             SegnalazioneService segnalazioneService = new SegnalazioneImpl();
-            try {
-                segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
-            } catch (NotGestoreException e) {
-                // messaggio errore
-                isValidate = false;
-                e.printStackTrace();
-            }
+            isValidate = segnalazioneService.rifiutaSegnalazione(segnalazione, account.getGestoreBean());
 
             return isValidate;
         }

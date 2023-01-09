@@ -20,7 +20,6 @@ import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleActivit
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
-import it.unisa.ilike.utils.exceptions.NotIscrittoException;
 
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
@@ -52,10 +51,6 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
             try {
                 recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
-            } catch (NotIscrittoException e) {
-                // messaggio di errore
-                isValidate = false;
-                e.printStackTrace();
             } catch (TestoTroppoBreveException e) {
                 // messaggio di errore
                 isValidate = false;
