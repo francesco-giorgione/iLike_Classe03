@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
@@ -48,8 +49,6 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
-            Account account = (Account) getIntent().getExtras().getSerializable("account");
-            ContenutoBean contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
             int valutazioneContenuto= Integer.parseInt(string[1]);
 
@@ -113,14 +112,14 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         TextView descTextView = findViewById(R.id.testoRecensione);
         String descrizioneRecensione = (String) descTextView.getText();
 
-        String s[]={descrizioneRecensione, String.valueOf(valutazioneContenuto)};
-        GsonResultCreaRecensione g= (GsonResultCreaRecensione) new GsonResultCreaRecensione().execute(s);
+        String s[] = {descrizioneRecensione, String.valueOf(valutazioneContenuto)};
+        GsonResultCreaRecensione g = (GsonResultCreaRecensione) new GsonResultCreaRecensione().execute(s);
 
-        boolean isValidate= g.isValidate();
+        boolean isValidate = g.isValidate();
 
-        if(isValidate){
-            Account account = (Account) getIntent().getExtras().getSerializable("account");
-            ContenutoBean contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        if (isValidate) {
+            account = (Account) getIntent().getExtras().getSerializable("account");
+            contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
             Intent i = new Intent();
             i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
@@ -131,9 +130,16 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     }
 
     public void onClickProfilo(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivity(i);
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+            i.putExtra("account", (Serializable) account);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
 
     public void onClickHomepage(View v){
@@ -141,4 +147,8 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
         startActivity(i);
     }
+
+
+    private Account account;
+    private ContenutoBean contenuto;
 }

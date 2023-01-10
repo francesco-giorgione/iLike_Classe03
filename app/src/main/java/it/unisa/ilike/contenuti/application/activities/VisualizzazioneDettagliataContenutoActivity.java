@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.ContenutoService;
 import it.unisa.ilike.contenuti.application.VisualizzazioneDettagliataContenutoAdapter;
@@ -104,6 +106,9 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         profiloButton= findViewById(R.id.profiloButton);
         homepageButton= findViewById(R.id.homepageButton);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        //contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+
         Intent i = getIntent();
         int idContenuto= i.getIntExtra("idContenuto", -1);
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
@@ -133,9 +138,16 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickProfilo(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivity(i);
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+            i.putExtra("account", (Serializable) account);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
 
     public void onClickHomepage(View v){
@@ -145,16 +157,30 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickAggiungiRecensione(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), PubblicazioneRecensioneActivity.class);
-        startActivity(i);
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), PubblicazioneRecensioneActivity.class);
+            i.putExtra("account", (Serializable) account);
+            i.putExtra("contenuto", (Serializable) c);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
 
     public void onClickAggiungiContenutoAllaLista (View v){
-        Intent i = new Intent();
-        i.putExtra("Account", (Serializable) null);
-        i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
-        startActivity(i);
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.putExtra("Account", (Serializable) null);
+            i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
-
+    private Account account;
 }
