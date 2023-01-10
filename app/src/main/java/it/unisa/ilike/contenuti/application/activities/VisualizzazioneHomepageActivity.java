@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.io.Serializable;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
+import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
@@ -177,11 +179,23 @@ public class VisualizzazioneHomepageActivity extends Activity {
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
             startActivity(i);
-        }else {
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), LoginActivity.class);
-            startActivity(i);
-        }
+        }else
+            if (account.isIscritto() == Boolean.FALSE){
+                // logout
+
+                AccountService accountService = new AccountImpl();
+                account = accountService.logout(account.getGestoreBean());
+
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+                i.putExtra("account", (Serializable) account);
+                startActivity(i);
+            }
+            else{
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
     }
 
     public void onClickSearchBar(View v){
