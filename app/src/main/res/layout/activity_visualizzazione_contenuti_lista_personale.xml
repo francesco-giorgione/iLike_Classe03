@@ -53,60 +53,13 @@
         android:textSize="20dp" />
 
     <ListView
+        android:id="@+id/listaContenutiListaPersonale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView">
 
     </ListView>
 
-    <!-- singolo elemento del ListView
-
-    <RelativeLayout
-        android:id="@+id/Contenuto1"
-        android:layout_width="95dp"
-        android:layout_height="130dp"
-        android:layout_below="@id/textView"
-        android:layout_marginTop="20dip"
-        android:layout_marginLeft="5dip"
-        android:layout_marginRight="10dip">
-
-        <TextView
-            android:id="@+id/titoloContenuto1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Titolo"/>
-
-        <ImageView
-            android:id="@+id/imgContenuto1"
-            android:layout_width="65dp"
-            android:layout_height="68dp"
-            android:layout_below="@id/titoloContenuto1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dip"
-            android:src="@drawable/logo" />
-
-        <ImageView
-            android:id="@+id/starContenuto1"
-            android:layout_width="20dip"
-            android:layout_height="20dip"
-            android:layout_below="@id/imgContenuto1"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/star" />
-
-        <TextView
-            android:id="@+id/ratingContenuto1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgContenuto1"
-            android:layout_alignLeft="@id/starContenuto1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp"
-            android:text="4,5" />
-
-    </RelativeLayout>
-
-    -->
 
     <!--FOOTER -->
 
