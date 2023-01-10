@@ -15,11 +15,12 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/icona"
                 android:layout_width="20dip"
-                android:layout_height="match_parent"
-                android:src="@drawable/icona_serietv"/>
+                android:layout_height="match_parent"/>
 
             <TextView
+                android:id="@+id/nickname"
                 android:paddingLeft="10dip"
                 android:paddingTop="10dip"
                 android:layout_width="300dip"
@@ -28,6 +29,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/testoRecensione"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Testo recensione"/>
@@ -58,6 +60,5 @@
         android:layout_height="1dp"
         android:layout_below="@id/layoutRecensioniList"
         android:background="@android:color/black"/>
-
 
 </RelativeLayout>

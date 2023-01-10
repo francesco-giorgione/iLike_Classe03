@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,14 @@ import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class RicercaContenutoActivity extends AppCompatActivity {
+
+    ImageButton profiloButton;
+    ImageButton homepageButton;
+    SearchView barraDiRicercaContenuti;
+    ImageButton filtro;
+    String filtroRicerca= "noFilter";
+    ListView contenutiList;
+    RicercaContenutoAdapter adapter;
 
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
@@ -92,14 +101,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         }
     }
 
-    ImageButton profiloButton;
-    ImageButton homepageButton;
-    SearchView barraDiRicercaContenuti;
-    ImageButton filtro;
-    String filtroRicerca= "noFilter";
-    ListView contenutiList;
-    RicercaContenutoAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,8 +130,8 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             }
         });
 
-        //Intent i = getIntent();
-        //setReturnIntent();
+        Intent i = getIntent();
+        setReturnIntent();
 
     }
 
@@ -166,5 +167,14 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(getApplicationContext(), "Scrivere almeno 4 caratteri!", Toast.LENGTH_LONG).show();
+    }
+
+    public void onClickVisualizzaContenuto(View v){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
+        TextView titolo= (TextView) v;
+        int id= (int)titolo.getTag();
+        i.putExtra("idContenuto", id);
+        startActivity(i);
     }
 }
