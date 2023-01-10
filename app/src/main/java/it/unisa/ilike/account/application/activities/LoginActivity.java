@@ -3,6 +3,7 @@ package it.unisa.ilike.account.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,13 +22,13 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 
 public class LoginActivity extends AppCompatActivity {
 
-    boolean checkLogin=true;
-    private AccountService accountService;
+    boolean checkLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        checkLogin=false;
     }
 
     /**
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private class GsonResultLogin extends AsyncTask<String, Void, Account> {
 
-        Account account;
+        String messaggio= null;
 
         /**
          * Consente di recuperare un oggetto Account utilizzando il metodo di servizio login della
@@ -49,63 +50,63 @@ public class LoginActivity extends AppCompatActivity {
          */
         @Override
         protected Account doInBackground(String... string) {
+            Log.d("debugLogin", "in doInBackground");
+
             AccountService accountService = new AccountImpl();
             try {
-                this.account= accountService.login(string[0], string[1]);
-                return account;
+                return accountService.login(string[0], string[1]);
             } catch (CredenzialiVuoteException e) {
                 //ritorno al login e messaggio
                 checkLogin=false;
-                Toast toast = Toast.makeText(getApplicationContext(), "Inserire le credenziali", Toast.LENGTH_LONG);
-                toast.show();
+                messaggio="Credenziali vuote";
                 return null;
             } catch (CredenzialiErrateException e) {
                 //ritorno al login e messaggio
                 checkLogin=false;
-                Toast toast = Toast.makeText(getApplicationContext(), "Inserire le giuste credenziali", Toast.LENGTH_LONG);
-                toast.show();
+                messaggio="Credenziali errate";
                 return null;
             }
         }
 
-        /**
-         * Metodo che restituisce l'account utente memorizzato nella classe come variabile d'istanza
-         * @return il valore della variabile d'istanza account
-         */
-        public Account getAccount(){
-            while (this.account==null);
-            return this.account;
+        public String getMessaggio(){
+            while (this.messaggio==null);
+            return messaggio;
         }
-    }
 
-
-    public void onClickLogin(View view) {
-
-        // prendi i campi email/nickname e password
-        TextView username = findViewById(R.id.username);
-        String email = (String) username.getText();
-        TextView passwordText = findViewById(R.id.password);
-        String password = (String) passwordText.getText();
-        Account account = null;
-        String[] s ={email, password};
-        GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
-        account= g.getAccount();
-
-        if (checkLogin){
-            if(account.isIscritto()){
-                Intent i = new Intent();
-                i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-                i.putExtra("account", (Serializable) account);
-                startActivity(i);
-            }
-            else
-                if(account.isIscritto() != null){
+        @Override
+        protected void onPostExecute(Account account) {
+            Log.d("debugLogin", "in onPostExecute");
+            if (checkLogin){
+                Log.d("debugLogin", "loginOK");
+                if(account.isIscritto() == Boolean.TRUE){
+                    messaggio="Login iscritto ok";
                     Intent i = new Intent();
                     i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", (Serializable) account);
                     startActivity(i);
                 }
+            }
+            else{
+                Log.d("debugLogin", "login not ok");
+                messaggio="Login not ok";
+            }
         }
+    }
+
+
+    public void onClickLogin(View view) {
+        Log.d("debugLogin", "in onClickLogin");
+        checkLogin=false;
+
+        // prendi i campi email/nickname e password
+        TextView username = findViewById(R.id.username);
+        String email = String.valueOf(username.getText());
+        TextView passwordText = findViewById(R.id.password);
+        String password = String.valueOf(passwordText.getText());
+        String[] s ={email, password};
+        GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
+        while (g.getMessaggio()==null);
+        Toast.makeText(this, g.getMessaggio(), Toast.LENGTH_LONG).show();
     }
 
     public void onClickRegistrazioneLogin(View view){
