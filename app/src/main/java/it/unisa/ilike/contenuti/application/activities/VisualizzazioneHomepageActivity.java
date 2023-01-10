@@ -75,7 +75,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
         protected void onPostExecute(Void unused) {
             Log.d("MyDebug", "sono in onPostExecute");
 
-
             //CONTENUTO 1
             TextView titoloContenuto1= findViewById(R.id.nomeContenuto1);
             titoloContenuto1.setText(c1.getTitolo());
@@ -164,7 +163,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
 
         Intent i = getIntent();
         setReturnIntent();
-
         //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
         GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
     }
@@ -185,7 +183,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
             i.setClass(getApplicationContext(), LoginActivity.class);
             startActivity(i);
         }
-
     }
 
     public void onClickSearchBar(View v){
@@ -205,8 +202,8 @@ public class VisualizzazioneHomepageActivity extends Activity {
     public void onClickVisualizzaContenuto(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
-        TextView titolo= (TextView) v;
-        int id= (int)titolo.getTag();
+        TextView titolo = (TextView) v;
+        int id = (int) titolo.getTag();
         i.putExtra("idContenuto", id);
         i.putExtra("account", (Serializable) account);
         startActivity(i);
