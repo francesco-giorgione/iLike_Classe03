@@ -103,30 +103,6 @@
         android:layout_height="150dp"
         android:layout_below="@+id/liste">
 
-        <!-- singolo elemento
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nome lista 1"
-                android:textSize="15dp"
-                android:layout_marginTop="10dp"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/info20"
-                android:layout_marginLeft="250dp"/>
-
-        </LinearLayout>
-
-        -->
     </ListView>
 
 

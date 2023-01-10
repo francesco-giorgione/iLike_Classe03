@@ -15,6 +15,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iconaContenuto"
                 android:layout_width="20dip"
                 android:layout_height="match_parent"
                 android:src="@drawable/icona_serietv"/>
@@ -29,6 +30,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/testoRecensione"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Testo recensione"/>
@@ -39,15 +41,19 @@
             android:background="#D1D1D1">
 
             <ImageButton
+                android:id="@+id/altreSegnalazioni"
                 android:layout_marginLeft="200dip"
                 android:layout_width="50dip"
                 android:layout_height="50dip"
+                android:onClick="onClickAggiungiSegnalazione"
                 android:src="@drawable/icona_altre_segnalazioni"/>
 
             <Button
+                android:id="@+id/spoilerAlert"
                 android:layout_marginLeft="10dip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onClickAggiungiSegnalazione"
                 android:backgroundTint="#DBA73D"
                 android:text="Spoiler Alert"/>
 
