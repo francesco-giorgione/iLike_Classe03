@@ -1,23 +1,17 @@
 package it.unisa.ilike.liste.application;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
-import java.util.List;
+import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -29,7 +23,7 @@ public class VisualizzazioneContenutiListaPersonaleAdapter extends ArrayAdapter<
 
     private LayoutInflater inflater;
 
-    public VisualizzazioneContenutiListaPersonaleAdapter(@NonNull Context context, int resource, @NonNull List<ContenutoBean> objects) {
+    public VisualizzazioneContenutiListaPersonaleAdapter(@NonNull Context context, int resource, @NonNull ArrayList<ContenutoBean> objects) {
         super(context, resource, objects);
         inflater = LayoutInflater.from(context);
     }

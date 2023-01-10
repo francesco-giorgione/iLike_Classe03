@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.Serializable;
 
@@ -17,6 +17,8 @@ import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRece
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     public void onClickInfo(View v){
         Intent i = new Intent();
+        TextView lista= (TextView) v;
+        i.putExtra("nomeLista", lista.getText());
         i.setClass(getApplicationContext(), VisualizzazioneContenutiListaPersonaleActivity.class);
         startActivity(i);
     }

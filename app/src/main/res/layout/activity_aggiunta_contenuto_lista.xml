@@ -37,8 +37,8 @@
         android:layout_height="600dip"
         android:layout_below="@id/header"
         android:layout_marginTop="20dip">
-
     </ListView>
+
 
     <!--FOOTER -->
     <RelativeLayout
