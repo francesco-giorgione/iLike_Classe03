@@ -1,5 +1,6 @@
 package it.unisa.ilike.account.application;
 
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -108,12 +109,7 @@ public class AccountImpl implements AccountService {
     }
 
 
-    /**
-     * Questo metodo consente di recuperare l’utente dal DB tramite le sue credenziali.
-     * @param email rappresenta l'email/nickmane dell'utente
-     * @param password rappresenta la password dell'utente
-     * @return l'oggetto account salvato nell'application context
-     */
+    /** @inheritDoc */
     public Account login(String email, String password) throws CredenzialiVuoteException, CredenzialiErrateException {
         IscrittoDAO iscrittoDAO = new IscrittoDAO();
         GestoreDAO gestoreDAO = new GestoreDAO();
@@ -143,10 +139,7 @@ public class AccountImpl implements AccountService {
     }
 
 
-    /**
-     * Questo metodo consente di effettuare il logout dell’utente.
-     * @param u rappresenta l'oggetto utente che deve vuole effettuare il logout
-     */
+    /** @inheritDoc */
     public Account logout(UtenteBean u){
         if (u instanceof IscrittoBean){
             IscrittoBean iscritto = (IscrittoBean) u;
@@ -165,25 +158,10 @@ public class AccountImpl implements AccountService {
         return new Account(null, null);
     }
 
-    @Override
-    public Account registrazioneIscritto(String email, String password, String nome, String cognome, String nickname, String bio, Blob foto) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
-        return null;
-    }
 
-
-    /**
-     * Questo metodo consente di effettuare la registrazione di un iscritto.
-     * @param email rappresenta l'email dell'iscritto con la quale effettuare il login
-     * @param password rappresenta la password dell'iscritto con la quale effettuare il login
-     * @param nome rappresenta il testo contenente il nome dell'iscritto
-     * @param cognome rappresenta il testo contenente il cognome dell'iscritto
-     * @param nickname rappresenta il nickname dell'iscritto con la quale effettuare il login
-     * @param bio rappresenta il testo contenente la bio dell'iscritto
-     * @param foto rappresenta la foto profilo dell'iscritto
-     * @return l'oggetto Account se la registrazione è andata a buon fine, Null altrimenti
-     */
+    /** @inheritDoc */
     public Account registrazioneIscritto(String email, String password, String nome,
-                                         String cognome, String nickname, String bio, String foto)
+                                         String cognome, String nickname, String bio, InputStream foto)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
 
         //NOTA --> la foto passata come argomento è una stringa occorre fare la conversione in Blob
@@ -204,13 +182,12 @@ public class AccountImpl implements AccountService {
                         iscritto = new IscrittoProxyBean(email, passwordCrittografata, nickname, nome, cognome, bio);
                     }
                     else {
-                        //iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, foto);
-                        iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, null);
+                        iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, foto);
                     }
 
                     IscrittoDAO iscrittoDAO = new IscrittoDAO();
                     iscrittoDAO.doSave(iscritto);
-                     Account account = new Account(iscritto, null);
+                    Account account = new Account(iscritto, null);
                     return account;
 
                 }else throw new DatiIscrittoVuotiException();
