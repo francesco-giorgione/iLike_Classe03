@@ -112,31 +112,6 @@ public class ContenutoDAO {
     }
 
 
-    /**
-     * Restituisce una collezione dei 3 contenuti di un certo tipo (es. tutti i film)
-     * aventi la massima valutazione media.
-     * @param tipo - è il tipo del contenuto di cui si vuole eseguire il fetch ('film' per film,
-     *             'serie_tv' per serie tv, 'libro' per libri, 'album' per album musicali, '%' per
-     *             tutti i tipi).
-     * @return un ArrayList contenente 3 contenuti di un certo tipo (es. film, serie tv, ecc.).
-     */
-    public List<ContenutoBean> doRetrieveTop3ByTipo(String tipo) {
-        if(!tipo.equals("%") && !tipo.equals("film") && !tipo.equals("serie_tv") && !tipo.equals("libro") && !tipo.equals("album")) {
-            return null;
-        }
-
-        QueryManager queryManager = new QueryManager();
-        Gson gson = new Gson();
-        String query = "SELECT top 3 id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
-                "FROM ContenutiRid " +
-                "where tipo like '%" + tipo + "%' " +
-                "order by valutazione_media desc";
-
-        String jsonRes = queryManager.select(query);
-        NotAbstractContenutoBean[] res = gson.fromJson(jsonRes, NotAbstractContenutoBean[].class);
-        return new ArrayList<>(Arrays.asList(res));
-    }
-
 
     /**
      * Restituisce una collezione di contenuti di un certo tipo (es. film) che matchano con un dato titolo.

@@ -42,21 +42,6 @@ public class SerieTVDAO extends ContenutoDAO {
 
 
     /**
-     * Restituisce una collezione delle 3 serie tv aventi la massima valutazione media.
-     * @return un ArrayList contenente 3 oggetti SerieTVBean.
-     */
-    public List<ContenutoBean> doRetrieveTop3() {
-        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("serie_tv");
-        List<ContenutoBean> topSerieTV = new ArrayList<>();
-
-        for(ContenutoBean c : contenuti) {
-            topSerieTV.add(this.doRetrieveById(c.getId()));
-        }
-
-        return topSerieTV;
-    }
-
-    /**
      * Restituisce una collezione di serie tv che matchano con un dato titolo.
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente i SerieTVBean selezionati.

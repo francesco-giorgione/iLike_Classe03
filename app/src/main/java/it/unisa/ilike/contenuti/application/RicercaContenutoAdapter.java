@@ -38,6 +38,7 @@ public class RicercaContenutoAdapter extends ArrayAdapter<ContenutoBean> {
 
 
         TextView nomeContenuto= v.findViewById(R.id.nomeContenuto);
+        nomeContenuto.setTag(c.getId());
         TextView valutazioneMedia= v.findViewById(R.id.valutazioneMedia);
         ImageView img= v.findViewById(R.id.img);
 
@@ -51,8 +52,6 @@ public class RicercaContenutoAdapter extends ArrayAdapter<ContenutoBean> {
             img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_libro));
         else
             img.setImageDrawable(v.getResources().getDrawable(R.drawable.icona_musica));
-        nomeContenuto.setTag(position);
-        valutazioneMedia.setTag(position);
 
         return v;
     }

@@ -29,54 +29,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
      * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
      * usufruire del metodo di cui sopra.
      */
-    /*private class GsonResultTop3Contenuti extends AsyncTask<Void, Void, Void> {
-
-        List<ContenutoBean> top3Film;
-        List<ContenutoBean> top3SerieTV;
-        List<ContenutoBean> top3Album;
-        List<ContenutoBean> top3Libri;*/
-
-        /**
-         * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
-         * il metodo il metodo getTop3 della classe <code>ContenutoService</code>.
-         * @param voids
-         * @return una lista di oggetti <code>ContenutoBean</code>
-         */
-
-        /*@Override
-        protected Void doInBackground(Void... voids) {
-            ContenutoService contenutoService= new ContenutoImpl();
-            this.top3Film=contenutoService.getTop3(0);
-            this.top3SerieTV=contenutoService.getTop3(1);
-            this.top3Libri=contenutoService.getTop3(2);
-            this.top3Album=contenutoService.getTop3(3);
-            return null;
-        }*/
-
-        /**
-         * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
-         * @return il valore della variabile d'istanza top3
-         */
-
-        /*@Override
-        protected void onPostExecute(Void unused) {
-            Log.d("MyDebug", "sono in onPostExecute");
-            TextView titoloFilm1= findViewById(R.id.textFilm1);
-            FilmBean film1= (FilmBean) top3Film.get(0);
-            titoloFilm1.setText(film1.getTitolo());
-            TextView ratingFilm1 = findViewById(R.id.ratingFilm1);
-            //Log.d("MyDebug", ""+film1.getValutazioneMedia());
-            ratingFilm1.setText(String.valueOf(film1.getValutazioneMedia()));
-
-            //FILM 2
-            TextView titoloFilm2= findViewById(R.id.textFilm2);
-            FilmBean film2= (FilmBean) top3Film.get(1);
-            titoloFilm2.setText(film2.getTitolo());
-            TextView ratingFilm2 = findViewById(R.id.ratingFilm2);
-            ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));
-        }
-    }*/
-
 
     private class GsonResultContenuti extends AsyncTask<Void, Void, Void> {
 
@@ -125,6 +77,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
             //CONTENUTO 1
             TextView titoloContenuto1= findViewById(R.id.nomeContenuto1);
             titoloContenuto1.setText(c1.getTitolo());
+            titoloContenuto1.setTag(c1.getId());
             TextView ratingFilm1 = findViewById(R.id.valutazioneMediaContenuto1);
             ratingFilm1.setText(String.valueOf(c1.getValutazioneMedia()));
             ImageView icona= findViewById(R.id.imgContenuto1);
@@ -141,6 +94,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
             //CONTENUTO 2
             TextView titoloContenuto2= findViewById(R.id.nomeContenuto2);
             titoloContenuto2.setText(c2.getTitolo());
+            titoloContenuto2.setTag(c2.getId());
             TextView ratingFilm2 = findViewById(R.id.valutazioneMediaContenuto2);
             ratingFilm2.setText(String.valueOf(c2.getValutazioneMedia()));
             ImageView icona2= findViewById(R.id.imgContenuto2);
@@ -157,6 +111,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
             //CONTENUTO 3
             TextView titoloContenuto3= findViewById(R.id.nomeContenuto3);
             titoloContenuto3.setText(c3.getTitolo());
+            titoloContenuto3.setTag(c3.getId());
             TextView ratingFilm3 = findViewById(R.id.valutazioneMediaContenuto3);
             ratingFilm3.setText(String.valueOf(c3.getValutazioneMedia()));
             ImageView icona3= findViewById(R.id.imgContenuto3);
@@ -168,8 +123,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
                 icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
             else
                 icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
-
-
         }
     }
 
@@ -232,6 +185,15 @@ public class VisualizzazioneHomepageActivity extends Activity {
     public void onClickVisualizzaSegnalazioni (View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+        startActivity(i);
+    }
+
+    public void onClickVisualizzaContenuto(View v){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
+        TextView titolo= (TextView) v;
+        int id= (int)titolo.getTag();
+        i.putExtra("idContenuto", id);
         startActivity(i);
     }
 }
