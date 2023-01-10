@@ -33,7 +33,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
      * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
      * usufruire del metodo di cui sopra.
      */
-
     private class GsonResultContenuti extends AsyncTask<Void, Void, Void> {
 
         ContenutoBean c1;
