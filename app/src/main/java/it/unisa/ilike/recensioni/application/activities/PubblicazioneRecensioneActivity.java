@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
@@ -56,15 +58,18 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             } catch (TestoTroppoBreveException e) {
                 // messaggio di errore
                 isValidate = false;
-                e.printStackTrace();
+                Toast toast = Toast.makeText(getApplicationContext(), "Il testo della recensione non rispetta il numero minimo di 3 caratteri!", Toast.LENGTH_LONG);
+                toast.show();
             } catch (InvalidTestoException e) {
                 // messaggio di errore
                 isValidate = false;
-                e.printStackTrace();
+                Toast toast = Toast.makeText(getApplicationContext(), "Il testo della recensione non può superare i 1000 caratteri!", Toast.LENGTH_LONG);
+                toast.show();
             } catch (ValutazioneException e) {
                 // messaggio di errore
                 isValidate = false;
-                e.printStackTrace();
+                Toast toast = Toast.makeText(getApplicationContext(), "La valutazione inserita non è valida", Toast.LENGTH_LONG);
+                toast.show();
             }
 
             return isValidate;
@@ -121,7 +126,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
             i.putExtra("account", (Serializable) account);
             i.putExtra("contenuto", (Serializable) contenuto);
-            startActivityForResult(i, 878);
+            startActivity(i);
         }//else go to pubblicazione recensione
     }
 

@@ -8,7 +8,11 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
@@ -27,6 +31,9 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         profiloButton= findViewById(R.id.profiloButton);
         homepageButton= findViewById(R.id.homepageButton);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        // aggiungere settaggio dei parametri per visualizzare le informazioni dei contenuti
         Intent i = getIntent();
         int idContenuto= i.getIntExtra("idContenuto", -1);
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
@@ -58,6 +65,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     public void onClickAggiungiRecensione(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), PubblicazioneRecensioneActivity.class);
+        i.putExtra("account", (Serializable) account);
+        i.putExtra("contenuto", (Serializable) contenuto);
         startActivity(i);
     }
 
@@ -66,5 +75,6 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
         startActivity(i);
     }
-
+    private Account account;
+    private ContenutoBean contenuto;
 }
