@@ -43,6 +43,12 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onClickInfo(View view){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), GestioneSegnalazioniActivity.class);
+        startActivity(i);
+    }
+
 
     public void onClickHomepage(View view) {
         Intent i = new Intent();
