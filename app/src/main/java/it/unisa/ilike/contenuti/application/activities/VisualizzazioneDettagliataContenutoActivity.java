@@ -138,7 +138,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickProfilo(View v){
-        if(account.isIscritto()) {
+        if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
@@ -158,7 +158,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickAggiungiRecensione(View v){
-        if(account.isIscritto()) {
+        if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), PubblicazioneRecensioneActivity.class);
             i.putExtra("account", (Serializable) account);
@@ -172,10 +172,11 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickAggiungiContenutoAllaLista (View v){
-        if(account.isIscritto()) {
+        if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
             i.putExtra("Account", (Serializable) null);
             i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
+            i.putExtra("contenuto", (Serializable) c);
             startActivity(i);
         }else {
             Intent i = new Intent();
