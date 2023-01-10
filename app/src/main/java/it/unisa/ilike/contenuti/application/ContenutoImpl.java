@@ -25,35 +25,6 @@ import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 public class ContenutoImpl implements ContenutoService {
     /** @inheritDoc */
     @Override
-    public List<ContenutoBean> getTop3() {
-        List<ContenutoBean> tmp = new ArrayList<>();
-        tmp.addAll(this.getTop3(0));
-        tmp.addAll(this.getTop3(1));
-        tmp.addAll(this.getTop3(2));
-        tmp.addAll(this.getTop3(3));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            tmp.sort((o1, o2) -> o1.getValutazioneMedia() >= o2.getValutazioneMedia() ? 1 : -1);
-        }
-
-        return tmp.subList(0, 3);
-    }
-
-    /** @inheritDoc */
-    @Override
-    public List<ContenutoBean> getTop3(int tipo) {
-        switch (tipo) {
-            case 0:     return new FilmDAO().doRetrieveTop3();
-            case 1:     return new SerieTVDAO().doRetrieveTop3();
-            case 2:     return new LibroDAO().doRetrieveTop3();
-            case 3:     return new AlbumMusicaleDAO().doRetrieveTop3();
-            default:    return null;
-        }
-    }
-
-
-    /** @inheritDoc */
-    @Override
     public ContenutoBean getById(int id) {
         if(id < 1 || id > 999) {
             return null;
