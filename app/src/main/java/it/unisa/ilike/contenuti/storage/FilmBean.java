@@ -15,15 +15,15 @@ public class FilmBean extends ContenutoBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param titolo
-     * @param descrizione
-     * @param categoria
-     * @param annoRilascio
-     * @param durata
-     * @param paese
-     * @param regista
-     * @param attori
+     * @param id è l'id del film.
+     * @param titolo è il titolo del film.
+     * @param descrizione è la descrizione del film.
+     * @param categoria è la categoria del film.
+     * @param annoRilascio è l'anno di rilascio del film.
+     * @param durata è la durata del film.
+     * @param paese è il paese di produzione del film.
+     * @param regista è il regista del film.
+     * @param attori è l'elenco degli attori del film.
      */
     public FilmBean(int id, String titolo, String descrizione, String categoria, String annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
         super(id, titolo, descrizione, categoria, valutazioneMedia);
