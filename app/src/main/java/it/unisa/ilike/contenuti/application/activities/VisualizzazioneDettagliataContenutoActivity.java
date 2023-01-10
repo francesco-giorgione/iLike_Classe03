@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
@@ -151,6 +152,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
 
     public void onClickAggiungiContenutoAllaLista (View v){
         Intent i = new Intent();
+        i.putExtra("Account", (Serializable) null);
         i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
         startActivity(i);
     }
