@@ -28,16 +28,6 @@ import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPerso
 
 public class RicercaContenutoActivity extends AppCompatActivity {
 
-    ImageButton profiloButton;
-    ImageButton homepageButton;
-    SearchView barraDiRicercaContenuti;
-    ImageButton filtro;
-    String filtroRicerca= "noFilter";
-    ListView contenutiList;
-    RicercaContenutoAdapter adapter;
-    private Account account;
-
-
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
      * contenuto in ContenutoImpl. Questo è necessario in quanto il metodo in questione richiama metodi
@@ -102,7 +92,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Nessun contenuto trovato", Toast.LENGTH_LONG).show();
                 Log.d("MyDebug", "nessun contenuto trovato");
             }
-
         }
     }
 
@@ -139,7 +128,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         setReturnIntent();
-
     }
 
     private void setReturnIntent() {
@@ -153,7 +141,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     }
 
     public void onClickProfilo(View v){
-        if(account.isIscritto()) {
+        if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
@@ -190,6 +178,16 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         TextView titolo= (TextView) v;
         int id= (int)titolo.getTag();
         i.putExtra("idContenuto", id);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
+
+    private ImageButton profiloButton;
+    private ImageButton homepageButton;
+    private SearchView barraDiRicercaContenuti;
+    private ImageButton filtro;
+    private String filtroRicerca= "noFilter";
+    private ListView contenutiList;
+    private RicercaContenutoAdapter adapter;
+    private Account account;
 }
