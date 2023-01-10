@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.ContenutoService;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnalazioniActivity;
 
@@ -28,13 +29,12 @@ public class VisualizzazioneHomepageActivity extends Activity {
      * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
      * usufruire del metodo di cui sopra.
      */
-    private class GsonResultTop3Contenuti extends AsyncTask<Void, Void, Void> {
+    /*private class GsonResultTop3Contenuti extends AsyncTask<Void, Void, Void> {
 
-        //List<ContenutoBean> top3;
         List<ContenutoBean> top3Film;
         List<ContenutoBean> top3SerieTV;
         List<ContenutoBean> top3Album;
-        List<ContenutoBean> top3Libri;
+        List<ContenutoBean> top3Libri;*/
 
         /**
          * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
@@ -43,7 +43,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
          * @return una lista di oggetti <code>ContenutoBean</code>
          */
 
-        @Override
+        /*@Override
         protected Void doInBackground(Void... voids) {
             ContenutoService contenutoService= new ContenutoImpl();
             this.top3Film=contenutoService.getTop3(0);
@@ -51,33 +51,14 @@ public class VisualizzazioneHomepageActivity extends Activity {
             this.top3Libri=contenutoService.getTop3(2);
             this.top3Album=contenutoService.getTop3(3);
             return null;
-        }
+        }*/
 
         /**
          * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
          * @return il valore della variabile d'istanza top3
          */
-        /*public List<ContenutoBean> getTop3Film(){
-            while (top3Film==null);
-            return top3Film;
-        }
 
-        public List<ContenutoBean> getTop3SerieTV() {
-            while (top3SerieTV==null);
-            return top3SerieTV;
-        }
-
-        public List<ContenutoBean> getTop3Album() {
-            while (top3Album==null);
-            return top3Album;
-        }
-
-        public List<ContenutoBean> getTop3Libri() {
-            while (top3Libri==null);
-            return top3Libri;
-        }*/
-
-        @Override
+        /*@Override
         protected void onPostExecute(Void unused) {
             Log.d("MyDebug", "sono in onPostExecute");
             TextView titoloFilm1= findViewById(R.id.textFilm1);
@@ -93,6 +74,102 @@ public class VisualizzazioneHomepageActivity extends Activity {
             titoloFilm2.setText(film2.getTitolo());
             TextView ratingFilm2 = findViewById(R.id.ratingFilm2);
             ratingFilm2.setText(String.valueOf(film2.getValutazioneMedia()));
+        }
+    }*/
+
+
+    private class GsonResultContenuti extends AsyncTask<Void, Void, Void> {
+
+        ContenutoBean c1;
+        ContenutoBean c2;
+        ContenutoBean c3;
+
+        /**
+         * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
+         * il metodo il metodo getTop3 della classe <code>ContenutoService</code>.
+         * @param voids
+         * @return una lista di oggetti <code>ContenutoBean</code>
+         */
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            int random1= (int) (Math.random() * 333);
+            Log.d("MyDebug", "r1 -->"+random1);
+
+            ContenutoService contenutoService= new ContenutoImpl();
+            c1= contenutoService.getById(random1);
+
+            //per non caricare contenuti uguali
+            int random2= 333+(int) (Math.random() * 333);
+            Log.d("MyDebug", "r2 -->"+random2);
+            c2= contenutoService.getById(random2);
+
+            int random3= 666+(int) (Math.random() * 333);
+            Log.d("MyDebug", "r3 -->"+random3);
+            c3= contenutoService.getById(random3);
+
+            return null;
+        }
+
+        /**
+         * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
+         * @return il valore della variabile d'istanza top3
+         */
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+
+
+            //CONTENUTO 1
+            TextView titoloContenuto1= findViewById(R.id.nomeContenuto1);
+            titoloContenuto1.setText(c1.getTitolo());
+            TextView ratingFilm1 = findViewById(R.id.valutazioneMediaContenuto1);
+            ratingFilm1.setText(String.valueOf(c1.getValutazioneMedia()));
+            ImageView icona= findViewById(R.id.imgContenuto1);
+            if (c1 instanceof FilmBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+            else if (c1 instanceof SerieTVBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+            else if (c1 instanceof LibroBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+            else
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
+
+            //CONTENUTO 2
+            TextView titoloContenuto2= findViewById(R.id.nomeContenuto2);
+            titoloContenuto2.setText(c2.getTitolo());
+            TextView ratingFilm2 = findViewById(R.id.valutazioneMediaContenuto2);
+            ratingFilm2.setText(String.valueOf(c2.getValutazioneMedia()));
+            ImageView icona2= findViewById(R.id.imgContenuto2);
+            if (c2 instanceof FilmBean)
+                icona2.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+            else if (c2 instanceof SerieTVBean)
+                icona2.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+            else if (c2 instanceof LibroBean)
+                icona2.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+            else
+                icona2.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
+
+            //CONTENUTO 3
+            TextView titoloContenuto3= findViewById(R.id.nomeContenuto3);
+            titoloContenuto3.setText(c3.getTitolo());
+            TextView ratingFilm3 = findViewById(R.id.valutazioneMediaContenuto3);
+            ratingFilm3.setText(String.valueOf(c3.getValutazioneMedia()));
+            ImageView icona3= findViewById(R.id.imgContenuto3);
+            if (c3 instanceof FilmBean)
+                icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+            else if (c3 instanceof SerieTVBean)
+                icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+            else if (c3 instanceof LibroBean)
+                icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+            else
+                icona3.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
+
         }
     }
 
@@ -127,7 +204,9 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
-        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
+        //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
+
+        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
 
     }
 

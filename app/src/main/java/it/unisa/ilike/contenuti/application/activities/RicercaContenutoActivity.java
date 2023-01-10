@@ -159,9 +159,12 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     public void onClickCercaContenuto(View v){
         adapter.clear();
         String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
-        String[] s={testoBarraDiRicerca, filtroRicerca};
-        GsonResultRicerca g;
-        g= (GsonResultRicerca) new GsonResultRicerca().execute(s);
-
+        if (testoBarraDiRicerca.length()>3) {
+            String[] s = {testoBarraDiRicerca, filtroRicerca};
+            GsonResultRicerca g;
+            g = (GsonResultRicerca) new GsonResultRicerca().execute(s);
+        }
+        else
+            Toast.makeText(getApplicationContext(), "Scrivere almeno 4 caratteri!", Toast.LENGTH_LONG).show();
     }
 }
