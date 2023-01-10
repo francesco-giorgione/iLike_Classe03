@@ -82,6 +82,7 @@
             android:textSize="20dip"
             android:layout_height="60dip"
             android:textStyle="italic"
+            android:onClick="onClickVisualizzaContenuto"
             android:text="Caricamento in corso"/>
 
         <TextView
@@ -128,6 +129,7 @@
             android:textSize="20dip"
             android:layout_height="60dip"
             android:textStyle="italic"
+            android:onClick="onClickVisualizzaContenuto"
             android:text="Caricamento in corso"/>
 
         <TextView
@@ -173,6 +175,7 @@
             android:textSize="20dip"
             android:layout_height="60dip"
             android:textStyle="italic"
+            android:onClick="onClickVisualizzaContenuto"
             android:text="Caricamento in corso"/>
 
         <TextView
@@ -206,7 +209,7 @@
         android:gravity="center" >
 
 
-        <!--Questo button verrà reso invisibile nel momento in cui un gestore effettua il login-->
+        <!--Questo button verrà reso invisibile nel momento in cui un GESTORE effettua il login-->
         <ImageButton
             android:id="@+id/chatBotButton"
             android:layout_width="50dip"
@@ -214,7 +217,7 @@
             android:layout_marginLeft="5dip"
             android:src="@drawable/icona_chatbot"/>
 
-        <!--Questo button verrà reso visibile solo nel momento in cui un gestore effettua il login-->
+        <!--Questo button verrà reso visibile solo nel momento in cui un GESTORE effettua il login-->
         <ImageButton
             android:id="@+id/VisualizzaSegnalazioniButton"
             android:layout_width="50dip"

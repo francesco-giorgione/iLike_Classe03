@@ -2,6 +2,7 @@ package it.unisa.ilike.contenuti.application.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -27,8 +28,9 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         homepageButton= findViewById(R.id.homepageButton);
 
         Intent i = getIntent();
+        int idContenuto= i.getIntExtra("idContenuto", -1);
+        Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
         setReturnIntent();
-
     }
 
     private void setReturnIntent() {
