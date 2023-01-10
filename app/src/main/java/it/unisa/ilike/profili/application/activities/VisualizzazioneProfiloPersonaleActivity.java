@@ -5,27 +5,61 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
+import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleListeAdapter;
+import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
-
+    IscrittoBean iscritto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_profilo_personale);
+        ListView listViewListe= findViewById(R.id.elencoListeIscritto);
+        ListView listViewRecensioni= findViewById(R.id.recensioniList);
 
         Intent i = getIntent();
+
+        Account account= (Account) i.getExtras().getSerializable("account");
+        iscritto= account.getIscrittoBean();
+
+        List<ListaBean> listeIscritto= iscritto.getListe();
+        List<RecensioneBean> recensioniIscritto= iscritto.getRecensioni();
+
+        //inizializzazione adapter liste profilo iscritto
+        VisualizzazioneProfiloPersonaleListeAdapter adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
+                this, R.layout.activity_list_element_visualizzazione_profilo_personale_liste,
+                new ArrayList<ListaBean>());
+        listViewListe.setAdapter(adapterListe);
+        for (ListaBean l:listeIscritto)
+            adapterListe.add(l);
+
+        //inizializzazione adapter recensioni profilo iscritto
+        VisualizzazioneProfiloPersonaleRecensioniAdapter adapterRecensioni= new VisualizzazioneProfiloPersonaleRecensioniAdapter (
+                this, R.layout.activity_list_element_visualizzazione_profilo_personale_recensioni,
+                new ArrayList<RecensioneBean>());
+        listViewRecensioni.setAdapter(adapterRecensioni);
+        for (RecensioneBean r: recensioniIscritto)
+            adapterRecensioni.add(r);
+
     }
 
     @Override
