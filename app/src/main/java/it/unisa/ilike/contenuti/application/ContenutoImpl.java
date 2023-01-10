@@ -5,10 +5,15 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
 import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.ContenutoDAO;
+import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
+import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.LibroDAO;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 
 /**
@@ -45,6 +50,39 @@ public class ContenutoImpl implements ContenutoService {
             default:    return null;
         }
     }
+
+
+    /** @inheritDoc */
+    @Override
+    public ContenutoBean getById(int id) {
+        if(id < 1 || id > 999) {
+            return null;
+        }
+
+        FilmBean film = null;
+        SerieTVBean serieTV = null;
+        LibroBean libro = null;
+        AlbumMusicaleBean album = null;
+
+        if((film = new FilmDAO().doRetrieveById(id)) != null) {
+            return film;
+        }
+
+        if((serieTV = new SerieTVDAO().doRetrieveById(id)) != null) {
+            return serieTV;
+        }
+
+        if((album = new AlbumMusicaleDAO().doRetrieveById(id)) != null) {
+            return album;
+        }
+
+        if((libro = new LibroDAO().doRetrieveById(id)) != null) {
+            return libro;
+        }
+
+        return null;
+    }
+
 
     /** @inheritDoc */
     @Override
