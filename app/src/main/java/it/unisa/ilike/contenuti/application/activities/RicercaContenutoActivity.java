@@ -45,7 +45,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         @Override
         protected List<ContenutoBean> doInBackground(String... string) {
             ContenutoImpl contenutoImpl = new ContenutoImpl();
-            if (string[1].equalsIgnoreCase("noFilter")) {
+            if (string[1].equalsIgnoreCase("noFilter") || string[1].equalsIgnoreCase("tutti i contenuti")) {
                 this.contenutoBeans = contenutoImpl.cerca(string[0]);
             }
             else {

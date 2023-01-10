@@ -17,4 +17,8 @@
             android:id="@+id/album"
             android:title="album musicale" />
 
+        <item
+            android:id="@+id/tuttiContenuti"
+            android:title="tutti i contenuti" />
+
     </menu>
