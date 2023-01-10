@@ -15,13 +15,13 @@ public class LibroBean extends ContenutoBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param titolo
-     * @param descrizione
-     * @param categoria
-     * @param autore
-     * @param isbn
-     * @param numPagine
+     * @param id è l'id del libro.
+     * @param titolo è il titolo del libro.
+     * @param descrizione è la descrizione del libro.
+     * @param categoria è la categoria del libro.
+     * @param autore è l'autore del libro.
+     * @param isbn è l'isbn del libro.
+     * @param numPagine è il numero totale di pagine del libro.
      */
     public LibroBean(int id, String titolo, String descrizione, String categoria, String autore, String isbn, int numPagine) {
         super(id, titolo, descrizione, categoria,0);

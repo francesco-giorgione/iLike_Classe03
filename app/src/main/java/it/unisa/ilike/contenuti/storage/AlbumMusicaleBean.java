@@ -15,17 +15,17 @@ public class AlbumMusicaleBean extends ContenutoBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param titolo
-     * @param descrizione
-     * @param categoria
-     * @param artista
-     * @param dataRilascio
-     * @param acustica
-     * @param strumentalita
-     * @param tempo
-     * @param valenza
-     * @param durata
+     * @param id è l'id dell'album musicale
+     * @param titolo è il titolo dell'album musicale
+     * @param descrizione è la descrizione dell'album musicale
+     * @param categoria è la categoria dell'album musicale
+     * @param artista è l'artista che ha composto l'album musicale
+     * @param dataRilascio è la data di rilascio dell'album musicale
+     * @param acustica è l'acustica dell'album musicale
+     * @param strumentalita è la strumentalità dell'album musicale
+     * @param tempo è il tempo dell'album musicale
+     * @param valenza è la valenza dell'album musicale
+     * @param durata è la durata complessiva dell'album musicale
      */
     public AlbumMusicaleBean(int id, String titolo, String descrizione, String categoria, String artista, double valutazioneMedia, String dataRilascio,
                              double acustica, double strumentalita, double tempo, double valenza, float durata) {
