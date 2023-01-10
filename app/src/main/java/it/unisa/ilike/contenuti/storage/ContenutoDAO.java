@@ -99,7 +99,7 @@ public class ContenutoDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
         String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
-                "from ContenutiView " +
+                "from ContenutiRid " +
                 "where id = " + id;
 
         String jsonRes = queryManager.select(query);
@@ -128,7 +128,7 @@ public class ContenutoDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
         String query = "SELECT top 3 id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
-                "FROM ContenutiView " +
+                "FROM ContenutiRid " +
                 "where tipo like '%" + tipo + "%' " +
                 "order by valutazione_media desc";
 
@@ -156,7 +156,7 @@ public class ContenutoDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
         String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
-                "FROM ContenutiView " +
+                "FROM ContenutiRid " +
                 "where tipo like '%" + tipo + "%' and titolo like '%" + titolo + "%'";
 
         String jsonRes = queryManager.select(query);
