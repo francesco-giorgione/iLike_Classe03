@@ -9,8 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.sql.Blob;
-import java.sql.SQLException;
+import java.io.InputStream;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
@@ -21,6 +20,8 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
+
+    InputStream foto;
 
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
@@ -44,7 +45,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             AccountImpl accountImpl = new AccountImpl();
             try {
                 this.account= accountImpl.registrazioneIscritto(string[0], string[1], string[2],
-                        string[3], string[4], string[5], string[6]);
+                        string[3], string[4], string[5], foto);
             } catch (EmailVuotaException e) {
                 return null;
             } catch (PasswordVuotaException e) {
@@ -102,23 +103,15 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         String bio = b.toString();
 
         //aggiungere foto
-        Blob fotoBlob= null;
+        foto= null;
 
-        //conversione da blob a stringa
-        byte[] bdata = new byte[0];
-        try {
-            bdata = fotoBlob.getBytes(1, (int) fotoBlob.length());
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        String foto = new String(bdata);
 
         //controlli eccezioni
 
         if (!(password.equals(repeatPassword)));
             //errore
 
-        String [] s= {email, password, nome, cognome, nickname, bio, foto};
+        String [] s= {email, password, nome, cognome, nickname, bio};
         GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
         Account account= g.getAccount();
 

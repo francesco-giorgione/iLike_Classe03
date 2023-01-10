@@ -41,12 +41,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
-    public void onClickProfilo(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivity(i);
-    }
-
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);

@@ -11,12 +11,7 @@ import it.unisa.ilike.profili.storage.IscrittoRealBean;
  */
 public class ProfiloImpl implements ProfiloService{
 
-    /**
-     * Questo metodo consente di restituire un oggetto Iscritto della tipologia IscrittoReal,
-     * cioè l'oggetto contenente anche le recensioni e la fato profilo dell'iscritto.
-     * @param i rappresenta l'oggetto IscrittoBean da cui recuperare tutte le sue informazioni
-     * @return l'oggetto IscrittoReal
-     */
+    /** @inheritDoc */
     public IscrittoBean getIscrittoReal(IscrittoBean i) {
         if(i == null) {
             return null;

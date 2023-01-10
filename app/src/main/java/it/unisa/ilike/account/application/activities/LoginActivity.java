@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 public class LoginActivity extends AppCompatActivity {
 
     boolean checkLogin=true;
+    private AccountService accountService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +49,21 @@ public class LoginActivity extends AppCompatActivity {
          */
         @Override
         protected Account doInBackground(String... string) {
-            AccountImpl accountImpl = new AccountImpl();
+            AccountService accountService = new AccountImpl();
             try {
-                this.account= accountImpl.login(string[0], string[1]);
+                this.account= accountService.login(string[0], string[1]);
                 return account;
             } catch (CredenzialiVuoteException e) {
                 //ritorno al login e messaggio
                 checkLogin=false;
+                Toast toast = Toast.makeText(getApplicationContext(), "Inserire le credenziali", Toast.LENGTH_LONG);
+                toast.show();
                 return null;
             } catch (CredenzialiErrateException e) {
                 //ritorno al login e messaggio
                 checkLogin=false;
+                Toast toast = Toast.makeText(getApplicationContext(), "Inserire le giuste credenziali", Toast.LENGTH_LONG);
+                toast.show();
                 return null;
             }
         }
@@ -80,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
         String email = (String) username.getText();
         TextView passwordText = findViewById(R.id.password);
         String password = (String) passwordText.getText();
-        AccountService accountService = new AccountImpl();
         Account account = null;
         String[] s ={email, password};
         GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
@@ -91,14 +96,14 @@ public class LoginActivity extends AppCompatActivity {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                 i.putExtra("account", (Serializable) account);
-                startActivityForResult(i, 878);
+                startActivity(i);
             }
             else
                 if(account.isIscritto() != null){
                     Intent i = new Intent();
                     i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", (Serializable) account);
-                    startActivityForResult(i, 878);
+                    startActivity(i);
                 }
         }
     }
@@ -106,6 +111,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickRegistrazioneLogin(View view){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RegistrazioneIscrittoActivity.class);
-        startActivityForResult(i, 878);
+        startActivity(i);
     }
 }
