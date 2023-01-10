@@ -72,6 +72,14 @@
             android:text="Iscritti"/>
 
     </LinearLayout>
+    
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_below="@id/filtroRicercaContenuto"/>
 
     <ListView
         android:id="@+id/contenutiList"

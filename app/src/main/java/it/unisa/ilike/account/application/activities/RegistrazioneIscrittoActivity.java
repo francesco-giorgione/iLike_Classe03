@@ -3,6 +3,7 @@ package it.unisa.ilike.account.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
          */
         @Override
         protected Account doInBackground(String... string) {
+            Log.d("MyDebug","sono in doInBackground");
             AccountImpl accountImpl = new AccountImpl();
             try {
                 this.account= accountImpl.registrazioneIscritto(string[0], string[1], string[2],
@@ -64,6 +66,17 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             while (this.account==null);
             return this.account;
         }
+
+        @Override
+        protected void onPostExecute(Account account) {
+            Log.d("MyDebug","sono in onPostExecute");
+            //se la registrazione va a buon fine
+            Toast.makeText(getApplicationContext(), "Registrazione effettuata", Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+            startActivity(i);
+        }
     }
 
 
@@ -85,7 +98,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
     }
     //fine da login
 
-    public void onClickRegistrazioneIscritto(View v) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
+    public void onClickRegistrazioneIscritto(View v) {
 
         EditText e = findViewById(R.id.email);
         String email = e.toString();
@@ -108,19 +121,14 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
         //controlli eccezioni
 
-        if (!(password.equals(repeatPassword)));
+        if (!(password.equals(repeatPassword))){
             //errore
+            Log.d("MyDebug", "Le password non corrispondono");
+        }
 
+        Log.d("MyDebug", "sono in onClickRegistrazioneIscritto()");
         String [] s= {email, password, nome, cognome, nickname, bio};
         GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
-        Account account= g.getAccount();
-
-
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-        startActivity(i);
-        //se la registrazione va a buon fine
-        Toast.makeText(this, "Registrazione effettuata", Toast.LENGTH_SHORT).show();
     }
 
 }

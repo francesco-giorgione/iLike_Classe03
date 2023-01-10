@@ -134,8 +134,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="SELECT IMAGE"
             android:backgroundTint="#D1D1D1"
+            android:text="SELECT IMAGE"
             android:textColor="#DBA73D"
             android:textSize="12dp" />
 
@@ -154,18 +154,18 @@
             android:id="@+id/IVPreviewImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp" />
 
     </GridLayout>
+
 
     <Button
         android:id="@+id/RegistrazioneButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/RegistrazioneIscrittoForm"
+        android:layout_below="@id/RegistrazioneIscrittoForm"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:enabled="false"
         android:text="Registrati"
         android:onClick="onClickRegistrazioneIscritto"
         android:backgroundTint="#DBA73D"/>

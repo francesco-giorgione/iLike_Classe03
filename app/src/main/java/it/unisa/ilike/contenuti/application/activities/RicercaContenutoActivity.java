@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Nessun contenuto trovato", Toast.LENGTH_LONG).show();
                 Log.d("MyDebug", "nessun contenuto trovato");
             }
+            bar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -104,6 +106,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
         filtro= findViewById(R.id.filtroRicerca);
         contenutiList= findViewById(R.id.contenutiList);
+        bar= findViewById(R.id.progress_circular);
 
         adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
                 new ArrayList<ContenutoBean>());
@@ -164,6 +167,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         adapter.clear();
         String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
         if (testoBarraDiRicerca.length()>3) {
+            bar.setVisibility(View.VISIBLE);
             String[] s = {testoBarraDiRicerca, filtroRicerca};
             GsonResultRicerca g;
             g = (GsonResultRicerca) new GsonResultRicerca().execute(s);
@@ -189,5 +193,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     private String filtroRicerca= "noFilter";
     private ListView contenutiList;
     private RicercaContenutoAdapter adapter;
+    private ProgressBar bar;
     private Account account;
 }
