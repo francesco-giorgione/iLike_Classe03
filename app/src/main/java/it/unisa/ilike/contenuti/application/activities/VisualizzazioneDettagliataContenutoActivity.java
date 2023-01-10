@@ -7,14 +7,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.ContenutoService;
+import it.unisa.ilike.contenuti.application.VisualizzazioneDettagliataContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
@@ -22,14 +27,16 @@ import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivity {
 
     ImageButton profiloButton;
     ImageButton homepageButton;
     ContenutoBean c;
+    VisualizzazioneDettagliataContenutoAdapter adapter;
 
-    private class GsonResultContenuti extends AsyncTask<Integer, Void, Void> {
+    private class GsonResultContenuto extends AsyncTask<Integer, Void, Void> {
 
         @Override
         protected Void doInBackground(Integer... id) {
@@ -63,6 +70,29 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         }
     }
 
+    private class GsonResultRecensioni extends AsyncTask<Void, Void, ArrayList<RecensioneBean>> {
+
+        @Override
+        protected ArrayList<RecensioneBean> doInBackground(Void... voids) {
+            ArrayList<RecensioneBean> recensioni= (ArrayList<RecensioneBean>) c.getRecensioni();
+            return recensioni;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<RecensioneBean> recensioni) {
+
+            if (recensioni.size()>0) {
+                for (RecensioneBean r : recensioni)
+                    adapter.add(r);
+                Log.d("MyDebug", "Recensioni trovate -->"+recensioni.toString());
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "Nessuna recensione trovata", Toast.LENGTH_LONG).show();
+                Log.d("MyDebug", "nessuna recensione trovata");
+            }
+
+        }
+    }
 
 
     @Override
@@ -77,7 +107,17 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         int idContenuto= i.getIntExtra("idContenuto", -1);
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
 
-        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(idContenuto);
+        GsonResultContenuto g= (GsonResultContenuto) new GsonResultContenuto().execute(idContenuto);
+
+        ListView recensioniList= findViewById(R.id.recensioniList);
+
+        adapter = new VisualizzazioneDettagliataContenutoAdapter(this, R.layout.activity_list_element_visualizzazione_dettagliata_contenuto,
+                new ArrayList<RecensioneBean>());
+
+        recensioniList.setAdapter(adapter);
+
+        GsonResultRecensioni gr= (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+
         setReturnIntent();
     }
 
