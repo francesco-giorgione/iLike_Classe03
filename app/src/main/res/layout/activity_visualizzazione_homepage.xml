@@ -45,19 +45,32 @@
         android:layout_height="1dp"
         android:layout_below="@id/header"
         android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:textColor="#DBA73D"
+        android:paddingTop="15dip"
+        android:textSize="20dip"
+        android:layout_height="60dip"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/header"
+        android:textStyle="bold"
+        android:text="Alcuni dei nostri contenuti..."/>
     
     <LinearLayout
         android:id="@+id/layoutContenuto1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/header">
+        android:layout_below="@id/textView">
 
         <ImageView
             android:id="@+id/imgContenuto1"
             android:layout_width="40dip"
-            android:layout_height="match_parent"
-            android:src="@drawable/icona_serietv"/>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/nomeContenuto1"
@@ -68,14 +81,14 @@
             android:textColor="@color/black"
             android:textSize="20dip"
             android:layout_height="60dip"
-            android:text="Titolo"/>
+            android:textStyle="italic"
+            android:text="Caricamento in corso"/>
 
         <TextView
             android:id="@+id/valutazioneMediaContenuto1"
             android:layout_width="30dip"
             android:textColor="@color/black"
             android:layout_marginTop="25dip"
-            android:text="4.5"
             android:layout_height="match_parent"/>
 
         <ImageView
@@ -91,18 +104,19 @@
         android:layout_below="@id/layoutContenuto2"
         android:background="@android:color/darker_gray"/>
 
+
     <LinearLayout
         android:id="@+id/layoutContenuto2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="50dip"
         android:layout_below="@id/layoutContenuto1">
 
         <ImageView
             android:id="@+id/imgContenuto2"
             android:layout_width="40dip"
-            android:layout_height="match_parent"
-            android:src="@drawable/icona_serietv"/>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/nomeContenuto2"
@@ -113,14 +127,14 @@
             android:textColor="@color/black"
             android:textSize="20dip"
             android:layout_height="60dip"
-            android:text="Titolo"/>
+            android:textStyle="italic"
+            android:text="Caricamento in corso"/>
 
         <TextView
             android:id="@+id/valutazioneMediaContenuto2"
             android:layout_width="30dip"
             android:textColor="@color/black"
             android:layout_marginTop="25dip"
-            android:text="4.5"
             android:layout_height="match_parent"/>
 
         <ImageView
@@ -141,13 +155,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="50dip"
         android:layout_below="@id/layoutContenuto2">
 
         <ImageView
             android:id="@+id/imgContenuto3"
             android:layout_width="40dip"
-            android:layout_height="match_parent"
-            android:src="@drawable/icona_serietv"/>
+            android:layout_height="match_parent"/>
 
         <TextView
             android:id="@+id/nomeContenuto3"
@@ -158,14 +172,14 @@
             android:textColor="@color/black"
             android:textSize="20dip"
             android:layout_height="60dip"
-            android:text="Titolo"/>
+            android:textStyle="italic"
+            android:text="Caricamento in corso"/>
 
         <TextView
             android:id="@+id/valutazioneMediaContenuto3"
             android:layout_width="30dip"
             android:textColor="@color/black"
             android:layout_marginTop="25dip"
-            android:text="4.5"
             android:layout_height="match_parent"/>
 
         <ImageView
