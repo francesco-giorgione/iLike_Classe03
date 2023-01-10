@@ -14,10 +14,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.RicercaContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -32,6 +35,8 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     String filtroRicerca= "noFilter";
     ListView contenutiList;
     RicercaContenutoAdapter adapter;
+    private Account account;
+
 
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
@@ -116,6 +121,8 @@ public class RicercaContenutoActivity extends AppCompatActivity {
 
         contenutiList.setAdapter(adapter);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+
         filtro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,14 +153,22 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     }
 
     public void onClickProfilo(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivity(i);
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+            i.putExtra("account", (Serializable) account);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
     }
 
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
 

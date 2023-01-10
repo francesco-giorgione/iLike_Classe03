@@ -145,6 +145,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
 
