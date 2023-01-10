@@ -10,7 +10,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.ContenutoService;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -42,7 +46,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
          * @param voids
          * @return una lista di oggetti <code>ContenutoBean</code>
          */
-
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -68,7 +71,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
          * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
          * @return il valore della variabile d'istanza top3
          */
-
         @Override
         protected void onPostExecute(Void unused) {
             Log.d("MyDebug", "sono in onPostExecute");
@@ -142,49 +144,61 @@ public class VisualizzazioneHomepageActivity extends Activity {
         visualizzaSegnalazioniButton= findViewById(R.id.VisualizzaSegnalazioniButton);
         chatBotButton=findViewById(R.id.chatBotButton);
 
-        // se l'utente loggato è un gestore
-        //visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
-        //chatBotButton.setVisibility(View.INVISIBLE);
-        //altrimenti
-        //visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
-        //chatBotButton.setVisibility(View.VISIBLE);
+        try {
+            account = (Account) getIntent().getExtras().getSerializable("account");
+        }catch (Exception e){
+            Log.d("MyDebug","---------- Account ha lanciato l'eccezione");
+            // non esiste l'oggetto account quindi lo creo, e non ci sono attori --> Utente non registrato
+            account = new Account(null, null);
+        }
 
+        if(account.isIscritto() != Boolean.TRUE){
+            // se l'attore è un iscritto o utente non registrato
+            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+            chatBotButton.setVisibility(View.VISIBLE);
+        }else {
+            // se l'attore loggato è un gestore
+            visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+            chatBotButton.setVisibility(View.INVISIBLE);
+        }
 
-
-        //inizio da login
         Intent i = getIntent();
         setReturnIntent();
-        //Account account = (Account) getIntent().getExtras().getSerializable("account");
-        //fine da login
 
         //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
-
         GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
-
     }
 
-    //inizio da login
     private void setReturnIntent() {
         Intent data = new Intent();
         setResult(RESULT_OK,data);
     }
-    //fine da login
 
     public void onClickProfilo(View v){
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-        startActivity(i);
+        if(account.isIscritto() == Boolean.TRUE){
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+            i.putExtra("account", (Serializable) account);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
+
     }
 
     public void onClickSearchBar(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RicercaContenutoActivity.class);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
 
     public void onClickVisualizzaSegnalazioni (View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
 
@@ -194,6 +208,9 @@ public class VisualizzazioneHomepageActivity extends Activity {
         TextView titolo= (TextView) v;
         int id= (int)titolo.getTag();
         i.putExtra("idContenuto", id);
+        i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
+
+    private Account account;
 }
