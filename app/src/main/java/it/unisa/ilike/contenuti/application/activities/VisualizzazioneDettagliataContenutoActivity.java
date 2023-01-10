@@ -1,14 +1,24 @@
 package it.unisa.ilike.contenuti.application.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.contenuti.application.ContenutoImpl;
+import it.unisa.ilike.contenuti.application.ContenutoService;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
@@ -17,6 +27,42 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
 
     ImageButton profiloButton;
     ImageButton homepageButton;
+    ContenutoBean c;
+
+    private class GsonResultContenuti extends AsyncTask<Integer, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Integer... id) {
+
+            ContenutoService contenutoService= new ContenutoImpl();
+            c= contenutoService.getById(id[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+            TextView titoloContenuto= findViewById(R.id.titoloContenuto);
+            titoloContenuto.setText(c.getTitolo());
+
+            ImageView icona= findViewById(R.id.imgContenuto);
+            if (c instanceof FilmBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+            else if (c instanceof SerieTVBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+            else if (c instanceof LibroBean)
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+            else
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
+            TextView descrizione= findViewById(R.id.descrizioneContenuto);
+            descrizione.append(c.getDescrizione());
+
+            RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
+            valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
+        }
+    }
+
 
 
     @Override
@@ -30,6 +76,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         Intent i = getIntent();
         int idContenuto= i.getIntExtra("idContenuto", -1);
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
+
+        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(idContenuto);
         setReturnIntent();
     }
 
