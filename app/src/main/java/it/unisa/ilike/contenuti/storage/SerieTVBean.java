@@ -15,12 +15,12 @@ public class SerieTVBean extends ContenutoBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param titolo
-     * @param descrizione
-     * @param categoria
-     * @param annoRilascio
-     * @param numStagioni
+     * @param id è l'id della serie tv.
+     * @param titolo è il titolo della serie tv.
+     * @param descrizione è la descrizione della serie tv.
+     * @param categoria è la categoria della serie tv.
+     * @param annoRilascio è l'anno di rilascio della serie tv.
+     * @param numStagioni è il numero di stagioni della serie tv.
      */
     public SerieTVBean(int id, String titolo, String descrizione, String categoria, double valutazioneMedia, int annoRilascio, String numStagioni) {
         super(id, titolo, descrizione, categoria, valutazioneMedia);

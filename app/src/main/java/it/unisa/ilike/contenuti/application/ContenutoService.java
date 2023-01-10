@@ -26,6 +26,14 @@ public interface ContenutoService {
 
 
     /**
+     * Restituisce il contenuto avente un dato id.
+     * @param id è l'id del contenuto di cui si vogliono ottenere le informazioni.
+     * @return un oggetto ContenutoBean contenente le informazioni relative al contenuto selezionato.
+     */
+    ContenutoBean getById(int id);
+
+
+    /**
      * Restituisce una collezione dei contenuti il cui titolo matcha con un dato titolo.
      * @param titolo è il titolo in base a cui si vuole eseguire la ricerca.
      * @return un ArrayList di oggetti ContenutoBean.

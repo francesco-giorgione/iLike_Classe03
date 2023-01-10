@@ -20,14 +20,15 @@ public class RecensioneBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param testo
-     * @param valutazione
-     * @param data
-     * @param cancellata
-     * @param motivazioneCancellazione
-     * @param iscritto
-     * @param contenuto
+     * @param id è l'id della recensione.
+     * @param testo è il testo della recensione.
+     * @param valutazione è la valutazione (da 1 a 5) della recensione.
+     * @param data è la data di pubblicazione della recensione.
+     * @param cancellata indica se la recensione è stata cancellata da un gestore
+     *                  in seguito all'accoglimento di una segnalazione.
+     * @param motivazioneCancellazione indica la motivazione della cancellazione di una recensione eventualmente cancellata.
+     * @param iscritto è l'iscritto autore della recensione.
+     * @param contenuto è il contenuto cui è riferita la recensione.
      */
     public RecensioneBean(int id, String testo, int valutazione, Date data,
                           Boolean cancellata, String motivazioneCancellazione, IscrittoBean iscritto, ContenutoBean contenuto) {
