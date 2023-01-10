@@ -18,12 +18,12 @@ public class SegnalazioneBean {
 
     /**
      * Costruttore con parametri
-     * @param id
-     * @param tipo
-     * @param motivazione
-     * @param gestita
-     * @param iscritto
-     * @param recensione
+     * @param id è l'id della segnalazione.
+     * @param tipo è il tipo della segnalazione (0 per altre segnalazioni, 1 per spoiler alert).
+     * @param motivazione è la motivazione della segnalazione.
+     * @param gestita indica se la segnalazione è già stata gestita da un gestore.
+     * @param iscritto è l'iscritto che ha inviato la segnalazione.
+     * @param recensione è la recensione cui è riferita la segnalazione.
      */
     public SegnalazioneBean(int id, int tipo, String motivazione, Boolean gestita,
                             IscrittoBean iscritto, RecensioneBean recensione) {
