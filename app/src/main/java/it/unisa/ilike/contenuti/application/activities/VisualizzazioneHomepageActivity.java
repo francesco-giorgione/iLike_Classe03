@@ -127,7 +127,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
         //Account account = (Account) getIntent().getExtras().getSerializable("account");
         //fine da login
 
-        //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
+        GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
 
     }
 

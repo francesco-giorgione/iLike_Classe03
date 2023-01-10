@@ -18,6 +18,7 @@ import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
+import it.unisa.ilike.contenuti.application.RicercaContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
@@ -75,15 +76,18 @@ public class RicercaContenutoActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<ContenutoBean> contenutoBeans) {
+            Log.d("MyDebug", "sono in onPostExecute RicercaContenutoActivity");
             ArrayList<ContenutoBean> contenutiTrovati= (ArrayList<ContenutoBean>) contenutoBeans;
 
             if (contenutiTrovati.size()>0) {
                 for (ContenutoBean c : contenutiTrovati)
                     adapter.add(c);
-                Log.d("TestContenutiRicerca", contenutiTrovati.toString());
+                Log.d("MyDebug", "Contenuti trovati -->"+contenutiTrovati.toString());
             }
-            else
+            else {
                 Toast.makeText(getApplicationContext(), "Nessun contenuto trovato", Toast.LENGTH_LONG).show();
+                Log.d("MyDebug", "nessun contenuto trovato");
+            }
 
         }
     }
@@ -153,7 +157,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     }
 
     public void onClickCercaContenuto(View v){
-
+        adapter.clear();
         String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
         String[] s={testoBarraDiRicerca, filtroRicerca};
         GsonResultRicerca g;

@@ -74,6 +74,15 @@ public abstract class ContenutoBean {
     }
 
 
+    @Override
+    public String toString() {
+        return "ContenutoBean{" +
+                "id=" + id +
+                ", titolo='" + titolo + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", valutazioneMedia=" + valutazioneMedia +
+                '}';
+    }
 
     private int id;
     private String titolo;
