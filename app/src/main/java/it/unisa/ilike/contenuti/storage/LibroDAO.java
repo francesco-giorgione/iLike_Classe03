@@ -40,21 +40,6 @@ public class LibroDAO extends ContenutoDAO {
         return libro;
     }
 
-
-    /**
-     * Restituisce una collezione dei 3 libri aventi la massima valutazione media.
-     * @return un ArrayList contenente 3 oggetti LibroBean.
-     */
-    public List<ContenutoBean> doRetrieveTop3() {
-        List<ContenutoBean> contenuti = super.doRetrieveTop3ByTipo("libro");
-        List<ContenutoBean> topLibri = new ArrayList<>();
-
-        for(ContenutoBean c : contenuti) {
-            topLibri.add(this.doRetrieveById(c.getId()));
-        }
-
-        return topLibri;
-    }
     
     /**
      * Restituisce una collezione dei libri che matchano con un dato titolo.
