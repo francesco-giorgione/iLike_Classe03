@@ -23,15 +23,6 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
-    // constant to compare
-    // the activity result code
-    //private int SELECT_PICTURE = 200;
-
-    private InputStream foto;
-    //private ImageView IVPreviewImage;
-    private Button BSelectImage;
-
-
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
      * contenuto in AccountImpl. Questo è necessario in quanto il metodo in questione richiama metodi
@@ -97,23 +88,9 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrazione_iscritto);
 
-        //foto e pulsante per selezionare la foto
-        /*BSelectImage = findViewById(R.id.BSelectImage);
-        IVPreviewImage = findViewById(R.id.IVPreviewImage);
-
-        //da vedere
-        Uri uri = Uri.parse("app/src/main/res/drawable/icona_profilo.png");
-        IVPreviewImage.setImageURI(uri);
-
         Intent i = getIntent();
         setReturnIntent();
 
-        BSelectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageChooser();
-            }
-        });*/
     }
 
     private void setReturnIntent() {
@@ -121,21 +98,6 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
-
-    // this function is triggered when
-    // the Select Image Button is clicked
-    /*void imageChooser() {
-
-        // create an instance of the
-        // intent of the type image
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }*/
 
     public void onClickRegistrazioneIscritto(View v){
 
@@ -156,15 +118,6 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
         Log.d("debugRegistrazione", password+" "+repeatPassword);
 
-        //gestione foto
-        /*ImageView image = findViewById(R.id.IVPreviewImage);
-        Uri uri = (Uri) image.getTag();
-        try {
-            foto = getContentResolver().openInputStream(uri);
-        } catch (FileNotFoundException exc) {
-            exc.printStackTrace();
-        }*/
-
 
         //controllo password corrispondenti
         if (!(password.equals(repeatPassword))){
@@ -176,43 +129,5 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         }
 
     }
-
-    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                Uri selectedImageUri = data.getData();
-
-                IVPreviewImage.setTag(selectedImageUri);
-
-                Bitmap bitmap = null;
-                InputStream inputStream = null;
-
-                try {
-                    inputStream = getContentResolver().openInputStream(selectedImageUri);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-
-                bitmap = BitmapFactory.decodeStream(bufferedInputStream);
-
-
-                if (bitmap != null) {
-                    // update the preview image in the layout
-                    IVPreviewImage.setImageBitmap(bitmap);
-
-                }
-            }
-        }
-
-
-    }*/
 
 }
