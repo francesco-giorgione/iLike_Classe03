@@ -34,9 +34,7 @@ public class ListaImpl implements ListaService {
         if(Utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
 
         ListaBean lista = new ListaBean(nome, i, pubblica);
-        lista.setContenuti(new ArrayList<>());
         ListaDAO dao = new ListaDAO();
-
         return dao.doSave(lista);
     }
 

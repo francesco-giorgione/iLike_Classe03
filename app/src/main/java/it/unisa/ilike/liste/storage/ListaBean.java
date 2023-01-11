@@ -29,6 +29,7 @@ public class ListaBean  implements Serializable {
         this.nome = nome;
         this.iscritto = iscritto;
         this.visibilita = visibilita;
+        this.contenuti = new ArrayList<>();
     }
 
     /**
