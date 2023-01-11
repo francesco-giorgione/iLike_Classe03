@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        checkLogin=false;
     }
 
     /**
@@ -54,24 +53,23 @@ public class LoginActivity extends AppCompatActivity {
 
             AccountService accountService = new AccountImpl();
             try {
+                Log.d("debugLogin", "login ok doInBackground");
                 return accountService.login(string[0], string[1]);
             } catch (CredenzialiVuoteException e) {
                 //ritorno al login e messaggio
+                Log.d("debugLogin", "CredenzialiVuoteException");
                 checkLogin=false;
                 messaggio="Credenziali vuote";
                 return null;
             } catch (CredenzialiErrateException e) {
                 //ritorno al login e messaggio
+                Log.d("debugLogin", "CredenzialiErrateException");
                 checkLogin=false;
                 messaggio="Credenziali errate";
                 return null;
             }
         }
 
-        public String getMessaggio(){
-            while (this.messaggio==null);
-            return messaggio;
-        }
 
         @Override
         protected void onPostExecute(Account account) {
@@ -80,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("debugLogin", "loginOK");
                 if(account.isIscritto() == Boolean.TRUE){
                     messaggio="Login iscritto ok";
+                    Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", (Serializable) account);
@@ -88,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             }
             else{
                 Log.d("debugLogin", "login not ok");
-                messaggio="Login not ok";
+                Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -96,17 +95,18 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClickLogin(View view) {
         Log.d("debugLogin", "in onClickLogin");
-        checkLogin=false;
+        checkLogin=true;
 
         // prendi i campi email/nickname e password
-        TextView username = findViewById(R.id.username);
+        EditText username = findViewById(R.id.username);
+        EditText passwordText = findViewById(R.id.password);
+
         String email = String.valueOf(username.getText());
-        TextView passwordText = findViewById(R.id.password);
         String password = String.valueOf(passwordText.getText());
+        Log.d("debugLogin", "username--> "+email+"\npassword--> "+password);
+
         String[] s ={email, password};
         GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
-        while (g.getMessaggio()==null);
-        Toast.makeText(this, g.getMessaggio(), Toast.LENGTH_LONG).show();
     }
 
     public void onClickRegistrazioneLogin(View view){
