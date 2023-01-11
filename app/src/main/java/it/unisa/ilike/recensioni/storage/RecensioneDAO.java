@@ -128,11 +128,24 @@ public class RecensioneDAO {
         String emailIscritto = Utils.addEscape(recensione.getIscritto().getEmail());
         int idContenuto = recensione.getContenuto().getId();
         int cancellata = recensione.isCancellata() ? 1 : 0;
-        String motivazione_cancellazione = Utils.addEscape(recensione.getMotivazioneCancellazione());
+        String motivazione_cancellazione = null;
 
-        String query = "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, email_iscritto, id_contenuto) " +
-                "values ('" + testo + "', '" + valutazione + "', '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
-                + emailIscritto + "', " + idContenuto + ")";
+        String query = "";
+
+        if(recensione.getMotivazioneCancellazione() != null) {
+            motivazione_cancellazione = Utils.addEscape(recensione.getMotivazioneCancellazione());
+        }
+
+        if(motivazione_cancellazione != null) {
+            query = "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, email_iscritto, id_contenuto) " +
+                    "values ('" + testo + "', '" + valutazione + "', '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
+                    + emailIscritto + "', " + idContenuto + ")";
+        }
+        else  {
+            query = "insert into Recensioni (testo, valutazione, data, cancellata, email_iscritto, id_contenuto) " +
+                    "values ('" + testo + "', '" + valutazione + "', '" + data + "', " + cancellata + ", '"
+                    + emailIscritto + "', " + idContenuto + ")";
+        }
 
         QueryManager queryManager = new QueryManager();
         ContenutoDAO contenutoDAO = new ContenutoDAO();
