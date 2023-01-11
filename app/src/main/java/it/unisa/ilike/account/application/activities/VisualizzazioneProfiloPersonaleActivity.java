@@ -1,4 +1,4 @@
-package it.unisa.ilike.profili.application.activities;
+package it.unisa.ilike.account.application.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,10 +21,8 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.profili.application.ProfiloImpl;
-import it.unisa.ilike.profili.application.ProfiloService;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleListeAdapter;
-import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
+import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleListeAdapter;
+import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;

@@ -1,8 +1,8 @@
 package it.unisa.ilike.profili.application;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
-import it.unisa.ilike.profili.storage.IscrittoProxyBean;
-import it.unisa.ilike.profili.storage.IscrittoRealBean;
+import it.unisa.ilike.account.storage.IscrittoProxyBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 
 /**
  * Questa classe rappresenta l'implentazione che gestisce le informazioni relative al profilo di un iscritto.

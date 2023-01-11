@@ -23,7 +23,7 @@ import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
-import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnalazioniActivity;
 
 public class VisualizzazioneHomepageActivity extends Activity {

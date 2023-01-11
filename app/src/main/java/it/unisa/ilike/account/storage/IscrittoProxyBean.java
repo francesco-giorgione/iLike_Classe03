@@ -1,10 +1,9 @@
-package it.unisa.ilike.profili.storage;
+package it.unisa.ilike.account.storage;
 
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
-import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;

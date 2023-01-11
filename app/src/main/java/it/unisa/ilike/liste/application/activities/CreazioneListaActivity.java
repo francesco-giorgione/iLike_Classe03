@@ -18,7 +18,7 @@ import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
-import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class CreazioneListaActivity extends AppCompatActivity {
 

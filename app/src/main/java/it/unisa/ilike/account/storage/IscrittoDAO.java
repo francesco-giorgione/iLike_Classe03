@@ -11,7 +11,6 @@ import java.util.List;
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
-import it.unisa.ilike.profili.storage.IscrittoProxyBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.utils.Utils;

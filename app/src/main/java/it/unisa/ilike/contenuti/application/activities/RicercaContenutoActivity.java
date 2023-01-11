@@ -25,7 +25,7 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.RicercaContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class RicercaContenutoActivity extends AppCompatActivity {
 

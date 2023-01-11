@@ -28,7 +28,7 @@ import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
-import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
