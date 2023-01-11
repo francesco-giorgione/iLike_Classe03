@@ -1,8 +1,5 @@
 package it.unisa.ilike.account.application;
 
-import java.io.InputStream;
-import java.sql.Blob;
-
 import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
 import it.unisa.ilike.account.application.exceptions.CredenzialiVuoteException;
 import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
@@ -46,7 +43,7 @@ public interface AccountService {
      * @return l'oggetto Account se la registrazione è andata a buon fine, Null altrimenti
      */
     Account registrazioneIscritto(String email, String password, String nome, String cognome,
-                                  String nickname, String bio, InputStream foto)
+                                  String nickname, String bio)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException;
 
 }
