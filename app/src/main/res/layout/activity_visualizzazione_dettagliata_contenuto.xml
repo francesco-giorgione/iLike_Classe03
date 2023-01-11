@@ -79,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dip"
             android:text="Descrizione: "
+            android:paddingBottom="50dp"
             android:textColor="@color/black"
             android:textSize="22dip" />
     </ScrollView>
@@ -126,8 +127,8 @@
 
     <ListView
         android:id="@+id/recensioniList"
-        android:layout_width="370dip"
-        android:layout_height="300dip"
+        android:layout_width="wrap_content"
+        android:layout_height="81dp"
         android:layout_below="@id/layoutRecensioni"
         android:layout_marginLeft="20dip"
         android:layout_marginTop="18dp"
@@ -162,7 +163,6 @@
             android:layout_marginLeft="300dip"
             android:onClick="onClickProfilo"
             android:src="@drawable/icona_profilo"/>
-
     </RelativeLayout>
 
 </RelativeLayout>
