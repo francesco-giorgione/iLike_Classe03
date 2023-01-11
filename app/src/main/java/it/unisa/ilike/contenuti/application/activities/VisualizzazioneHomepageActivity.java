@@ -28,25 +28,14 @@ import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnala
 
 public class VisualizzazioneHomepageActivity extends Activity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo getTop3
-     * della classe <code>ContenutoService</code>. In Android non è consentito
-     * fare operazioni di accesso alla rete nel main thread; dato che questa activity si trova
-     * nel main thread occorre creare questa classe che estende <code>AsyncTask</code> per
-     * usufruire del metodo di cui sopra.
-     */
+
     private class GsonResultContenuti extends AsyncTask<Void, Void, Void> {
 
         ContenutoBean c1;
         ContenutoBean c2;
         ContenutoBean c3;
 
-        /**
-         * Consente di recuperare una lista di oggetti <code>ContenutoBean</code> utilizzando
-         * il metodo il metodo getTop3 della classe <code>ContenutoService</code>.
-         * @param voids
-         * @return una lista di oggetti <code>ContenutoBean</code>
-         */
+
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -68,10 +57,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
             return null;
         }
 
-        /**
-         * Metodo che restituisce la lista di contenuti ottenuta dal metodo doInBackground(...)
-         * @return il valore della variabile d'istanza top3
-         */
+
         @Override
         protected void onPostExecute(Void unused) {
             Log.d("MyDebug", "sono in onPostExecute");
@@ -128,11 +114,27 @@ public class VisualizzazioneHomepageActivity extends Activity {
         }
     }
 
+    private class GsonResultLogout extends AsyncTask<Void, Void, Void> {
 
-    ImageButton profiloButton;
-    ImageButton barraDiRicerca;
-    ImageButton chatBotButton;
-    ImageButton visualizzaSegnalazioniButton;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            AccountService accountService = new AccountImpl();
+            account = accountService.logout(account.getGestoreBean());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+
+            Intent i = new Intent();
+            i.setClass(VisualizzazioneHomepageActivity.this, VisualizzazioneHomepageActivity.class);
+            startActivity(i);
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,14 +165,9 @@ public class VisualizzazioneHomepageActivity extends Activity {
         }
 
         Intent i = getIntent();
-        //setReturnIntent();
         GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
     }
 
-    private void setReturnIntent() {
-        Intent data = new Intent();
-        setResult(RESULT_OK,data);
-    }
 
     public void onClickProfilo(View v){
         if(account.isIscritto() == Boolean.TRUE){
@@ -180,13 +177,8 @@ public class VisualizzazioneHomepageActivity extends Activity {
             startActivity(i);
         }else {
             if (account.isIscritto() == Boolean.FALSE) {
-                // logout
-                AccountService accountService = new AccountImpl();
-                account = accountService.logout(account.getGestoreBean());
-
-                Intent i = new Intent();
-                i.setClass(VisualizzazioneHomepageActivity.this, VisualizzazioneHomepageActivity.class);
-                startActivity(i);
+                //logout
+                GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
             } else {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), LoginActivity.class);
@@ -220,4 +212,8 @@ public class VisualizzazioneHomepageActivity extends Activity {
     }
 
     private Account account;
+    private ImageButton profiloButton;
+    private ImageButton barraDiRicerca;
+    private ImageButton chatBotButton;
+    private ImageButton visualizzaSegnalazioniButton;
 }
