@@ -36,8 +36,8 @@ public class Photo extends AppCompatActivity {
         setContentView(R.layout.activity_registrazione_iscritto);
 
         // register the UI widgets with their appropriate IDs
-        BSelectImage = findViewById(R.id.BSelectImage);
-        IVPreviewImage = findViewById(R.id.IVPreviewImage);
+        //BSelectImage = findViewById(R.id.BSelectImage);
+        //IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
         // handle the Choose Image button to trigger
         // the image chooser function
