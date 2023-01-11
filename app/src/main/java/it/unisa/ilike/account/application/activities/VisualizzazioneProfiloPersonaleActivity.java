@@ -157,7 +157,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     public void onClickInfo(View v){
         Intent i = new Intent();
         TextView lista= (TextView) v;
-        i.putExtra("nomeLista", lista.getText());
+        String nomeLista = String.valueOf(lista.getText());
+        i.putExtra("lista", nomeLista);
         i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneContenutiListaPersonaleActivity.class);
         i.putExtra("account", account);
         startActivity(i);

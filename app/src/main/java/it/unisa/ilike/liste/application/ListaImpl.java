@@ -15,18 +15,18 @@ import it.unisa.ilike.utils.Utils;
 
 /**
  * La classe implementa i servizi relativi alla gestione delle liste.
- * @version 0.1
+ * @version 0.2
  * @author FrancescoGiorgione
  * @see ListaService
  */
 public class ListaImpl implements ListaService {
     /** @inheritDoc */
     @Override
-    public boolean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
+    public IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
             NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException {
 
         if(i == null) {
-            return false;
+            return null;
         }
 
         if(nome.length() == 0)          { throw new NomeVuotoException(); }
@@ -35,7 +35,12 @@ public class ListaImpl implements ListaService {
 
         ListaBean lista = new ListaBean(nome, i, pubblica);
         ListaDAO dao = new ListaDAO();
-        return dao.doSave(lista);
+        if(dao.doSave(lista))
+            i.addLista(lista);
+        else
+            return null;
+
+        return i;
     }
 
     /** @inheritDoc */
