@@ -17,7 +17,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.VisualizzazioneContenutiListaPersonaleAdapter;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.profili.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package it.unisa.ilike.profili.storage;
+package it.unisa.ilike.account.storage;
 
 import java.io.InputStream;
 import java.io.Serializable;

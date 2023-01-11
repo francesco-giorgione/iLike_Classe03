@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Blob;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,8 +20,8 @@ import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.account.storage.UtenteBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
-import it.unisa.ilike.profili.storage.IscrittoProxyBean;
-import it.unisa.ilike.profili.storage.IscrittoRealBean;
+import it.unisa.ilike.account.storage.IscrittoProxyBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 
 /**
  * Un oggetto <code>AccountImpl</code> viene utilizzato per accedere ai servizi di autenticazione.
