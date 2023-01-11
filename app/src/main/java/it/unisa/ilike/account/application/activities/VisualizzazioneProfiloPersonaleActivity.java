@@ -1,18 +1,15 @@
 package it.unisa.ilike.account.application.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.BufferedInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +17,54 @@ import java.util.List;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
+import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleListeAdapter;
+import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleListeAdapter;
-import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
+    List<RecensioneBean> recensioniIscritto;
+
+    private class GsonResultListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+            Log.d("debugProfilo", "doInBackground");
+            //recensioniIscritto= iscritto.getRecensioni();
+            return (ArrayList<ListaBean>) iscritto.getListe();
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+
+            Log.d("debugProfilo", "onPostExecute");
+            Log.d("debugProfilo", ""+listeIscritto.size());
+            //Log.d("debugProfilo", ""+recensioniIscritto.size());
+
+            for (ListaBean l:listeIscritto) {
+                Log.d("debugProfilo", l.toString());
+                adapterListe.add(l);
+            }
+
+            /*for (RecensioneBean r: recensioniIscritto)
+                adapterRecensioni.add(r);*/
+        }
+    }
+
+
     private IscrittoBean iscritto;
     private Account account;
+    private VisualizzazioneProfiloPersonaleRecensioniAdapter adapterRecensioni;
+    private VisualizzazioneProfiloPersonaleListeAdapter adapterListe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +77,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
         account = (Account) i.getExtras().getSerializable("account");
         iscritto = account.getIscrittoBean();
-        List<ListaBean> listeIscritto= iscritto.getListe();
-        List<RecensioneBean> recensioniIscritto= iscritto.getRecensioni();
 
         TextView nicknameTextView= findViewById(R.id.nicknameTextView);
         TextView infoTextView = findViewById(R.id.infoTextView);
@@ -57,22 +84,18 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         infoTextView.setText(iscritto.getBio());
 
 
-
-        //inizializzazione adapter liste profilo iscritto
-        VisualizzazioneProfiloPersonaleListeAdapter adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
+        adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
                 this, R.layout.activity_list_element_visualizzazione_profilo_personale_liste,
                 new ArrayList<ListaBean>());
         listViewListe.setAdapter(adapterListe);
-        for (ListaBean l:listeIscritto)
-            adapterListe.add(l);
 
-        //inizializzazione adapter recensioni profilo iscritto
-        VisualizzazioneProfiloPersonaleRecensioniAdapter adapterRecensioni= new VisualizzazioneProfiloPersonaleRecensioniAdapter (
+
+        adapterRecensioni= new VisualizzazioneProfiloPersonaleRecensioniAdapter (
                 this, R.layout.activity_list_element_visualizzazione_profilo_personale_recensioni,
                 new ArrayList<RecensioneBean>());
         listViewRecensioni.setAdapter(adapterRecensioni);
-        for (RecensioneBean r: recensioniIscritto)
-            adapterRecensioni.add(r);
+
+        GsonResultListe g= (GsonResultListe) new GsonResultListe().execute(new Void[0]);
     }
 
     @Override
