@@ -1,6 +1,5 @@
 package it.unisa.ilike.account.application;
 
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,11 +16,11 @@ import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.account.storage.GestoreDAO;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.IscrittoDAO;
+import it.unisa.ilike.account.storage.IscrittoProxyBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 import it.unisa.ilike.account.storage.UtenteBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
-import it.unisa.ilike.account.storage.IscrittoProxyBean;
-import it.unisa.ilike.account.storage.IscrittoRealBean;
 
 /**
  * Un oggetto <code>AccountImpl</code> viene utilizzato per accedere ai servizi di autenticazione.
@@ -160,7 +159,7 @@ public class AccountImpl implements AccountService {
 
     /** @inheritDoc */
     public Account registrazioneIscritto(String email, String password, String nome,
-                                         String cognome, String nickname, String bio, InputStream foto)
+                                         String cognome, String nickname, String bio)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
 
         IscrittoBean iscritto;
@@ -176,15 +175,13 @@ public class AccountImpl implements AccountService {
                         e.printStackTrace();
                     }
 
-                    if (foto == null){
-                        iscritto = new IscrittoProxyBean(email, passwordCrittografata, nickname, nome, cognome, bio);
-                    }
-                    else {
-                        iscritto = new IscrittoRealBean(email, passwordCrittografata, nickname, nome, cognome, bio, foto);
-                    }
+
+                    iscritto = new IscrittoProxyBean(email, passwordCrittografata, nickname, nome, cognome, bio);
+
 
                     IscrittoDAO iscrittoDAO = new IscrittoDAO();
-                    iscrittoDAO.doSave(iscritto);
+                    if (!(iscrittoDAO.doSave(iscritto)))
+                        return null;
                     Account account = new Account(iscritto, null);
                     return account;
 

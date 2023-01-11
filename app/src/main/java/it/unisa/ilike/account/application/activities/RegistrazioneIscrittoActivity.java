@@ -1,27 +1,16 @@
 package it.unisa.ilike.account.application.activities;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.CharArrayWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 import it.unisa.ilike.R;
@@ -36,10 +25,10 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
     // constant to compare
     // the activity result code
-    private int SELECT_PICTURE = 200;
+    //private int SELECT_PICTURE = 200;
 
-    private InputStream foto = null;
-    private ImageView IVPreviewImage;
+    private InputStream foto;
+    //private ImageView IVPreviewImage;
     private Button BSelectImage;
 
 
@@ -52,53 +41,41 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
      */
     private class GsonResultRegistrazione extends AsyncTask<String, Void, Account> {
 
-        private Account account;
         private boolean isValidate = true;
         private String messaggio = null;
 
-        /**
-         * Consente di recuperare un oggetto Account utilizzando il metodo di servizio registrazioneIscritto
-         * della classe AccountImpl
-         * @param string array di stringhe contenente email, password, nome, cognome, nickname, bio, foto
-         * @return l'account utente se l'operazione è andata a buon fine, null altrimenti
-         */
         @Override
         protected Account doInBackground(String... string) {
+            Log.d("debugRegistrazione", "in doInBackground");
             AccountImpl accountImpl = new AccountImpl();
             try {
-                this.account= accountImpl.registrazioneIscritto(string[0], string[1], string[2],
-                        string[3], string[4], string[5], foto);
+                return accountImpl.registrazioneIscritto(string[0], string[1], string[2],
+                        string[3], string[4], string[5]);
             } catch (EmailVuotaException e) {
+                Log.d("debugRegistrazione", "in EmailVuotaException");
                 this.isValidate = false;
                 messaggio = "Email non presente";
                 return null;
             } catch (PasswordVuotaException e) {
+                Log.d("debugRegistrazione", "in PasswordVuotaException");
                 this.isValidate = false;
                 messaggio = "Password non presente";
                 return null;
             } catch (DatiIscrittoVuotiException e) {
+                Log.d("debugRegistrazione", "in DatiIscrittoVuotiException");
                 this.isValidate = false;
                 messaggio = "Dati iscritto non presenti";
                 return null;
             }
-            return account;
         }
-
-        /**
-         * Metodo che restituisce l'account utente memorizzato nella classe come variabile d'istanza
-         * @return il valore della variabile d'istanza account
-         */
-        public Account getAccount(){
-            while (this.account==null);
-            return this.account;
-        }
-
 
         @Override
         protected void onPostExecute(Account account) {
-            Log.d("debugLogin", "in onPostExecute");
+            Log.d("debugRegistrazione", "in onPostExecute");
             if (this.isValidate){
-                Log.d("debugLogin", "loginOK");
+                Log.d("debugRegistrazione", "registrazione OK");
+                if (account==null)
+                    Log.d("debugRegistrazione", "account null");
                 if(account.isAttore()){
                     Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazioen ok", Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
@@ -108,8 +85,8 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
                 }
             }
             else{
-                Log.d("debugLogin", "login not ok");
-                Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazione non effettuata", Toast.LENGTH_LONG).show();
+                Log.d("debugLogin", "registrazione NOT OK");
+                Toast.makeText(RegistrazioneIscrittoActivity.this, messaggio, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -121,7 +98,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registrazione_iscritto);
 
         //foto e pulsante per selezionare la foto
-        BSelectImage = findViewById(R.id.BSelectImage);
+        /*BSelectImage = findViewById(R.id.BSelectImage);
         IVPreviewImage = findViewById(R.id.IVPreviewImage);
 
         //da vedere
@@ -136,7 +113,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 imageChooser();
             }
-        });
+        });*/
     }
 
     private void setReturnIntent() {
@@ -147,7 +124,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
     // this function is triggered when
     // the Select Image Button is clicked
-    void imageChooser() {
+    /*void imageChooser() {
 
         // create an instance of the
         // intent of the type image
@@ -158,56 +135,49 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         // pass the constant to compare it
         // with the returned requestCode
         startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }
+    }*/
 
-    public void onClickRegistrazioneIscritto(View v, Intent intent) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
+    public void onClickRegistrazioneIscritto(View v){
 
         EditText e = findViewById(R.id.email);
-        String email = e.toString();
+        String email = String.valueOf(e.getText());
         EditText n = findViewById(R.id.nickname);
-        String nickname = n.toString();
+        String nickname = String.valueOf(n.getText());
         EditText p = findViewById(R.id.password);
-        String password = p.toString();
+        String password = String.valueOf(p.getText());
         EditText rp = findViewById(R.id.repeatPassword);
-        String repeatPassword = p.toString();
+        String repeatPassword = String.valueOf(rp.getText());
         EditText no = findViewById(R.id.nome);
-        String nome = no.toString();
+        String nome = String.valueOf(no.getText());
         EditText c = findViewById(R.id.cognome);
-        String cognome = c.toString();
+        String cognome = String.valueOf(c.getText());
         EditText b = findViewById(R.id.bio);
-        String bio = b.toString();
+        String bio = String.valueOf(b.getText());
+
+        Log.d("debugRegistrazione", password+" "+repeatPassword);
 
         //gestione foto
-
-        ImageView image = findViewById(R.id.IVPreviewImage);
+        /*ImageView image = findViewById(R.id.IVPreviewImage);
         Uri uri = (Uri) image.getTag();
-
         try {
             foto = getContentResolver().openInputStream(uri);
         } catch (FileNotFoundException exc) {
             exc.printStackTrace();
+        }*/
+
+
+        //controllo password corrispondenti
+        if (!(password.equals(repeatPassword))){
+            Toast.makeText(this, "Le password inserite non corrispondono", Toast.LENGTH_LONG).show();
         }
-
-
-        //controlli eccezioni
-
-        if (!(password.equals(repeatPassword)));
-
-
-        String [] s= {email, password, nome, cognome, nickname, bio};
-        GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
-//        Account account= g.getAccount();
-
-        /*
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-        startActivity(i);
-        if (g.isValidate())
-            Toast.makeText(this, "Registrazione effettuata", Toast.LENGTH_SHORT).show();*/
+        else{
+            String [] s= {email, password, nome, cognome, nickname, bio};
+            GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
+        }
 
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
@@ -243,6 +213,6 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         }
 
 
-    }
+    }*/
 
 }
