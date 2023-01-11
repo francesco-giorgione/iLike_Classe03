@@ -178,8 +178,8 @@ public class VisualizzazioneHomepageActivity extends Activity {
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
             startActivity(i);
-        }else
-            if (account.isIscritto() == Boolean.FALSE){
+        }else {
+            if (account.isIscritto() == Boolean.FALSE) {
                 // logout
                 AccountService accountService = new AccountImpl();
                 account = accountService.logout(account.getGestoreBean());
@@ -187,12 +187,12 @@ public class VisualizzazioneHomepageActivity extends Activity {
                 Intent i = new Intent();
                 i.setClass(VisualizzazioneHomepageActivity.this, VisualizzazioneHomepageActivity.class);
                 startActivity(i);
-            }
-            else{
+            } else {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             }
+        }
     }
 
     public void onClickSearchBar(View v){

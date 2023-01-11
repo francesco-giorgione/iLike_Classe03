@@ -13,12 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
+import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.profili.application.ProfiloImpl;
+import it.unisa.ilike.profili.application.ProfiloService;
 import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleListeAdapter;
 import it.unisa.ilike.profili.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
@@ -27,7 +31,8 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
-    IscrittoBean iscritto;
+    private IscrittoBean iscritto;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +43,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
         Intent i = getIntent();
 
-        Account account= (Account) i.getExtras().getSerializable("account");
-        iscritto= account.getIscrittoBean();
-
+        account = (Account) i.getExtras().getSerializable("account");
+        iscritto = account.getIscrittoBean();
         List<ListaBean> listeIscritto= iscritto.getListe();
         List<RecensioneBean> recensioniIscritto= iscritto.getRecensioni();
+
 
         //inizializzazione adapter liste profilo iscritto
         VisualizzazioneProfiloPersonaleListeAdapter adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
@@ -70,12 +75,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     public void onClickLogout(View v){
         Intent i = new Intent();
-        /*
-        AccountImpl account = new AccountImpl();
-
-        Account a = account.logout();
-
-        */
+        AccountService accountService = new AccountImpl();
+        account = accountService.logout(account.getIscrittoBean());
     }
 
     public void onClickAggiungiLista(View v){
@@ -86,7 +87,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     public void onClickHomepage(View v){
         Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
@@ -94,7 +96,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         Intent i = new Intent();
         TextView lista= (TextView) v;
         i.putExtra("nomeLista", lista.getText());
-        i.setClass(getApplicationContext(), VisualizzazioneContenutiListaPersonaleActivity.class);
+        i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneContenutiListaPersonaleActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
