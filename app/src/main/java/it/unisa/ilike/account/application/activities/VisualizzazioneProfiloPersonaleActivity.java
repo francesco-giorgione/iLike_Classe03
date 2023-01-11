@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.Serializable;
@@ -32,31 +33,55 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     List<RecensioneBean> recensioniIscritto;
+    List<ListaBean> listeIscritto;
 
-    private class GsonResultListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+    private class GsonResultListe extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+        protected Void doInBackground(Void... voids) {
             Log.d("debugProfilo", "doInBackground");
-            //recensioniIscritto= iscritto.getRecensioni();
-            return (ArrayList<ListaBean>) iscritto.getListe();
+            listeIscritto= iscritto.getListe();
+            return null;
         }
 
 
         @Override
-        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+        protected void onPostExecute(Void unused) {
 
             Log.d("debugProfilo", "onPostExecute");
             Log.d("debugProfilo", ""+listeIscritto.size());
-            //Log.d("debugProfilo", ""+recensioniIscritto.size());
 
             for (ListaBean l:listeIscritto) {
-                Log.d("debugProfilo", l.toString());
+                //Log.d("debugProfilo", l.toString());
                 adapterListe.add(l);
             }
 
-            /*for (RecensioneBean r: recensioniIscritto)
-                adapterRecensioni.add(r);*/
+            ProgressBar barListe= findViewById(R.id.barListe);
+            barListe.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private class GsonResultRecensioni extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d("debugProfilo", "doInBackground");
+            recensioniIscritto= iscritto.getRecensioni();
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+            Log.d("debugProfilo", "onPostExecute");
+            Log.d("debugProfilo", ""+recensioniIscritto.size());
+
+            for (RecensioneBean r: recensioniIscritto)
+                adapterRecensioni.add(r);
+
+            ProgressBar barRecensioni= findViewById(R.id.barRecensioni);
+            barRecensioni.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -96,6 +121,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         listViewRecensioni.setAdapter(adapterRecensioni);
 
         GsonResultListe g= (GsonResultListe) new GsonResultListe().execute(new Void[0]);
+        GsonResultRecensioni g1= (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+
     }
 
     @Override

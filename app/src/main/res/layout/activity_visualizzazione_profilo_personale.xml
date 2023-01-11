@@ -98,6 +98,13 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/barListe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/liste"/>
+
     <ListView
         android:id="@+id/elencoListeIscritto"
         android:layout_width="wrap_content"
@@ -129,6 +136,13 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:layout_marginTop="10dp"/>
+
+        <ProgressBar
+            android:id="@+id/barRecensioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/recensioniText"/>
 
         <ListView
             android:id="@+id/recensioniList"
