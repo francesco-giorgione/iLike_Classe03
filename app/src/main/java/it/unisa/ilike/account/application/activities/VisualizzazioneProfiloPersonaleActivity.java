@@ -1,5 +1,6 @@
 package it.unisa.ilike.account.application.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +47,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         List<ListaBean> listeIscritto= iscritto.getListe();
         List<RecensioneBean> recensioniIscritto= iscritto.getRecensioni();
 
+        TextView nicknameTextView= findViewById(R.id.nicknameTextView);
+        TextView infoTextView = findViewById(R.id.infoTextView);
+        nicknameTextView.setText(iscritto.getNickname());
+        infoTextView.setText(iscritto.getBio());
+
 
         //inizializzazione adapter liste profilo iscritto
         VisualizzazioneProfiloPersonaleListeAdapter adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
@@ -62,7 +68,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         listViewRecensioni.setAdapter(adapterRecensioni);
         for (RecensioneBean r: recensioniIscritto)
             adapterRecensioni.add(r);
-
     }
 
     @Override
@@ -80,6 +85,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     public void onClickAggiungiLista(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), CreazioneListaActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
@@ -102,7 +108,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     public void onClickAggiungiSegnalazione(View v){
 
         Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
-
         SegnalazioneBean s = new SegnalazioneBean();
 
         if(spoilerAlert.isSelected())
@@ -113,6 +118,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
         i.putExtra("segnalazione", (Serializable) s);
+        i.putExtra("account", account);
         startActivity(i);
     }
 }
