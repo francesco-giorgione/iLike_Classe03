@@ -65,12 +65,6 @@ public abstract class IscrittoBean extends UtenteBean implements Serializable {
     }
 
     /**
-     * Questo metodo permette di accedere alla foto profilo dell'iscritto
-     * @return la foto profilo dell'iscritto
-     */
-    public abstract InputStream getFoto();
-
-    /**
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
@@ -93,12 +87,6 @@ public abstract class IscrittoBean extends UtenteBean implements Serializable {
      * @param recensioni le nuove recensioni dell'iscritto
      */
     public abstract void setRecensioni(List<RecensioneBean> recensioni);
-
-    /**
-     * Questo metodo permette di modificare la foto profilo
-     * @param foto la nuova foto profilo dell'iscritto
-     */
-    public abstract void setFoto(InputStream foto);
 
     /**
      * Questo metodo permette di aggiungere una nuova lista ad un iscritto
