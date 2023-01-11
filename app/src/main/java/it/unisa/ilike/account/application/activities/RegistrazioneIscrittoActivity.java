@@ -45,17 +45,17 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             } catch (EmailVuotaException e) {
                 Log.d("debugRegistrazione", "in EmailVuotaException");
                 this.isValidate = false;
-                messaggio = "Email non presente";
+                messaggio = "Formato email non corretto";
                 return null;
             } catch (PasswordVuotaException e) {
                 Log.d("debugRegistrazione", "in PasswordVuotaException");
                 this.isValidate = false;
-                messaggio = "Password non presente";
+                messaggio = "Inserire una password di almeno 8 caratteri contenente almeno una lettera e un numero";
                 return null;
             } catch (DatiIscrittoVuotiException e) {
                 Log.d("debugRegistrazione", "in DatiIscrittoVuotiException");
                 this.isValidate = false;
-                messaggio = "Dati iscritto non presenti";
+                messaggio = "Inserire nome, cognome e nickname";
                 return null;
             }
         }
@@ -68,7 +68,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
                 if (account==null)
                     Log.d("debugRegistrazione", "account null");
                 if(account.isAttore()){
-                    Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazioen ok", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazione ok", Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(RegistrazioneIscrittoActivity.this, VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", account);

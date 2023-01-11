@@ -56,13 +56,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         nicknameTextView.setText(iscritto.getNickname());
         infoTextView.setText(iscritto.getBio());
 
-        ImageView icona = findViewById(R.id.icona);
-
-        if(iscritto.getFoto() != null){
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(iscritto.getFoto());
-            Bitmap bitmap = BitmapFactory.decodeStream(bufferedInputStream);
-            icona.setImageBitmap(bitmap);
-        }
 
 
         //inizializzazione adapter liste profilo iscritto
