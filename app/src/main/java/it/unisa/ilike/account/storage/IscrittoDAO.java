@@ -43,22 +43,14 @@ public class IscrittoDAO {
         String nome = Utils.addEscape(iscritto.getNome());
         String cognome = Utils.addEscape(iscritto.getCognome());
         String bio = Utils.addEscape(iscritto.getBio());
-        InputStream foto = iscritto.getFoto();
 
         String query = "";
 
         if (bio.equals("")){
-            if (foto == null) {
-                query = "insert into Iscritti (email, password, nickname, nome, cognome) " +
-                        "values ('" + email + "', '" + password + "', '" + nickname + "', '" + nome + "', '" + cognome + "');";
-            }
-            else {
-                query = "insert into Iscritti (email, password, nickname, nome, cognome, foto) " +
-                        "values ('" + email + "', '" + password + "', '" + nickname + "', '" + nome + "', '" + cognome + "', " +
-                        foto + ");";
-            }
+            query = "insert into Iscritti (email, password, nickname, nome, cognome) " +
+                    "values ('" + email + "', '" + password + "', '" + nickname + "', '" + nome + "', '" + cognome + "');";
         }
-        if (foto == null){
+        else {
             query = "insert into Iscritti (email, password, nickname, nome, cognome, bio) " +
                     "values ('" +
                     email + "', '" + password + "', '" + nickname + "', '" + nome + "', '" + cognome + "', '" +
@@ -135,25 +127,6 @@ public class IscrittoDAO {
         if(res.length == 0)
             return null;
         return res[0];
-    }
-
-
-    /**
-     * Questo metodo permette di caricare la foto profilo dell'utente
-     * @param email rappresenta l'email (chiave primaria) dell'utente
-     * @return la foto profilo dell'utente con formato Blob
-     */
-    public InputStream doRetriveFoto(String email){
-        email = addEscape(email);
-        String query = "select foto " +
-                "from Iscritti " +
-                "where email = '" + email + "'";
-
-        Gson gson = new Gson();
-        QueryManager queryManager = new QueryManager();
-        String res = queryManager.select(query);
-
-        return gson.fromJson(res, InputStream.class);
     }
 
 

@@ -30,17 +30,6 @@ public class IscrittoProxyBean extends IscrittoBean  implements Serializable {
     }
 
     /**
-     * Questo metodo permette di accedere alla foto profilo dell'iscritto
-     * @return la foto profilo dell'iscritto
-     */
-    public InputStream getFoto() {
-        if (this.iscrittoReal == null)
-            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
-                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
-        return this.iscrittoReal.getFoto();
-    }
-
-    /**
      * Questo metodo permette di accedere alle liste dell'iscritto
      * @return le liste dell'iscritto
      */
@@ -82,17 +71,6 @@ public class IscrittoProxyBean extends IscrittoBean  implements Serializable {
             this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
                     this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
         this.iscrittoReal.setRecensioni(recensioni);
-    }
-
-    /**
-     * Questo metodo permette di modificare la foto profilo
-     * @param foto la nuova foto profilo dell'iscritto
-     */
-    public void setFoto(InputStream foto) {
-        if (this.iscrittoReal == null)
-            this.iscrittoReal = new IscrittoRealBean(this.getEmail(), this.getPassword(),
-                    this.getNickname(), this.getNome(), this.getCognome(), this.getBio());
-        this.iscrittoReal.setFoto(foto);
     }
 
     /**
