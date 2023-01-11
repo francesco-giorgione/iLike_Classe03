@@ -76,12 +76,12 @@ public class LoginActivity extends AppCompatActivity {
             Log.d("debugLogin", "in onPostExecute");
             if (checkLogin){
                 Log.d("debugLogin", "loginOK");
-                if(account.isIscritto() == Boolean.TRUE){
+                if(account.isAttore()){
                     messaggio="Login iscritto ok";
                     Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-                    i.putExtra("account", (Serializable) account);
+                    i.putExtra("account", account);
                     startActivity(i);
                 }
             }

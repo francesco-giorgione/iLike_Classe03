@@ -1,5 +1,6 @@
 package it.unisa.ilike.recensioni.storage;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
@@ -10,7 +11,7 @@ import it.unisa.ilike.contenuti.storage.ContenutoBean;
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class RecensioneBean {
+public class RecensioneBean  implements Serializable {
 
     /**
      * Costruttore senza parametri

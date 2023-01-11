@@ -1,11 +1,13 @@
 package it.unisa.ilike.account.storage;
 
+import java.io.Serializable;
+
 /**
  * Questa classe rappresenta il gestore di iLike.
  * @author Marta
  * @version 0.1
  */
-public class GestoreBean extends UtenteBean {
+public class GestoreBean extends UtenteBean implements Serializable {
 
     /**
      * Questo metodo crea un oggetto GestoreBean

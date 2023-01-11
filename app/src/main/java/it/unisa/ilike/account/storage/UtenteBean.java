@@ -1,5 +1,6 @@
 package it.unisa.ilike.account.storage;
 
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * @author Marta
  * @version 0.1
  */
-public abstract class UtenteBean {
+public abstract class UtenteBean implements Serializable {
 
     /**
      * Questo metodo crea un oggetto UtenteBean

@@ -1,5 +1,6 @@
 package it.unisa.ilike.liste.storage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import it.unisa.ilike.contenuti.storage.ContenutoBean;
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class ListaBean {
+public class ListaBean  implements Serializable {
 
     /**
      * Costruttore senza parametri

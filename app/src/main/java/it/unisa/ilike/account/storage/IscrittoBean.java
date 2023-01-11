@@ -1,6 +1,7 @@
 package it.unisa.ilike.account.storage;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -12,7 +13,7 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
  * @author Marta
  * @version 0.2
  */
-public abstract class IscrittoBean extends UtenteBean {
+public abstract class IscrittoBean extends UtenteBean implements Serializable {
 
     /**
      * Questo metodo crea un oggetto <code>IscrittoBean</code>

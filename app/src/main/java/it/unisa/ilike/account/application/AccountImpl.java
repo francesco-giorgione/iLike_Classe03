@@ -124,7 +124,7 @@ public class AccountImpl implements AccountService {
             }
             if (isEmail(email)){
                 iscrittoBean = iscrittoDAO.doRetrieveByUsernamePassword(null, email, passwordCrittografata);
-                gestoreBean = gestoreDAO.doRetrieveByEmailPassword(email, password);
+                gestoreBean = gestoreDAO.doRetrieveByEmailPassword(email, passwordCrittografata);
             }else {
                 if (isNickname(email)){
                     iscrittoBean = iscrittoDAO.doRetrieveByUsernamePassword(email, null, passwordCrittografata);
@@ -164,7 +164,6 @@ public class AccountImpl implements AccountService {
                                          String cognome, String nickname, String bio, InputStream foto)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
 
-        //NOTA --> la foto passata come argomento è una stringa occorre fare la conversione in Blob
         IscrittoBean iscritto;
         String passwordCrittografata = null;
 
