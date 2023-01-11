@@ -181,13 +181,11 @@ public class VisualizzazioneHomepageActivity extends Activity {
         }else
             if (account.isIscritto() == Boolean.FALSE){
                 // logout
-
                 AccountService accountService = new AccountImpl();
                 account = accountService.logout(account.getGestoreBean());
 
                 Intent i = new Intent();
-                i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-                i.putExtra("account", (Serializable) account);
+                i.setClass(VisualizzazioneHomepageActivity.this, VisualizzazioneHomepageActivity.class);
                 startActivity(i);
             }
             else{
