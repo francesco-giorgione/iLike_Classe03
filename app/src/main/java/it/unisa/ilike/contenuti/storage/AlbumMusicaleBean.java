@@ -1,11 +1,13 @@
 package it.unisa.ilike.contenuti.storage;
 
+import java.io.Serializable;
+
 /**
  * Questa classe contiene gli attributi e i metodi di utilità relativi agli album musicali
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class AlbumMusicaleBean extends ContenutoBean {
+public class AlbumMusicaleBean extends ContenutoBean implements Serializable {
 
     /**
      * Costruttore senza parametri

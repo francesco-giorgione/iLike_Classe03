@@ -1,6 +1,7 @@
 package it.unisa.ilike.profili.storage;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
  * @author Marta
  * @version 0.2
  */
-public class IscrittoRealBean extends IscrittoBean {
+public class IscrittoRealBean extends IscrittoBean  implements Serializable {
 
     /**
      * Questo metodo crea un oggetto <code>IscrittoRealBean</code>

@@ -1,15 +1,13 @@
 package it.unisa.ilike.account.storage;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.Serializable;
 
 /**
  * Questa classe rappresenta l'utente generico di iLike.
  * @author Marta
  * @version 0.1
  */
-public abstract class UtenteBean {
+public abstract class UtenteBean implements Serializable {
 
     /**
      * Questo metodo crea un oggetto UtenteBean

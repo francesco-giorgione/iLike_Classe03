@@ -152,19 +152,18 @@ public class VisualizzazioneHomepageActivity extends Activity {
             account = new Account(null, null);
         }
 
-        if(account.isIscritto() != Boolean.TRUE){
-            // se l'attore è un iscritto o utente non registrato
-            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
-            chatBotButton.setVisibility(View.VISIBLE);
-        }else {
-            // se l'attore loggato è un gestore
+        if(account.isIscritto()== Boolean.FALSE){
+            // se l'attore è un gestore
             visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
             chatBotButton.setVisibility(View.INVISIBLE);
+        }else{
+            // se l'attore è un iscritto o un utente non registrato
+            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+            chatBotButton.setVisibility(View.VISIBLE);
         }
 
         Intent i = getIntent();
-        setReturnIntent();
-        //GsonResultTop3Contenuti g= (GsonResultTop3Contenuti) new GsonResultTop3Contenuti().execute(new Void[0]);
+        //setReturnIntent();
         GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
     }
 
@@ -179,23 +178,21 @@ public class VisualizzazioneHomepageActivity extends Activity {
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
             startActivity(i);
-        }else
-            if (account.isIscritto() == Boolean.FALSE){
+        }else {
+            if (account.isIscritto() == Boolean.FALSE) {
                 // logout
-
                 AccountService accountService = new AccountImpl();
                 account = accountService.logout(account.getGestoreBean());
 
                 Intent i = new Intent();
-                i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-                i.putExtra("account", (Serializable) account);
+                i.setClass(VisualizzazioneHomepageActivity.this, VisualizzazioneHomepageActivity.class);
                 startActivity(i);
-            }
-            else{
+            } else {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
             }
+        }
     }
 
     public void onClickSearchBar(View v){

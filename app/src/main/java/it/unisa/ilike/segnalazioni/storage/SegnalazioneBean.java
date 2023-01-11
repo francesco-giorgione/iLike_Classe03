@@ -1,5 +1,7 @@
 package it.unisa.ilike.segnalazioni.storage;
 
+import java.io.Serializable;
+
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
@@ -8,7 +10,7 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
  * @author Simona Lo Conte
  * @version 0.1
  */
-public class SegnalazioneBean {
+public class SegnalazioneBean  implements Serializable {
 
     /**
      * Costruttore senza parametri
