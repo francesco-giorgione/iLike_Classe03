@@ -31,7 +31,7 @@ public class CreazioneListaActivity extends AppCompatActivity {
      */
     private class GsonResultCreaLista extends AsyncTask<Object, Void, Boolean> {
 
-        Boolean listaCreata;
+        Boolean listaCreata = true;
 
         /**
          * Consente di utilizzare il metodo di servizio creaLista della classe ListaImpl e di
@@ -48,7 +48,7 @@ public class CreazioneListaActivity extends AppCompatActivity {
             String nome= (String) objects[1];
             boolean pubblica= (boolean) objects[2];
             try {
-                this.listaCreata= listaImpl.creaLista(i, nome, pubblica);
+                i = listaImpl.creaLista(i, nome, pubblica);
             } catch (NomeVuotoException e) {
                 this.listaCreata=false;
             } catch (InvalidNomeException e) {
@@ -56,8 +56,24 @@ public class CreazioneListaActivity extends AppCompatActivity {
             } catch (ListaGiaEsistenteException e) {
                 this.listaCreata=false;
             }
+            if(i != null && this.listaCreata)
+                account.setIscrittoBean(i);
             return listaCreata;
         }
+
+
+        protected void onPostExecute(Boolean check) {
+            if (check) {
+                Toast.makeText(CreazioneListaActivity.this, "Lista creata", Toast.LENGTH_LONG).show();
+                Intent i = new Intent();
+                i.setClass(CreazioneListaActivity.this, VisualizzazioneProfiloPersonaleActivity.class);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
+            else
+                Toast.makeText(CreazioneListaActivity.this, "Lista NON creata", Toast.LENGTH_LONG).show();
+        }
+
 
         /**
          * Metodo che restituisce un boolean listaCreata memorizzato nella classe come variabile d'istanza.
@@ -88,13 +104,15 @@ public class CreazioneListaActivity extends AppCompatActivity {
 
     public void onClickProfilo(View v){
         Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+        i.setClass(CreazioneListaActivity.this, VisualizzazioneProfiloPersonaleActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
     public void onClickHomepage(View v){
         Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.setClass(CreazioneListaActivity.this, VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
@@ -107,32 +125,23 @@ public class CreazioneListaActivity extends AppCompatActivity {
         Boolean pubblica = null;
         if (visibilitaPublic.isChecked()){
             pubblica=true;
-        }
-        else if (visibilitaPrivate.isChecked()){
+        }else if (visibilitaPrivate.isChecked()){
             pubblica=false;
         }
-        else{
-            //errore
+
+
+        if(pubblica == null){
+            Toast.makeText(getApplicationContext(), "Inserire la visibilità della lista", Toast.LENGTH_LONG).show();
+        }else {
+            account = (Account) getIntent().getExtras().getSerializable("account");
+            IscrittoBean iscritto= account.getIscrittoBean();
+            Object[] objects=new Object[3];
+            objects[0]= iscritto;
+            objects[1]= String.valueOf(nomeLista.getText());
+            objects[2] = pubblica;
+            GsonResultCreaLista g= (GsonResultCreaLista) new GsonResultCreaLista().execute(objects);
         }
-
-
-        Account account = (Account) getIntent().getExtras().getSerializable("account");
-        IscrittoBean iscritto= account.getIscrittoBean();
-
-        Object[] objects=new Object[3];
-        objects[0]= iscritto;
-        objects[1]= nomeLista;
-        objects[2] = pubblica;
-
-        GsonResultCreaLista g= (GsonResultCreaLista) new GsonResultCreaLista().execute(objects);
-
-        if (g.isListaCreata()) {
-            Toast.makeText(getApplicationContext(), "Lista creata", Toast.LENGTH_LONG).show();
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-            startActivity(i);
-        }
-        else
-            Toast.makeText(getApplicationContext(), "Lista NON creata", Toast.LENGTH_LONG).show();
     }
+
+    private Account account;
 }

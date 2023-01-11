@@ -12,7 +12,7 @@ import it.unisa.ilike.liste.storage.ListaBean;
 
 /**
  * L'interfaccia espone i servizi relativi alla gestione delle liste.
- *  @version 0.1
+ *  @version 0.2
  *  @author FrancescoGiorgione
  */
 public interface ListaService {
@@ -21,12 +21,12 @@ public interface ListaService {
      * @param i è l'iscritto a cui associare la lista che si vuole creare.
      * @param nome è il nome della lista che si vuole creare.
      * @param pubblica stabilisce se la lista creata deve essere pubblica o privata.
-     * @return un booleano che descrive l'esito dell'operazione.
+     * @return .
      * @throws NomeVuotoException se 'nome' è una stringa vuota.
      * @throws InvalidNomeException se 'nome' ha un numero di caratteri maggiore di 50.
      * @throws ListaGiaEsistenteException se l'iscritto ha già una lista di nome 'nome'.
      */
-    boolean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
+    IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
             NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException;
 
     /**
