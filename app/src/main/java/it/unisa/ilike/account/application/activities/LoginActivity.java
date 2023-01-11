@@ -10,8 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
-
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
@@ -80,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     messaggio="Login iscritto ok";
                     Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
-                    i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+                    i.setClass(LoginActivity.this, VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", account);
                     startActivity(i);
                 }
