@@ -1,15 +1,27 @@
 package it.unisa.ilike.account.application.activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.CharArrayWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import it.unisa.ilike.R;
@@ -22,7 +34,14 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
-    InputStream foto;
+    // constant to compare
+    // the activity result code
+    int SELECT_PICTURE = 200;
+
+    InputStream foto = null;
+
+    ImageView IVPreviewImage;
+    Button BSelectImage;
 
     /**
      * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
@@ -43,7 +62,6 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
          */
         @Override
         protected Account doInBackground(String... string) {
-            Log.d("MyDebug","sono in doInBackground");
             AccountImpl accountImpl = new AccountImpl();
             try {
                 this.account= accountImpl.registrazioneIscritto(string[0], string[1], string[2],
@@ -66,17 +84,6 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             while (this.account==null);
             return this.account;
         }
-
-        @Override
-        protected void onPostExecute(Account account) {
-            Log.d("MyDebug","sono in onPostExecute");
-            //se la registrazione va a buon fine
-            Toast.makeText(getApplicationContext(), "Registrazione effettuata", Toast.LENGTH_SHORT).show();
-
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-            startActivity(i);
-        }
     }
 
 
@@ -85,10 +92,26 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrazione_iscritto);
 
+        //foto e pulsante per selezionare la foto
+        BSelectImage = findViewById(R.id.BSelectImage);
+        IVPreviewImage = findViewById(R.id.IVPreviewImage);
+
+        //da vedere
+        Uri uri = Uri.parse("app/src/main/res/drawable/icona_profilo.png");
+        IVPreviewImage.setImageURI(uri);
+
+
         //inizio da login
         Intent i = getIntent();
         setReturnIntent();
         //fine da login
+
+        BSelectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageChooser();
+            }
+        });
     }
 
     //inizio da login
@@ -98,7 +121,23 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
     }
     //fine da login
 
-    public void onClickRegistrazioneIscritto(View v) {
+
+    // this function is triggered when
+    // the Select Image Button is clicked
+    void imageChooser() {
+
+        // create an instance of the
+        // intent of the type image
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        // pass the constant to compare it
+        // with the returned requestCode
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+    }
+
+    public void onClickRegistrazioneIscritto(View v, Intent intent) throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {
 
         EditText e = findViewById(R.id.email);
         String email = e.toString();
@@ -115,20 +154,74 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
         EditText b = findViewById(R.id.bio);
         String bio = b.toString();
 
-        //aggiungere foto
-        foto= null;
+        //gestione foto
+
+        ImageView image = findViewById(R.id.IVPreviewImage);
+        Uri uri = (Uri) image.getTag();
+
+        InputStream inputStream = null;
+
+        try {
+            inputStream = getContentResolver().openInputStream(uri);
+        } catch (FileNotFoundException exc) {
+            exc.printStackTrace();
+        }
+
 
 
         //controlli eccezioni
 
-        if (!(password.equals(repeatPassword))){
+        if (!(password.equals(repeatPassword)));
             //errore
-            Log.d("MyDebug", "Le password non corrispondono");
-        }
 
-        Log.d("MyDebug", "sono in onClickRegistrazioneIscritto()");
         String [] s= {email, password, nome, cognome, nickname, bio};
         GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
+        Account account= g.getAccount();
+
+
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        startActivity(i);
+        //se la registrazione va a buon fine
+        Toast.makeText(this, "Registrazione effettuata", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            // compare the resultCode with the
+            // SELECT_PICTURE constant
+            if (requestCode == SELECT_PICTURE) {
+                // Get the url of the image from data
+                Uri selectedImageUri = data.getData();
+
+                IVPreviewImage.setTag(selectedImageUri);
+
+                Bitmap bitmap = null;
+                InputStream inputStream = null;
+
+                try {
+                    inputStream = getContentResolver().openInputStream(selectedImageUri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+
+                bitmap = BitmapFactory.decodeStream(bufferedInputStream);
+
+
+                if (bitmap != null) {
+                    // update the preview image in the layout
+                    IVPreviewImage.setImageBitmap(bitmap);
+
+                }
+            }
+        }
+
+
     }
 
 }
