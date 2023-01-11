@@ -15,9 +15,11 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.liste.application.VisualizzazioneContenutiListaPersonaleAdapter;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.liste.storage.ListaDAO;
 
 public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatActivity {
 
@@ -29,9 +31,12 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         Intent i= getIntent();
 
 
-        ListaBean lista= (ListaBean) i.getExtras().getSerializable("lista");
-        Account account = (Account) i.getExtras().getSerializable("account");
+        String nomeLista= (String) i.getExtras().getString("lista");
+        account = (Account) i.getExtras().getSerializable("account");
         IscrittoBean iscritto= account.getIscrittoBean();
+
+        ListaDAO listaDAO = new ListaDAO();
+        ListaBean lista = listaDAO.doRetrieveByKey(nomeLista, account.getIscrittoBean().getEmail());
 
         TextView tvNomeLista= findViewById(R.id.textViewLista);
         tvNomeLista.setText(lista.getNome());
@@ -54,12 +59,15 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
+    private Account account;
 }
