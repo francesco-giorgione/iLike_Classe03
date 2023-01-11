@@ -50,7 +50,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             } catch (PasswordVuotaException e) {
                 Log.d("debugRegistrazione", "in PasswordVuotaException");
                 this.isValidate = false;
-                messaggio = "Inserire una password di almeno 8 caratteri contenente almeno una lettera e un numero";
+                messaggio = "Inserire una password di minimo 8 caratteri, con una lettera e un numero";
                 return null;
             } catch (DatiIscrittoVuotiException e) {
                 Log.d("debugRegistrazione", "in DatiIscrittoVuotiException");

@@ -35,7 +35,7 @@ public class AccountImpl implements AccountService {
      * @return True se il campo rispetta i vincoli, False altrimenti
      */
     private boolean isNickname(String nickname) {
-        Pattern pattern = Pattern.compile("^[A-z0-9'_#& ]{3,30}$");
+        Pattern pattern = Pattern.compile("^[A-z0-9'._#& ]{3,30}$");
         Matcher matcher = pattern.matcher(nickname);
         return matcher.matches();
     }

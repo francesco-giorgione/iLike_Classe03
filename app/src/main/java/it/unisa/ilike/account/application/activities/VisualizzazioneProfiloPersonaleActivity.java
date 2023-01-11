@@ -135,6 +135,9 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         Intent i = new Intent();
         AccountService accountService = new AccountImpl();
         account = accountService.logout(account.getIscrittoBean());
+        i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", account);
+        startActivity(i);
     }
 
     public void onClickAggiungiLista(View v){
