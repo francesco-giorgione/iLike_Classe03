@@ -138,12 +138,12 @@ public class RecensioneDAO {
 
         if(motivazione_cancellazione != null) {
             query = "insert into Recensioni (testo, valutazione, data, cancellata, motivazione_cancellazione, email_iscritto, id_contenuto) " +
-                    "values ('" + testo + "', '" + valutazione + "', '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
+                    "values ('" + testo + "', " + valutazione + ", '" + data + "', " + cancellata + ", '" + motivazione_cancellazione+ "', '"
                     + emailIscritto + "', " + idContenuto + ")";
         }
         else  {
             query = "insert into Recensioni (testo, valutazione, data, cancellata, email_iscritto, id_contenuto) " +
-                    "values ('" + testo + "', '" + valutazione + "', '" + data + "', " + cancellata + ", '"
+                    "values ('" + testo + "', " + valutazione + ", '" + data + "', " + cancellata + ", '"
                     + emailIscritto + "', " + idContenuto + ")";
         }
 
