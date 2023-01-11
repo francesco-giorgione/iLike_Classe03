@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Questa classe rapresenta l'oggetto che identifica se è stato effettuato il login
  * per valutare se è stato effettuato il login.
  * @author Marta
- * @version 0.1
+ * @version 0.2
  */
 public class Account implements Serializable {
 
@@ -63,6 +63,12 @@ public class Account implements Serializable {
             if (gestoreBean != null)
                 return false;
         return null;
+    }
+
+    public boolean isAttore(){
+        if(iscrittoBean != null || gestoreBean != null)
+            return true;
+        return false;
     }
 
     private IscrittoBean iscrittoBean;
