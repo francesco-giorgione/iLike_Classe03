@@ -34,8 +34,9 @@ public class Utils {
      * singolo o doppio.
      */
     public static String addEscape(String str) {
-        String newStr = str.replace("'", "\\'");
-        return newStr.replace("\"", "\\\"");
+        /*String newStr = str.replace("'", "\\'");
+        return newStr.replace("\"", "\\\"");*/
+        return new String(str.replace("'", "''"));
     }
 
     /**
