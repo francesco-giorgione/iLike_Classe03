@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -44,6 +46,12 @@ public class VisualizzazioneDettagliataContenutoAdapter extends ArrayAdapter<Rec
         RatingBar bar= v.findViewById(R.id.valutazioneRecensione);
         Log.d("valutazioneDebug",""+r.getValutazione());
         bar.setRating(r.getValutazione());
+
+
+        Button spoilerAleletButton = v.findViewById(R.id.spoilerAlert);
+        ImageButton altreSegnalazioniButton = v.findViewById(R.id.altreSegnalazioni);
+        spoilerAleletButton.setTag(r.getId());
+        altreSegnalazioniButton.setTag(r.getId());
 
         return v;
     }

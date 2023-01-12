@@ -51,7 +51,7 @@
             android:id="@+id/tipoSegnalazione"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/testo"
+            android:layout_below="@id/testo"
             android:text="Altre segnalazioni/Spoiler alert ( a seconda del pulsante cliccato)"/>
 
         <EditText
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/tipoSegnalazione"
+            android:layout_below="@id/tipoSegnalazione"
             android:hint="Inserisci la motivazione della segnalazione"/>
 
         <Button

@@ -14,6 +14,7 @@ import java.io.Serializable;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
@@ -72,7 +73,7 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
                 i.putExtra("account", account);
-                i.putExtra("recensione", segnalazione.getRecensione());
+                i.putExtra("contenuto", contenuto);
                 startActivity(i);
             }else {
                 Toast toast = Toast.makeText(getApplicationContext(), this.messaggio, Toast.LENGTH_LONG);
@@ -96,18 +97,24 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aggiunta_segnalazione_recensione);
+        TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
+        segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        String spoiler = "spoiler allert";
+        String altre = "altre segnalazioni";
+        if(segnalazione.getTipo() == 1)
+            tipoSegnalazioneTextView.setText(spoiler);
+        else
+            tipoSegnalazioneTextView.setText(altre);
+
     }
 
     public void onClickInviaSegnalazione(View view) {
-        segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
-        account = (Account) getIntent().getExtras().getSerializable("account");
-        TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
-        if(segnalazione.getTipo() == 1)
-            tipoSegnalazioneTextView.setText("spoiler allert");
-        else
-            tipoSegnalazioneTextView.setText("altre segnalazioni");
+
+
         TextView motivazioneSegnalazioneTextView = findViewById(R.id.motivazioneSegnalazione);
-        String motivazioneSegnalazione = (String) motivazioneSegnalazioneTextView.getText();
+        String motivazioneSegnalazione = String.valueOf(motivazioneSegnalazioneTextView.getText());
         String[] s= new String[2];
 
         s[0]=String.valueOf(segnalazione.getTipo());
@@ -118,4 +125,5 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
     private Account account;
     private SegnalazioneBean segnalazione;
+    private ContenutoBean contenuto;
 }

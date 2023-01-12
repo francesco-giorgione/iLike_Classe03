@@ -193,6 +193,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     public void onClickAltreSegnalazioni(View v){
         s = new SegnalazioneBean();
         s.setTipo(0);
+        s.setIscritto(account.getIscrittoBean());
         ImageButton altreSegnalazioniButton = (ImageButton) v;
         idRecensione = (int) altreSegnalazioniButton.getTag();
 
@@ -202,6 +203,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     public void onClickSpoilerAlert(View v){
         s = new SegnalazioneBean();
         s.setTipo(1);
+        s.setIscritto(account.getIscrittoBean());
         Button spoilerAlertButton = (Button) v;
         idRecensione = (int) spoilerAlertButton.getTag();
 

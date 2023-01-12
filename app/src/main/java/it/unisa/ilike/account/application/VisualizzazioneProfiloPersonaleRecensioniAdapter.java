@@ -58,11 +58,7 @@ public class VisualizzazioneProfiloPersonaleRecensioniAdapter extends ArrayAdapt
         valutazioneRecensione.setRating(r.getValutazione());
 
         //Log.d("ratingDebug", ""+r.getValutazione());
-        valutazioneRecensione.setTag(position);
-        Button spoilerAleletButton = view.findViewById(R.id.spoilerAlert);
-        ImageButton altreSegnalazioniButton = view.findViewById(R.id.altreSegnalazioni);
-        spoilerAleletButton.setTag(r.getId());
-        altreSegnalazioniButton.setTag(r.getId());
+
         return view;
     }
 }

@@ -33,6 +33,7 @@ import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivit
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivity {
@@ -100,6 +101,26 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         }
     }
 
+    private class GsonResultSegnalazione extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d("debugProfilo", "doInBackground");
+            RecensioneDAO recensioneDAO = new RecensioneDAO();
+            recensioneBean = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+            s.setRecensione(recensioneBean);
+            onClickAggiungiSegnalazione(s);
+        }
+
+        private RecensioneBean recensioneBean;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,13 +131,31 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         homepageButton= findViewById(R.id.homepageButton);
 
         account = (Account) getIntent().getExtras().getSerializable("account");
-        //contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
         Intent i = getIntent();
         int idContenuto= i.getIntExtra("idContenuto", -1);
+
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
 
-        GsonResultContenuto g= (GsonResultContenuto) new GsonResultContenuto().execute(idContenuto);
+        TextView titoloContenuto= findViewById(R.id.titoloContenuto);
+        titoloContenuto.setText(c.getTitolo());
+
+        ImageView icona= findViewById(R.id.imgContenuto);
+        if (c instanceof FilmBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+        else if (c instanceof SerieTVBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+        else if (c instanceof LibroBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+        else
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
+        TextView descrizione= findViewById(R.id.descrizioneContenuto);
+        descrizione.append(c.getDescrizione());
+
+        RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
+        valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
 
         ListView recensioniList= findViewById(R.id.recensioniList);
 
@@ -199,15 +238,23 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickAltreSegnalazioni(View v){
-        SegnalazioneBean s = new SegnalazioneBean();
+        s = new SegnalazioneBean();
         s.setTipo(0);
-        onClickAggiungiSegnalazione(s);
+        s.setIscritto(account.getIscrittoBean());
+        ImageButton altreSegnalazioniButton = (ImageButton) v;
+        idRecensione = (int) altreSegnalazioniButton.getTag();
+
+        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
     public void onClickSpoilerAlert(View v){
-        SegnalazioneBean s = new SegnalazioneBean();
+        s = new SegnalazioneBean();
         s.setTipo(1);
-        onClickAggiungiSegnalazione(s);
+        s.setIscritto(account.getIscrittoBean());
+        Button spoilerAlertButton = (Button) v;
+        idRecensione = (int) spoilerAlertButton.getTag();
+
+        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
     private void onClickAggiungiSegnalazione(SegnalazioneBean s){
@@ -216,6 +263,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
             i.putExtra("segnalazione", s);
             i.putExtra("account", account);
+            i.putExtra("contenuto", c);
             startActivity(i);
         }else{
             if(account.isIscritto() == Boolean.FALSE){
@@ -229,4 +277,6 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     private Account account;
+    private int idRecensione;
+    private SegnalazioneBean s;
 }
