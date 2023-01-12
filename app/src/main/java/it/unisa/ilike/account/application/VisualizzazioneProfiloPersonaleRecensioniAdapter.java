@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,16 +40,23 @@ public class VisualizzazioneProfiloPersonaleRecensioniAdapter extends ArrayAdapt
 
         TextView nomeContenuto;
         TextView testoRecensione;
+        RatingBar valutazioneRecensione;
 
         nomeContenuto = (TextView) view.findViewById(R.id.nomeContenuto);
         testoRecensione = (TextView) view.findViewById(R.id.testoRecensione);
 
+        valutazioneRecensione= view.findViewById(R.id.valutazioneRecensione);
 
         nomeContenuto.setText(c.getTitolo());
         testoRecensione.setText(r.getTesto());
 
         nomeContenuto.setTag(position);
         testoRecensione.setTag(position);
+
+        valutazioneRecensione.setRating(r.getValutazione());
+
+        //Log.d("ratingDebug", ""+r.getValutazione());
+        valutazioneRecensione.setTag(position);
 
         return view;
     }
