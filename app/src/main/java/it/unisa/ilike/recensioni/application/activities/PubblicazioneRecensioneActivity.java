@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -152,7 +153,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     public void onClickAggiungiRecensione(View view) {
         RatingBar rBar = findViewById(R.id.valutazioneContenuto);
         int valutazioneContenuto = rBar.getNumStars();
-        TextView descTextView = findViewById(R.id.testoRecensione);
+        EditText descTextView = findViewById(R.id.testoRecensione);
         String descrizioneRecensione = String.valueOf(descTextView.getText());
 
         String s[] = {descrizioneRecensione, String.valueOf(valutazioneContenuto)};
