@@ -48,7 +48,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         @Override
         protected Void doInBackground(Integer... id) {
 
-            ContenutoService contenutoService= new ContenutoImpl();
+             ContenutoService contenutoService= new ContenutoImpl();
             c= contenutoService.getById(id[0]);
             return null;
         }
@@ -131,32 +131,14 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         homepageButton= findViewById(R.id.homepageButton);
 
         account = (Account) getIntent().getExtras().getSerializable("account");
-        c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
         Intent i = getIntent();
         int idContenuto= i.getIntExtra("idContenuto", -1);
 
         Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
 
-        TextView titoloContenuto= findViewById(R.id.titoloContenuto);
-        titoloContenuto.setText(c.getTitolo());
-
-        ImageView icona= findViewById(R.id.imgContenuto);
-        if (c instanceof FilmBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
-        else if (c instanceof SerieTVBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
-        else if (c instanceof LibroBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
-        else
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
-
-        TextView descrizione= findViewById(R.id.descrizioneContenuto);
-        descrizione.append(c.getDescrizione());
-
-        RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
-        valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
-
+        GsonResultContenuto g= (GsonResultContenuto) new GsonResultContenuto().execute(idContenuto);
         ListView recensioniList= findViewById(R.id.recensioniList);
 
         adapter = new VisualizzazioneDettagliataContenutoAdapter(this, R.layout.activity_list_element_visualizzazione_dettagliata_contenuto,

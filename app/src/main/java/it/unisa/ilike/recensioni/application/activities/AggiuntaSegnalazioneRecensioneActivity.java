@@ -1,6 +1,5 @@
 package it.unisa.ilike.recensioni.application.activities;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.Serializable;
-
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
@@ -70,11 +65,12 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
         protected void onPostExecute(Boolean b) {
             if(this.isValidate){
-                Intent i = new Intent();
+                onBackPressed();
+                /*Intent i = new Intent();
                 i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
                 i.putExtra("account", account);
-                i.putExtra("contenuto", contenuto);
-                startActivity(i);
+                i.putExtra("idContenuto", contenuto.getId());
+                startActivity(i);*/
             }else {
                 Toast toast = Toast.makeText(getApplicationContext(), this.messaggio, Toast.LENGTH_LONG);
                 toast.show();
