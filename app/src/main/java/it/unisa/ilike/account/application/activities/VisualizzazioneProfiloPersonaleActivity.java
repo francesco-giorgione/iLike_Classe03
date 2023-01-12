@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,7 +25,9 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
@@ -160,7 +163,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
-    /*public void onClickAggiungiSegnalazione(View v){
+    public void onClickAggiungiSegnalazione(View v){
 
         Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
         SegnalazioneBean s = new SegnalazioneBean();
@@ -172,8 +175,8 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
         Intent i = new Intent();
         i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
-        i.putExtra("segnalazione", (Serializable) s);
+        i.putExtra("segnalazione", s);
         i.putExtra("account", account);
         startActivity(i);
-    }*/
+    }
 }

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,8 +30,10 @@ import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
+import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivity {
 
@@ -184,5 +187,23 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             startActivity(i);
         }
     }
+
+    public void onClickAggiungiSegnalazione(View v){
+
+        Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
+        SegnalazioneBean s = new SegnalazioneBean();
+
+        if(spoilerAlert.isSelected())
+            s.setTipo(0);
+        else
+            s.setTipo(1);
+
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
+        i.putExtra("segnalazione", s);
+        i.putExtra("account", account);
+        startActivity(i);
+    }
+
     private Account account;
 }
