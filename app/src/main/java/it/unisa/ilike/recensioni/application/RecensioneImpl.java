@@ -23,14 +23,14 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class RecensioneImpl implements RecensioneService{
 
-    /** @inheritDoc */
+    /** @inheritDoc
+     * @return */
     @Override
-    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
-                    throws TestoTroppoBreveException, InvalidTestoException,
-                                                                            ValutazioneException {
+    public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
+                    throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException {
 
         if(testo == null || i == null || c == null) {
-            return false;
+            return null;
         }
 
         if (testo.length()<3) throw new TestoTroppoBreveException();
@@ -40,7 +40,10 @@ public class RecensioneImpl implements RecensioneService{
         RecensioneDAO recensioneDAO= new RecensioneDAO();
         RecensioneBean recensione= new RecensioneBean(-1, testo, valutazione, new Date(), false, null, i, c);
 
-        return recensioneDAO.doSaveRecensione(recensione);
+        if(recensioneDAO.doSaveRecensione(recensione)) {
+            return recensione;
+        }
+        return null;
     }
 
 

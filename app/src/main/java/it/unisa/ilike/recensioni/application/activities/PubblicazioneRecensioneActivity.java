@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,15 +16,20 @@ import java.io.Serializable;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.LibroBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
@@ -37,6 +43,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     private class GsonResultCreaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
+        RecensioneBean recensione;
 
         /**
          * Consente di utilizzare il metodo creaRecensione di RecensioneService e di memorizzarne
@@ -50,9 +57,9 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             RecensioneService recensioneService = new RecensioneImpl();
 
             int valutazioneContenuto= Integer.parseInt(string[1]);
-
+            recensione = null;
             try {
-                recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
+                recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
             } catch (TestoTroppoBreveException e) {
                 // messaggio di errore
                 isValidate = false;
@@ -70,7 +77,23 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
                 toast.show();
             }
 
-            return isValidate;
+            return true;
+        }
+
+        protected void onPostExecute(Boolean b) {
+
+            if (this.isValidate) {
+                contenuto.aggiungiRecensione(recensione);
+                IscrittoBean iscrittoBean = account.getIscrittoBean();
+                iscrittoBean.addRecensione(recensione);
+                account.setIscrittoBean(iscrittoBean);
+
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
+                i.putExtra("account", (Serializable) account);
+                i.putExtra("contenuto", (Serializable) contenuto);
+                startActivity(i);
+            }//else go to pubblicazione recensione
         }
 
         /**
@@ -89,6 +112,27 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pubblicazione_recensione);
+
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+
+        TextView titoloTextView = findViewById(R.id.titoloContenuto);
+        TextView descrizioneTextView = findViewById(R.id.descrizioneContenuto);
+        TextView stelleTextView = findViewById(R.id.stelleCorrenti);
+        titoloTextView.setText(contenuto.getTitolo());
+        descrizioneTextView.setText(contenuto.getDescrizione());
+        stelleTextView.setText(String.valueOf(contenuto.getValutazioneMedia()));
+
+        ImageView icona= findViewById(R.id.logoContenuto);
+        if (contenuto instanceof FilmBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+        else if (contenuto instanceof SerieTVBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+        else if (contenuto instanceof LibroBean)
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+        else
+            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+
 
         Intent i = getIntent();
         setReturnIntent();
@@ -109,23 +153,11 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         RatingBar rBar = findViewById(R.id.valutazioneContenuto);
         int valutazioneContenuto = rBar.getNumStars();
         TextView descTextView = findViewById(R.id.testoRecensione);
-        String descrizioneRecensione = (String) descTextView.getText();
+        String descrizioneRecensione = String.valueOf(descTextView.getText());
 
         String s[] = {descrizioneRecensione, String.valueOf(valutazioneContenuto)};
         GsonResultCreaRecensione g = (GsonResultCreaRecensione) new GsonResultCreaRecensione().execute(s);
 
-        boolean isValidate = g.isValidate();
-
-        if (isValidate) {
-            account = (Account) getIntent().getExtras().getSerializable("account");
-            contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
-
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
-            i.putExtra("account", (Serializable) account);
-            i.putExtra("contenuto", (Serializable) contenuto);
-            startActivity(i);
-        }//else go to pubblicazione recensione
     }
 
     public void onClickProfilo(View v){
