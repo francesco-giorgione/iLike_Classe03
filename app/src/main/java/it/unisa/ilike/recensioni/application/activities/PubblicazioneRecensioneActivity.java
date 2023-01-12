@@ -45,6 +45,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
         Boolean isValidate = true;
         RecensioneBean recensione;
+        String messaggio = null;
 
         /**
          * Consente di utilizzare il metodo creaRecensione di RecensioneService e di memorizzarne
@@ -58,24 +59,21 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             RecensioneService recensioneService = new RecensioneImpl();
 
             int valutazioneContenuto= Integer.parseInt(string[1]);
-            recensione = null;
+            this.recensione = null;
             try {
-                recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
+                this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
             } catch (TestoTroppoBreveException e) {
                 // messaggio di errore
-                isValidate = false;
-                Toast toast = Toast.makeText(getApplicationContext(), "Il testo della recensione non rispetta il numero minimo di 3 caratteri!", Toast.LENGTH_LONG);
-                toast.show();
+                this.isValidate = false;
+                this.messaggio = "Il testo della recensione non rispetta il numero minimo di 3 caratteri!";
             } catch (InvalidTestoException e) {
                 // messaggio di errore
-                isValidate = false;
-                Toast toast = Toast.makeText(getApplicationContext(), "Il testo della recensione non può superare i 1000 caratteri!", Toast.LENGTH_LONG);
-                toast.show();
+                this.isValidate = false;
+                this.messaggio = "Il testo della recensione non può superare i 1000 caratteri!";
             } catch (ValutazioneException e) {
                 // messaggio di errore
-                isValidate = false;
-                Toast toast = Toast.makeText(getApplicationContext(), "La valutazione inserita non è valida", Toast.LENGTH_LONG);
-                toast.show();
+                this.isValidate = false;
+                this.messaggio = "La valutazione inserita non è valida";
             }
 
             return true;
@@ -84,9 +82,9 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean b) {
 
             if (this.isValidate) {
-                contenuto.aggiungiRecensione(recensione);
+                contenuto.aggiungiRecensione(this.recensione);
                 IscrittoBean iscrittoBean = account.getIscrittoBean();
-                iscrittoBean.addRecensione(recensione);
+                iscrittoBean.addRecensione(this.recensione);
                 account.setIscrittoBean(iscrittoBean);
 
                 Intent i = new Intent();
@@ -94,7 +92,10 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
                 i.putExtra("account", (Serializable) account);
                 i.putExtra("contenuto", (Serializable) contenuto);
                 startActivity(i);
-            }//else go to pubblicazione recensione
+            }else {
+                Toast toast = Toast.makeText(getApplicationContext(), this.messaggio, Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
 
         /**
