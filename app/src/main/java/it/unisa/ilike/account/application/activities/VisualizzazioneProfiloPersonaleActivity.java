@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -28,6 +29,7 @@ import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiLista
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
@@ -83,6 +85,29 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
             ProgressBar barRecensioni= findViewById(R.id.barRecensioni);
             barRecensioni.setVisibility(View.INVISIBLE);
         }
+
+
+    }
+
+    private class GsonResultSegnalazione extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Log.d("debugProfilo", "doInBackground");
+            RecensioneDAO recensioneDAO = new RecensioneDAO();
+            recensioneBean = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void unused) {
+
+            s.setRecensione(recensioneBean);
+            onClickAggiungiSegnalazione(s);
+        }
+
+        private RecensioneBean recensioneBean;
     }
 
 
@@ -166,15 +191,21 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     }
 
     public void onClickAltreSegnalazioni(View v){
-        SegnalazioneBean s = new SegnalazioneBean();
+        s = new SegnalazioneBean();
         s.setTipo(0);
-        onClickAggiungiSegnalazione(s);
+        ImageButton altreSegnalazioniButton = (ImageButton) v;
+        idRecensione = (int) altreSegnalazioniButton.getTag();
+
+        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
     public void onClickSpoilerAlert(View v){
-        SegnalazioneBean s = new SegnalazioneBean();
+        s = new SegnalazioneBean();
         s.setTipo(1);
-        onClickAggiungiSegnalazione(s);
+        Button spoilerAlertButton = (Button) v;
+        idRecensione = (int) spoilerAlertButton.getTag();
+
+        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
     private void onClickAggiungiSegnalazione(SegnalazioneBean s){
@@ -194,4 +225,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
             }
         }
     }
+
+    private int idRecensione;
+    private SegnalazioneBean s;
 }

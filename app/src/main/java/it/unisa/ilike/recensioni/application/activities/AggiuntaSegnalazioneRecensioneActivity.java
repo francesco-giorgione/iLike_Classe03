@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,7 @@ import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     private class GsonResultValidate extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
+        String messaggio = null;
 
         /**
          * Consente di utilizzare il metodo aggiungiSegnalazione di RecensioneService e di memorizzarne
@@ -44,25 +47,37 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
-            RecensioneBean recensione = (RecensioneBean) getIntent().getExtras().getSerializable("recensione");
-            Account account = (Account) getIntent().getExtras().getSerializable("account");
+
             int tipo= Integer.parseInt(string[0]);
             try {
-                recensioneService.aggiungiSegnalazione(tipo, string[1], recensione, account.getIscrittoBean());
+                recensioneService.aggiungiSegnalazione(tipo, string[1], segnalazione.getRecensione(), account.getIscrittoBean());
             } catch (InvalidTipoException e) {
-                //messaggio errore
+                messaggio = "Tipo segnalazione non corretto";
                 isValidate = false;
                 e.printStackTrace();
             } catch (MotivazioneVuotaException e) {
-                //messaggio errore
+                messaggio = "Inserire almeno 1 carattere per la motivazione";
                 isValidate = false;
                 e.printStackTrace();
             } catch (InvalidMotivazioneException e) {
-                //messaggio errore
+                messaggio = "Puoi inserire al massimo 500 caratteri";
                 isValidate = false;
                 e.printStackTrace();
             }
             return isValidate;
+        }
+
+        protected void onPostExecute(Boolean b) {
+            if(this.isValidate){
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
+                i.putExtra("account", account);
+                i.putExtra("recensione", segnalazione.getRecensione());
+                startActivity(i);
+            }else {
+                Toast toast = Toast.makeText(getApplicationContext(), this.messaggio, Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
 
         /**
@@ -84,32 +99,23 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     }
 
     public void onClickInviaSegnalazione(View view) {
+        segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
+        account = (Account) getIntent().getExtras().getSerializable("account");
         TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
-        String tipoSegnalazione = (String) tipoSegnalazioneTextView.getText();
+        if(segnalazione.getTipo() == 1)
+            tipoSegnalazioneTextView.setText("spoiler allert");
+        else
+            tipoSegnalazioneTextView.setText("altre segnalazioni");
         TextView motivazioneSegnalazioneTextView = findViewById(R.id.motivazioneSegnalazione);
         String motivazioneSegnalazione = (String) motivazioneSegnalazioneTextView.getText();
         String[] s= new String[2];
 
-        int tipo = 3;
-        if (tipoSegnalazione.equalsIgnoreCase("Spoiler Alert"))
-            tipo = 0;
-        else if (tipoSegnalazione.equalsIgnoreCase("Altre Segnalazioni"))
-            tipo = 1;
-
-        s[0]=String.valueOf(tipo);
+        s[0]=String.valueOf(segnalazione.getTipo());
         s[1]=motivazioneSegnalazione;
 
         GsonResultValidate g= (GsonResultValidate) new GsonResultValidate().execute(s);
-        boolean isValidate= g.isValidate();
-
-        if(isValidate){
-            RecensioneBean recensione = (RecensioneBean) getIntent().getExtras().getSerializable("recensione");
-            Account account = (Account) getIntent().getExtras().getSerializable("account");
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
-            i.putExtra("account", (Serializable) account);
-            i.putExtra("recensione", (Serializable) recensione);
-            startActivityForResult(i, 878);
-        }//else in aggiungi segnalazione
     }
+
+    private Account account;
+    private SegnalazioneBean segnalazione;
 }

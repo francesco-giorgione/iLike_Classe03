@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -57,7 +59,10 @@ public class VisualizzazioneProfiloPersonaleRecensioniAdapter extends ArrayAdapt
 
         //Log.d("ratingDebug", ""+r.getValutazione());
         valutazioneRecensione.setTag(position);
-
+        Button spoilerAleletButton = view.findViewById(R.id.spoilerAlert);
+        ImageButton altreSegnalazioniButton = view.findViewById(R.id.altreSegnalazioni);
+        spoilerAleletButton.setTag(r.getId());
+        altreSegnalazioniButton.setTag(r.getId());
         return view;
     }
 }
