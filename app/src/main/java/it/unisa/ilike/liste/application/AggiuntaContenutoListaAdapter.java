@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +13,6 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import it.unisa.ilike.R;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.contenuti.storage.LibroBean;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 
 public class AggiuntaContenutoListaAdapter extends ArrayAdapter<ListaBean> {
@@ -42,9 +36,9 @@ public class AggiuntaContenutoListaAdapter extends ArrayAdapter<ListaBean> {
 
         ListaBean l = getItem(position);
 
-        RadioButton lista;
+        TextView lista;
 
-        lista = (RadioButton) view.findViewById(R.id.sceltaListaRadioButton);
+        lista = (TextView) view.findViewById(R.id.sceltaListaButton);
 
         lista.setText(l.getNome());
 

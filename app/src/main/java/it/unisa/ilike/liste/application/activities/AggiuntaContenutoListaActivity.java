@@ -1,9 +1,12 @@
 package it.unisa.ilike.liste.application.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,14 +14,57 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.AggiuntaContenutoListaAdapter;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class AggiuntaContenutoListaActivity extends AppCompatActivity {
+
+    private class GsonResultCreaLista extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        private boolean checkAccount= true;
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... objects) {
+            if (account!=null){
+                IscrittoBean iscritto= account.getIscrittoBean();
+                return (ArrayList<ListaBean>) iscritto.getListe();
+            }
+            else{
+                checkAccount=false;
+                return null;
+            }
+        }
+
+
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+
+            ProgressBar bar= findViewById(R.id.progress_circular);
+            bar.setVisibility(View.INVISIBLE);
+
+            TextView t= findViewById(R.id.textView);
+            t.setText("Scegli la lista a cui aggiungere il contenuto");
+
+            if (listeIscritto!=null)
+                for (ListaBean l: listeIscritto)
+                    adapter.add(l);
+            else
+                if(!checkAccount)
+                    Toast.makeText(AggiuntaContenutoListaActivity.this, "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(AggiuntaContenutoListaActivity.this, "Crea una lista nel tuo profilo prima di eseguire questa operazione", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private Account account;
+    private ContenutoBean contenuto;
+    private AggiuntaContenutoListaAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +76,16 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
 
 
         ListView elencoListeIscritto= findViewById(R.id.elencoListeIscritto);
-        AggiuntaContenutoListaAdapter adapter;
+
         adapter = new AggiuntaContenutoListaAdapter(this, R.layout.activity_list_element_aggiunta_contenuto_lista,
                 new ArrayList<ListaBean>());
         elencoListeIscritto.setAdapter(adapter);
 
-        Account account = (Account) i.getExtras().getSerializable("account");
+        account = (Account) i.getExtras().getSerializable("account");
+        contenuto= (ContenutoBean) i.getExtras().getSerializable("contenuto");
+
         if (account!=null){
-            IscrittoBean iscritto= account.getIscrittoBean();
-            ArrayList<ListaBean> listeIscritto= (ArrayList<ListaBean>) iscritto.getListe();
-            for (ListaBean l: listeIscritto){
-                adapter.add(l);
-            }
+            GsonResultCreaLista g= (GsonResultCreaLista) new GsonResultCreaLista().execute(new Void[0]);
         }
         else{
             Toast.makeText(getApplicationContext(), "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
