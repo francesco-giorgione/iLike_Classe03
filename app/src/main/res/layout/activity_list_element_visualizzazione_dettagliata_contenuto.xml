@@ -31,12 +31,12 @@
                 android:text="Nickname iscritto"/>
         </LinearLayout>
 
-        <ScrollView
+        <!-- <ScrollView
             android:id="@+id/scrollerDescrizione"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/view"
-            android:layout_marginTop="0dp">
+            android:layout_marginTop="0dp">-->
             <TextView
                 android:id="@+id/testoRecensione"
                 android:textSize="18dp"
@@ -45,14 +45,14 @@
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
                 android:text="Testo recensione"/>
-        </ScrollView>
+        <!--</ScrollView>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:layout_marginLeft="200dip"
+                android:layout_marginLeft="100dip"
                 android:layout_width="50dip"
                 android:layout_height="50dip"
                 android:backgroundTint="@color/white"
@@ -61,7 +61,7 @@
             <Button
                 android:layout_marginLeft="10dip"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="55dip"
                 android:backgroundTint="#DBA73D"
                 android:text="Spoiler Alert"/>
 
