@@ -3,6 +3,7 @@ package it.unisa.ilike.liste.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -20,7 +21,11 @@ import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.AggiuntaContenutoListaAdapter;
+import it.unisa.ilike.liste.application.ListaImpl;
+import it.unisa.ilike.liste.application.ListaService;
+import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.liste.storage.ListaDAO;
 
 public class AggiuntaContenutoListaActivity extends AppCompatActivity {
 
@@ -57,6 +62,47 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
                     Toast.makeText(AggiuntaContenutoListaActivity.this, "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(AggiuntaContenutoListaActivity.this, "Crea una lista nel tuo profilo prima di eseguire questa operazione", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private class GsonResultAggiungiContenutoLista extends AsyncTask<String, Void, Void> {
+
+        private boolean isOk = true;
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            if (account!=null){
+                IscrittoBean iscritto= account.getIscrittoBean();
+                ListaService service= new ListaImpl();
+                ListaDAO dao= new ListaDAO();
+                ListaBean lista= dao.doRetrieveByKey(strings[0], iscritto.getEmail());
+                Log.d("debugListe", contenuto.toString());
+                try {
+                    service.aggiungiContenuto(lista, contenuto);
+                } catch (ContenutoGiaPresenteException e) {
+                    isOk =false;
+                }
+            }
+            else{
+                isOk =false;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void voids) {
+            if(!isOk) {
+                Toast.makeText(AggiuntaContenutoListaActivity.this, "Errore", Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }
+            else {
+                Toast.makeText(AggiuntaContenutoListaActivity.this, "Contenuto aggiunto alla lista", Toast.LENGTH_LONG).show();
+                Intent i = new Intent();
+                i.setClass(AggiuntaContenutoListaActivity.this, VisualizzazioneProfiloPersonaleActivity.class);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
         }
 
     }
@@ -113,5 +159,12 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
         startActivity(i);
+    }
+
+    public void onClickAggiungiContenutoAllaLista(View v){
+        TextView t= (TextView) v;
+        String nomeLista= String.valueOf(t.getText());
+        String[] s= {nomeLista};
+        GsonResultAggiungiContenutoLista g= (GsonResultAggiungiContenutoLista) new GsonResultAggiungiContenutoLista().execute(s);
     }
 }
