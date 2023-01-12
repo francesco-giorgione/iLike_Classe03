@@ -24,7 +24,8 @@ public interface RecensioneService {
      * @param valutazione rappresenta la valutazione espressa dall'iscritto relativa alla recensione
      * @param i rappresenta l'iscritto che ha composto la recensione
      * @param c rappresenta il contenuto cui la recensione si riferisce
-     * @return true se l'operazione è andata a buon fine, false altrimenti
+     * @return l'oggetto RecensioneBean contenente le informazioni relative alla recensione creata
+     * se l'operazione è andata a buon fine, null altrimenti.
      */
     public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
             throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException;
