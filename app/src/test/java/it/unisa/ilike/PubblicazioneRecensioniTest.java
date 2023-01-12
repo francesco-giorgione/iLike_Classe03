@@ -1,6 +1,7 @@
 package it.unisa.ilike;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.*;
 import it.unisa.ilike.account.storage.IscrittoBean;
@@ -8,6 +9,11 @@ import it.unisa.ilike.account.storage.IscrittoProxyBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
+import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
+import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
+import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
+import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -68,19 +74,30 @@ public class PubblicazioneRecensioniTest {
     }
 
 
-    /*@Before
-    public final void setUp() {
-        iscritto = new IscrittoProxyBean("testiscritto1@ilike.it", null, null, null, null, null);
-        contenuto = new SerieTVBean();
-        contenuto.setId(1);
-    }*/
-
-
-
-
     @Test
     public void testCreaRecensione() throws Exception {
-        System.out.println("Parameterized input is: " + testo + ", " + valutazione);
-        assertTrue(new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto));
+        String testoInfo = testo.length() > 50 ? testo.substring(0, 10) + "... (" + testo.length()
+                + " caratteri)" : testo;
+
+        System.out.println("Parameterized input is: " + testoInfo + ", " + valutazione);
+
+        if(testo.length() < 3 ){
+            assertThrows(TestoTroppoBreveException.class, () -> {
+                new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto);
+            });
+        }
+        else if(testo.length() > 1000) {
+            assertThrows(InvalidTestoException.class, () -> {
+                new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto);
+            });
+        }
+        else if(valutazione == 0) {
+            assertThrows(ValutazioneException.class, () -> {
+                new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto);
+            });
+        }
+        else {
+            assertTrue(new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto));
+        }
     }
 }
