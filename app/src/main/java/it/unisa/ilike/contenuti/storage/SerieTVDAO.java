@@ -36,6 +36,7 @@ public class SerieTVDAO extends ContenutoDAO {
         serieTV.setTitolo(contenuto.getTitolo());
         serieTV.setDescrizione(contenuto.getDescrizione());
         serieTV.setCategoria(contenuto.getCategoria());
+        serieTV.setValutazioneMedia(contenuto.getValutazioneMedia());
 
         return serieTV;
     }
