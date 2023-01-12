@@ -29,16 +29,33 @@
         android:layout_below="@id/header"
         android:background="@android:color/darker_gray"/>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:textStyle="italic"
+        android:textSize="22dip"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20px"
+        android:text="Caricamento in corso..."
+        android:layout_height="wrap_content"/>
+
     <!--Layout per elenco liste dell'iscritto-->
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dip"
+        android:layout_below="@id/textView"/>
+
 
     <ListView
         android:id="@+id/elencoListeIscritto"
         android:layout_width="match_parent"
-        android:layout_height="600dip"
-        android:layout_below="@id/header"
-        android:layout_marginTop="20dip">
-    </ListView>
-
+        android:layout_height="644dp"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="20dip" />
 
     <!--FOOTER -->
     <RelativeLayout

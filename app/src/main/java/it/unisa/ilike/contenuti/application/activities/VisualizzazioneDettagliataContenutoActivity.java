@@ -147,6 +147,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             i.putExtra("account", (Serializable) account);
             startActivity(i);
         }else {
+            Toast.makeText(getApplicationContext(), "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
             Intent i = new Intent();
             i.setClass(getApplicationContext(), LoginActivity.class);
             startActivity(i);
@@ -181,8 +182,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     public void onClickAggiungiContenutoAllaLista (View v){
         if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
-            i.putExtra("Account", (Serializable) null);
             i.setClass(getApplicationContext(), AggiuntaContenutoListaActivity.class);
+            i.putExtra("account", (Serializable) account);
             i.putExtra("contenuto", (Serializable) c);
             startActivity(i);
         }else {
