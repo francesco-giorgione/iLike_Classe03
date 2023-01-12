@@ -21,6 +21,10 @@ android {
                     srcDirs= ["src/main/python"]
                 }
             }
+
+            test{
+                java.srcDirs = ['src/test/java']
+            }
         }
 
         ndk {
