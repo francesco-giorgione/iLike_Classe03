@@ -189,20 +189,23 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     }
 
     public void onClickAggiungiSegnalazione(View v){
+        if(account.isIscritto() == Boolean.TRUE){
+            Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
+            SegnalazioneBean s = new SegnalazioneBean();
 
-        Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
-        SegnalazioneBean s = new SegnalazioneBean();
+            if(spoilerAlert.isSelected())
+                s.setTipo(0);
+            else
+                s.setTipo(1);
 
-        if(spoilerAlert.isSelected())
-            s.setTipo(0);
-        else
-            s.setTipo(1);
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
+            i.putExtra("segnalazione", s);
+            i.putExtra("account", account);
+            startActivity(i);
+        }
 
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
-        i.putExtra("segnalazione", s);
-        i.putExtra("account", account);
-        startActivity(i);
+
     }
 
     private Account account;
