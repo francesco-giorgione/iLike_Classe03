@@ -49,7 +49,7 @@ public class SegnalazioneDAO {
         int tipo = segnalazione.getTipo();
         String motivazione = Utils.addEscape(segnalazione.getMotivazione());
         int gestita = segnalazione.isGestita() ? 1 : 0;
-        String email_iscritto = Utils.addEscape(segnalazione.getRecensione().getIscritto().getEmail());
+        String email_iscritto = Utils.addEscape(segnalazione.getIscritto().getEmail());
         int id_recensione = segnalazione.getRecensione().getId();
 
         QueryManager queryManager= new QueryManager();
