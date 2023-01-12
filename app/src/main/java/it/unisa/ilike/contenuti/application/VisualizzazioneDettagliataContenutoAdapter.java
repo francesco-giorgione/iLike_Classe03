@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -31,7 +32,6 @@ public class VisualizzazioneDettagliataContenutoAdapter extends ArrayAdapter<Rec
 
         RecensioneBean r = getItem(position);
 
-        Log.d("DEBUG","recensione r="+r);
 
 
         TextView nickname= v.findViewById(R.id.nickname);
@@ -40,6 +40,10 @@ public class VisualizzazioneDettagliataContenutoAdapter extends ArrayAdapter<Rec
 
         TextView testoRecensione= v.findViewById(R.id.testoRecensione);
         testoRecensione.setText(r.getTesto());
+
+        RatingBar bar= v.findViewById(R.id.valutazioneRecensione);
+        Log.d("valutazioneDebug",""+r.getValutazione());
+        bar.setRating(r.getValutazione());
 
         return v;
     }
