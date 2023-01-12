@@ -10,23 +10,36 @@
         android:orientation="vertical"
         android:layout_marginTop="20dip">
 
-        <TextView
-            android:id="@+id/nomeContenuto"
-            android:paddingLeft="10dip"
-            android:paddingTop="5dip"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="-10dp"
-            android:layout_width="300dip"
-            android:layout_height="match_parent"
-            android:text="Nome contenuto"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/icona"
+                android:layout_width="50dip"
+                android:src="@drawable/logo"
+                android:layout_height="50dp"/>
+
+            <TextView
+                android:id="@+id/nomeContenuto"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip"
+                android:layout_width="300dip"
+                android:layout_height="match_parent"
+                android:text="Nome contenuto"/>
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/testoRecensione"
+            android:textSize="18dp"
+            android:paddingBottom="80dp"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:text="Testo recensione"
-            android:layout_marginBottom="15dp"
-            android:paddingLeft="10dp"/>
+            android:text="Testo recensione"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,21 +62,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
-                android:id="@+id/altreSegnalazioni"
-                android:layout_marginLeft="200dip"
+                android:layout_marginLeft="100dip"
                 android:layout_width="50dip"
                 android:layout_height="50dip"
                 android:backgroundTint="@color/white"
-                android:onClick="onClickAggiungiSegnalazione"
                 android:src="@drawable/icona_altre_segnalazioni"/>
 
             <Button
-                android:id="@+id/spoilerAlert"
                 android:layout_marginLeft="10dip"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onClickAggiungiSegnalazione"
+                android:layout_height="55dip"
                 android:backgroundTint="#DBA73D"
                 android:text="Spoiler Alert"/>
 
