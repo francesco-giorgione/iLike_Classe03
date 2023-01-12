@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,9 +25,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
-import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
@@ -155,15 +153,16 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     public void onClickInfo(View v){
         Intent i = new Intent();
-        TextView lista= (TextView) v;
-        String nomeLista = String.valueOf(lista.getText());
+        ImageButton info= (ImageButton) v;
+
+        String nomeLista = (String) info.getTag();
         i.putExtra("lista", nomeLista);
         i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneContenutiListaPersonaleActivity.class);
         i.putExtra("account", account);
         startActivity(i);
     }
 
-    public void onClickAggiungiSegnalazione(View v){
+    /*public void onClickAggiungiSegnalazione(View v){
 
         Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
         SegnalazioneBean s = new SegnalazioneBean();
@@ -178,5 +177,5 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         i.putExtra("segnalazione", s);
         i.putExtra("account", account);
         startActivity(i);
-    }
+    }*/
 }

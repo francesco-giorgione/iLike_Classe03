@@ -1,9 +1,11 @@
 package it.unisa.ilike.liste.application.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,18 +13,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.LibroDAO;
 import it.unisa.ilike.liste.application.VisualizzazioneContenutiListaPersonaleAdapter;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaDAO;
 
 public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatActivity {
 
+    private class GsonResultContenuti extends AsyncTask<String, Void, ArrayList<ContenutoBean>> {
+
+        @Override
+        protected ArrayList<ContenutoBean> doInBackground(String... strings) {
+            ListaDAO dao= new ListaDAO();
+            lista= dao.doRetrieveByKey(strings[0], iscritto.getEmail());
+
+            ArrayList<ContenutoBean> contenuti= (ArrayList<ContenutoBean>) lista.getContenuti();
+            return contenuti;
+        }
+
+
+        @Override
+        protected void onPostExecute(ArrayList<ContenutoBean> contenuti) {
+            ProgressBar bar= findViewById(R.id.progress_circular);
+            bar.setVisibility(View.INVISIBLE);
+            TextView tvNomeLista= findViewById(R.id.textViewLista);
+            tvNomeLista.setText(lista.getNome());
+
+            for (ContenutoBean c: contenuti){
+                adapter.add(c);
+            }
+        }
+    }
+
+
+    private Account account;
+    private IscrittoBean iscritto;
+    private ListaBean lista;
+    private VisualizzazioneContenutiListaPersonaleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +64,18 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
 
         String nomeLista= (String) i.getExtras().getString("lista");
         account = (Account) i.getExtras().getSerializable("account");
-        IscrittoBean iscritto= account.getIscrittoBean();
+        iscritto= account.getIscrittoBean();
 
-        ListaDAO listaDAO = new ListaDAO();
-        ListaBean lista = listaDAO.doRetrieveByKey(nomeLista, account.getIscrittoBean().getEmail());
-
-        TextView tvNomeLista= findViewById(R.id.textViewLista);
-        tvNomeLista.setText(lista.getNome());
         ListView contenutiList = findViewById(R.id.listaContenutiListaPersonale);
 
-        VisualizzazioneContenutiListaPersonaleAdapter adapter = new VisualizzazioneContenutiListaPersonaleAdapter
+        adapter = new VisualizzazioneContenutiListaPersonaleAdapter
                 (this, R.layout.activity_list_element_ricerca_contenuto,
-                new ArrayList<ContenutoBean>());
+                        new ArrayList<ContenutoBean>());
 
         contenutiList.setAdapter(adapter);
 
-        ArrayList<ContenutoBean> contenutiLista= (ArrayList<ContenutoBean>) lista.getContenuti();
-
-        for (ContenutoBean c: contenutiLista){
-            adapter.add(c);
-        }
+        String[] s= {nomeLista};
+        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(s);
 
     }
 
@@ -69,5 +92,5 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         i.putExtra("account", account);
         startActivity(i);
     }
-    private Account account;
+
 }

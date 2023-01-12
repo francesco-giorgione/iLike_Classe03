@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -35,6 +36,9 @@ public class VisualizzazioneProfiloPersonaleListeAdapter extends ArrayAdapter<Li
         nomeLista.setText(l.getNome());
 
         nomeLista.setTag(position);
+
+        ImageButton info= view.findViewById(R.id.infoButton);
+        info.setTag(l.getNome());
 
         return view;
     }

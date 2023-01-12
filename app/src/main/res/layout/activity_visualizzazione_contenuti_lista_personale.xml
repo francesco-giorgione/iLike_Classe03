@@ -34,7 +34,8 @@
         android:id="@+id/textViewLista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nome lista"
+        android:textStyle="italic"
+        android:text="Caricamento in corso"
         android:textSize="25dp"
         android:textColor="#DBA73D"
         android:textAlignment="center"
@@ -51,6 +52,14 @@
         android:textAlignment="center"
         android:textColor="#DBA73D"
         android:textSize="20dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/textView"/>
 
     <ListView
         android:id="@+id/listaContenutiListaPersonale"
