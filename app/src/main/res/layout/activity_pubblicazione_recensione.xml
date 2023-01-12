@@ -70,52 +70,70 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/descrizioneContenuto"
-        android:paddingTop="20dip"
+
+    <ScrollView
+        android:id="@+id/scrollerDescrizione"
         android:layout_width="match_parent"
-        android:layout_below="@id/layoutContenuto"
-        android:layout_height="100dip"
-        android:textColor="@color/black"
-        android:text="Descrizione"/>
+        android:layout_height="150dp"
+        android:layout_below="@+id/layoutContenuto"
+        android:layout_marginTop="1dp">
+
+        <TextView
+            android:id="@+id/descrizioneContenuto"
+            android:layout_width="match_parent"
+            android:layout_height="100dip"
+            android:layout_below="@id/layoutContenuto"
+            android:paddingTop="20dip"
+            android:text="Descrizione"
+            android:textColor="@color/black" />
+
+    </ScrollView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/descrizioneContenuto"
+        android:layout_below="@+id/scrollerDescrizione"
         android:background="@android:color/darker_gray"/>
 
     <!--DETTAGLI RECENSIONE DA SCRIVERE-->
-
-
-    <!--FOOTER -->
 
     <RatingBar
         android:id="@+id/valutazioneContenuto"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:layout_below="@id/descrizioneContenuto"
+        android:layout_below="@id/scrollerDescrizione"
         android:layout_marginTop="55dp"
         android:numStars="5" />
 
-    <EditText
-        android:id="@+id/testoRecensione"
+    <ScrollView
+        android:id="@+id/scrollerTestoRecensione"
         android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:layout_below="@id/valutazioneContenuto"
-        android:layout_marginTop="36dp"
-        android:hint="inserisci qui il testo della tua recensione" />
+        android:layout_height="150dp"
+        android:layout_below="@+id/valutazioneContenuto"
+        android:layout_marginTop="1dp">
+
+        <EditText
+            android:id="@+id/testoRecensione"
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:layout_marginTop="36dp"
+            android:hint="inserisci qui il testo della tua recensione" />
+    </ScrollView>
+
+
 
     <Button
         android:id="@+id/pubblicaRecensioneButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/testoRecensione"
+        android:layout_below="@id/scrollerTestoRecensione"
         android:layout_marginTop="32dp"
         android:backgroundTint="#DBA73D"
         android:onClick="onClickAggiungiRecensione"
-        android:text="Pubbica recensione" />
+        android:text="Pubblica recensione" />
+
+    <!--FOOTER -->
 
     <RelativeLayout
         android:id="@+id/footer"
