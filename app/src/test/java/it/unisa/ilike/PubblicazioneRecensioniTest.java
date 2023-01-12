@@ -56,14 +56,12 @@ public class PubblicazioneRecensioniTest {
         return contenuto;
     }
 
-
     public PubblicazioneRecensioniTest(IscrittoBean iscritto, ContenutoBean contenuto, String testo, int valutazione) {
         this.iscritto = iscritto;
         this.contenuto = contenuto;
         this.testo = testo;
         this.valutazione = valutazione;
     }
-
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
@@ -72,7 +70,6 @@ public class PubblicazioneRecensioniTest {
                 {getIscritto(), getContenuto(), getStringaOk(), 0}, {getIscritto(), getContenuto(), getStringaOk(), 5}
         });
     }
-
 
     @Test
     public void testCreaRecensione() throws Exception {
