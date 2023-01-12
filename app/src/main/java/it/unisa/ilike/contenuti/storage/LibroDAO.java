@@ -36,6 +36,7 @@ public class LibroDAO extends ContenutoDAO {
         libro.setTitolo(contenuto.getTitolo());
         libro.setDescrizione(contenuto.getDescrizione());
         libro.setCategoria(contenuto.getCategoria());
+        libro.setValutazioneMedia(contenuto.getValutazioneMedia());
 
         return libro;
     }

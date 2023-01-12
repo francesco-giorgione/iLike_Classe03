@@ -168,9 +168,13 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             i.putExtra("contenuto", (Serializable) c);
             startActivity(i);
         }else {
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), LoginActivity.class);
-            startActivity(i);
+            if(account.isIscritto() == Boolean.FALSE){
+                Toast.makeText(getApplicationContext(), "Effettua il login come iscritto per effettuare questa operazione", Toast.LENGTH_LONG).show();
+            }else {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
         }
     }
 
@@ -182,30 +186,45 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             i.putExtra("contenuto", (Serializable) c);
             startActivity(i);
         }else {
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), LoginActivity.class);
-            startActivity(i);
+            if(account.isIscritto() == Boolean.FALSE){
+                Toast.makeText(getApplicationContext(), "Effettua il login come iscritto per effettuare questa operazione", Toast.LENGTH_LONG).show();
+            }else {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+
         }
     }
 
-    public void onClickAggiungiSegnalazione(View v){
+    public void onClickAltreSegnalazioni(View v){
+        SegnalazioneBean s = new SegnalazioneBean();
+        s.setTipo(0);
+        onClickAggiungiSegnalazione(s);
+    }
+
+    public void onClickSpoilerAlert(View v){
+        SegnalazioneBean s = new SegnalazioneBean();
+        s.setTipo(1);
+        onClickAggiungiSegnalazione(s);
+    }
+
+    private void onClickAggiungiSegnalazione(SegnalazioneBean s){
         if(account.isIscritto() == Boolean.TRUE){
-            Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
-            SegnalazioneBean s = new SegnalazioneBean();
-
-            if(spoilerAlert.isSelected())
-                s.setTipo(0);
-            else
-                s.setTipo(1);
-
             Intent i = new Intent();
             i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
             i.putExtra("segnalazione", s);
             i.putExtra("account", account);
             startActivity(i);
+        }else{
+            if(account.isIscritto() == Boolean.FALSE){
+                Toast.makeText(getApplicationContext(), "Effettua il login come iscritto per effettuare questa operazione", Toast.LENGTH_LONG).show();
+            }else {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
         }
-
-
     }
 
     private Account account;

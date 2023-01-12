@@ -36,6 +36,7 @@ public class FilmDAO extends ContenutoDAO {
         film.setTitolo(contenuto.getTitolo());
         film.setDescrizione(contenuto.getDescrizione());
         film.setCategoria(contenuto.getCategoria());
+        film.setValutazioneMedia(contenuto.getValutazioneMedia());
 
         return film;
     }
