@@ -37,6 +37,7 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         albumMusicale.setTitolo(contenuto.getTitolo());
         albumMusicale.setDescrizione(contenuto.getDescrizione());
         albumMusicale.setCategoria(contenuto.getCategoria());
+        albumMusicale.setValutazioneMedia(contenuto.getValutazioneMedia());
 
         return albumMusicale;
     }
