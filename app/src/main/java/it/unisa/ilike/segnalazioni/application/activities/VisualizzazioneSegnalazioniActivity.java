@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,15 +62,14 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         setReturnIntent();
-        //account = (Account) getIntent().getExtras().getSerializable("account");
-        //GestoreBean gestoreBean = account.getGestoreBean();
-        //TextView numerSegnalazioniTextView = (TextView) findViewById(R.id.numerSegnalazioniGestite);
-        //numerSegnalazioniTextView.setText(gestoreBean.getNumSegnalazioniGestite());
+        account = (Account) getIntent().getExtras().getSerializable("account");
+
+//        TextView numerSegnalazioniTextView = (TextView) findViewById(R.id.numerSegnalazioniGestite);
+//        numerSegnalazioniTextView.setText(account.getGestoreBean().getNumSegnalazioniGestite());
         ListView segnalazioniList= findViewById(R.id.segnalazioniList);
 
-        VisualizzazioneSegnalazioniAdapter adapter= new VisualizzazioneSegnalazioniAdapter(this,
-                R.layout.activity_list_element_visualizzazione_segnalazioni,
-                new ArrayList<SegnalazioneBean>());
+        adapter = new VisualizzazioneSegnalazioniAdapter(this,
+                R.layout.activity_list_element_visualizzazione_segnalazioni, new ArrayList<SegnalazioneBean>());
         segnalazioniList.setAdapter(adapter);
         GsonResultSegnalazioni g= (GsonResultSegnalazioni) new GsonResultSegnalazioni().execute(new Void[0]);
     }
@@ -82,6 +82,7 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     public void onClickInfo(View view){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), GestioneSegnalazioniActivity.class);
+        i.putExtra("account", account);
         startActivity(i);
     }
 

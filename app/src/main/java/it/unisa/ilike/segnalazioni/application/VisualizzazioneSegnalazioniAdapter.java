@@ -49,7 +49,11 @@ public class VisualizzazioneSegnalazioniAdapter extends ArrayAdapter<Segnalazion
         tipoSegnalazione = (TextView) view.findViewById(R.id.tipologia);
 
         nicknameIscritto.setText(s.getIscritto().getNickname());
-        tipoSegnalazione.setText(s.getTipo());
+        if(s.getTipo() == 1){
+            tipoSegnalazione.setText("spoiler alert");
+        }else {
+            tipoSegnalazione.setText("altre segnalazioni");
+        }
 
         nicknameIscritto.setTag(position);
         tipoSegnalazione.setTag(position);
