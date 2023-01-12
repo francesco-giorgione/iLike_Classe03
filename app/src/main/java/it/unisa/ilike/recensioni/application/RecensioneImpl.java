@@ -23,8 +23,7 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class RecensioneImpl implements RecensioneService{
 
-    /** @inheritDoc
-     * @return */
+    /** @inheritDoc */
     @Override
     public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
                     throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException {
