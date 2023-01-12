@@ -152,7 +152,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
     public void onClickAggiungiRecensione(View view) {
         RatingBar rBar = findViewById(R.id.valutazioneContenuto);
-        int valutazioneContenuto = rBar.getNumStars();
+        int valutazioneContenuto = (int) rBar.getRating();
         EditText descTextView = findViewById(R.id.testoRecensione);
         String descrizioneRecensione = String.valueOf(descTextView.getText());
 
