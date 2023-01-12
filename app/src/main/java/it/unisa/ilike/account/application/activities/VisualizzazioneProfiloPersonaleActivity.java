@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,9 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
@@ -162,20 +165,33 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
-    /*public void onClickAggiungiSegnalazione(View v){
-
-        Button spoilerAlert = (Button) v.findViewById(R.id.spoilerAlert);
+    public void onClickAltreSegnalazioni(View v){
         SegnalazioneBean s = new SegnalazioneBean();
+        s.setTipo(0);
+        onClickAggiungiSegnalazione(s);
+    }
 
-        if(spoilerAlert.isSelected())
-            s.setTipo(0);
-        else
-            s.setTipo(1);
+    public void onClickSpoilerAlert(View v){
+        SegnalazioneBean s = new SegnalazioneBean();
+        s.setTipo(1);
+        onClickAggiungiSegnalazione(s);
+    }
 
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
-        i.putExtra("segnalazione", s);
-        i.putExtra("account", account);
-        startActivity(i);
-    }*/
+    private void onClickAggiungiSegnalazione(SegnalazioneBean s){
+        if(account.isIscritto() == Boolean.TRUE){
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
+            i.putExtra("segnalazione", s);
+            i.putExtra("account", account);
+            startActivity(i);
+        }else{
+            if(account.isIscritto() == Boolean.FALSE){
+                Toast.makeText(getApplicationContext(), "Effettua il login come iscritto per effettuare questa operazione", Toast.LENGTH_LONG).show();
+            }else {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        }
+    }
 }
