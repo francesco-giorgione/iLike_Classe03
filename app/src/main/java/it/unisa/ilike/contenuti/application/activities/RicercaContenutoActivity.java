@@ -21,11 +21,11 @@ import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.RicercaContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
 public class RicercaContenutoActivity extends AppCompatActivity {
 
@@ -78,6 +78,8 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             while (this.contenutoBeans==null);
             return this.contenutoBeans;
         }
+
+
 
         @Override
         protected void onPostExecute(List<ContenutoBean> contenutoBeans) {
