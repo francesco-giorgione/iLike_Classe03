@@ -68,7 +68,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
                 if (account==null)
                     Log.d("debugRegistrazione", "account null");
                 if(account.isAttore()){
-                    Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazione ok", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazione effettuata", Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(RegistrazioneIscrittoActivity.this, VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", account);

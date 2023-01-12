@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 //ritorno al login e messaggio
                 Log.d("debugLogin", "CredenzialiVuoteException");
                 checkLogin=false;
-                messaggio="Credenziali vuote";
+                messaggio="Formato credenziali non corretto";
                 return null;
             } catch (CredenzialiErrateException e) {
                 //ritorno al login e messaggio
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             if (checkLogin){
                 Log.d("debugLogin", "loginOK");
                 if(account.isAttore()){
-                    messaggio="Login iscritto ok";
+                    messaggio="Login effettuata";
                     Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(LoginActivity.this, VisualizzazioneHomepageActivity.class);
