@@ -1,5 +1,6 @@
 package it.unisa.ilike;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 
@@ -94,7 +95,7 @@ public class PubblicazioneRecensioniTest {
             });
         }
         else {
-            assertTrue(new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto));
+            assertNotNull(new RecensioneImpl().creaRecensione(testo, valutazione, iscritto, contenuto));
         }
     }
 }

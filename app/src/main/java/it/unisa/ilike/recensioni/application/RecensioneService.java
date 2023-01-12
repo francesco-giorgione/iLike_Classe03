@@ -26,7 +26,7 @@ public interface RecensioneService {
      * @param c rappresenta il contenuto cui la recensione si riferisce
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
-    public boolean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
+    public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
             throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException;
 
 

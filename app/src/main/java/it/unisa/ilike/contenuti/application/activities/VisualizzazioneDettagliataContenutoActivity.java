@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.ContenutoService;
@@ -28,7 +29,6 @@ import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
-import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
