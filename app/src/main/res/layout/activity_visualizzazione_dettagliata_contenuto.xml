@@ -50,9 +50,10 @@
     <ScrollView
         android:id="@+id/scrollerPagina"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="50dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -77,12 +78,12 @@
                 android:layout_marginBottom="10dip"
                 android:background="@android:color/darker_gray"/>
 
-            <!-- <ScrollView
-                android:id="@+id/scrollerDescrizione"
-                android:layout_width="match_parent"
-                android:layout_height="264dp"
-                android:layout_below="@id/view"
-                android:layout_marginTop="0dp"> -->
+<!--                <ScrollView-->
+<!--                android:id="@+id/scrollerDescrizione"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="264dp"-->
+<!--                android:layout_below="@id/view"-->
+<!--                android:layout_marginTop="0dp">-->
 
                 <TextView
                     android:id="@+id/descrizioneContenuto"
@@ -94,7 +95,7 @@
                     android:paddingBottom="50dp"
                     android:textColor="@color/black"
                     android:textSize="22dip" />
-            <!-- </ScrollView> -->
+<!--                </ScrollView>-->
 
             <View
                 android:layout_width="match_parent"
