@@ -148,7 +148,8 @@
             android:id="@+id/recensioniList"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/recensioniText">
+            android:layout_below="@+id/recensioniText"
+            android:layout_marginBottom="50dp">
 
             <!-- Inserire la lista di recensioni -->
 
