@@ -54,7 +54,7 @@ public class ContenutoDAO {
      */
     public boolean doUpdateValutazioneMedia(int idContenuto, double valutazioneMedia) {
         QueryManager queryManager = new QueryManager();
-        String query = "update Contenuti " +
+        String query = "update ContenutiRid " +
                 "set valutazione_media = " + valutazioneMedia + " " +
                 "where id = " + idContenuto;
 
@@ -66,7 +66,7 @@ public class ContenutoDAO {
      * @param idContenuto è l'id del contenuto di cui si vuole ottenere la valutazione media.
      * @return la valutazione media del contenuto avente come id 'id'.
      */
-    public double calcolaValutazioneMediaAggiornata(int idContenuto, int newValutazione) {
+    public double calcolaValutazioneMediaAggiornata(int idContenuto) {
 
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
@@ -78,14 +78,13 @@ public class ContenutoDAO {
         String jsonRes = queryManager.select(query);
         RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
 
-        Integer numRecensioni = res[0].getNumRecensioni() + 1;
+        Integer numRecensioni = res[0].getNumRecensioni();
         Integer sommaValutazioni = res[0].getSommaValutazioni();
 
         if(sommaValutazioni == null) {
             sommaValutazioni = 0;
         }
 
-        sommaValutazioni += newValutazione;
         return (double) (sommaValutazioni / numRecensioni);
     }
 

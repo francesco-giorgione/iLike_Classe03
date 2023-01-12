@@ -152,7 +152,7 @@ public class RecensioneDAO {
 
         if(queryManager.update(query)) {
             return contenutoDAO.doUpdateValutazioneMedia(recensione.getContenuto().getId(), contenutoDAO.
-                    calcolaValutazioneMediaAggiornata(recensione.getContenuto().getId(), recensione.getValutazione()));
+                    calcolaValutazioneMediaAggiornata(recensione.getContenuto().getId()));
         }
         else return false;
     }
