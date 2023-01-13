@@ -108,7 +108,7 @@ public class AccountImpl implements AccountService {
 
 
     /** @inheritDoc */
-    public Account login(String email, String password) throws CredenzialiVuoteException, CredenzialiErrateException {
+    public Account login(String email, String password) throws CredenzialiErrateException {
         IscrittoDAO iscrittoDAO = new IscrittoDAO();
         GestoreDAO gestoreDAO = new GestoreDAO();
         IscrittoBean iscrittoBean = null;
@@ -126,9 +126,9 @@ public class AccountImpl implements AccountService {
             }else {
                 if (isNickname(email)){
                     iscrittoBean = iscrittoDAO.doRetrieveByUsernamePassword(email, null, passwordCrittografata);
-                }else throw new CredenzialiVuoteException();
+                }else throw new CredenzialiErrateException();
             }
-        }else throw new CredenzialiVuoteException();
+        }else throw new CredenzialiErrateException();
 
         if (iscrittoBean == null && gestoreBean == null)
             throw new CredenzialiErrateException();

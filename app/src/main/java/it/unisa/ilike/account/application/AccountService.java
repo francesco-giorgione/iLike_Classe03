@@ -21,7 +21,7 @@ public interface AccountService {
      * @param password rappresenta la password dell'utente
      * @return l'oggetto account salvato nell'application context
      */
-    Account login(String email, String password) throws CredenzialiVuoteException, CredenzialiErrateException;
+    Account login(String email, String password) throws CredenzialiErrateException;
 
 
     /**
