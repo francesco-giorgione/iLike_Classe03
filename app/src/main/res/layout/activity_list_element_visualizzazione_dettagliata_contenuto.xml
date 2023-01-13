@@ -41,7 +41,9 @@
             <TextView
                 android:id="@+id/testoRecensione"
                 android:textSize="18dp"
-                android:paddingBottom="80dp"
+                android:paddingBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:textColor="@color/black"
                 android:layout_height="wrap_content"
