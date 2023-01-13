@@ -1,7 +1,6 @@
 package it.unisa.ilike.account.application;
 
 import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
-import it.unisa.ilike.account.application.exceptions.CredenzialiVuoteException;
 import it.unisa.ilike.account.application.exceptions.DatiIscrittoVuotiException;
 import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
@@ -39,7 +38,6 @@ public interface AccountService {
      * @param cognome rappresenta il testo contenente il cognome dell'iscritto
      * @param nickname rappresenta il nickname dell'iscritto con la quale effettuare il login
      * @param bio rappresenta il testo contenente la bio dell'iscritto
-     * @param foto rappresenta la foto profilo dell'iscritto
      * @return l'oggetto Account se la registrazione è andata a buon fine, Null altrimenti
      */
     Account registrazioneIscritto(String email, String password, String nome, String cognome,

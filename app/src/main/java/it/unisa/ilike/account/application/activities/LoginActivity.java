@@ -14,14 +14,24 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
-import it.unisa.ilike.account.application.exceptions.CredenzialiVuoteException;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
+
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare
+ * l’accesso ad iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class LoginActivity extends AppCompatActivity {
 
     boolean checkLogin;
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +52,6 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 Log.d("debugLogin", "login ok doInBackground");
                 return accountService.login(string[0], string[1]);
-            } catch (CredenzialiVuoteException e) {
-                //ritorno al login e messaggio
-                Log.d("debugLogin", "CredenzialiVuoteException");
-                checkLogin=false;
-                messaggio="Formato credenziali non corretto";
-                return null;
             } catch (CredenzialiErrateException e) {
                 //ritorno al login e messaggio
                 Log.d("debugLogin", "CredenzialiErrateException");
@@ -80,6 +84,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Questo metodo permette all'utente di effettuare il login alla piattaforma di iLike
+     * @param view oggetto View utilizzato per ottenere gli input dell'utente.
+     */
     public void onClickLogin(View view) {
         Log.d("debugLogin", "in onClickLogin");
         checkLogin=true;
@@ -96,6 +104,10 @@ public class LoginActivity extends AppCompatActivity {
         GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
     }
 
+    /**
+     * Questo metodo permette all'utente di passare alla pagina di registrazione della piattaforma di iLike.
+     * @param view
+     */
     public void onClickRegistrazioneLogin(View view){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RegistrazioneIscrittoActivity.class);
