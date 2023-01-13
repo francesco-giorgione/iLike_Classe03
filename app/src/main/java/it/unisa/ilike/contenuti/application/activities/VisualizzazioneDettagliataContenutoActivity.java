@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,6 +88,9 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
 
         @Override
         protected void onPostExecute(ArrayList<RecensioneBean> recensioni) {
+
+            ProgressBar bar= findViewById(R.id.progress_circular);
+            bar.setVisibility(View.INVISIBLE);
 
             if (recensioni.size()>0) {
                 for (RecensioneBean r : recensioni)

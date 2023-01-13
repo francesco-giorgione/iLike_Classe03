@@ -133,6 +133,14 @@
 
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_below="@id/layoutRecensioni"/>
+
         <ListView
             android:id="@+id/recensioniList"
             android:layout_width="wrap_content"
