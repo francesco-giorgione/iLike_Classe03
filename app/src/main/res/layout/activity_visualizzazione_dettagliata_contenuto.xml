@@ -19,14 +19,15 @@
         <ImageView
             android:id="@+id/imgContenuto"
             android:layout_width="50dip"
-            android:layout_height="50dip"/>
+            android:layout_height="50dip"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/titoloContenuto"
             android:layout_width="250dip"
             android:paddingTop="10dip"
-            android:textStyle="italic"
-            android:textSize="22dip"
+            android:textStyle="italic|bold"
+            android:textSize="25dip"
             android:textColor="@color/black"
             android:textAlignment="center"
             android:layout_height="wrap_content"
@@ -38,7 +39,8 @@
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:onClick="onClickAggiungiContenutoAllaLista"
-            android:src="@drawable/icona_aggiungi" />
+            android:src="@drawable/icona_aggiungi"
+            android:layout_marginLeft="20dp"/>
 
     </LinearLayout>
     <View
@@ -47,109 +49,101 @@
         android:layout_below="@id/header"
         android:background="@android:color/darker_gray"/>
 
-    <ScrollView
-        android:id="@+id/scrollerPagina"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="50dp">
+        android:paddingBottom="50dip"
+        android:layout_below="@+id/header">
 
-        <RelativeLayout
+        <RatingBar
+            android:id="@+id/valutazioneMediaContenuto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip"
+            android:isIndicator="true"
+            android:numStars="5"/>
+
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="50dip">
+            android:layout_height="1dp"
+            android:layout_below="@id/valutazioneMediaContenuto"
+            android:background="@android:color/darker_gray"/>
 
-            <RatingBar
-                android:id="@+id/valutazioneMediaContenuto"
+        <ScrollView
+            android:id="@+id/scrollerDescrizione"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/view"
+            android:layout_marginTop="0dp">
+
+            <TextView
+                android:id="@+id/descrizioneContenuto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dip"
-                android:isIndicator="true"
-                android:numStars="5"/>
+                android:layout_below="@id/view"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:text="Descrizione: "
+                android:textColor="@color/black"
+                android:textSize="20dip" />
+        </ScrollView>
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/valutazioneMediaContenuto"
-                android:layout_marginTop="20dip"
-                android:layout_marginBottom="10dip"
-                android:background="@android:color/darker_gray"/>
-
-<!--                <ScrollView-->
-<!--                android:id="@+id/scrollerDescrizione"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="264dp"-->
-<!--                android:layout_below="@id/view"-->
-<!--                android:layout_marginTop="0dp">-->
-
-                <TextView
-                    android:id="@+id/descrizioneContenuto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dip"
-                    android:layout_below="@id/view"
-                    android:text="Descrizione: "
-                    android:paddingBottom="50dp"
-                    android:textColor="@color/black"
-                    android:textSize="22dip" />
-<!--                </ScrollView>-->
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/descrizioneContenuto"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/darker_gray"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/scrollerDescrizione"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"/>
 
 
-            <!--TABELLA RECENSIONI-->
+        <!--TABELLA RECENSIONI-->
 
 
 
-            <LinearLayout
-                android:id="@+id/layoutRecensioni"
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/layoutRecensioni"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_below="@id/scrollerDescrizione"
+            android:layout_marginTop="20dp"
+            android:background="#D1D1D1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/leRecensioni"
+                android:layout_width="350dip"
                 android:layout_height="50dip"
-                android:layout_below="@id/descrizioneContenuto"
-                android:layout_marginTop="40dp"
-                android:background="#D1D1D1"
-                android:orientation="horizontal">
+                android:paddingTop="10dip"
+                android:text="Recensioni"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22dip"
+                android:textStyle="bold|italic" />
 
-                <TextView
-                    android:id="@+id/leRecensioni"
-                    android:layout_width="350dip"
-                    android:layout_height="50dip"
-                    android:paddingTop="10dip"
-                    android:text="Recensioni"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="22dip"
-                    android:textStyle="bold" />
+            <ImageButton
+                android:id="@+id/aggiungiRecensioneButton"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:onClick="onClickAggiungiRecensione"
+                android:src="@drawable/icona_aggiungi" />
 
-                <ImageButton
-                    android:id="@+id/aggiungiRecensioneButton"
-                    android:layout_width="50dip"
-                    android:layout_height="50dip"
-                    android:onClick="onClickAggiungiRecensione"
-                    android:src="@drawable/icona_aggiungi" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <ListView
+            android:id="@+id/recensioniList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutRecensioni"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="20dip"/>
 
-            <ListView
-                android:id="@+id/recensioniList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layoutRecensioni"
-                android:layout_marginLeft="20dip"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="20dip"/>
+    </RelativeLayout>
 
-        </RelativeLayout>
-
-    </ScrollView>
 
     <!--FOOTER-->
     <RelativeLayout
