@@ -32,6 +32,26 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     VisualizzazioneSegnalazioniAdapter adapter;
 
 
+    private class GsonResultLogout extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            AccountService accountService = new AccountImpl();
+            account = accountService.logout(account.getGestoreBean());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+
+            Intent i = new Intent();
+            i.setClass(VisualizzazioneSegnalazioniActivity.this, VisualizzazioneHomepageActivity.class);
+            startActivity(i);
+        }
+    }
+
     private class GsonResultSegnalazioni extends AsyncTask<Void, Void, ArrayList<SegnalazioneBean>> {
 
         @Override
@@ -117,12 +137,7 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     }
 
     public void onClickLogout(View view) {
-        AccountService accountService = new AccountImpl();
-        account = accountService.logout(account.getGestoreBean());
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-        i.putExtra("account", (Serializable) account);
-        startActivity(i);
+        GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
     }
 
     private Account account;

@@ -3,6 +3,7 @@ package it.unisa.ilike.segnalazioni.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             SegnalazioneService segnalazioneService = new SegnalazioneImpl();
 
             try {
-                segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
+                isValidate = segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
             } catch (MotivazioneVuotaException e) {
                 messaggio = "Inserire una motivazione";
                 isValidate=false;
@@ -88,6 +89,26 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             return this.isValidate;
         }
 
+    }
+
+    private class GsonResultLogout extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            AccountService accountService = new AccountImpl();
+            account = accountService.logout(account.getGestoreBean());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+
+            Intent i = new Intent();
+            i.setClass(GestioneSegnalazioniActivity.this, VisualizzazioneHomepageActivity.class);
+            startActivity(i);
+        }
     }
 
 
@@ -192,43 +213,20 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
     public void onClickRifiutaSegnalazione(View view) {
-
-        boolean isValidate;
-
-        GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione)
-                new GsonResultRifiutaSegnalazione().execute(new Void[0]);
+        GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione) new GsonResultRifiutaSegnalazione().execute(new Void[0]);
     }
 
     public void onClickAccettaSegnalazione(View view) {
-
         motivazioneCancellazione.setVisibility(View.VISIBLE);
         cancellaRecensioneButton.setVisibility(View.VISIBLE);
-
-        String motivazione = motivazioneCancellazione.toString();
-        String[] s= {motivazione};
-
-        GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
-        boolean isValidate= g.isValidate();
-
-        if (isValidate) {
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-            i.putExtra("account", (Serializable) account);
-            startActivity(i);
-        }
     }
 
-
-    public void onClickCancellaRecensione (View v){
-
+    public void onClickCancellaRecensione(View view){
         String motivazione = motivazioneCancellazione.toString();
         String[] s= {motivazione};
-
         GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
-        boolean isValidate= g.isValidate();
-
-
     }
+
 
     public void onClickVisualizzaSegnalazioni(View view) {
         Intent i = new Intent();
@@ -245,13 +243,9 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
     public void onClickLogout(View view) {
-        AccountService accountService = new AccountImpl();
-        account = accountService.logout(account.getGestoreBean());
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-        i.putExtra("account", (Serializable) account);
-        startActivity(i);
+        GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
     }
 
     private RecensioneBean recensione;
