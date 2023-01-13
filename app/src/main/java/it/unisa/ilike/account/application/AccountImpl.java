@@ -95,7 +95,7 @@ public class AccountImpl implements AccountService {
      * richiesto non è disponibile nell'ambiente.
      * @return la pa
      */
-    private String getPasswordCrittografata(String passwordUtente) throws NoSuchAlgorithmException {
+    public String getPasswordCrittografata(String passwordUtente) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-512");
         byte[] hashedPwd = digest.digest(passwordUtente.getBytes(StandardCharsets.UTF_8));
         StringBuilder builder = new StringBuilder();
