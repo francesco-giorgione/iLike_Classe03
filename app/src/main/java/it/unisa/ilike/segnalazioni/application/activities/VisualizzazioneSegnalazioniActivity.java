@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +84,9 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), GestioneSegnalazioniActivity.class);
         i.putExtra("account", account);
+        ImageButton info= (ImageButton) view;
+        String idSegnalazione = (String) info.getTag();
+        i.putExtra("idSegnalazione", idSegnalazione);
         startActivity(i);
     }
 
