@@ -24,7 +24,6 @@ import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
-import it.unisa.ilike.segnalazioni.application.VisualizzazioneSegnalazioniAdapter;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {

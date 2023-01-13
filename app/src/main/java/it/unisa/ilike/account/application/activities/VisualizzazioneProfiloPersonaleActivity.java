@@ -19,8 +19,6 @@ import java.util.List;
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
-import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleListeAdapter;
-import it.unisa.ilike.account.application.VisualizzazioneProfiloPersonaleRecensioniAdapter;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;

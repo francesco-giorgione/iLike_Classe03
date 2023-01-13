@@ -1,4 +1,4 @@
-package it.unisa.ilike.liste.application;
+package it.unisa.ilike.liste.application.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;

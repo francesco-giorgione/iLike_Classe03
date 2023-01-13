@@ -18,7 +18,6 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.liste.application.VisualizzazioneContenutiListaPersonaleAdapter;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 
