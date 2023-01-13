@@ -102,7 +102,6 @@
         android:layout_height="450dip"/>
 
 
-
     <!--NUMERO SEGNALAZIONI GESTITE-->
     <LinearLayout
         android:layout_width="match_parent"

@@ -79,9 +79,10 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         GestoreBean gestoreBean = account.getGestoreBean();
         TextView numeroSegnalazioni = findViewById(R.id.numerSegnalazioniGestite);
         numeroSegnalazioni.setText(String.valueOf(gestoreBean.getNumSegnalazioniGestite()));
+
         ListView segnalazioniList= findViewById(R.id.segnalazioniList);
 
-        VisualizzazioneSegnalazioniAdapter adapter= new VisualizzazioneSegnalazioniAdapter(this,
+        adapter= new VisualizzazioneSegnalazioniAdapter(this,
                 R.layout.activity_list_element_visualizzazione_segnalazioni,
                 new ArrayList<SegnalazioneBean>());
         segnalazioniList.setAdapter(adapter);
