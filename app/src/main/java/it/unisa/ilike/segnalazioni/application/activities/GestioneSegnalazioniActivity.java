@@ -13,20 +13,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
-import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
-import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
@@ -107,6 +105,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
             Intent i = new Intent();
             i.setClass(GestioneSegnalazioniActivity.this, VisualizzazioneHomepageActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
     }

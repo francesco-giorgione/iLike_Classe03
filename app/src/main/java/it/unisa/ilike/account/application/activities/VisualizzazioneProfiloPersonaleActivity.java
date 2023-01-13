@@ -180,6 +180,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         account = accountService.logout(account.getIscrittoBean());
         i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
         i.putExtra("account", account);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 

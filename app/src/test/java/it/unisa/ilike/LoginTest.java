@@ -20,12 +20,12 @@ import it.unisa.ilike.account.storage.IscrittoDAO;
 
 
 @RunWith(Parameterized.class)
-public class LoginTestMockito {
+public class LoginTest {
 
     String username;
     String password;
 
-    public LoginTestMockito(String username, String password) {
+    public LoginTest(String username, String password) {
         this.username = username;
         this.password = password;
     }
