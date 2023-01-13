@@ -32,6 +32,12 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative al profilo personale di un iscritto ad iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     List<RecensioneBean> recensioniIscritto;
@@ -116,6 +122,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     private VisualizzazioneProfiloPersonaleRecensioniAdapter adapterRecensioni;
     private VisualizzazioneProfiloPersonaleListeAdapter adapterListe;
 
+
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,12 +161,19 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
 
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
 
+    /**
+     * Questo metodo permette all'iscritto di effettuare il logout dalla piattaforma di iLike.
+     * @param v
+     */
     public void onClickLogout(View v){
         Intent i = new Intent();
         AccountService accountService = new AccountImpl();
@@ -165,6 +183,10 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina di creazione di una nuova lista personale.
+     * @param v
+     */
     public void onClickAggiungiLista(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), CreazioneListaActivity.class);
@@ -172,6 +194,10 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
@@ -179,6 +205,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di andare alla pagina della visualizzazione dei contenuti della lista
+     * personale, scelta in base al pulsante premuto.
+     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
+     */
     public void onClickInfo(View v){
         Intent i = new Intent();
         ImageButton info= (ImageButton) v;
@@ -190,6 +221,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
+     * segnalazione di tipo AltreSegnalazioni.
+     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
+     */
     public void onClickAltreSegnalazioni(View v){
         s = new SegnalazioneBean();
         s.setTipo(0);
@@ -200,6 +236,11 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
+     * segnalazione di tipo SpoilerAlert.
+     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
+     */
     public void onClickSpoilerAlert(View v){
         s = new SegnalazioneBean();
         s.setTipo(1);

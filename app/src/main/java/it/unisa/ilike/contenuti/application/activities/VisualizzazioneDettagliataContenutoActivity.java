@@ -37,6 +37,12 @@ import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla visualizzazione dettagliata di un contenuto di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivity {
 
     ImageButton profiloButton;
@@ -126,6 +132,10 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         private RecensioneBean recensioneBean;
     }
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,11 +170,21 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    /**
+     * Questo metodo permette all'utente che non ha effettuato l'accesso di andare alla pagina di login di iLike
+     * (da cui poter eventualmente andare alla pagina di registrazione se non si è registrati alla piattaforma).
+     * All'iscritto che ha effettuato l'accesso, essa permette di andare alla pagina di visualizzazione del proprio
+     * profilo personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
@@ -179,6 +199,10 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         }
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
@@ -186,6 +210,12 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina per la pubblicazione di una recensione
+     * relativa al contenuto che si sta visualizzando. Se l'utente non ha effettuato l'accesso viene mandato
+     * alla pagina di login.
+     * @param v
+     */
     public void onClickAggiungiRecensione(View v){
         if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
@@ -204,6 +234,12 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         }
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina che permette di selezionare la lista personale
+     * a cui aggiungere il contenuto che si sta visualizzando. Se l'utente non ha effettuato l'accesso viene
+     * mandato alla pagina di login.
+     * @param v
+     */
     public void onClickAggiungiContenutoAllaLista (View v){
         if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
@@ -223,6 +259,11 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         }
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
+     * segnalazione di tipo AltreSegnalazioni.
+     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
+     */
     public void onClickAltreSegnalazioni(View v){
         s = new SegnalazioneBean();
         s.setTipo(0);
@@ -233,6 +274,11 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
     }
 
+    /**
+     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
+     * segnalazione di tipo SpoilerAlert.
+     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
+     */
     public void onClickSpoilerAlert(View v){
         s = new SegnalazioneBean();
         s.setTipo(1);

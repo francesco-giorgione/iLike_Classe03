@@ -20,27 +20,20 @@ import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla creazione di una lista personale di contenuti di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class CreazioneListaActivity extends AppCompatActivity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
-     * contenuto in ListaImpl. Questo è necessario in quanto il metodo in questione richiama metodi
-     * della classe ListaDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
+
     private class GsonResultCreaLista extends AsyncTask<Object, Void, Boolean> {
 
         Boolean listaCreata = true;
 
-        /**
-         * Consente di utilizzare il metodo di servizio creaLista della classe ListaImpl e di
-         * memorizzarne l'esito in una variabile d'istanza listaCreata.
-         * @param objects array di oggetti contenente un iscrittoBean, il nome della lista da
-         *                creare e un boolean che indica se la lista da creare deve essere pubblica
-         *                o privata.
-         * @return true se è andata a buon fine, false altrimenti.
-         */
+
         @Override
         protected Boolean doInBackground(Object... objects) {
             ListaImpl listaImpl = new ListaImpl();
@@ -74,18 +67,16 @@ public class CreazioneListaActivity extends AppCompatActivity {
                 Toast.makeText(CreazioneListaActivity.this, "Lista NON creata", Toast.LENGTH_LONG).show();
         }
 
-
-        /**
-         * Metodo che restituisce un boolean listaCreata memorizzato nella classe come variabile d'istanza.
-         * @return il valore della variabile d'istanza listaCreata.
-         */
         public Boolean isListaCreata(){
             while (this.listaCreata==null);
             return this.listaCreata;
         }
     }
 
-
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +88,19 @@ public class CreazioneListaActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    /**
+     * Questo metodo permette all'iscritto di andare alla pagina di visualizzazione del proprio profilo
+     * personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(CreazioneListaActivity.this, VisualizzazioneProfiloPersonaleActivity.class);
@@ -109,6 +108,10 @@ public class CreazioneListaActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(CreazioneListaActivity.this, VisualizzazioneHomepageActivity.class);
@@ -116,7 +119,11 @@ public class CreazioneListaActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    //da finire
+    /**
+     * Questo metodo permette all'iscritto di creare una nuova lista personale, specificandone il nome e
+     * la visibilita (pubblica o privata).
+     * @param v
+     */
     public void onClickCreaLista(View v){
         TextView nomeLista= findViewById(R.id.nomeLista);
         RadioButton visibilitaPublic= findViewById(R.id.visibilitaPublic);

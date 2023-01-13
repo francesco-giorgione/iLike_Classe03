@@ -22,6 +22,12 @@ import it.unisa.ilike.liste.application.VisualizzazioneContenutiListaPersonaleAd
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare la
+ * visualizzazione dei contenuti di una lista personale dell'iscritto.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatActivity {
 
     private class GsonResultContenuti extends AsyncTask<String, Void, ArrayList<ContenutoBean>> {
@@ -55,6 +61,10 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
     private ListaBean lista;
     private VisualizzazioneContenutiListaPersonaleAdapter adapter;
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +89,11 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
 
     }
 
+    /**
+     * Questo metodo permette all'iscritto di andare alla pagina di visualizzazione del proprio profilo
+     * personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
@@ -86,6 +101,10 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);

@@ -26,6 +26,12 @@ import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnalazioniActivity;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla homepage di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class VisualizzazioneHomepageActivity extends Activity {
 
 
@@ -136,6 +142,10 @@ public class VisualizzazioneHomepageActivity extends Activity {
 
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,7 +178,13 @@ public class VisualizzazioneHomepageActivity extends Activity {
         GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
     }
 
-
+    /**
+     * Questo metodo permette all'utente che non ha effettuato l'accesso di andare alla pagina di login di iLike
+     * (da cui poter eventualmente andare alla pagina di registrazione se non si è registrati alla piattaforma).
+     * All'iscritto che ha effettuato l'accesso, essa permette di andare alla pagina di visualizzazione del proprio
+     * profilo personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         if(account.isIscritto() == Boolean.TRUE){
             Intent i = new Intent();
@@ -187,6 +203,10 @@ public class VisualizzazioneHomepageActivity extends Activity {
         }
     }
 
+    /**
+     * Questo metodo permette all'utente di andare alla pagina di ricerca del contenuto.
+     * @param v
+     */
     public void onClickSearchBar(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), RicercaContenutoActivity.class);
@@ -194,6 +214,11 @@ public class VisualizzazioneHomepageActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette al gestore di andare alla pagina di visualizzazione delle segnalazioni ricevute
+     * e non ancora gestite.
+     * @param v
+     */
     public void onClickVisualizzaSegnalazioni (View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
@@ -201,6 +226,11 @@ public class VisualizzazioneHomepageActivity extends Activity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette all'utente di andare alla pagina di visualizzazione del contenuto, insieme ai
+     * relativi dettagli.
+     * @param v oggetto View usato per ottenere il riferimento al contenuto selezionato
+     */
     public void onClickVisualizzaContenuto(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);

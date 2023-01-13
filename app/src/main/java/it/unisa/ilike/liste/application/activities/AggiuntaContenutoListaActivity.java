@@ -27,6 +27,12 @@ import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative all'aggiunta di un contenuto ad una lista personale dell'iscritto.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class AggiuntaContenutoListaActivity extends AppCompatActivity {
 
     private class GsonResultCreaLista extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
@@ -112,6 +118,10 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
     private AggiuntaContenutoListaAdapter adapter;
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,23 +154,39 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    /**
+     * Questo metodo permette all'iscritto di andare alla pagina di visualizzazione del proprio profilo
+     * personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette di aggiungere il contenuto selezionato alla lista personale scelta.
+     * @param v oggetto View usato per ottenere il riferimento alla lista personale selezionata
+     */
     public void onClickAggiungiContenutoAllaLista(View v){
         TextView t= (TextView) v;
         String nomeLista= String.valueOf(t.getText());

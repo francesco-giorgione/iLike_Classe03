@@ -32,28 +32,21 @@ import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveExceptio
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla pubblicazione di una recensione relativa ad un contenuto di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio creaRecensione
-     * contenuto in RecensioneService. Questo è necessario in quanto il metodo in questione richiama metodi
-     * delle classi RecensioneDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
     private class GsonResultCreaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
         RecensioneBean recensione;
         String messaggio = null;
 
-        /**
-         * Consente di utilizzare il metodo creaRecensione di RecensioneService e di memorizzarne
-         * l'esito nella variabile di istanza isValidate;
-         * @param string array di stringhe contenente il testo della recensione e la valutazione del
-         *               contenuto
-         * @return true se l'operazione è andata a buon fine, false altrimenti
-         */
+
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
@@ -98,11 +91,7 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             }
         }
 
-        /**
-         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
-         * ha terminato la sua esecuzione
-         * @return il valore della variabile d'istanza isValidate
-         */
+
         public Boolean isValidate(){
             while (this.isValidate==null);
             return this.isValidate;
@@ -110,6 +99,10 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,12 +138,18 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
-
+    /**
+     * Questo metodo permette di aggiungere una recensione al contenuto selezionato.
+     * @param view
+     */
     public void onClickAggiungiRecensione(View view) {
         RatingBar rBar = findViewById(R.id.valutazioneContenuto);
         int valutazioneContenuto = (int) rBar.getRating();
@@ -162,6 +161,13 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Questo metodo permette all'utente che non ha effettuato l'accesso di andare alla pagina di login di iLike
+     * (da cui poter eventualmente andare alla pagina di registrazione se non si è registrati alla piattaforma).
+     * All'iscritto che ha effettuato l'accesso, essa permette di andare alla pagina di visualizzazione del proprio
+     * profilo personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         if(account.isIscritto()) {
             Intent i = new Intent();
@@ -175,6 +181,10 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);

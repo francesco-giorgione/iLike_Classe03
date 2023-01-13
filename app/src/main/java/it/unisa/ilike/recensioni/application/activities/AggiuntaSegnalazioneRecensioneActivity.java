@@ -18,28 +18,21 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare
+ * l'aggiunta di una segnalazione ad una recensione.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio aggiungiSegnalazione
-     * contenuto in RecensioneService. Questo è necessario in quanto il metodo in questione richiama metodi
-     * della classe SegnalazioneDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
     private class GsonResultValidate extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
         String messaggio = null;
 
-        /**
-         * Consente di utilizzare il metodo aggiungiSegnalazione di RecensioneService e di memorizzarne
-         * l'esito nella variabile di istanza isValidate;
-         * @param string array di stringhe contenente il tipo di segnalazione e la motivazione della
-         *               segnalazione
-         * @return true se l'operazione è andata a buon fine, false altrimenti
-         */
+
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
@@ -77,11 +70,6 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
             }
         }
 
-        /**
-         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
-         * ha terminato la sua esecuzione
-         * @return il valore della variabile d'istanza isValidate
-         */
         public Boolean isValidate(){
             while (this.isValidate==null);
             return this.isValidate;
@@ -89,6 +77,10 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,8 +98,11 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Questo metodo permette di aggiungere una segnalazione alla recensione.
+     * @param view
+     */
     public void onClickInviaSegnalazione(View view) {
-
 
         TextView motivazioneSegnalazioneTextView = findViewById(R.id.motivazioneSegnalazione);
         String motivazioneSegnalazione = String.valueOf(motivazioneSegnalazioneTextView.getText());

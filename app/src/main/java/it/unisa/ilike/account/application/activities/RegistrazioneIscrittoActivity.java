@@ -21,15 +21,15 @@ import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare
+ * la registrazione ad iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class RegistrazioneIscrittoActivity extends AppCompatActivity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
-     * contenuto in AccountImpl. Questo è necessario in quanto il metodo in questione richiama metodi
-     * delle classi IscrittoDAO e GestoreDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
+
     private class GsonResultRegistrazione extends AsyncTask<String, Void, Account> {
 
         private boolean isValidate = true;
@@ -83,6 +83,10 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +103,10 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Questo metodo permette all'utente di effettuare la registrazione alla piattaforma di iLike.
+     * @param v oggetto View utilizzato per ottenere gli input dell'utente
+     */
     public void onClickRegistrazioneIscritto(View v){
 
         EditText e = findViewById(R.id.email);

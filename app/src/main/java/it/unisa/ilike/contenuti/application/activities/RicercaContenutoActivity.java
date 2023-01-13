@@ -27,26 +27,19 @@ import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.application.RicercaContenutoAdapter;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla ricerca di un contenuto di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class RicercaContenutoActivity extends AppCompatActivity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
-     * contenuto in ContenutoImpl. Questo è necessario in quanto il metodo in questione richiama metodi
-     * delle classi FilmDAO, SerieTVDAO, AlbumMusicaleDAO e LibroDAO. In Android non è consentito fare
-     * operazioni di accesso alla rete nel main thread; dato che questa activity si trova nel main
-     * thread occorre creare questa classe che estende <code>AsyncTask</code> per usufruire dei
-     * metodi di cui sopra.
-     */
+
     private class GsonResultRicerca extends AsyncTask<String, Void, List<ContenutoBean>> {
 
         List<ContenutoBean> contenutoBeans;
 
-        /**
-         * Consente di recuperare un array di oggetti <code>ContenutoBean</code> utilizzando
-         * il metodo di servizio getContenuti della classe ContenutoImpl.
-         * @param string array contenente la stringa presente nella barra di ricerca
-         * @return un array di oggetti <code>ContenutoBean</code>
-         */
         @Override
         protected List<ContenutoBean> doInBackground(String... string) {
             ContenutoImpl contenutoImpl = new ContenutoImpl();
@@ -69,11 +62,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             return contenutoBeans;
         }
 
-        /**
-         * Metodo che restituisce l'array contenutoBeans memorizzato nella classe come variabile
-         * d'istanza
-         * @return il valore della variabile d'istanza contenutoBeans
-         */
+
         public List<ContenutoBean> getContenuti(){
             while (this.contenutoBeans==null);
             return this.contenutoBeans;
@@ -99,6 +88,10 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +111,10 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         account = (Account) getIntent().getExtras().getSerializable("account");
 
         filtro.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Questo metodo permette di effettuare la ricerca del contenuto secondo i filtri selezionati.
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 PopupMenu menu= new PopupMenu(RicercaContenutoActivity.this, filtro);
@@ -140,11 +137,21 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo viene chiamato quando l'attività ha rilevato la pressione dell'utente del tasto Indietro.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    /**
+     * Questo metodo permette all'utente che non ha effettuato l'accesso di andare alla pagina di login di iLike
+     * (da cui poter eventualmente andare alla pagina di registrazione se non si è registrati alla piattaforma).
+     * All'iscritto che ha effettuato l'accesso, essa permette di andare alla pagina di visualizzazione del proprio
+     * profilo personale.
+     * @param v
+     */
     public void onClickProfilo(View v){
         if(account.isIscritto() == Boolean.TRUE) {
             Intent i = new Intent();
@@ -158,6 +165,10 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
     public void onClickHomepage(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
@@ -165,6 +176,11 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette di effettuare la ricerca di un contenuto, mostrando una lista di contenuti il cui
+     * titolo corrisponde al testo inserito dall'utente.
+     * @param v
+     */
     public void onClickCercaContenuto(View v){
         adapter.clear();
         String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
@@ -178,6 +194,11 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Scrivere almeno 4 caratteri!", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Questo metodo permette di passare alla pagina di visualizzazione dettagliata del contenuto cliccato
+     * dall'utente.
+     * @param v oggetto View usato per ottenere il riferimento al contenuto selezionato
+     */
     public void onClickVisualizzaContenuto(View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
