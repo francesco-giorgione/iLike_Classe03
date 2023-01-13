@@ -14,6 +14,6 @@ public class InvalidMotivazioneException extends Exception{
      */
     public InvalidMotivazioneException(){
 
-        super("La motivazione contiene un numero di caratteri inferiore ad 1");
+        super("La motivazione contiene un numero di caratteri superiore a 300");
     }
 }

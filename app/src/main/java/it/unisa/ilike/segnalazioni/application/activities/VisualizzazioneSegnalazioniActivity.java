@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -99,9 +100,9 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
     public void onClickInfo(View view){
         Intent i = new Intent();
-        i.setClass(getApplicationContext(), GestioneSegnalazioniActivity.class);
+        i.setClass(VisualizzazioneSegnalazioniActivity.this, GestioneSegnalazioniActivity.class);
         i.putExtra("account", account);
-        ImageButton info= (ImageButton) view;
+        Button info= (Button) view;
         String idSegnalazione = (String) info.getTag();
         i.putExtra("idSegnalazione", idSegnalazione);
         startActivity(i);

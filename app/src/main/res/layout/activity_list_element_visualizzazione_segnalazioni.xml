@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"/>
 
             <Button
+                android:id="@+id/buttonInfo"
                 android:layout_width="60dip"
                 android:layout_height="wrap_content"
                 android:shadowColor="#FFF"
