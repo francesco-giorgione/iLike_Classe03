@@ -73,7 +73,7 @@ public class ContenutoDAO {
 
         String query = "select count(valutazione) as numRecensioni, sum(valutazione) as sommaValutazioni " +
                 "from Recensioni " +
-                "where id_contenuto = " + idContenuto;
+                "where id_contenuto = " + idContenuto + " and cancellata = 0";
 
         String jsonRes = queryManager.select(query);
         RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);

@@ -52,7 +52,10 @@ public class SegnalazioneImpl implements SegnalazioneService{
         s.setGestita(true);
         g.incrementaNumSegnalazioniGestite();
 
-        return recensioneDAO.cancellaRecensione(r);
+        if(recensioneDAO.cancellaRecensione(r)) {
+            return new SegnalazioneDAO().gestisciSegnalazione(s);
+        }
+        else return false;
     }
 
     /** @inheritDoc */

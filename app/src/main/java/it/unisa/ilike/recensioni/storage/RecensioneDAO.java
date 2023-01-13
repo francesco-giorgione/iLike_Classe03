@@ -172,7 +172,7 @@ public class RecensioneDAO {
 
         String query = "select id, testo, valutazione, data, cancellata, motivazione_cancellazione as motivazioneCancellazione, email_iscritto as emailIscritto, id_contenuto as idContenuto " +
                 "from Recensioni " +
-                "where id = " + id;
+                "where id = " + id + " and cancellata = 0";
 
         Gson gson = new Gson();
         QueryManager queryManager = new QueryManager();
@@ -239,8 +239,13 @@ public class RecensioneDAO {
                 motivazioneCancellazione + "' where id = " + id;
 
         QueryManager queryManager = new QueryManager();
-        queryManager.update(query);
 
+        if(queryManager.update(query)) {
+            ContenutoDAO contenutoDAO = new ContenutoDAO();
+            int idContenuto = recensione.getContenuto().getId();
+
+            return contenutoDAO.doUpdateValutazioneMedia(idContenuto, contenutoDAO.calcolaValutazioneMediaAggiornata(idContenuto));
+        }
         return true;
     }
 
@@ -268,7 +273,11 @@ public class RecensioneDAO {
         RisultatoQuery2[] res = gson.fromJson(jsonRes, RisultatoQuery2[].class);
 
         for(RisultatoQuery2 curr: res) {
-            recensioni.add(this.doRetrieveByIdRecensione(curr.id));
+            RecensioneBean tmp = this.doRetrieveByIdRecensione(curr.id);
+
+            if(tmp != null) {
+                recensioni.add(tmp);
+            }
         }
 
         return recensioni;
