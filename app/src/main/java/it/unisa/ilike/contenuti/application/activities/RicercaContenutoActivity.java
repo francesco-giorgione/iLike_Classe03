@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.AccountImpl;
+import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
@@ -88,6 +90,28 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         }
     }
 
+    private class GsonResultLogout extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            AccountService accountService = new AccountImpl();
+            account = accountService.logout(account.getGestoreBean());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Log.d("MyDebug", "sono in onPostExecute");
+
+            Intent i = new Intent();
+            i.setClass(RicercaContenutoActivity.this, VisualizzazioneHomepageActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+    }
+
+
     /**
      * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
      * @param savedInstanceState
@@ -102,6 +126,8 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         filtro= findViewById(R.id.filtroRicerca);
         contenutiList= findViewById(R.id.contenutiList);
         bar= findViewById(R.id.progress_circular);
+        visualizzaSegnalazioniButton= findViewById(R.id.VisualizzaSegnalazioniButton);
+        chatBotButton=findViewById(R.id.chatBotButton);
 
         adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
                 new ArrayList<ContenutoBean>());
@@ -127,6 +153,17 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 menu.show();
             }
         });
+
+        if(account.isIscritto()== Boolean.FALSE){
+            // se l'attore è un gestore
+            visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+            chatBotButton.setVisibility(View.INVISIBLE);
+        }else{
+            // se l'attore è un iscritto o un utente non registrato
+            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+            chatBotButton.setVisibility(View.VISIBLE);
+        }
+
 
         Intent i = getIntent();
         setReturnIntent();
@@ -158,7 +195,12 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
             i.putExtra("account", (Serializable) account);
             startActivity(i);
-        }else {
+        }
+        else if (account.isIscritto() == Boolean.FALSE){
+            //logout
+            GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
+        }
+        else {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), LoginActivity.class);
             startActivity(i);
@@ -218,4 +260,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     private RicercaContenutoAdapter adapter;
     private ProgressBar bar;
     private Account account;
+    private ImageButton chatBotButton;
+    private ImageButton visualizzaSegnalazioniButton;
 }

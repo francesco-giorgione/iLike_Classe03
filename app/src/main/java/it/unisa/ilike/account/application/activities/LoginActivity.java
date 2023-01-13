@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", account);
                     startActivity(i);
+                    finish();
                 }
             }
             else{
