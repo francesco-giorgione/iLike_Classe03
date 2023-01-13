@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
+import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
@@ -23,6 +26,7 @@ import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
 import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException;
+import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
@@ -36,6 +40,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     private class GsonResultCancellaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
+        String messaggio = null;
 
         /**
          * Consente di utilizzare il metodo cancellaRecensione di SegnalazioneService e di memorizzarne
@@ -50,16 +55,27 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             try {
                 segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
             } catch (MotivazioneVuotaException e) {
-                // messaggio errore
+                messaggio = "Inserire una motivazione";
                 isValidate=false;
-                e.printStackTrace();
             } catch (InvalidMotivazioneException e) {
-                // messaggio errore
+                messaggio = "Non puoi scrivere più di 300 caretteri";
                 isValidate=false;
-                e.printStackTrace();
             }
 
             return isValidate;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (isValidate) {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+                i.putExtra("account", (Serializable) account);
+                startActivity(i);
+            }else {
+                Toast.makeText(GestioneSegnalazioniActivity.this, messaggio, Toast.LENGTH_LONG).show();
+            }
         }
 
         /**
@@ -102,6 +118,21 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             return isValidate;
         }
 
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+
+            if (isValidate){
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
+                i.putExtra("account", (Serializable) account);
+                startActivity(i);
+            }else{
+                Toast.makeText(GestioneSegnalazioniActivity.this, "Rifiuto segnalazione non effettuato", Toast.LENGTH_LONG).show();
+            }
+        }
+
         /**
          * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
          * ha terminato la sua esecuzione
@@ -114,6 +145,27 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
     }
 
+    private class GsonResultGetSegnalazione extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void...  v) {
+
+            SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
+            segnalazione = segnalazioneDAO.doRetrieveByIdSegnalazione(idSegnalazione);
+            recensione = segnalazione.getRecensione();
+
+            return null;
+        }
+
+        protected void onPostExecute(Boolean a) {
+            super.onPostExecute(a);
+            TextView recensioneText = findViewById(R.id.textViewTestoRecensione);
+            recensioneText.setText(recensione.getTesto());
+
+            TextView segnalazioneText = findViewById(R.id.textViewSegnalazione);
+            segnalazioneText.setText(segnalazione.getMotivazione());
+        }
+    }
 
 
 
@@ -126,16 +178,11 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         setReturnIntent();
+
         account = (Account) getIntent().getExtras().getSerializable("account");
-        recensione = (RecensioneBean) getIntent().getExtras().getSerializable("recensione");
-        segnalazione = (SegnalazioneBean)  getIntent().getExtras().getSerializable("segnalazione");
+        idSegnalazione = Integer.parseInt(getIntent().getExtras().getString("idSegnalazione"));
 
-        TextView recensioneText = findViewById(R.id.textViewTestoRecensione);
-        recensioneText.setText(recensione.getTesto());
-
-        TextView segnalazioneText = findViewById(R.id.textViewSegnalazione);
-        segnalazioneText.setText(segnalazione.getMotivazione());
-
+        GsonResultGetSegnalazione g= (GsonResultGetSegnalazione) new GsonResultGetSegnalazione().execute(new Void[0]);
     }
 
 
@@ -145,29 +192,17 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
     public void onClickRifiutaSegnalazione(View view) {
+
         boolean isValidate;
 
         GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione)
                 new GsonResultRifiutaSegnalazione().execute(new Void[0]);
-
-        isValidate=g.isValidate();
-
-        if (isValidate){
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
-            i.putExtra("account", (Serializable) account);
-            startActivityForResult(i, 878);
-        }
     }
 
     public void onClickAccettaSegnalazione(View view) {
 
         motivazioneCancellazione.setVisibility(View.VISIBLE);
         cancellaRecensioneButton.setVisibility(View.VISIBLE);
-    }
-
-
-    public void onClickCancellaRecensione (View v){
 
         String motivazione = motivazioneCancellazione.toString();
         String[] s= {motivazione};
@@ -179,8 +214,20 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
             i.putExtra("account", (Serializable) account);
-            startActivityForResult(i, 878);
+            startActivity(i);
         }
+    }
+
+
+    public void onClickCancellaRecensione (View v){
+
+        String motivazione = motivazioneCancellazione.toString();
+        String[] s= {motivazione};
+
+        GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
+        boolean isValidate= g.isValidate();
+
+
     }
 
     public void onClickVisualizzaSegnalazioni(View view) {
@@ -211,5 +258,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     private SegnalazioneBean segnalazione;
     private Account account;
     private EditText motivazioneCancellazione;
-   private Button cancellaRecensioneButton;
+    private Button cancellaRecensioneButton;
+    private int idSegnalazione;
 }

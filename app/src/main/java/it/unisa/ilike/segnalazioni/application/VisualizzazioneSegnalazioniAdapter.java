@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -45,8 +46,8 @@ public class VisualizzazioneSegnalazioniAdapter extends ArrayAdapter<Segnalazion
             tipoSegnalazione.setText("altre segnalazioni");
         }
 
-        nicknameIscritto.setTag(position);
-        tipoSegnalazione.setTag(position);
+        Button buttonInfo = (Button) view.findViewById(R.id.buttonInfo);
+        buttonInfo.setTag(String.valueOf(s.getId()));
 
         return view;
     }
