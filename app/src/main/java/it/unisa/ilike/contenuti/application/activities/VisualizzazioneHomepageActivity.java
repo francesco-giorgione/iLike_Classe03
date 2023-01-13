@@ -197,7 +197,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
     public void onClickVisualizzaSegnalazioni (View v){
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
-        i.putExtra("account", (Serializable) account);
+        i.putExtra("account", account);
         startActivity(i);
     }
 

@@ -137,6 +137,16 @@ public class SegnalazioneBean  implements Serializable {
         this.recensione = recensione;
     }
 
+    @Override
+    public String toString() {
+        return "SegnalazioneBean{" +
+                "id=" + id +
+                ", tipo=" + tipo +
+                ", motivazione='" + motivazione + '\'' +
+                ", gestita=" + gestita +
+                "}\n";
+    }
+
     private int id;
     private int tipo;
     private String motivazione;

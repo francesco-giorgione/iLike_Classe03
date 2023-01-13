@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
 import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
@@ -33,15 +35,25 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
         @Override
         protected ArrayList<SegnalazioneBean> doInBackground(Void... v) {
-            SegnalazioneService s= new SegnalazioneImpl();
-            ArrayList<SegnalazioneBean> segnalazioni= (ArrayList<SegnalazioneBean>) s.getSegnalazione();
+
+            Log.d("MyDebug", "doInBackground visualizzazione segnalazioni act");
+
+            SegnalazioneService service= new SegnalazioneImpl();
+            ArrayList<SegnalazioneBean> segnalazioni= (ArrayList<SegnalazioneBean>) service.getSegnalazione();
             return segnalazioni;
         }
 
 
         @Override
         protected void onPostExecute(ArrayList<SegnalazioneBean> segnalazioni) {
+
+            ProgressBar bar= findViewById(R.id.progress_circular);
+            bar.setVisibility(View.INVISIBLE);
+
             Log.d("MyDebug", "onPostExecute visualizzazione segnalazioni act");
+
+            for (SegnalazioneBean s: segnalazioni)
+                Log.d("MyDebug", "Segnalazioni -->"+s.toString());
 
             if (segnalazioni.size()>0) {
                 for (SegnalazioneBean s : segnalazioni)
@@ -62,17 +74,21 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         setContentView(R.layout.activity_visualizzazione_segnalazioni);
 
         Intent i = getIntent();
-        setReturnIntent();
-        account = (Account) getIntent().getExtras().getSerializable("account");
 
-//        TextView numerSegnalazioniTextView = (TextView) findViewById(R.id.numerSegnalazioniGestite);
-//        numerSegnalazioniTextView.setText(account.getGestoreBean().getNumSegnalazioniGestite());
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        GestoreBean gestoreBean = account.getGestoreBean();
+        TextView numeroSegnalazioni = findViewById(R.id.numerSegnalazioniGestite);
+        numeroSegnalazioni.setText(String.valueOf(gestoreBean.getNumSegnalazioniGestite()));
         ListView segnalazioniList= findViewById(R.id.segnalazioniList);
 
-        adapter = new VisualizzazioneSegnalazioniAdapter(this,
-                R.layout.activity_list_element_visualizzazione_segnalazioni, new ArrayList<SegnalazioneBean>());
+        VisualizzazioneSegnalazioniAdapter adapter= new VisualizzazioneSegnalazioniAdapter(this,
+                R.layout.activity_list_element_visualizzazione_segnalazioni,
+                new ArrayList<SegnalazioneBean>());
         segnalazioniList.setAdapter(adapter);
+
         GsonResultSegnalazioni g= (GsonResultSegnalazioni) new GsonResultSegnalazioni().execute(new Void[0]);
+
+        setReturnIntent();
     }
 
     private void setReturnIntent() {

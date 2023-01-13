@@ -28,23 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio
-     * contenuto in AccountImpl. Questo è necessario in quanto il metodo in questione richiama metodi
-     * delle classi IscrittoDAO e GestoreDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
+
     private class GsonResultLogin extends AsyncTask<String, Void, Account> {
 
         String messaggio= null;
 
-        /**
-         * Consente di recuperare un oggetto Account utilizzando il metodo di servizio login della
-         * classe AccountImpl
-         * @param string array di stringhe contenente email e password
-         * @return l'account utente se l'operazione è andata a buon fine, null altrimenti
-         */
+
         @Override
         protected Account doInBackground(String... string) {
             Log.d("debugLogin", "in doInBackground");
@@ -78,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     messaggio="Login effettuata";
                     Toast.makeText(LoginActivity.this, messaggio, Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
-                    i.setClass(LoginActivity.this, VisualizzazioneHomepageActivity.class);
+                    i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
                     i.putExtra("account", account);
                     startActivity(i);
                 }
