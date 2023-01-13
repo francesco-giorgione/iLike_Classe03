@@ -3,6 +3,7 @@ package it.unisa.ilike.segnalazioni.application;
 import java.util.List;
 
 import it.unisa.ilike.account.storage.GestoreBean;
+import it.unisa.ilike.account.storage.GestoreDAO;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException;
@@ -53,7 +54,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         g.incrementaNumSegnalazioniGestite();
 
         if(recensioneDAO.cancellaRecensione(r)) {
-            return new SegnalazioneDAO().gestisciSegnalazione(s);
+            return new SegnalazioneDAO().gestisciSegnalazione(s) && new GestoreDAO().doUpdate(g);
         }
         else return false;
     }
@@ -65,14 +66,10 @@ public class SegnalazioneImpl implements SegnalazioneService{
             return false;
         }
 
-        int idRecensione = s.getRecensione().getId();
-        RecensioneDAO recensioneDAO = new RecensioneDAO();
-        RecensioneBean r = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
-
         s.setGestita(true);
         g.incrementaNumSegnalazioniGestite();
 
-        return !r.isCancellata();
+        return new SegnalazioneDAO().gestisciSegnalazione(s) && new GestoreDAO().doUpdate(g);
     }
 
 }
