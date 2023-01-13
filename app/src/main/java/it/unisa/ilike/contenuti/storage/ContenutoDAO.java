@@ -81,6 +81,10 @@ public class ContenutoDAO {
         Integer numRecensioni = res[0].getNumRecensioni();
         Integer sommaValutazioni = res[0].getSommaValutazioni();
 
+        if(numRecensioni == 0) {
+            return 0;
+        }
+
         if(sommaValutazioni == null) {
             sommaValutazioni = 0;
         }
