@@ -48,6 +48,11 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
             try {
                 isValidate = segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
+
+                if(!isValidate) {
+                    this.messaggio = "Si è verificato un errore";
+                }
+
             } catch (MotivazioneVuotaException e) {
                 messaggio = "Inserire una motivazione";
                 isValidate=false;

@@ -128,10 +128,10 @@ public class SegnalazioneDAO {
         if (segnalazione==null)
             return false;
 
-        int id = segnalazione.getId();
+        int idRecensione = segnalazione.getRecensione().getId();
         String query = "update Segnalazioni " +
                 "set gestita = 1 " +
-                "where id = " + id;
+                "where id_recensione = " + idRecensione;
 
         return new QueryManager().update(query);
     }
