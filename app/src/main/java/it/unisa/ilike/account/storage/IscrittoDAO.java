@@ -165,7 +165,7 @@ public class IscrittoDAO {
         email = Utils.addEscape(email);
         String query = "select id " +
                 "from Recensioni " +
-                "where email_iscritto = '" + email + "'";
+                "where email_iscritto = '" + email + "' and cancellata = 0";
 
         List<RecensioneBean> recensioni = new ArrayList<>();
         RecensioneDAO recensioneDAO = new RecensioneDAO();
