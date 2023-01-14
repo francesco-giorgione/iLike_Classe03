@@ -82,8 +82,7 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
             if (account!=null){
                 IscrittoBean iscritto= account.getIscrittoBean();
                 ListaService service= new ListaImpl();
-                ListaDAO dao= new ListaDAO();
-                ListaBean lista= dao.doRetrieveByKey(strings[0], iscritto.getEmail());
+                ListaBean lista = service.getLista(strings[0], iscritto.getEmail());
                 Log.d("debugListe", contenuto.toString());
                 try {
                     service.aggiungiContenuto(lista, contenuto);

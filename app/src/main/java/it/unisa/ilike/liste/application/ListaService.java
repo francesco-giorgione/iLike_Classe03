@@ -43,9 +43,12 @@ public interface ListaService {
     boolean aggiungiContenuto(ListaBean l, ContenutoBean c) throws ContenutoGiaPresenteException;
 
     /**
-     * Il metodo restituisce una collezione List dei contenuti appartenenti a una data lista.
-     * @param l è la lista di cui si vuole ottenere la collezione dei contenuti.
-     * @return una collezione List dei contenuti appartenenti alla lista 'l'.
+     * Questo metodo permette di ottenere un oggetto Lista identificato con l'email
+     * dell'iscritto e il nome della lista
+     * @param nome è il nome della lista
+     * @param emailIscritto è l'email dell'iscritto a cui è associata la lista
+     * @return un oggetto Lista se esitente, null altrimenti.
      */
-    List<ContenutoBean> getContenutiLista(ListaBean l);
+    ListaBean getLista(String nome, String emailIscritto);
+
 }

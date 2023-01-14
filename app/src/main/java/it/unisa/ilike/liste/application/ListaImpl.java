@@ -66,7 +66,10 @@ public class ListaImpl implements ListaService {
 
     /** @inheritDoc */
     @Override
-    public List<ContenutoBean> getContenutiLista(ListaBean l) {
-        return l.getContenuti();
+    public ListaBean getLista(String nome, String emailIscritto){
+        ListaDAO dao= new ListaDAO();
+        return dao.doRetrieveByKey(nome, emailIscritto);
     }
+
+
 }

@@ -21,6 +21,8 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.liste.application.ListaImpl;
+import it.unisa.ilike.liste.application.ListaService;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.utils.InternetConnection;
@@ -37,8 +39,8 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
 
         @Override
         protected ArrayList<ContenutoBean> doInBackground(String... strings) {
-            ListaDAO dao= new ListaDAO();
-            lista= dao.doRetrieveByKey(strings[0], iscritto.getEmail());
+            ListaService service= new ListaImpl();
+            lista = service.getLista(strings[0], iscritto.getEmail());
 
             ArrayList<ContenutoBean> contenuti= (ArrayList<ContenutoBean>) lista.getContenuti();
             return contenuti;
@@ -57,12 +59,6 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
             }
         }
     }
-
-
-    private Account account;
-    private IscrittoBean iscritto;
-    private ListaBean lista;
-    private VisualizzazioneContenutiListaPersonaleAdapter adapter;
 
     /**
      * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
@@ -132,4 +128,9 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         startActivity(i);
     }
 
+
+    private Account account;
+    private IscrittoBean iscritto;
+    private ListaBean lista;
+    private VisualizzazioneContenutiListaPersonaleAdapter adapter;
 }
