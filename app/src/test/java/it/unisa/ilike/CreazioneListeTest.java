@@ -7,22 +7,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.IscrittoProxyBean;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
-import it.unisa.ilike.recensioni.application.RecensioneImpl;
-import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
-import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
-import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
 import it.unisa.ilike.utils.Utils;
 
 @RunWith(Parameterized.class)
