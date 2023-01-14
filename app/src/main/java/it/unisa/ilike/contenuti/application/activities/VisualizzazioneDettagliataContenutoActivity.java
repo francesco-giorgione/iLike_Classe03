@@ -3,6 +3,7 @@ package it.unisa.ilike.contenuti.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneA
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -140,28 +142,46 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_dettagliata_contenuto);
 
-        profiloButton= findViewById(R.id.profiloButton);
-        homepageButton= findViewById(R.id.homepageButton);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneDettagliataContenutoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        account = (Account) getIntent().getExtras().getSerializable("account");
-        //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        if (checkconnessione) {
+            try {
+                profiloButton = findViewById(R.id.profiloButton);
+                homepageButton = findViewById(R.id.homepageButton);
 
-        Intent i = getIntent();
-        int idContenuto= i.getIntExtra("idContenuto", -1);
+                account = (Account) getIntent().getExtras().getSerializable("account");
+                //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
-        Log.d("MyDebug", "idContenutoCliccato -->"+idContenuto);
+                Intent i = getIntent();
+                int idContenuto = i.getIntExtra("idContenuto", -1);
 
-        GsonResultContenuto g= (GsonResultContenuto) new GsonResultContenuto().execute(idContenuto);
-        ListView recensioniList= findViewById(R.id.recensioniList);
+                Log.d("MyDebug", "idContenutoCliccato -->" + idContenuto);
 
-        adapter = new VisualizzazioneDettagliataContenutoAdapter(this, R.layout.activity_list_element_visualizzazione_dettagliata_contenuto,
-                new ArrayList<RecensioneBean>());
+                GsonResultContenuto g = (GsonResultContenuto) new GsonResultContenuto().execute(idContenuto);
+                ListView recensioniList = findViewById(R.id.recensioniList);
 
-        recensioniList.setAdapter(adapter);
+                adapter = new VisualizzazioneDettagliataContenutoAdapter(this, R.layout.activity_list_element_visualizzazione_dettagliata_contenuto,
+                        new ArrayList<RecensioneBean>());
 
-        GsonResultRecensioni gr= (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+                recensioniList.setAdapter(adapter);
 
-        setReturnIntent();
+                GsonResultRecensioni gr = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+
+                setReturnIntent();
+            }
+            catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setReturnIntent() {
@@ -264,13 +284,31 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
      * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
      */
     public void onClickAltreSegnalazioni(View v){
-        s = new SegnalazioneBean();
-        s.setTipo(0);
-        s.setIscritto(account.getIscrittoBean());
-        ImageButton altreSegnalazioniButton = (ImageButton) v;
-        idRecensione = (int) altreSegnalazioniButton.getTag();
 
-        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneDettagliataContenutoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                s = new SegnalazioneBean();
+                s.setTipo(0);
+                s.setIscritto(account.getIscrittoBean());
+                ImageButton altreSegnalazioniButton = (ImageButton) v;
+                idRecensione = (int) altreSegnalazioniButton.getTag();
+
+                GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -279,13 +317,32 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
      * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
      */
     public void onClickSpoilerAlert(View v){
-        s = new SegnalazioneBean();
-        s.setTipo(1);
-        s.setIscritto(account.getIscrittoBean());
-        Button spoilerAlertButton = (Button) v;
-        idRecensione = (int) spoilerAlertButton.getTag();
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneDettagliataContenutoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
+        if (checkconnessione) {
+            try {
+                s = new SegnalazioneBean();
+                s.setTipo(1);
+                s.setIscritto(account.getIscrittoBean());
+                Button spoilerAlertButton = (Button) v;
+                idRecensione = (int) spoilerAlertButton.getTag();
+
+                GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
+            }
+            catch(NetworkOnMainThreadException n){
+                    Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+                }
+            }
+        else {
+                Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void onClickAggiungiSegnalazione(SegnalazioneBean s){

@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -25,6 +27,7 @@ import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.segnalazioni.application.activities.VisualizzazioneSegnalazioniActivity;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -152,31 +155,48 @@ public class VisualizzazioneHomepageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_homepage);
 
-        profiloButton= findViewById(R.id.profiloButton);
-        barraDiRicerca= findViewById(R.id.BarraDiRicercaContenutiHomePage);
-        visualizzaSegnalazioniButton= findViewById(R.id.VisualizzaSegnalazioniButton);
-        chatBotButton=findViewById(R.id.chatBotButton);
-
-        try {
-            account = (Account) getIntent().getExtras().getSerializable("account");
-        }catch (Exception e){
-            Log.d("MyDebug","---------- Account ha lanciato l'eccezione");
-            // non esiste l'oggetto account quindi lo creo, e non ci sono attori --> Utente non registrato
-            account = new Account(null, null);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneHomepageActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
 
-        if(account.isIscritto()== Boolean.FALSE){
-            // se l'attore è un gestore
-            visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
-            chatBotButton.setVisibility(View.INVISIBLE);
-        }else{
-            // se l'attore è un iscritto o un utente non registrato
-            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
-            chatBotButton.setVisibility(View.VISIBLE);
-        }
+        if (checkconnessione) {
+            try {
+                profiloButton = findViewById(R.id.profiloButton);
+                barraDiRicerca = findViewById(R.id.BarraDiRicercaContenutiHomePage);
+                visualizzaSegnalazioniButton = findViewById(R.id.VisualizzaSegnalazioniButton);
+                chatBotButton = findViewById(R.id.chatBotButton);
+                try {
+                    account = (Account) getIntent().getExtras().getSerializable("account");
+                } catch (Exception e) {
+                    Log.d("MyDebug", "---------- Account ha lanciato l'eccezione");
+                    // non esiste l'oggetto account quindi lo creo, e non ci sono attori --> Utente non registrato
+                    account = new Account(null, null);
+                }
 
-        Intent i = getIntent();
-        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
+                if (account.isIscritto() == Boolean.FALSE) {
+                    // se l'attore è un gestore
+                    visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+                    chatBotButton.setVisibility(View.INVISIBLE);
+                } else {
+                    // se l'attore è un iscritto o un utente non registrato
+                    visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+                    chatBotButton.setVisibility(View.VISIBLE);
+                }
+
+                Intent i = getIntent();
+                GsonResultContenuti g = (GsonResultContenuti) new GsonResultContenuti().execute(new Void[0]);
+            }
+            catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+                Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**

@@ -3,6 +3,7 @@ package it.unisa.ilike.contenuti.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -27,6 +28,7 @@ import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPerso
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -119,53 +121,76 @@ public class RicercaContenutoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ricerca_contenuto);
-        profiloButton= findViewById(R.id.profiloButton);
-        homepageButton= findViewById(R.id.homepageButton);
-        barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
-        filtro= findViewById(R.id.filtroRicerca);
-        contenutiList= findViewById(R.id.contenutiList);
-        bar= findViewById(R.id.progress_circular);
-        visualizzaSegnalazioniButton= findViewById(R.id.VisualizzaSegnalazioniButton);
-        chatBotButton=findViewById(R.id.chatBotButton);
 
-        adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
-                new ArrayList<ContenutoBean>());
+        boolean checkconnessione;
 
-        contenutiList.setAdapter(adapter);
-
-        account = (Account) getIntent().getExtras().getSerializable("account");
-
-        filtro.setOnClickListener(new View.OnClickListener() {
-            /**
-             * Questo metodo permette di effettuare la ricerca del contenuto secondo i filtri selezionati.
-             * @param v
-             */
-            @Override
-            public void onClick(View v) {
-                PopupMenu menu= new PopupMenu(RicercaContenutoActivity.this, filtro);
-
-                menu.getMenuInflater().inflate(R.menu.menu_ricerca, menu.getMenu());
-                menu.setOnMenuItemClickListener(item -> {
-                    adapter.clear();
-                    filtroRicerca=item.getTitle().toString();
-                    return true;});
-                menu.show();
-            }
-        });
-
-        if(account.isIscritto()== Boolean.FALSE){
-            // se l'attore è un gestore
-            visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
-            chatBotButton.setVisibility(View.INVISIBLE);
-        }else{
-            // se l'attore è un iscritto o un utente non registrato
-            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
-            chatBotButton.setVisibility(View.VISIBLE);
+        if (InternetConnection.haveInternetConnection(RicercaContenutoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
 
+        if (checkconnessione) {
+            try {
+                profiloButton = findViewById(R.id.profiloButton);
+                homepageButton = findViewById(R.id.homepageButton);
+                barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
+                filtro = findViewById(R.id.filtroRicerca);
+                contenutiList = findViewById(R.id.contenutiList);
+                bar = findViewById(R.id.progress_circular);
+                visualizzaSegnalazioniButton = findViewById(R.id.VisualizzaSegnalazioniButton);
+                chatBotButton = findViewById(R.id.chatBotButton);
 
-        Intent i = getIntent();
-        setReturnIntent();
+                adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
+                        new ArrayList<ContenutoBean>());
+
+                contenutiList.setAdapter(adapter);
+
+                account = (Account) getIntent().getExtras().getSerializable("account");
+
+                filtro.setOnClickListener(new View.OnClickListener() {
+                    /**
+                     * Questo metodo permette di effettuare la ricerca del contenuto secondo i filtri selezionati.
+                     *
+                     * @param v
+                     */
+                    @Override
+                    public void onClick(View v) {
+                        PopupMenu menu = new PopupMenu(RicercaContenutoActivity.this, filtro);
+
+                        menu.getMenuInflater().inflate(R.menu.menu_ricerca, menu.getMenu());
+                        menu.setOnMenuItemClickListener(item -> {
+                            adapter.clear();
+                            filtroRicerca = item.getTitle().toString();
+                            return true;
+                        });
+                        menu.show();
+                    }
+                });
+
+                if (account.isIscritto() == Boolean.FALSE) {
+                    // se l'attore è un gestore
+                    visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+                    chatBotButton.setVisibility(View.INVISIBLE);
+                } else {
+                    // se l'attore è un iscritto o un utente non registrato
+                    visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+                    chatBotButton.setVisibility(View.VISIBLE);
+                }
+
+
+                Intent i = getIntent();
+                setReturnIntent();
+            }
+            catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setReturnIntent() {
@@ -224,15 +249,33 @@ public class RicercaContenutoActivity extends AppCompatActivity {
      */
     public void onClickCercaContenuto(View v){
         adapter.clear();
-        String testoBarraDiRicerca= String.valueOf(barraDiRicercaContenuti.getQuery());
-        if (testoBarraDiRicerca.length()>3) {
-            bar.setVisibility(View.VISIBLE);
-            String[] s = {testoBarraDiRicerca, filtroRicerca};
-            GsonResultRicerca g;
-            g = (GsonResultRicerca) new GsonResultRicerca().execute(s);
+        boolean checkconnessione;
+
+        if (InternetConnection.haveInternetConnection(RicercaContenutoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
-        else
-            Toast.makeText(getApplicationContext(), "Scrivere almeno 4 caratteri!", Toast.LENGTH_LONG).show();
+
+        if (checkconnessione) {
+            try {
+                String testoBarraDiRicerca = String.valueOf(barraDiRicercaContenuti.getQuery());
+                if (testoBarraDiRicerca.length() > 3) {
+                    bar.setVisibility(View.VISIBLE);
+                    String[] s = {testoBarraDiRicerca, filtroRicerca};
+                    GsonResultRicerca g;
+                    g = (GsonResultRicerca) new GsonResultRicerca().execute(s);
+                } else
+                    Toast.makeText(getApplicationContext(), "Scrivere almeno 4 caratteri!", Toast.LENGTH_LONG).show();
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
