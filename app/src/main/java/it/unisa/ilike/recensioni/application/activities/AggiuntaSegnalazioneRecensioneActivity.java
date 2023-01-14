@@ -1,5 +1,6 @@
 package it.unisa.ilike.recensioni.application.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
@@ -10,8 +11,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.application.activities.LoginActivity;
+import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
@@ -159,6 +165,37 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * Questo metodo permette all'utente che non ha effettuato l'accesso di andare alla pagina di login di iLike
+     * (da cui poter eventualmente andare alla pagina di registrazione se non si è registrati alla piattaforma).
+     * All'iscritto che ha effettuato l'accesso, essa permette di andare alla pagina di visualizzazione del proprio
+     * profilo personale.
+     * @param v
+     */
+    public void onClickProfilo(View v){
+        if(account.isIscritto()) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+            i.putExtra("account", (Serializable) account);
+            startActivity(i);
+        }else {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+        }
+    }
+
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param v
+     */
+    public void onClickHomepage(View v){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
+        i.putExtra("account", (Serializable) account);
+        startActivity(i);
     }
 
     private Account account;

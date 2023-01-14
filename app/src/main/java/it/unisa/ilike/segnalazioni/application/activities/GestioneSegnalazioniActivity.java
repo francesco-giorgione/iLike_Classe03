@@ -56,7 +56,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
                 else {
                     this.messaggio = "La recensione è stata cancellata correttamente";
                 }
-
             } catch (MotivazioneVuotaException e) {
                 messaggio = "Inserire una motivazione";
                 isValidate=false;
@@ -263,7 +262,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
         if (checkconnessione) {
             try {
-                String motivazione = motivazioneCancellazione.toString();
+                String motivazione = String.valueOf(motivazioneCancellazione.getText());
                 String[] s = {motivazione};
                 GsonResultCancellaRecensione g = (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
             }catch(NetworkOnMainThreadException n){
