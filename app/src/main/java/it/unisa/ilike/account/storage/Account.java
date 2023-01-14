@@ -3,8 +3,7 @@ package it.unisa.ilike.account.storage;
 import java.io.Serializable;
 
 /**
- * Questa classe rapresenta l'oggetto che identifica se è stato effettuato il login
- * per valutare se è stato effettuato il login.
+ * Questa classe rapresenta l'oggetto per valutare se è stato effettuato il login
  * @author Marta
  * @version 0.2
  */
