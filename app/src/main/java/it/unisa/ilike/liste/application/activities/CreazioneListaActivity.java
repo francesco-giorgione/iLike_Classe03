@@ -3,6 +3,8 @@ package it.unisa.ilike.liste.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -125,28 +128,46 @@ public class CreazioneListaActivity extends AppCompatActivity {
      * @param v
      */
     public void onClickCreaLista(View v){
-        TextView nomeLista= findViewById(R.id.nomeLista);
-        RadioButton visibilitaPublic= findViewById(R.id.visibilitaPublic);
-        RadioButton visibilitaPrivate= findViewById(R.id.visibilitaPrivate);
-
-        Boolean pubblica = null;
-        if (visibilitaPublic.isChecked()){
-            pubblica=true;
-        }else if (visibilitaPrivate.isChecked()){
-            pubblica=false;
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(CreazioneListaActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
 
+        if (checkconnessione) {
+            try {
 
-        if(pubblica == null){
-            Toast.makeText(getApplicationContext(), "Inserire la visibilità della lista", Toast.LENGTH_LONG).show();
-        }else {
-            account = (Account) getIntent().getExtras().getSerializable("account");
-            IscrittoBean iscritto= account.getIscrittoBean();
-            Object[] objects=new Object[3];
-            objects[0]= iscritto;
-            objects[1]= String.valueOf(nomeLista.getText());
-            objects[2] = pubblica;
-            GsonResultCreaLista g= (GsonResultCreaLista) new GsonResultCreaLista().execute(objects);
+                TextView nomeLista = findViewById(R.id.nomeLista);
+                RadioButton visibilitaPublic = findViewById(R.id.visibilitaPublic);
+                RadioButton visibilitaPrivate = findViewById(R.id.visibilitaPrivate);
+
+                Boolean pubblica = null;
+                if (visibilitaPublic.isChecked()) {
+                    pubblica = true;
+                } else if (visibilitaPrivate.isChecked()) {
+                    pubblica = false;
+                }
+
+
+                if (pubblica == null) {
+                    Toast.makeText(getApplicationContext(), "Inserire la visibilità della lista", Toast.LENGTH_LONG).show();
+                } else {
+                    account = (Account) getIntent().getExtras().getSerializable("account");
+                    IscrittoBean iscritto = account.getIscrittoBean();
+                    Object[] objects = new Object[3];
+                    objects[0] = iscritto;
+                    objects[1] = String.valueOf(nomeLista.getText());
+                    objects[2] = pubblica;
+                    GsonResultCreaLista g = (GsonResultCreaLista) new GsonResultCreaLista().execute(objects);
+                }
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
     }
 

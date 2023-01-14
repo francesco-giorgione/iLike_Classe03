@@ -31,10 +31,11 @@ import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
+import it.unisa.ilike.recensioni.application.RecensioneImpl;
+import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.application.activities.PubblicazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
-import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.utils.InternetConnection;
 
@@ -56,7 +57,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         @Override
         protected Void doInBackground(Integer... id) {
 
-             ContenutoService contenutoService= new ContenutoImpl();
+            ContenutoService contenutoService= new ContenutoImpl();
             c= contenutoService.getById(id[0]);
             return null;
         }
@@ -117,8 +118,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         @Override
         protected Void doInBackground(Void... voids) {
             Log.d("debugProfilo", "doInBackground");
-            RecensioneDAO recensioneDAO = new RecensioneDAO();
-            recensioneBean = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
+            RecensioneService recensioneService = new RecensioneImpl();
+            recensioneBean = recensioneService.getRecensione(idRecensione);
             return null;
         }
 

@@ -3,15 +3,13 @@ package it.unisa.ilike.account.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.InputStream;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
@@ -20,6 +18,7 @@ import it.unisa.ilike.account.application.exceptions.EmailVuotaException;
 import it.unisa.ilike.account.application.exceptions.PasswordVuotaException;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare
@@ -109,31 +108,48 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
      */
     public void onClickRegistrazioneIscritto(View v){
 
-        EditText e = findViewById(R.id.email);
-        String email = String.valueOf(e.getText());
-        EditText n = findViewById(R.id.nickname);
-        String nickname = String.valueOf(n.getText());
-        EditText p = findViewById(R.id.password);
-        String password = String.valueOf(p.getText());
-        EditText rp = findViewById(R.id.repeatPassword);
-        String repeatPassword = String.valueOf(rp.getText());
-        EditText no = findViewById(R.id.nome);
-        String nome = String.valueOf(no.getText());
-        EditText c = findViewById(R.id.cognome);
-        String cognome = String.valueOf(c.getText());
-        EditText b = findViewById(R.id.bio);
-        String bio = String.valueOf(b.getText());
-
-        Log.d("debugRegistrazione", password+" "+repeatPassword);
-
-
-        //controllo password corrispondenti
-        if (!(password.equals(repeatPassword))){
-            Toast.makeText(this, "Le password inserite non corrispondono", Toast.LENGTH_LONG).show();
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(RegistrazioneIscrittoActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
-        else{
-            String [] s= {email, password, nome, cognome, nickname, bio};
-            GsonResultRegistrazione g= (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
+
+        if (checkconnessione) {
+            try {
+
+                EditText e = findViewById(R.id.email);
+                String email = String.valueOf(e.getText());
+                EditText n = findViewById(R.id.nickname);
+                String nickname = String.valueOf(n.getText());
+                EditText p = findViewById(R.id.password);
+                String password = String.valueOf(p.getText());
+                EditText rp = findViewById(R.id.repeatPassword);
+                String repeatPassword = String.valueOf(rp.getText());
+                EditText no = findViewById(R.id.nome);
+                String nome = String.valueOf(no.getText());
+                EditText c = findViewById(R.id.cognome);
+                String cognome = String.valueOf(c.getText());
+                EditText b = findViewById(R.id.bio);
+                String bio = String.valueOf(b.getText());
+
+                Log.d("debugRegistrazione", password + " " + repeatPassword);
+
+
+                //controllo password corrispondenti
+                if (!(password.equals(repeatPassword))) {
+                    Toast.makeText(this, "Le password inserite non corrispondono", Toast.LENGTH_LONG).show();
+                } else {
+                    String[] s = {email, password, nome, cognome, nickname, bio};
+                    GsonResultRegistrazione g = (GsonResultRegistrazione) new GsonResultRegistrazione().execute(s);
+                }
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
 
     }
