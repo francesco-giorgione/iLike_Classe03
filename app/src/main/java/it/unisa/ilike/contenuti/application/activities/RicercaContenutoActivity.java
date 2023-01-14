@@ -122,6 +122,50 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ricerca_contenuto);
 
+        profiloButton = findViewById(R.id.profiloButton);
+        homepageButton = findViewById(R.id.homepageButton);
+        barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
+        filtro = findViewById(R.id.filtroRicerca);
+        contenutiList = findViewById(R.id.contenutiList);
+        bar = findViewById(R.id.progress_circular);
+        visualizzaSegnalazioniButton = findViewById(R.id.VisualizzaSegnalazioniButton);
+        chatBotButton = findViewById(R.id.chatBotButton);
+
+        account = (Account) getIntent().getExtras().getSerializable("account");
+
+        adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
+                new ArrayList<ContenutoBean>());
+        contenutiList.setAdapter(adapter);
+
+        filtro.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Questo metodo permette di effettuare la ricerca del contenuto secondo i filtri selezionati.
+             * @param v view associata al listener in questione
+             */
+            @Override
+            public void onClick(View v) {
+                PopupMenu menu = new PopupMenu(RicercaContenutoActivity.this, filtro);
+
+                menu.getMenuInflater().inflate(R.menu.menu_ricerca, menu.getMenu());
+                menu.setOnMenuItemClickListener(item -> {
+                    adapter.clear();
+                    filtroRicerca = item.getTitle().toString();
+                    return true;
+                });
+                menu.show();
+            }
+        });
+
+        if (account.isIscritto() == Boolean.FALSE) {
+            // se l'attore è un gestore
+            visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
+            chatBotButton.setVisibility(View.INVISIBLE);
+        } else {
+            // se l'attore è un iscritto o un utente non registrato
+            visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
+            chatBotButton.setVisibility(View.VISIBLE);
+        }
+
         boolean checkconnessione;
 
         if (InternetConnection.haveInternetConnection(RicercaContenutoActivity.this)) {
@@ -132,65 +176,11 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             Log.d("connessione", "Connessione assente!");
         }
 
-        if (checkconnessione) {
-            try {
-                profiloButton = findViewById(R.id.profiloButton);
-                homepageButton = findViewById(R.id.homepageButton);
-                barraDiRicercaContenuti = findViewById(R.id.BarraDiRicercaContenuti);
-                filtro = findViewById(R.id.filtroRicerca);
-                contenutiList = findViewById(R.id.contenutiList);
-                bar = findViewById(R.id.progress_circular);
-                visualizzaSegnalazioniButton = findViewById(R.id.VisualizzaSegnalazioniButton);
-                chatBotButton = findViewById(R.id.chatBotButton);
-
-                adapter = new RicercaContenutoAdapter(this, R.layout.activity_list_element_ricerca_contenuto,
-                        new ArrayList<ContenutoBean>());
-
-                contenutiList.setAdapter(adapter);
-
-                account = (Account) getIntent().getExtras().getSerializable("account");
-
-                filtro.setOnClickListener(new View.OnClickListener() {
-                    /**
-                     * Questo metodo permette di effettuare la ricerca del contenuto secondo i filtri selezionati.
-                     *
-                     * @param v
-                     */
-                    @Override
-                    public void onClick(View v) {
-                        PopupMenu menu = new PopupMenu(RicercaContenutoActivity.this, filtro);
-
-                        menu.getMenuInflater().inflate(R.menu.menu_ricerca, menu.getMenu());
-                        menu.setOnMenuItemClickListener(item -> {
-                            adapter.clear();
-                            filtroRicerca = item.getTitle().toString();
-                            return true;
-                        });
-                        menu.show();
-                    }
-                });
-
-                if (account.isIscritto() == Boolean.FALSE) {
-                    // se l'attore è un gestore
-                    visualizzaSegnalazioniButton.setVisibility(View.VISIBLE);
-                    chatBotButton.setVisibility(View.INVISIBLE);
-                } else {
-                    // se l'attore è un iscritto o un utente non registrato
-                    visualizzaSegnalazioniButton.setVisibility(View.INVISIBLE);
-                    chatBotButton.setVisibility(View.VISIBLE);
-                }
-
-
-                Intent i = getIntent();
-                setReturnIntent();
-            }
-            catch(NetworkOnMainThreadException n){
-                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
-            }
-        }
-        else{
+        if (!checkconnessione) {
             Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
+        Intent i = getIntent();
+        setReturnIntent();
     }
 
     private void setReturnIntent() {
@@ -248,7 +238,6 @@ public class RicercaContenutoActivity extends AppCompatActivity {
      * @param v
      */
     public void onClickCercaContenuto(View v){
-        adapter.clear();
         boolean checkconnessione;
 
         if (InternetConnection.haveInternetConnection(RicercaContenutoActivity.this)) {
@@ -258,9 +247,9 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             checkconnessione = false;
             Log.d("connessione", "Connessione assente!");
         }
-
         if (checkconnessione) {
             try {
+                adapter.clear();
                 String testoBarraDiRicerca = String.valueOf(barraDiRicercaContenuti.getQuery());
                 if (testoBarraDiRicerca.length() > 3) {
                     bar.setVisibility(View.VISIBLE);

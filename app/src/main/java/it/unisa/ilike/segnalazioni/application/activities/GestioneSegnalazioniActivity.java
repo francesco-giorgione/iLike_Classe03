@@ -176,6 +176,9 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestione_segnalazione);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        idSegnalazione = Integer.parseInt(getIntent().getExtras().getString("idSegnalazione"));
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(GestioneSegnalazioniActivity.this)) {
             checkconnessione = true;
@@ -192,9 +195,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
                 Intent i = getIntent();
                 setReturnIntent();
-
-                account = (Account) getIntent().getExtras().getSerializable("account");
-                idSegnalazione = Integer.parseInt(getIntent().getExtras().getString("idSegnalazione"));
 
                 GsonResultGetSegnalazione g = (GsonResultGetSegnalazione) new GsonResultGetSegnalazione().execute(new Void[0]);
             }catch(NetworkOnMainThreadException n){

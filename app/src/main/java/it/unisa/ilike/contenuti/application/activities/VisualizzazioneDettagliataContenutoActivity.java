@@ -143,6 +143,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_dettagliata_contenuto);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(VisualizzazioneDettagliataContenutoActivity.this)) {
             checkconnessione = true;
@@ -157,7 +159,6 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                 profiloButton = findViewById(R.id.profiloButton);
                 homepageButton = findViewById(R.id.homepageButton);
 
-                account = (Account) getIntent().getExtras().getSerializable("account");
                 //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
                 Intent i = getIntent();

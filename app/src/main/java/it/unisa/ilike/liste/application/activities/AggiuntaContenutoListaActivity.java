@@ -128,6 +128,8 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aggiunta_contenuto_lista);
 
         Intent i = getIntent();
+        account = (Account) i.getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) i.getExtras().getSerializable("contenuto");
         setReturnIntent();
 
         boolean checkconnessione;
@@ -146,9 +148,6 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
                 adapter = new AggiuntaContenutoListaAdapter(this, R.layout.activity_list_element_aggiunta_contenuto_lista,
                         new ArrayList<ListaBean>());
                 elencoListeIscritto.setAdapter(adapter);
-
-                account = (Account) i.getExtras().getSerializable("account");
-                contenuto = (ContenutoBean) i.getExtras().getSerializable("contenuto");
 
                 if (account != null) {
                     GsonResultCreaLista g = (GsonResultCreaLista) new GsonResultCreaLista().execute(new Void[0]);

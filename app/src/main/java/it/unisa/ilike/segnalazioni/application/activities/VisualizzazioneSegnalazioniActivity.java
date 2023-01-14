@@ -104,6 +104,8 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         setContentView(R.layout.activity_visualizzazione_segnalazioni);
 
         Intent i = getIntent();
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        GestoreBean gestoreBean = account.getGestoreBean();
 
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(VisualizzazioneSegnalazioniActivity.this)) {
@@ -116,8 +118,6 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
         if (checkconnessione) {
             try {
-                account = (Account) getIntent().getExtras().getSerializable("account");
-                GestoreBean gestoreBean = account.getGestoreBean();
                 TextView numeroSegnalazioni = findViewById(R.id.numerSegnalazioniGestite);
                 numeroSegnalazioni.setText(String.valueOf(gestoreBean.getNumSegnalazioniGestite()));
 

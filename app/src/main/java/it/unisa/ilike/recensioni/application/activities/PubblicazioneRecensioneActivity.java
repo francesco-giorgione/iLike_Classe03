@@ -121,6 +121,9 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pubblicazione_recensione);
 
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(PubblicazioneRecensioneActivity.this)) {
             checkconnessione = true;
@@ -132,10 +135,6 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
         if (checkconnessione) {
             try {
-
-                account = (Account) getIntent().getExtras().getSerializable("account");
-                contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
-
                 TextView titoloTextView = findViewById(R.id.titoloContenuto);
                 TextView descrizioneTextView = findViewById(R.id.descrizioneContenuto);
                 TextView stelleTextView = findViewById(R.id.stelleCorrenti);

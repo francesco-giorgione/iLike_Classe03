@@ -69,6 +69,8 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_contenuti_lista_personale);
         Intent i= getIntent();
+        account = (Account) i.getExtras().getSerializable("account");
+        iscritto = account.getIscrittoBean();
 
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(VisualizzazioneContenutiListaPersonaleActivity.this)) {
@@ -83,8 +85,6 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
             try {
 
                 String nomeLista = (String) i.getExtras().getString("lista");
-                account = (Account) i.getExtras().getSerializable("account");
-                iscritto = account.getIscrittoBean();
 
                 ListView contenutiList = findViewById(R.id.listaContenutiListaPersonale);
 

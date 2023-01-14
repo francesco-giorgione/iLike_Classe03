@@ -123,6 +123,7 @@
             android:id="@+id/homepageButton"
             android:layout_width="50dip"
             android:layout_height="50dip"
+            android:onClick="onClickHomepage"
             android:layout_marginLeft="150dip"
             android:src="@drawable/icona_home"/>
 

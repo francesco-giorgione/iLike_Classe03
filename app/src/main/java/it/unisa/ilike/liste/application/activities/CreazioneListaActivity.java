@@ -128,6 +128,10 @@ public class CreazioneListaActivity extends AppCompatActivity {
      * @param v
      */
     public void onClickCreaLista(View v){
+
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        IscrittoBean iscritto = account.getIscrittoBean();
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(CreazioneListaActivity.this)) {
             checkconnessione = true;
@@ -155,8 +159,6 @@ public class CreazioneListaActivity extends AppCompatActivity {
                 if (pubblica == null) {
                     Toast.makeText(getApplicationContext(), "Inserire la visibilità della lista", Toast.LENGTH_LONG).show();
                 } else {
-                    account = (Account) getIntent().getExtras().getSerializable("account");
-                    IscrittoBean iscritto = account.getIscrittoBean();
                     Object[] objects = new Object[3];
                     objects[0] = iscritto;
                     objects[1] = String.valueOf(nomeLista.getText());
