@@ -1,4 +1,4 @@
-package it.unisa.ilike.segnalazioni.application;
+package it.unisa.ilike.segnalazioni.application.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;

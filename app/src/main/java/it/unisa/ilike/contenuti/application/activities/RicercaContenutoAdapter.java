@@ -1,4 +1,4 @@
-package it.unisa.ilike.contenuti.application;
+package it.unisa.ilike.contenuti.application.activities;
 
 import android.content.Context;
 import android.util.Log;

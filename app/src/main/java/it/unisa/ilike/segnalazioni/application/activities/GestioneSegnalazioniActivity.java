@@ -27,26 +27,21 @@ import it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaExcept
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
+
+/**
+ * Questa classe gestisce il flusso di interazioni tra il gestore e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla visualizzazione dettagliata delle segnalazioni e alla cancellazione delle
+ * recensioni da parte del gestore di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio cancellaRecensione
-     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
-     * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
     private class GsonResultCancellaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
         String messaggio = null;
 
-        /**
-         * Consente di utilizzare il metodo cancellaRecensione di SegnalazioneService e di memorizzarne
-         * l'esito nella variabile di istanza isValidate;
-         * @param strings array di stringhe contenente la motivazione di cancellazione
-         * @return true se l'operazione è andata a buon fine, false altrimenti
-         */
         @Override
         protected Boolean doInBackground(String...  strings) {
             SegnalazioneService segnalazioneService = new SegnalazioneImpl();
@@ -77,11 +72,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             }
         }
 
-        /**
-         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
-         * ha terminato la sua esecuzione
-         * @return il valore della variabile d'istanza isValidate
-         */
+
         public Boolean isValidate(){
             while (this.isValidate==null);
             return this.isValidate;
@@ -111,24 +102,10 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Classe interna che consente di creare un nuovo thread per la chiamata al metodo di servizio rifiutaSegnalazione
-     * contenuto in SegnalazioneService. Questo è necessario in quanto il metodo in questione richiama metodi
-     * della classe RecensioneDAO. In Android non è consentito fare operazioni di accesso
-     * alla rete nel main thread; dato che questa activity si trova nel main thread occorre creare
-     * questa classe che estende <code>AsyncTask</code> per usufruire dei metodi di cui sopra.
-     */
     private class GsonResultRifiutaSegnalazione extends AsyncTask<Void, Void, Boolean> {
 
         Boolean isValidate = true;
 
-        /**
-         * Consente di utilizzare il metodo rifiutaSegnalazione di SegnalazioneService e di memorizzarne
-         * l'esito nella variabile di istanza isValidate;
-         * @param v non occorrono argomenti a questo metodo ma AsyncTask richiede di specificare sempre
-         *          3 paramtri. In questo caso v rappresenta un segnaposto per gli argomenti mancanti.
-         * @return true se l'operazione è andata a buon fine, false altrimenti
-         */
         @Override
         protected Boolean doInBackground(Void...  v) {
 
@@ -153,11 +130,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
             }
         }
 
-        /**
-         * Restituisce il valore della variabile di istanza isValidate dopo che il metodo doInBackground
-         * ha terminato la sua esecuzione
-         * @return il valore della variabile d'istanza isValidate
-         */
         public Boolean isValidate(){
             while (this.isValidate==null);
             return this.isValidate;
@@ -188,7 +160,10 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestione_segnalazione);
@@ -211,22 +186,39 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo permette al gestore di rifiutare la segnalazione, considerandola gestita.
+     * @param view
+     */
     public void onClickRifiutaSegnalazione(View view) {
         GsonResultRifiutaSegnalazione g= (GsonResultRifiutaSegnalazione) new GsonResultRifiutaSegnalazione().execute(new Void[0]);
     }
 
+    /**
+     * Questo metodo permette al gestore di accettare la segnalazione, abilitando poi alla successiva
+     * cancellazione della recensione segnalata.
+     * @param view
+     */
     public void onClickAccettaSegnalazione(View view) {
         motivazioneCancellazione.setVisibility(View.VISIBLE);
         cancellaRecensioneButton.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Questo metodo permette al gestore di cancellare la recensione a cui la segnalazione esaminata era
+     * riferita.
+     * @param view
+     */
     public void onClickCancellaRecensione(View view){
         String motivazione = motivazioneCancellazione.toString();
         String[] s= {motivazione};
         GsonResultCancellaRecensione g= (GsonResultCancellaRecensione) new GsonResultCancellaRecensione().execute(s);
     }
 
-
+    /**
+     * Questo metodo permette al gestore di visualizzare tutte le segnalazioni ricevute non ancora gestite.
+     * @param view
+     */
     public void onClickVisualizzaSegnalazioni(View view) {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
@@ -234,7 +226,10 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param view
+     */
     public void onClickHomepage(View view) {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
@@ -242,7 +237,10 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    /**
+     * Questo metodo permette al gestore di iLike di effettuare il logout.
+     * @param view
+     */
     public void onClickLogout(View view) {
         GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
     }

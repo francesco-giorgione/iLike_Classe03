@@ -24,9 +24,14 @@ import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
-import it.unisa.ilike.segnalazioni.application.VisualizzazioneSegnalazioniAdapter;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
+/**
+ * Questa classe gestisce il flusso di interazioni tra il gestore e il sistema. Essa permette di effettuare tutte
+ * le operazioni relative alla visualizzazione delle segnalazioni da parte del gestore di iLike.
+ * @author Simona Lo Conte
+ * @version 0.1
+ */
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     VisualizzazioneSegnalazioniAdapter adapter;
 
@@ -89,6 +94,10 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +127,10 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         setResult(RESULT_OK,data);
     }
 
+    /**
+     * Questo metodo permette di visualizzare la pagina contenente la segnalazione e i relativi dettagli.
+     * @param view oggetto View usato per ottenere il riferimento alla segnalazione selezionata
+     */
     public void onClickInfo(View view){
         Intent i = new Intent();
         i.setClass(VisualizzazioneSegnalazioniActivity.this, GestioneSegnalazioniActivity.class);
@@ -128,7 +141,10 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    /**
+     * Questo metodo permette di passare alla homepage di iLike.
+     * @param view
+     */
     public void onClickHomepage(View view) {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
@@ -136,6 +152,10 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**
+     * Questo metodo permette al gestore di iLike di effettuare il logout.
+     * @param view
+     */
     public void onClickLogout(View view) {
         GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
     }
