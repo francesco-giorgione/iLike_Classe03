@@ -52,6 +52,9 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
                 if(!isValidate) {
                     this.messaggio = "Si è verificato un errore";
                 }
+                else {
+                    this.messaggio = "La recensione è stata cancellata correttamente";
+                }
 
             } catch (MotivazioneVuotaException e) {
                 messaggio = "Inserire una motivazione";
@@ -68,6 +71,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             if (isValidate) {
+                Toast.makeText(GestioneSegnalazioniActivity.this, messaggio, Toast.LENGTH_LONG).show();
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
                 i.putExtra("account", (Serializable) account);
