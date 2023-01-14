@@ -19,12 +19,19 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class SegnalazioneImpl implements SegnalazioneService{
 
+    /**
+     * Questo costruttore viene per ottenere un istanza di <code>SegnalazioneImpl</code>
+     */
     public SegnalazioneImpl(){
         this.gestoreDAO = new GestoreDAO();
         this.recensioneDAO = new RecensioneDAO();
     }
 
-
+    /**
+     * Questo costruttore viene per ottenere un istanza di <code>SegnalazioneImpl</code>
+     * @param gestoreDAO istanza di GestoreDAO
+     * @param recensioneDAO istanza di RecensioneDAO
+     */
     public SegnalazioneImpl(GestoreDAO gestoreDAO, RecensioneDAO recensioneDAO){
         this.gestoreDAO = gestoreDAO;
         this.recensioneDAO = recensioneDAO;
