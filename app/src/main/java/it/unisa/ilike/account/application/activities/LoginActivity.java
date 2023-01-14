@@ -3,6 +3,7 @@ package it.unisa.ilike.account.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.utils.InternetConnection;
 
 
 /**
@@ -27,20 +29,6 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 public class LoginActivity extends AppCompatActivity {
 
     boolean checkLogin;
-
-    /**
-     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
-     * @param savedInstanceState
-     */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        EditText username = findViewById(R.id.username);
-        EditText passwordText = findViewById(R.id.password);
-    }
-
 
     private class GsonResultLogin extends AsyncTask<String, Void, Account> {
 
@@ -89,23 +77,73 @@ public class LoginActivity extends AppCompatActivity {
 
 
     /**
+     * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(LoginActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                EditText username = findViewById(R.id.username);
+                EditText passwordText = findViewById(R.id.password);
+            }
+            catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    /**
      * Questo metodo permette all'utente di effettuare il login alla piattaforma di iLike
      * @param view oggetto View utilizzato per ottenere gli input dell'utente.
      */
     public void onClickLogin(View view) {
-        Log.d("debugLogin", "in onClickLogin");
-        checkLogin=true;
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(LoginActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        // prendi i campi email/nickname e password
-        EditText username = findViewById(R.id.username);
-        EditText passwordText = findViewById(R.id.password);
+        if (checkconnessione) {
+            try {
+                Log.d("debugLogin", "in onClickLogin");
+                checkLogin = true;
 
-        String email = String.valueOf(username.getText());
-        String password = String.valueOf(passwordText.getText());
-        Log.d("debugLogin", "username--> "+email+"\npassword--> "+password);
+                // prendi i campi email/nickname e password
+                EditText username = findViewById(R.id.username);
+                EditText passwordText = findViewById(R.id.password);
 
-        String[] s ={email, password};
-        GsonResultLogin g= (GsonResultLogin) new GsonResultLogin().execute(s);
+                String email = String.valueOf(username.getText());
+                String password = String.valueOf(passwordText.getText());
+                Log.d("debugLogin", "username--> " + email + "\npassword--> " + password);
+
+                String[] s = {email, password};
+                GsonResultLogin g = (GsonResultLogin) new GsonResultLogin().execute(s);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**

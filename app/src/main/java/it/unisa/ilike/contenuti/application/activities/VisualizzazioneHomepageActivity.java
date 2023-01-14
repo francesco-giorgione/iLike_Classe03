@@ -207,20 +207,37 @@ public class VisualizzazioneHomepageActivity extends Activity {
      * @param v
      */
     public void onClickProfilo(View v){
-        if(account.isIscritto() == Boolean.TRUE){
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
-            i.putExtra("account", (Serializable) account);
-            startActivity(i);
-        }else {
-            if (account.isIscritto() == Boolean.FALSE) {
-                //logout
-                GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
-            } else {
-                Intent i = new Intent();
-                i.setClass(getApplicationContext(), LoginActivity.class);
-                startActivity(i);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneHomepageActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                if (account.isIscritto() == Boolean.TRUE) {
+                    Intent i = new Intent();
+                    i.setClass(getApplicationContext(), VisualizzazioneProfiloPersonaleActivity.class);
+                    i.putExtra("account", (Serializable) account);
+                    startActivity(i);
+                } else {
+                    if (account.isIscritto() == Boolean.FALSE) {
+                        //logout
+                        GsonResultLogout g = (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
+                    } else {
+                        Intent i = new Intent();
+                        i.setClass(getApplicationContext(), LoginActivity.class);
+                        startActivity(i);
+                    }
+                }
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
             }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
     }
 
