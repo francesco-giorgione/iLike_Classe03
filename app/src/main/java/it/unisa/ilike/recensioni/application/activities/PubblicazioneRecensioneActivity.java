@@ -55,6 +55,16 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
             this.recensione = null;
             try {
                 this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
+
+                // controllo se l'inserimento è andato a buon fine (potrebbero esserci errori a livello di db)
+                if(this.recensione == null) {
+                    this.isValidate = false;
+                    this.messaggio = "Recensione non pubblicata, riprovare.";
+                }
+                else {
+                    this.messaggio = "Recensione pubblicata correttamente";
+                }
+
             } catch (TestoTroppoBreveException e) {
                 // messaggio di errore
                 this.isValidate = false;

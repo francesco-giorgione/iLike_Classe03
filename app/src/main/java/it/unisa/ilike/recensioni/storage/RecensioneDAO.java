@@ -241,12 +241,18 @@ public class RecensioneDAO {
         QueryManager queryManager = new QueryManager();
 
         if(queryManager.update(query)) {
+            // le segnalazioni associate alla recensione vengono marcate come gestite tramite un trigger nel DB;
+            // come specificato nell condizioni di errore di UC_GR_6, se le segnalazioni non riescono ad essere cancellate,
+            // viene ripristinata la recensione associata direttamente tramite il trigger
+
             ContenutoDAO contenutoDAO = new ContenutoDAO();
             int idContenuto = recensione.getContenuto().getId();
 
-            return contenutoDAO.doUpdateValutazioneMedia(idContenuto, contenutoDAO.calcolaValutazioneMediaAggiornata(idContenuto));
+            // aggiorno la valutazione media (campo calcolato) del contenuto cui era riferita la recensione cancellata
+            contenutoDAO.doUpdateValutazioneMedia(idContenuto, contenutoDAO.calcolaValutazioneMediaAggiornata(idContenuto));
+            return true;
         }
-        return true;
+        return false;
     }
 
 

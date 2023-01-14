@@ -1,6 +1,5 @@
 package it.unisa.ilike.liste.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
@@ -20,6 +19,7 @@ import it.unisa.ilike.utils.Utils;
  * @see ListaService
  */
 public class ListaImpl implements ListaService {
+
     /** @inheritDoc */
     @Override
     public IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws

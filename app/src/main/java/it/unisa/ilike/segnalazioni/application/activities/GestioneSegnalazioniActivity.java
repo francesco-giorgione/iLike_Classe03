@@ -48,6 +48,14 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
             try {
                 isValidate = segnalazioneService.cancellaRecensione(segnalazione, strings[0], account.getGestoreBean());
+
+                if(!isValidate) {
+                    this.messaggio = "Si è verificato un errore";
+                }
+                else {
+                    this.messaggio = "La recensione è stata cancellata correttamente";
+                }
+
             } catch (MotivazioneVuotaException e) {
                 messaggio = "Inserire una motivazione";
                 isValidate=false;
@@ -63,6 +71,7 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             if (isValidate) {
+                Toast.makeText(GestioneSegnalazioniActivity.this, messaggio, Toast.LENGTH_LONG).show();
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), VisualizzazioneSegnalazioniActivity.class);
                 i.putExtra("account", (Serializable) account);
@@ -96,7 +105,6 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
 
             Intent i = new Intent();
             i.setClass(GestioneSegnalazioniActivity.this, VisualizzazioneHomepageActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
     }

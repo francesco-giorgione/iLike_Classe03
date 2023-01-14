@@ -53,8 +53,12 @@ public class SegnalazioneImpl implements SegnalazioneService{
         s.setGestita(true);
         g.incrementaNumSegnalazioniGestite();
 
+        // se la cancellazione della recensione è andata a buon fine
         if(recensioneDAO.cancellaRecensione(r)) {
-            return new SegnalazioneDAO().gestisciSegnalazione(s) && new GestoreDAO().doUpdate(g);
+            // la segnalazione viene marcata come gestita tramite un trigger nel DB (vedi maggiori dettagli nel DAO)
+            // incrementa il numero di segnalazioni gestite dal gestore g
+            new GestoreDAO().doUpdate(g);
+            return true;
         }
         else return false;
     }

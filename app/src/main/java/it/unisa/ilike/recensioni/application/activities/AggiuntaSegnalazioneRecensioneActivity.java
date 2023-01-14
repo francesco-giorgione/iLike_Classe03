@@ -36,10 +36,18 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
-
             int tipo= Integer.parseInt(string[0]);
+
             try {
-                recensioneService.aggiungiSegnalazione(tipo, string[1], segnalazione.getRecensione(), account.getIscrittoBean());
+
+                if(recensioneService.aggiungiSegnalazione(tipo, string[1], segnalazione.getRecensione(), account.getIscrittoBean())) {
+                    this.messaggio = "Segnalazione effettuata";
+                }
+                else {
+                    this.isValidate = false;
+                    this.messaggio = "Si è verificato un errore, riprovare";
+                }
+
             } catch (InvalidTipoException e) {
                 messaggio = "Tipo segnalazione non corretto";
                 isValidate = false;
