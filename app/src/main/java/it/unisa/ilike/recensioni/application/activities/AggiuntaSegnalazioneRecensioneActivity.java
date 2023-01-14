@@ -2,6 +2,8 @@ package it.unisa.ilike.recensioni.application.activities;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneExcept
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTipoException;
 import it.unisa.ilike.recensioni.application.exceptions.MotivazioneVuotaException;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare
@@ -93,17 +96,35 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aggiunta_segnalazione_recensione);
-        TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
-        segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
-        account = (Account) getIntent().getExtras().getSerializable("account");
-        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
-        String spoiler = "spoiler allert";
-        String altre = "altre segnalazioni";
-        if(segnalazione.getTipo() == 1)
-            tipoSegnalazioneTextView.setText(spoiler);
-        else
-            tipoSegnalazioneTextView.setText(altre);
 
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(AggiuntaSegnalazioneRecensioneActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+
+                TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
+                segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
+                account = (Account) getIntent().getExtras().getSerializable("account");
+                contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+                String spoiler = "spoiler allert";
+                String altre = "altre segnalazioni";
+                if (segnalazione.getTipo() == 1)
+                    tipoSegnalazioneTextView.setText(spoiler);
+                else
+                    tipoSegnalazioneTextView.setText(altre);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -112,14 +133,31 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
      */
     public void onClickInviaSegnalazione(View view) {
 
-        TextView motivazioneSegnalazioneTextView = findViewById(R.id.motivazioneSegnalazione);
-        String motivazioneSegnalazione = String.valueOf(motivazioneSegnalazioneTextView.getText());
-        String[] s= new String[2];
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(AggiuntaSegnalazioneRecensioneActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        s[0]=String.valueOf(segnalazione.getTipo());
-        s[1]=motivazioneSegnalazione;
+        if (checkconnessione) {
+            try {
+                TextView motivazioneSegnalazioneTextView = findViewById(R.id.motivazioneSegnalazione);
+                String motivazioneSegnalazione = String.valueOf(motivazioneSegnalazioneTextView.getText());
+                String[] s = new String[2];
 
-        GsonResultValidate g= (GsonResultValidate) new GsonResultValidate().execute(s);
+                s[0] = String.valueOf(segnalazione.getTipo());
+                s[1] = motivazioneSegnalazione;
+
+                GsonResultValidate g = (GsonResultValidate) new GsonResultValidate().execute(s);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private Account account;
