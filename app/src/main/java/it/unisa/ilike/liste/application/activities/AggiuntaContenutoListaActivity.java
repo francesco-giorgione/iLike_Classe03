@@ -3,6 +3,7 @@ package it.unisa.ilike.liste.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import it.unisa.ilike.liste.application.ListaService;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -129,23 +131,37 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         Intent i = getIntent();
         setReturnIntent();
 
-
-        ListView elencoListeIscritto= findViewById(R.id.elencoListeIscritto);
-
-        adapter = new AggiuntaContenutoListaAdapter(this, R.layout.activity_list_element_aggiunta_contenuto_lista,
-                new ArrayList<ListaBean>());
-        elencoListeIscritto.setAdapter(adapter);
-
-        account = (Account) i.getExtras().getSerializable("account");
-        contenuto= (ContenutoBean) i.getExtras().getSerializable("contenuto");
-
-        if (account!=null){
-            GsonResultCreaLista g= (GsonResultCreaLista) new GsonResultCreaLista().execute(new Void[0]);
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(AggiuntaContenutoListaActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
         }
 
+        if (checkconnessione) {
+            try {
+                ListView elencoListeIscritto = findViewById(R.id.elencoListeIscritto);
+
+                adapter = new AggiuntaContenutoListaAdapter(this, R.layout.activity_list_element_aggiunta_contenuto_lista,
+                        new ArrayList<ListaBean>());
+                elencoListeIscritto.setAdapter(adapter);
+
+                account = (Account) i.getExtras().getSerializable("account");
+                contenuto = (ContenutoBean) i.getExtras().getSerializable("contenuto");
+
+                if (account != null) {
+                    GsonResultCreaLista g = (GsonResultCreaLista) new GsonResultCreaLista().execute(new Void[0]);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Effettua il login per eseguire questa operazione", Toast.LENGTH_LONG).show();
+                }
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setReturnIntent() {
@@ -187,9 +203,26 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
      * @param v oggetto View usato per ottenere il riferimento alla lista personale selezionata
      */
     public void onClickAggiungiContenutoAllaLista(View v){
-        TextView t= (TextView) v;
-        String nomeLista= String.valueOf(t.getText());
-        String[] s= {nomeLista};
-        GsonResultAggiungiContenutoLista g= (GsonResultAggiungiContenutoLista) new GsonResultAggiungiContenutoLista().execute(s);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(AggiuntaContenutoListaActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                TextView t = (TextView) v;
+                String nomeLista = String.valueOf(t.getText());
+                String[] s = {nomeLista};
+                GsonResultAggiungiContenutoLista g = (GsonResultAggiungiContenutoLista) new GsonResultAggiungiContenutoLista().execute(s);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 }

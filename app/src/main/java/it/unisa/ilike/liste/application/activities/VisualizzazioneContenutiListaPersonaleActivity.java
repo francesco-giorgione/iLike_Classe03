@@ -3,10 +3,13 @@ package it.unisa.ilike.liste.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +23,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare la
@@ -70,21 +74,38 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         setContentView(R.layout.activity_visualizzazione_contenuti_lista_personale);
         Intent i= getIntent();
 
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneContenutiListaPersonaleActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        String nomeLista= (String) i.getExtras().getString("lista");
-        account = (Account) i.getExtras().getSerializable("account");
-        iscritto= account.getIscrittoBean();
+        if (checkconnessione) {
+            try {
 
-        ListView contenutiList = findViewById(R.id.listaContenutiListaPersonale);
+                String nomeLista = (String) i.getExtras().getString("lista");
+                account = (Account) i.getExtras().getSerializable("account");
+                iscritto = account.getIscrittoBean();
 
-        adapter = new VisualizzazioneContenutiListaPersonaleAdapter
-                (this, R.layout.activity_list_element_ricerca_contenuto,
-                        new ArrayList<ContenutoBean>());
+                ListView contenutiList = findViewById(R.id.listaContenutiListaPersonale);
 
-        contenutiList.setAdapter(adapter);
+                adapter = new VisualizzazioneContenutiListaPersonaleAdapter
+                        (this, R.layout.activity_list_element_ricerca_contenuto,
+                                new ArrayList<ContenutoBean>());
 
-        String[] s= {nomeLista};
-        GsonResultContenuti g= (GsonResultContenuti) new GsonResultContenuti().execute(s);
+                contenutiList.setAdapter(adapter);
+
+                String[] s = {nomeLista};
+                GsonResultContenuti g = (GsonResultContenuti) new GsonResultContenuti().execute(s);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
 
     }
 
