@@ -56,4 +56,11 @@ public interface RecensioneService {
     boolean aggiungiSegnalazione (int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
             throws InvalidTipoException, MotivazioneVuotaException, InvalidMotivazioneException;
 
+
+    /**
+     * Questo metodo permette di recuperare la recensione attraverso il suo identificativo
+     * @param id l'identificato della recensione
+     * @return l'oggetto recensione se esiste, null altrimenti
+     */
+    RecensioneBean getRecensione(int id);
 }

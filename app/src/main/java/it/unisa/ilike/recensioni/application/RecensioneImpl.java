@@ -64,5 +64,11 @@ public class RecensioneImpl implements RecensioneService{
         return new SegnalazioneDAO().doSaveSegnalazione(segnalazione);
     }
 
+    @Override
+    public RecensioneBean getRecensione(int id) {
+        RecensioneDAO recensioneDAO = new RecensioneDAO();
+        return recensioneDAO.doRetrieveByIdRecensione(id);
+    }
+
 
 }

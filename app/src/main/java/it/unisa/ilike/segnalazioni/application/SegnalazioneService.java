@@ -56,7 +56,7 @@ public interface SegnalazioneService {
     /**
      * Questo metodo permette di ottenere un oggetto segnalazione identificato con il suo id
      * @param id l'identificativo della segnalazione
-     * @return l'oggetto segnalazione, null altrimenti
+     * @return l'oggetto segnalazione se esiste, null altrimenti
      */
     SegnalazioneBean getSegnalazione(int id);
 

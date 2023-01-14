@@ -25,9 +25,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.liste.application.activities.CreazioneListaActivity;
 import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiListaPersonaleActivity;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.recensioni.application.activities.AggiuntaSegnalazioneRecensioneActivity;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
-import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
 
 /**
@@ -91,27 +89,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         }
 
 
-    }
-
-    private class GsonResultSegnalazione extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Log.d("debugProfilo", "doInBackground");
-            RecensioneDAO recensioneDAO = new RecensioneDAO();
-            recensioneBean = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
-            return null;
-        }
-
-
-        @Override
-        protected void onPostExecute(Void unused) {
-
-            s.setRecensione(recensioneBean);
-            onClickAggiungiSegnalazione(s);
-        }
-
-        private RecensioneBean recensioneBean;
     }
 
 
@@ -220,54 +197,7 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         startActivity(i);
     }
 
-    /**
-     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
-     * segnalazione di tipo AltreSegnalazioni.
-     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
-     */
-    public void onClickAltreSegnalazioni(View v){
-        s = new SegnalazioneBean();
-        s.setTipo(0);
-        s.setIscritto(account.getIscrittoBean());
-        ImageButton altreSegnalazioniButton = (ImageButton) v;
-        idRecensione = (int) altreSegnalazioniButton.getTag();
 
-        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
-    }
 
-    /**
-     * Questo metodo permette all'iscritto di passare alla pagina di iLike che permette di effettuare una
-     * segnalazione di tipo SpoilerAlert.
-     * @param v oggetto View usato per ottenere il riferimento al bottone selezionato
-     */
-    public void onClickSpoilerAlert(View v){
-        s = new SegnalazioneBean();
-        s.setTipo(1);
-        s.setIscritto(account.getIscrittoBean());
-        Button spoilerAlertButton = (Button) v;
-        idRecensione = (int) spoilerAlertButton.getTag();
-
-        GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
-    }
-
-    private void onClickAggiungiSegnalazione(SegnalazioneBean s){
-        if(account.isIscritto() == Boolean.TRUE){
-            Intent i = new Intent();
-            i.setClass(getApplicationContext(), AggiuntaSegnalazioneRecensioneActivity.class);
-            i.putExtra("segnalazione", s);
-            i.putExtra("account", account);
-            startActivity(i);
-        }else{
-            if(account.isIscritto() == Boolean.FALSE){
-                Toast.makeText(getApplicationContext(), "Effettua il login come iscritto per effettuare questa operazione", Toast.LENGTH_LONG).show();
-            }else {
-                Intent i = new Intent();
-                i.setClass(getApplicationContext(), LoginActivity.class);
-                startActivity(i);
-            }
-        }
-    }
-
-    private int idRecensione;
     private SegnalazioneBean s;
 }
