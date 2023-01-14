@@ -93,7 +93,7 @@ public class AccountImpl implements AccountService {
      * @param passwordUtente password inserita dall'utente da codificare
      * @throws NoSuchAlgorithmException è generata quando un particolare algoritmo crittografico
      * richiesto non è disponibile nell'ambiente.
-     * @return la pa
+     * @return la password crittografata
      */
     public String getPasswordCrittografata(String passwordUtente) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-512");
