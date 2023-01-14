@@ -1,4 +1,4 @@
-package it.unisa.ilike;
+package it.unisa.ilike.unittesting.testcases;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
