@@ -52,7 +52,6 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
             Intent i = new Intent();
             i.setClass(VisualizzazioneSegnalazioniActivity.this, VisualizzazioneHomepageActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
         }
     }
