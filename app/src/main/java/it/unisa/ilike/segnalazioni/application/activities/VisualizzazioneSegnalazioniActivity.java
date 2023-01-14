@@ -3,6 +3,7 @@ package it.unisa.ilike.segnalazioni.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageAc
 import it.unisa.ilike.segnalazioni.application.SegnalazioneImpl;
 import it.unisa.ilike.segnalazioni.application.SegnalazioneService;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra il gestore e il sistema. Essa permette di effettuare tutte
@@ -34,7 +36,6 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
  */
 public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
     VisualizzazioneSegnalazioniAdapter adapter;
-
 
     private class GsonResultLogout extends AsyncTask<Void, Void, Void> {
 
@@ -104,21 +105,38 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        account = (Account) getIntent().getExtras().getSerializable("account");
-        GestoreBean gestoreBean = account.getGestoreBean();
-        TextView numeroSegnalazioni = findViewById(R.id.numerSegnalazioniGestite);
-        numeroSegnalazioni.setText(String.valueOf(gestoreBean.getNumSegnalazioniGestite()));
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneSegnalazioniActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        ListView segnalazioniList= findViewById(R.id.segnalazioniList);
+        if (checkconnessione) {
+            try {
+                account = (Account) getIntent().getExtras().getSerializable("account");
+                GestoreBean gestoreBean = account.getGestoreBean();
+                TextView numeroSegnalazioni = findViewById(R.id.numerSegnalazioniGestite);
+                numeroSegnalazioni.setText(String.valueOf(gestoreBean.getNumSegnalazioniGestite()));
 
-        adapter= new VisualizzazioneSegnalazioniAdapter(this,
-                R.layout.activity_list_element_visualizzazione_segnalazioni,
-                new ArrayList<SegnalazioneBean>());
-        segnalazioniList.setAdapter(adapter);
+                ListView segnalazioniList = findViewById(R.id.segnalazioniList);
 
-        GsonResultSegnalazioni g= (GsonResultSegnalazioni) new GsonResultSegnalazioni().execute(new Void[0]);
+                adapter = new VisualizzazioneSegnalazioniAdapter(this,
+                        R.layout.activity_list_element_visualizzazione_segnalazioni,
+                        new ArrayList<SegnalazioneBean>());
+                segnalazioniList.setAdapter(adapter);
 
-        setReturnIntent();
+                GsonResultSegnalazioni g = (GsonResultSegnalazioni) new GsonResultSegnalazioni().execute(new Void[0]);
+
+                setReturnIntent();
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setReturnIntent() {
@@ -156,7 +174,24 @@ public class VisualizzazioneSegnalazioniActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickLogout(View view) {
-        GsonResultLogout g= (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneSegnalazioniActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                GsonResultLogout g = (GsonResultLogout) new GsonResultLogout().execute(new Void[0]);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private Account account;
