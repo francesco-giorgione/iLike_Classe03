@@ -145,7 +145,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
     }
 
 
-
     /**
      * Primo metodo chiamato alla creazione dell'activity, per le inizializzazioni di avvio necessarie.
      * @param savedInstanceState
@@ -154,6 +153,14 @@ public class VisualizzazioneHomepageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_homepage);
+
+        try {
+            account = (Account) getIntent().getExtras().getSerializable("account");
+        } catch (Exception e) {
+            Log.d("MyDebug", "---------- Account ha lanciato l'eccezione");
+            // non esiste l'oggetto account quindi lo creo, e non ci sono attori --> Utente non registrato
+            account = new Account(null, null);
+        }
 
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(VisualizzazioneHomepageActivity.this)) {
@@ -170,13 +177,6 @@ public class VisualizzazioneHomepageActivity extends Activity {
                 barraDiRicerca = findViewById(R.id.BarraDiRicercaContenutiHomePage);
                 visualizzaSegnalazioniButton = findViewById(R.id.VisualizzaSegnalazioniButton);
                 chatBotButton = findViewById(R.id.chatBotButton);
-                try {
-                    account = (Account) getIntent().getExtras().getSerializable("account");
-                } catch (Exception e) {
-                    Log.d("MyDebug", "---------- Account ha lanciato l'eccezione");
-                    // non esiste l'oggetto account quindi lo creo, e non ci sono attori --> Utente non registrato
-                    account = new Account(null, null);
-                }
 
                 if (account.isIscritto() == Boolean.FALSE) {
                     // se l'attore è un gestore

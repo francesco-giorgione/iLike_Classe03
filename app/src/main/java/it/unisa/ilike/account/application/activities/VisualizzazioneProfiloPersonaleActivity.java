@@ -108,6 +108,10 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_profilo_personale);
 
+        Intent i = getIntent();
+        account = (Account) i.getExtras().getSerializable("account");
+        iscritto = account.getIscrittoBean();
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(VisualizzazioneProfiloPersonaleActivity.this)) {
             checkconnessione = true;
@@ -122,16 +126,10 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
                 ListView listViewListe = findViewById(R.id.elencoListeIscritto);
                 ListView listViewRecensioni = findViewById(R.id.recensioniList);
 
-                Intent i = getIntent();
-
-                account = (Account) i.getExtras().getSerializable("account");
-                iscritto = account.getIscrittoBean();
-
                 TextView nicknameTextView = findViewById(R.id.nicknameTextView);
                 TextView infoTextView = findViewById(R.id.infoTextView);
                 nicknameTextView.setText(iscritto.getNickname());
                 infoTextView.setText(iscritto.getBio());
-
 
                 adapterListe = new VisualizzazioneProfiloPersonaleListeAdapter(
                         this, R.layout.activity_list_element_visualizzazione_profilo_personale_liste,

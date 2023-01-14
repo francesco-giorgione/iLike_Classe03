@@ -97,6 +97,10 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aggiunta_segnalazione_recensione);
 
+        segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
+        account = (Account) getIntent().getExtras().getSerializable("account");
+        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+
         boolean checkconnessione;
         if (InternetConnection.haveInternetConnection(AggiuntaSegnalazioneRecensioneActivity.this)) {
             checkconnessione = true;
@@ -110,9 +114,6 @@ public class AggiuntaSegnalazioneRecensioneActivity extends AppCompatActivity {
             try {
 
                 TextView tipoSegnalazioneTextView = findViewById(R.id.tipoSegnalazione);
-                segnalazione = (SegnalazioneBean) getIntent().getExtras().getSerializable("segnalazione");
-                account = (Account) getIntent().getExtras().getSerializable("account");
-                contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
                 String spoiler = "spoiler allert";
                 String altre = "altre segnalazioni";
                 if (segnalazione.getTipo() == 1)
