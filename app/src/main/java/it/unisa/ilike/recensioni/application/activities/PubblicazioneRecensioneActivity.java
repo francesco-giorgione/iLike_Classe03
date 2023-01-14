@@ -3,6 +3,8 @@ package it.unisa.ilike.recensioni.application.activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
 import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
 import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -118,29 +121,47 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pubblicazione_recensione);
 
-        account = (Account) getIntent().getExtras().getSerializable("account");
-        contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(PubblicazioneRecensioneActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        TextView titoloTextView = findViewById(R.id.titoloContenuto);
-        TextView descrizioneTextView = findViewById(R.id.descrizioneContenuto);
-        TextView stelleTextView = findViewById(R.id.stelleCorrenti);
-        titoloTextView.setText(contenuto.getTitolo());
-        descrizioneTextView.setText(contenuto.getDescrizione());
-        stelleTextView.setText(String.valueOf(contenuto.getValutazioneMedia()));
+        if (checkconnessione) {
+            try {
 
-        ImageView icona= findViewById(R.id.logoContenuto);
-        if (contenuto instanceof FilmBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
-        else if (contenuto instanceof SerieTVBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
-        else if (contenuto instanceof LibroBean)
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
-        else
-            icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+                account = (Account) getIntent().getExtras().getSerializable("account");
+                contenuto = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+
+                TextView titoloTextView = findViewById(R.id.titoloContenuto);
+                TextView descrizioneTextView = findViewById(R.id.descrizioneContenuto);
+                TextView stelleTextView = findViewById(R.id.stelleCorrenti);
+                titoloTextView.setText(contenuto.getTitolo());
+                descrizioneTextView.setText(contenuto.getDescrizione());
+                stelleTextView.setText(String.valueOf(contenuto.getValutazioneMedia()));
+
+                ImageView icona = findViewById(R.id.logoContenuto);
+                if (contenuto instanceof FilmBean)
+                    icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
+                else if (contenuto instanceof SerieTVBean)
+                    icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
+                else if (contenuto instanceof LibroBean)
+                    icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
+                else
+                    icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
 
 
-        Intent i = getIntent();
-        setReturnIntent();
+                Intent i = getIntent();
+                setReturnIntent();
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void setReturnIntent() {
@@ -161,13 +182,30 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
      * @param view
      */
     public void onClickAggiungiRecensione(View view) {
-        RatingBar rBar = findViewById(R.id.valutazioneContenuto);
-        int valutazioneContenuto = (int) rBar.getRating();
-        EditText descTextView = findViewById(R.id.testoRecensione);
-        String descrizioneRecensione = String.valueOf(descTextView.getText());
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(PubblicazioneRecensioneActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        String s[] = {descrizioneRecensione, String.valueOf(valutazioneContenuto)};
-        GsonResultCreaRecensione g = (GsonResultCreaRecensione) new GsonResultCreaRecensione().execute(s);
+        if (checkconnessione) {
+            try {
+                RatingBar rBar = findViewById(R.id.valutazioneContenuto);
+                int valutazioneContenuto = (int) rBar.getRating();
+                EditText descTextView = findViewById(R.id.testoRecensione);
+                String descrizioneRecensione = String.valueOf(descTextView.getText());
+
+                String s[] = {descrizioneRecensione, String.valueOf(valutazioneContenuto)};
+                GsonResultCreaRecensione g = (GsonResultCreaRecensione) new GsonResultCreaRecensione().execute(s);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
 
     }
 
