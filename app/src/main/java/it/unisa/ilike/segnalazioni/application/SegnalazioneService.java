@@ -52,4 +52,12 @@ public interface SegnalazioneService {
      */
     Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g);
 
+
+    /**
+     * Questo metodo permette di ottenere un oggetto segnalazione identificato con il suo id
+     * @param id l'identificativo della segnalazione
+     * @return l'oggetto segnalazione, null altrimenti
+     */
+    SegnalazioneBean getSegnalazione(int id);
+
 }

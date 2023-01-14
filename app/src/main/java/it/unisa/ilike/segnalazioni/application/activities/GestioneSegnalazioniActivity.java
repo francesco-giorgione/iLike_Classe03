@@ -146,8 +146,8 @@ public class GestioneSegnalazioniActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void...  v) {
 
-            SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
-            segnalazione = segnalazioneDAO.doRetrieveByIdSegnalazione(idSegnalazione);
+            SegnalazioneService segnalazioneService = new SegnalazioneImpl();
+            segnalazione = segnalazioneService.getSegnalazione(idSegnalazione);
             recensione = segnalazione.getRecensione();
 
             return null;

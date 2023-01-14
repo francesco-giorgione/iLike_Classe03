@@ -75,4 +75,14 @@ public class SegnalazioneImpl implements SegnalazioneService{
         return new SegnalazioneDAO().gestisciSegnalazione(s) && new GestoreDAO().doUpdate(g);
     }
 
+    /**
+     * Questo metodo permette di ottenere un oggetto segnalazione identificato con il suo id
+     * @param id l'identificativo della segnalazione
+     * @return l'oggetto segnalazione, null altrimenti
+     */
+    @Override
+    public SegnalazioneBean getSegnalazione(int id){
+        SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
+        return segnalazioneDAO.doRetrieveByIdSegnalazione(id);
+    }
 }
