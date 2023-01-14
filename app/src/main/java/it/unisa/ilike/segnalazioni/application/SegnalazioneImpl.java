@@ -19,11 +19,20 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class SegnalazioneImpl implements SegnalazioneService{
 
+    public SegnalazioneImpl(){
+        this.gestoreDAO = new GestoreDAO();
+        this.recensioneDAO = new RecensioneDAO();
+    }
+
+
+    public SegnalazioneImpl(GestoreDAO gestoreDAO, RecensioneDAO recensioneDAO){
+        this.gestoreDAO = gestoreDAO;
+        this.recensioneDAO = recensioneDAO;
+    }
 
     /** @inheritDoc */
     @Override
     public List<SegnalazioneBean> getSegnalazione() {
-
         SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
         List<SegnalazioneBean> listaSegnalazioniNonGestite  = segnalazioneDAO.doRetrieveAllSegnalazioniNonGestite();
 
@@ -45,7 +54,6 @@ public class SegnalazioneImpl implements SegnalazioneService{
             throw new InvalidMotivazioneException();
 
         int idRecensione = s.getRecensione().getId();
-        RecensioneDAO recensioneDAO = new RecensioneDAO();
         RecensioneBean r = recensioneDAO.doRetrieveByIdRecensione(idRecensione);
 
         r.setCancellata(true);
@@ -57,7 +65,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         if(recensioneDAO.cancellaRecensione(r)) {
             // la segnalazione viene marcata come gestita tramite un trigger nel DB (vedi maggiori dettagli nel DAO)
             // incrementa il numero di segnalazioni gestite dal gestore g
-            new GestoreDAO().doUpdate(g);
+            gestoreDAO.doUpdate(g);
             return true;
         }
         else return false;
@@ -86,4 +94,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
         SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
         return segnalazioneDAO.doRetrieveByIdSegnalazione(id);
     }
+
+    private GestoreDAO gestoreDAO;
+    private RecensioneDAO recensioneDAO;
 }

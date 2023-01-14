@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -39,17 +40,12 @@ public class LoginTest {
         });
     }
 
-    @Test
-    public void testLogin() throws Exception {
-
-        AccountImpl service = new AccountImpl();
-        System.out.println("Parameterized input is: " + username + ", " + password);
-
-        GestoreDAO mockGestoreDao;
-        IscrittoDAO mockIscrittoDao;
-
+    @Before
+    public void init() throws Exception{
         mockGestoreDao= Mockito.mock(GestoreDAO.class);
         mockIscrittoDao= Mockito.mock(IscrittoDAO.class);
+        service = new AccountImpl();
+
 
         GestoreBean g= new GestoreBean("gestore1@ilike.it", "gestore1", -1);
 
@@ -80,8 +76,13 @@ public class LoginTest {
                 service.getPasswordCrittografata("gestore1"))).thenReturn(null);
         when(mockIscrittoDao.doRetrieveByUsernamePassword(null,"gestore1@ilike.com",
                 service.getPasswordCrittografata("gestore1"))).thenReturn(null);
+    }
+
+    @Test
+    public void testLogin() throws Exception {
 
 
+        System.out.println("Parameterized input is: " + username + ", " + password);
 
         if (mockIscrittoDao.doRetrieveByUsernamePassword(null, username, password)==null){
             //credenziali iscritto (email e password) errate
@@ -106,4 +107,8 @@ public class LoginTest {
             assertNotNull(service.login(username, password));
         }
     }
+
+    GestoreDAO mockGestoreDao;
+    IscrittoDAO mockIscrittoDao;
+    AccountImpl service;
 }
