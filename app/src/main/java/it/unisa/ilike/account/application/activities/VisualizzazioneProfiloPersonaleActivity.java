@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -27,6 +27,7 @@ import it.unisa.ilike.liste.application.activities.VisualizzazioneContenutiLista
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.recensioni.storage.RecensioneBean;
 import it.unisa.ilike.segnalazioni.storage.SegnalazioneBean;
+import it.unisa.ilike.utils.InternetConnection;
 
 /**
  * Questa classe gestisce il flusso di interazioni tra l'utente e il sistema. Essa permette di effettuare tutte
@@ -106,34 +107,51 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizzazione_profilo_personale);
-        ListView listViewListe= findViewById(R.id.elencoListeIscritto);
-        ListView listViewRecensioni= findViewById(R.id.recensioniList);
 
-        Intent i = getIntent();
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneProfiloPersonaleActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
 
-        account = (Account) i.getExtras().getSerializable("account");
-        iscritto = account.getIscrittoBean();
+        if (checkconnessione) {
+            try {
+                ListView listViewListe = findViewById(R.id.elencoListeIscritto);
+                ListView listViewRecensioni = findViewById(R.id.recensioniList);
 
-        TextView nicknameTextView= findViewById(R.id.nicknameTextView);
-        TextView infoTextView = findViewById(R.id.infoTextView);
-        nicknameTextView.setText(iscritto.getNickname());
-        infoTextView.setText(iscritto.getBio());
+                Intent i = getIntent();
+
+                account = (Account) i.getExtras().getSerializable("account");
+                iscritto = account.getIscrittoBean();
+
+                TextView nicknameTextView = findViewById(R.id.nicknameTextView);
+                TextView infoTextView = findViewById(R.id.infoTextView);
+                nicknameTextView.setText(iscritto.getNickname());
+                infoTextView.setText(iscritto.getBio());
 
 
-        adapterListe= new VisualizzazioneProfiloPersonaleListeAdapter(
-                this, R.layout.activity_list_element_visualizzazione_profilo_personale_liste,
-                new ArrayList<ListaBean>());
-        listViewListe.setAdapter(adapterListe);
+                adapterListe = new VisualizzazioneProfiloPersonaleListeAdapter(
+                        this, R.layout.activity_list_element_visualizzazione_profilo_personale_liste,
+                        new ArrayList<ListaBean>());
+                listViewListe.setAdapter(adapterListe);
 
 
-        adapterRecensioni= new VisualizzazioneProfiloPersonaleRecensioniAdapter (
-                this, R.layout.activity_list_element_visualizzazione_profilo_personale_recensioni,
-                new ArrayList<RecensioneBean>());
-        listViewRecensioni.setAdapter(adapterRecensioni);
+                adapterRecensioni = new VisualizzazioneProfiloPersonaleRecensioniAdapter(
+                        this, R.layout.activity_list_element_visualizzazione_profilo_personale_recensioni,
+                        new ArrayList<RecensioneBean>());
+                listViewRecensioni.setAdapter(adapterRecensioni);
 
-        GsonResultListe g= (GsonResultListe) new GsonResultListe().execute(new Void[0]);
-        GsonResultRecensioni g1= (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
-
+                GsonResultListe g = (GsonResultListe) new GsonResultListe().execute(new Void[0]);
+                GsonResultRecensioni g1 = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -150,13 +168,30 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
      * @param v
      */
     public void onClickLogout(View v){
-        Intent i = new Intent();
-        AccountService accountService = new AccountImpl();
-        account = accountService.logout(account.getIscrittoBean());
-        i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
-        i.putExtra("account", account);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
+        boolean checkconnessione;
+        if (InternetConnection.haveInternetConnection(VisualizzazioneProfiloPersonaleActivity.this)) {
+            checkconnessione = true;
+            Log.d("connessione", "Connessione presente!");
+        } else {
+            checkconnessione = false;
+            Log.d("connessione", "Connessione assente!");
+        }
+
+        if (checkconnessione) {
+            try {
+                Intent i = new Intent();
+                AccountService accountService = new AccountImpl();
+                account = accountService.logout(account.getIscrittoBean());
+                i.setClass(VisualizzazioneProfiloPersonaleActivity.this, VisualizzazioneHomepageActivity.class);
+                i.putExtra("account", account);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }catch(NetworkOnMainThreadException n){
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -196,7 +231,6 @@ public class VisualizzazioneProfiloPersonaleActivity extends Activity {
         i.putExtra("account", account);
         startActivity(i);
     }
-
 
 
     private SegnalazioneBean s;
