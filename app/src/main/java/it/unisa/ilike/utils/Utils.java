@@ -18,7 +18,7 @@ public class Utils {
      * @param nome è il nome che si vuole verificare.
      * @return true se l'iscritto ha già una lista di nome 'nome', false altrimenti.
      */
-    public static Boolean hasLista(IscrittoBean i, String nome) {
+    public Boolean hasLista(IscrittoBean i, String nome) {
         for(ListaBean curr: new IscrittoDAO().doRetrieveListe(i.getEmail())) {
             if(curr.getNome().equalsIgnoreCase(nome)) {
                 return true;

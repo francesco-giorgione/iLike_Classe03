@@ -1,10 +1,9 @@
 package it.unisa.ilike.liste.application;
 
-import static it.unisa.ilike.utils.Utils.hasLista;
-
 import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
@@ -24,10 +23,13 @@ public class ListaImpl implements ListaService {
 
     public ListaImpl(){
         this.listaDAO = new ListaDAO();
+        this.listaBean = new ListaBean();
     }
 
-    public ListaImpl(ListaDAO listaDAO){
+    public ListaImpl(ListaDAO listaDAO, Utils utils, ListaBean listaBean){
         this.listaDAO = listaDAO;
+        this.utils = utils;
+        this.listaBean = listaBean;
     }
 
     /** @inheritDoc */
@@ -41,12 +43,13 @@ public class ListaImpl implements ListaService {
 
         if(nome.length() == 0)          { throw new NomeVuotoException(); }
         if(nome.length() > 50)          { throw new InvalidNomeException(); }
-        if(hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
+        if(utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
 
-        ListaBean lista = new ListaBean(nome, i, pubblica);
-        ListaDAO dao = new ListaDAO();
-        if(dao.doSave(lista))
-            i.addLista(lista);
+        listaBean.setNome(nome);
+        listaBean.setIscritto(i);
+        listaBean.setVisibilita(pubblica);
+        if(listaDAO.doSave(listaBean))
+            i.addLista(listaBean);
         else
             return null;
 
@@ -82,5 +85,7 @@ public class ListaImpl implements ListaService {
     }
 
     private ListaDAO listaDAO;
+    Utils utils;
+    ListaBean listaBean;
 
 }
