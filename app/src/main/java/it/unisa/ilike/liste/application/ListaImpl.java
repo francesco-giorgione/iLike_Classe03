@@ -32,7 +32,9 @@ public class ListaImpl implements ListaService {
         this.listaBean = listaBean;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
             NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException {
@@ -56,7 +58,9 @@ public class ListaImpl implements ListaService {
         return i;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean aggiungiContenuto(ListaBean l, ContenutoBean c) throws ContenutoGiaPresenteException {
         for(ContenutoBean curr: l.getContenuti()) {
@@ -77,7 +81,9 @@ public class ListaImpl implements ListaService {
         }
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ListaBean getLista(String nome, String emailIscritto){
         ListaDAO dao= new ListaDAO();
