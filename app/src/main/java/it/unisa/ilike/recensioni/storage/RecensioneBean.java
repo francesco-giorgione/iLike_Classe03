@@ -2,6 +2,7 @@ package it.unisa.ilike.recensioni.storage;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -174,6 +175,15 @@ public class RecensioneBean  implements Serializable {
      */
     public void setContenuto(ContenutoBean contenuto) {
         this.contenuto = contenuto;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RecensioneBean that = (RecensioneBean) o;
+        return id == that.id;
     }
 
     private int id;

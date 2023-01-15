@@ -23,6 +23,22 @@ import it.unisa.ilike.segnalazioni.storage.SegnalazioneDAO;
 
 public class RecensioneImpl implements RecensioneService{
 
+    /**
+     * Costruttore senza parametri
+     */
+    public RecensioneImpl() {
+        this.recensioneDAO = new RecensioneDAO();
+    }
+
+
+    /**
+     * Costruttore con parametro
+     * @param recensioneDAO istanza già inizializzata di RecensioneDAO
+     */
+    public RecensioneImpl(RecensioneDAO recensioneDAO) {
+        this.recensioneDAO = recensioneDAO;
+    }
+
     /** @inheritDoc */
     @Override
     public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
@@ -36,11 +52,18 @@ public class RecensioneImpl implements RecensioneService{
         if (testo.length()>1000) throw new InvalidTestoException();
         if (valutazione<1 || valutazione>5) throw new ValutazioneException();
 
-        RecensioneDAO recensioneDAO= new RecensioneDAO();
-        RecensioneBean recensione= new RecensioneBean(-1, testo, valutazione, new Date(), false, null, i, c);
+        recensioneBean = new RecensioneBean(-1, testo, valutazione, new Date(), false, null, i, c);
 
-        if(recensioneDAO.doSaveRecensione(recensione)) {
-            return recensione;
+        /*recensioneBean.setTesto(testo);
+        recensioneBean.setValutazione(valutazione);
+        recensioneBean.setData(new Date());
+        recensioneBean.setCancellata(false);
+        recensioneBean.setMotivazioneCancellazione(null);
+        recensioneBean.setIscritto(i);
+        recensioneBean.setContenuto(c);*/
+
+        if(recensioneDAO.doSaveRecensione(recensioneBean)) {
+            return recensioneBean;
         }
         return null;
     }
@@ -70,5 +93,6 @@ public class RecensioneImpl implements RecensioneService{
         return recensioneDAO.doRetrieveByIdRecensione(id);
     }
 
-
+    private RecensioneDAO recensioneDAO;
+    private RecensioneBean recensioneBean;
 }
