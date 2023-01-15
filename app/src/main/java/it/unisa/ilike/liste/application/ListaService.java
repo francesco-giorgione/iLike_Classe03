@@ -1,7 +1,5 @@
 package it.unisa.ilike.liste.application;
 
-import java.util.List;
-
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
@@ -21,8 +19,6 @@ public interface ListaService {
      * @param i è l'iscritto a cui associare la lista che si vuole creare.
      * @param nome è il nome della lista che si vuole creare.
      * @param pubblica stabilisce se la lista creata deve essere pubblica o privata.
-     * @pre <code>1<=nome.lenght()<=50 AND NOT hasLista(i, nome)</code>
-     * @post <code>i.hasLista(nome) AND i.getLista(nome) =  [lista vuota]</code>
      * @return l'oggetto della classe <code>IscrittoBean</code> aggiornato con la nuova lista
      * @throws NomeVuotoException se 'nome' è una stringa vuota.
      * @throws InvalidNomeException se 'nome' ha un numero di caratteri maggiore di 50.
@@ -35,8 +31,6 @@ public interface ListaService {
      * Il metodo aggiunge un contenuto ad una lista già esistente.
      * @param l è la lista a cui si vuile aggiungere il contenuto.
      * @param c è il contenuto che si vuole aggiungere alla lista.
-     * @pre <code>NOT l.contains(c)</code>
-     * @post <code>l'=l+[c]</code>
      * @return un booleano che descrive l'esito dell'operazione.
      * @throws ContenutoGiaPresenteException se il contenuto 'c' è già presente nella lista 'l'.
      */

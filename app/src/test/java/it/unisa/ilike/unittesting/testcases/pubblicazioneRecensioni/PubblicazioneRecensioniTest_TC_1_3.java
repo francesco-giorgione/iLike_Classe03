@@ -1,25 +1,10 @@
 package it.unisa.ilike.unittesting.testcases.pubblicazioneRecensioni;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
-import org.junit.*;
-import it.unisa.ilike.account.storage.IscrittoBean;
-import it.unisa.ilike.account.storage.IscrittoProxyBean;
-import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
-import it.unisa.ilike.recensioni.application.RecensioneImpl;
-import it.unisa.ilike.recensioni.application.RecensioneService;
-import it.unisa.ilike.recensioni.application.exceptions.InvalidMotivazioneException;
-import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
-import it.unisa.ilike.recensioni.application.exceptions.TestoTroppoBreveException;
-import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
-import it.unisa.ilike.recensioni.storage.RecensioneBean;
-import it.unisa.ilike.recensioni.storage.RecensioneDAO;
-
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
@@ -27,6 +12,17 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+
+import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoProxyBean;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.SerieTVBean;
+import it.unisa.ilike.recensioni.application.RecensioneImpl;
+import it.unisa.ilike.recensioni.application.RecensioneService;
+import it.unisa.ilike.recensioni.application.exceptions.ValutazioneException;
+import it.unisa.ilike.recensioni.storage.RecensioneBean;
+import it.unisa.ilike.recensioni.storage.RecensioneDAO;
 
 
 /**
@@ -125,7 +121,6 @@ public class PubblicazioneRecensioniTest_TC_1_3 {
 
     /**
      * Implementa il test della funzionalità PubblicazioneRecensioni
-     * @throws Exception
      */
     @Test
     public void testCreaRecensione() {

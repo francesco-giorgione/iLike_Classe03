@@ -16,7 +16,6 @@ public interface SegnalazioneService {
 
     /**
      * Questo metodo consente al gestore di visualizzare tutte le segnalazioni che ancora non sono state gestite.
-     * @post Per ogni segnalazione s nella lista restituita,  s.gestita = false.
      * @return lista di segnalazioni non gestite
      */
     List<SegnalazioneBean> getSegnalazione();
@@ -30,9 +29,6 @@ public interface SegnalazioneService {
      * @param s segnalazione relativa alla recensione da cancellare
      * @param motivazione testo che motiva la cancellazione della recensione
      * @param g gestore che si occupa della cancellazione della recensione
-     * @pre <code>1 <= motivazione.length() <= 300</code>
-     * @post <code>s.gestita = true AND s.getRecensione().cancellata = true AND
-     * g.numSegnalazioniGestite += 1</code>
      * @return valore booleano che descrive l'esito dell'operazione
      * @throws it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException se l’argomento motivazione ha un numero di caratteri minore di 1;
      * @throws it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException se l’argomento motivazione ha un numero di caratteri maggiore di 300.
@@ -46,8 +42,6 @@ public interface SegnalazioneService {
      * Inoltre, il metodo incrementa il numero di segnalazioni gestite dal gestore.
      * @param s segnalazione da rifiutare
      * @param g gestore che si occupa di rifiutare la segnalazione
-     * @post <code>s.gestita = true and s.getRecensione().cancellata = false AND
-     * g.numSegnalazioniGestite += 1</code>
      * @return valore booleano che descrive l'esito dell'operazione
      */
     Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g);

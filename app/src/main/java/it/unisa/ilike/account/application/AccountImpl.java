@@ -116,7 +116,9 @@ public class AccountImpl implements AccountService {
     }
 
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     public Account login(String email, String password) throws CredenzialiErrateException {
 
         IscrittoBean iscrittoBean = null;
@@ -145,7 +147,9 @@ public class AccountImpl implements AccountService {
     }
 
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     public Account logout(UtenteBean u){
         if (u instanceof IscrittoBean){
             IscrittoBean iscritto = (IscrittoBean) u;
@@ -165,7 +169,9 @@ public class AccountImpl implements AccountService {
     }
 
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     public Account registrazioneIscritto(String email, String password, String nome,
                                          String cognome, String nickname, String bio)
             throws EmailVuotaException, PasswordVuotaException, DatiIscrittoVuotiException {

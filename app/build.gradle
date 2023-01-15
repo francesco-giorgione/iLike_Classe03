@@ -49,6 +49,12 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    task javadocs(type: Javadoc) {
+        source = sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        exclude '**/R.html', '**/R.*.html', '**/index.html'
+    }
 }
 
 dependencies {
@@ -65,4 +71,5 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation 'org.mockito:mockito-core:2.4.0'
+    implementation files('/Users/macbookpro/Library/Android/sdk/platforms/android-33/android.jar')
 }
