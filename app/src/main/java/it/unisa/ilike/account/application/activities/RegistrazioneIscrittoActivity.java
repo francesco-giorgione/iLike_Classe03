@@ -64,9 +64,11 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
             Log.d("debugRegistrazione", "in onPostExecute");
             if (this.isValidate){
                 Log.d("debugRegistrazione", "registrazione OK");
-                if (account==null)
+                if (account==null) {
+                    Toast.makeText(RegistrazioneIscrittoActivity.this, "Errore registrazione: email e/o nickname già in uso", Toast.LENGTH_LONG).show();
                     Log.d("debugRegistrazione", "account null");
-                if(account.isAttore()){
+                }
+                else if(account.isAttore()){
                     Toast.makeText(RegistrazioneIscrittoActivity.this, "Registrazione effettuata", Toast.LENGTH_LONG).show();
                     Intent i = new Intent();
                     i.setClass(RegistrazioneIscrittoActivity.this, VisualizzazioneHomepageActivity.class);
@@ -75,7 +77,7 @@ public class RegistrazioneIscrittoActivity extends AppCompatActivity {
                 }
             }
             else{
-                Log.d("debugLogin", "registrazione NOT OK");
+                Log.d("debugRegistrazione", "registrazione NOT OK");
                 Toast.makeText(RegistrazioneIscrittoActivity.this, messaggio, Toast.LENGTH_LONG).show();
             }
         }
