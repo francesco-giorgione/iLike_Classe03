@@ -28,6 +28,16 @@ import it.unisa.ilike.liste.storage.ListaDAO;
  */
 public class AccountImpl implements AccountService {
 
+    public AccountImpl(){
+        this.gestoreDAO= new GestoreDAO();
+        this.iscrittoDAO= new IscrittoDAO();
+    }
+
+    public AccountImpl(GestoreDAO gestoreDAO, IscrittoDAO iscrittoDAO){
+        this.gestoreDAO= gestoreDAO;
+        this.iscrittoDAO=iscrittoDAO;
+    }
+
     /**
      * Questo metodo controlla se il nickname rispetta i vincoli imposti
      * @param nickname rappresenta la string inserita dall'iscrtto per il nickname
@@ -108,8 +118,7 @@ public class AccountImpl implements AccountService {
 
     /** @inheritDoc */
     public Account login(String email, String password) throws CredenzialiErrateException {
-        IscrittoDAO iscrittoDAO = new IscrittoDAO();
-        GestoreDAO gestoreDAO = new GestoreDAO();
+
         IscrittoBean iscrittoBean = null;
         GestoreBean gestoreBean = null;
         String passwordCrittografata = null;
@@ -189,4 +198,7 @@ public class AccountImpl implements AccountService {
         }
         else throw new EmailVuotaException();
     }
+
+    private GestoreDAO gestoreDAO;
+    private IscrittoDAO iscrittoDAO;
 }
