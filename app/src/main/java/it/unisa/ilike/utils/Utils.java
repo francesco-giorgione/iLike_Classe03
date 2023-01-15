@@ -9,6 +9,9 @@ import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.account.storage.UtenteBean;
 import it.unisa.ilike.liste.storage.ListaBean;
 
+/**
+ * In questa classe ci sono tutti i metodi di utilità.
+ */
 public class Utils {
 
     /**
@@ -34,8 +37,6 @@ public class Utils {
      * singolo o doppio.
      */
     public static String addEscape(String str) {
-        /*String newStr = str.replace("'", "\\'");
-        return newStr.replace("\"", "\\\"");*/
         return new String(str.replace("'", "''"));
     }
 

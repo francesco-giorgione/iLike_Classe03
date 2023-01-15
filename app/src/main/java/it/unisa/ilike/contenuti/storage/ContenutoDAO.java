@@ -119,7 +119,7 @@ public class ContenutoDAO {
     /**
      * Restituisce una collezione di contenuti di un certo tipo (es. film) che matchano con un dato titolo.
      * @param tipo è il tipo del contenuto di cui si bvuole eseguire il fetch ('film' per film,
-     *      *             'serie_tv' per serie tv, 'libro' per libri, 'album' per album musicali, '%' per tutti i tipi).
+     *       'serie_tv' per serie tv, 'libro' per libri, 'album' per album musicali, '%' per tutti i tipi).
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente tutti i contenuti di un certo tipo (es. film, serie tv, ecc.)
      * e che matchano con 'titolo'.

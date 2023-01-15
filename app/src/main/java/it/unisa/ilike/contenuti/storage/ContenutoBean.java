@@ -135,7 +135,9 @@ public abstract class ContenutoBean implements Serializable {
         return false;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "ContenutoBean{" +

@@ -134,7 +134,7 @@ public class IscrittoDAO {
      * Il metodo restituisce una collezione delle liste appartenenti all'iscritto avente una
      * data mail.
      * @param email è l'email dell'iscritto di cui si vogliono selezionare le recensioni scritte.
-     * @return un oggetto ArrayList<ListaBean>
+     * @return un oggetto ArrayList di ListaBean
      */
     public List<ListaBean> doRetrieveListe(String email) {
         email = Utils.addEscape(email);
@@ -159,7 +159,7 @@ public class IscrittoDAO {
      * Il metodo restituisce una collezione delle recensioni scritte da un iscritto avente una
      * data mail.
      * @param email è l'email dell'iscritto di cui si vogliono selezionare le recensioni scritte.
-     * @return un oggetto ArrayList<RecensioneBean>
+     * @return un oggetto ArrayList di RecensioneBean
      */
     public List<RecensioneBean> doRetrieveRecensioni(String email) {
         email = Utils.addEscape(email);
