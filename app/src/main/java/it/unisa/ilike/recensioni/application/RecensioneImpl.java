@@ -39,7 +39,9 @@ public class RecensioneImpl implements RecensioneService{
         this.recensioneDAO = recensioneDAO;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RecensioneBean creaRecensione(String testo, int valutazione, IscrittoBean i, ContenutoBean c)
                     throws TestoTroppoBreveException, InvalidTestoException, ValutazioneException {
@@ -69,7 +71,9 @@ public class RecensioneImpl implements RecensioneService{
     }
 
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean aggiungiSegnalazione(int tipo, String motivazione, RecensioneBean r, IscrittoBean i)
         throws InvalidTipoException, MotivazioneVuotaException,

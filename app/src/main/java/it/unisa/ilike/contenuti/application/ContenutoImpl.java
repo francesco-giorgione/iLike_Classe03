@@ -23,7 +23,9 @@ import it.unisa.ilike.contenuti.storage.SerieTVDAO;
  * @see ContenutoService
  */
 public class ContenutoImpl implements ContenutoService {
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContenutoBean getById(int id) {
         if(id < 1 || id > 999) {
@@ -55,7 +57,9 @@ public class ContenutoImpl implements ContenutoService {
     }
 
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ContenutoBean> cerca(String titolo) {
         List<ContenutoBean> res = new ArrayList<>();
@@ -66,7 +70,9 @@ public class ContenutoImpl implements ContenutoService {
         return res;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<ContenutoBean> cerca(String titolo, int tipo) {
         switch (tipo) {

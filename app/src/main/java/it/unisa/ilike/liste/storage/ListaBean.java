@@ -18,6 +18,7 @@ public class ListaBean  implements Serializable {
      * Costruttore senza parametri
      */
     public ListaBean() {
+        this.contenuti = new ArrayList<>();
     }
 
     /**

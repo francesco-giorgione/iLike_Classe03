@@ -5,10 +5,13 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import it.unisa.ilike.unittesting.testcases.CreazioneListeTest;
 import it.unisa.ilike.unittesting.testcases.cancellaRecensione.CancellaRecensioneTest_TC_3_1;
 import it.unisa.ilike.unittesting.testcases.cancellaRecensione.CancellaRecensioneTest_TC_3_2;
 import it.unisa.ilike.unittesting.testcases.cancellaRecensione.CancellaRecensioneTest_TC_3_3;
+import it.unisa.ilike.unittesting.testcases.creazioneListe.CreazioneListeTest_TC_4_1;
+import it.unisa.ilike.unittesting.testcases.creazioneListe.CreazioneListeTest_TC_4_2;
+import it.unisa.ilike.unittesting.testcases.creazioneListe.CreazioneListeTest_TC_4_3;
+import it.unisa.ilike.unittesting.testcases.creazioneListe.CreazioneListeTest_TC_4_4;
 import it.unisa.ilike.unittesting.testcases.login.LoginTest_TC_2_1;
 import it.unisa.ilike.unittesting.testcases.login.LoginTest_TC_2_2;
 import it.unisa.ilike.unittesting.testcases.login.LoginTest_TC_2_3;
@@ -30,7 +33,10 @@ public class TestRunner {
         new TestRunner().testMethod(JUnitCore.runClasses(CancellaRecensioneTest_TC_3_1.class));
         new TestRunner().testMethod(JUnitCore.runClasses(CancellaRecensioneTest_TC_3_2.class));
         new TestRunner().testMethod(JUnitCore.runClasses(CancellaRecensioneTest_TC_3_3.class));
-        new TestRunner().testMethod(JUnitCore.runClasses(CreazioneListeTest.class));
+        new TestRunner().testMethod(JUnitCore.runClasses(CreazioneListeTest_TC_4_1.class));
+        new TestRunner().testMethod(JUnitCore.runClasses(CreazioneListeTest_TC_4_2.class));
+        new TestRunner().testMethod(JUnitCore.runClasses(CreazioneListeTest_TC_4_3.class));
+        new TestRunner().testMethod(JUnitCore.runClasses(CreazioneListeTest_TC_4_4.class));
     }
 
 

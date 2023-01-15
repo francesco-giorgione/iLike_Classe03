@@ -14,15 +14,22 @@ import java.util.Collection;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 import it.unisa.ilike.account.storage.IscrittoProxyBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.liste.storage.ListaBean;
 import it.unisa.ilike.liste.storage.ListaDAO;
+import it.unisa.ilike.utils.Utils;
 
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
+
+/**
+ * Implementa il testing di unità per TC_4_3 (Creazione liste)
+ * @author Simona Lo Conte
+ */
 @RunWith(Parameterized.class)
 public class CreazioneListeTest_TC_4_3 {
 
@@ -30,30 +37,51 @@ public class CreazioneListeTest_TC_4_3 {
         return new IscrittoProxyBean("testiscritto1@ilike.it", null, null, null, null, null);
     }
 
+    /**
+     * Costruttore utilizzato per l'esecuzione dei test parametrizzati
+     * @param nome stringa contenente il nome della lista
+     * @param iscritto oggetto IscrittoBean che contiene le informazioni del creatore della lista
+     * @param pubblica valore booleano che indica se la lista è pubblica o privata
+     */
     public CreazioneListeTest_TC_4_3(String nome, IscrittoBean iscritto, Boolean pubblica) {
         this.nome = nome;
         this.iscritto = iscritto;
         this.pubblica = pubblica;
     }
 
+    /**
+     * Definisce i parametri di input del test
+     * @return un oggetto Collection
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                {getIscritto().getListe().get(0).getNome(), getIscritto(), true}
+                {"Il mio punk", getIscritto(), true}
         });
     }
 
+    /**
+     * Prepara i mock da usare per simulare l'accesso al database.
+     */
     @Before
     public void init() {
         mockListaDAO = Mockito.mock(ListaDAO.class);
+        mockUtils = Mockito.mock(Utils.class);
 
         boolean res = true;
 
-        when(mockListaDAO.doSave(new ListaBean(nome, iscritto, pubblica))).thenReturn(res);
+        ListaBean lista = new ListaBean();
 
-        listaService = new ListaImpl(mockListaDAO);
+        when(mockListaDAO.doSave(lista)).thenReturn(res);
+        when(mockUtils.hasLista(iscritto,nome)).thenReturn(res);
+
+        listaService = new ListaImpl(mockListaDAO, mockUtils, lista);
     }
 
+    /**
+     * Implementa il test della funzionalità CreazioneListe
+     * @throws Exception
+     */
     @Test
     public void testCreaLista() throws Exception {
 
@@ -70,4 +98,5 @@ public class CreazioneListeTest_TC_4_3 {
     private Boolean pubblica;
     private ListaDAO mockListaDAO;
     private ListaImpl listaService;
+    private Utils mockUtils;
 }

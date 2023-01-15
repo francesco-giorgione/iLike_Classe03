@@ -1,10 +1,9 @@
 package it.unisa.ilike.liste.application;
 
-import static it.unisa.ilike.utils.Utils.hasLista;
-
 import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
+import it.unisa.ilike.account.storage.IscrittoRealBean;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
@@ -24,13 +23,18 @@ public class ListaImpl implements ListaService {
 
     public ListaImpl(){
         this.listaDAO = new ListaDAO();
+        this.listaBean = new ListaBean();
     }
 
-    public ListaImpl(ListaDAO listaDAO){
+    public ListaImpl(ListaDAO listaDAO, Utils utils, ListaBean listaBean){
         this.listaDAO = listaDAO;
+        this.utils = utils;
+        this.listaBean = listaBean;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
             NomeVuotoException, InvalidNomeException, ListaGiaEsistenteException {
@@ -41,19 +45,22 @@ public class ListaImpl implements ListaService {
 
         if(nome.length() == 0)          { throw new NomeVuotoException(); }
         if(nome.length() > 50)          { throw new InvalidNomeException(); }
-        if(hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
+        if(utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
 
-        ListaBean lista = new ListaBean(nome, i, pubblica);
-        ListaDAO dao = new ListaDAO();
-        if(dao.doSave(lista))
-            i.addLista(lista);
+        listaBean.setNome(nome);
+        listaBean.setIscritto(i);
+        listaBean.setVisibilita(pubblica);
+        if(listaDAO.doSave(listaBean))
+            i.addLista(listaBean);
         else
             return null;
 
         return i;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean aggiungiContenuto(ListaBean l, ContenutoBean c) throws ContenutoGiaPresenteException {
         for(ContenutoBean curr: l.getContenuti()) {
@@ -74,7 +81,9 @@ public class ListaImpl implements ListaService {
         }
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ListaBean getLista(String nome, String emailIscritto){
         ListaDAO dao= new ListaDAO();
@@ -82,5 +91,7 @@ public class ListaImpl implements ListaService {
     }
 
     private ListaDAO listaDAO;
+    Utils utils;
+    ListaBean listaBean;
 
 }

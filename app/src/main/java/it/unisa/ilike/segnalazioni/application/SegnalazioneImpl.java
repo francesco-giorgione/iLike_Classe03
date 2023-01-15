@@ -37,7 +37,9 @@ public class SegnalazioneImpl implements SegnalazioneService{
         this.recensioneDAO = recensioneDAO;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<SegnalazioneBean> getSegnalazione() {
         SegnalazioneDAO segnalazioneDAO = new SegnalazioneDAO();
@@ -46,7 +48,9 @@ public class SegnalazioneImpl implements SegnalazioneService{
         return listaSegnalazioniNonGestite;
     }
 
-    /** @imheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean cancellaRecensione(SegnalazioneBean s, String motivazione, GestoreBean g)
             throws it.unisa.ilike.segnalazioni.application.exceptions.MotivazioneVuotaException, it.unisa.ilike.segnalazioni.application.exceptions.InvalidMotivazioneException {
@@ -78,7 +82,9 @@ public class SegnalazioneImpl implements SegnalazioneService{
         else return false;
     }
 
-    /** @inheritDoc */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean rifiutaSegnalazione(SegnalazioneBean s, GestoreBean g) {
         if(s == null || g == null) {
