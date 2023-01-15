@@ -95,6 +95,10 @@ public class PubblicazioneRecensioniTest_TC_1_1 {
     }
 
 
+    /**
+     * Definisce i parametri di input del test
+     * @return un oggetto Collection
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
@@ -103,6 +107,9 @@ public class PubblicazioneRecensioniTest_TC_1_1 {
     }
 
 
+    /**
+     * Prepara i mock da usare per simulare l'accesso al database.
+     */
     @Before
     public void init() {
         mockRecensioneDAO = Mockito.mock(RecensioneDAO.class);
@@ -111,6 +118,10 @@ public class PubblicazioneRecensioniTest_TC_1_1 {
     }
 
 
+    /**
+     * Implementa il test della funzionalità PubblicazioneRecensioni
+     * @throws Exception
+     */
     @Test
     public void testCreaRecensione() {
         String testoInfo = testo.length() > 50 ? testo.substring(0, 10) + "... (" + testo.length()
