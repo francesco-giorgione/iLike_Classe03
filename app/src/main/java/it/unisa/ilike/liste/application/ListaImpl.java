@@ -1,5 +1,7 @@
 package it.unisa.ilike.liste.application;
 
+import static it.unisa.ilike.utils.Utils.hasLista;
+
 import java.util.List;
 
 import it.unisa.ilike.account.storage.IscrittoBean;
@@ -20,6 +22,14 @@ import it.unisa.ilike.utils.Utils;
  */
 public class ListaImpl implements ListaService {
 
+    public ListaImpl(){
+        this.listaDAO = new ListaDAO();
+    }
+
+    public ListaImpl(ListaDAO listaDAO){
+        this.listaDAO = listaDAO;
+    }
+
     /** @inheritDoc */
     @Override
     public IscrittoBean creaLista(IscrittoBean i, String nome, boolean pubblica) throws
@@ -31,7 +41,7 @@ public class ListaImpl implements ListaService {
 
         if(nome.length() == 0)          { throw new NomeVuotoException(); }
         if(nome.length() > 50)          { throw new InvalidNomeException(); }
-        if(Utils.hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
+        if(hasLista(i, nome))     { throw new ListaGiaEsistenteException(); }
 
         ListaBean lista = new ListaBean(nome, i, pubblica);
         ListaDAO dao = new ListaDAO();
@@ -71,5 +81,6 @@ public class ListaImpl implements ListaService {
         return dao.doRetrieveByKey(nome, emailIscritto);
     }
 
+    private ListaDAO listaDAO;
 
 }
