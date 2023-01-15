@@ -12,8 +12,8 @@
 ## Clona ed esegui il progetto in Android Studio
 1. Installa Android Studio;
 2. Clona la repo;
-3. Apri la directory con Android Studio
-4. Esegui l'app con un emulatore con API 33
+3. Apri la directory con Android Studio;
+4. Esegui l'app con un emulatore con API 33.
 
 ## Membri del team Progetto IS:
 - Costante Luigina (matr. 0512110457)
