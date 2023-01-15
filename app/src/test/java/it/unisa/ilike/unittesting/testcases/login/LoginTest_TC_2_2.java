@@ -12,16 +12,28 @@ import it.unisa.ilike.account.application.exceptions.CredenzialiErrateException;
 import it.unisa.ilike.account.storage.GestoreDAO;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 
+/**
+ * Implementa il testing di unità per TC_2_2 (Login)
+ * @author LuiginaCostante
+ */
 public class LoginTest_TC_2_2 {
     String username;
     String password;
 
+    /**
+     * Costruttore che inizializza i parametri username e password previsti nel TC_2_2
+     */
     public LoginTest_TC_2_2() {
         this.username = "gestore1@ilike.it";
         this.password = "gestore10";
     }
 
 
+    /**
+     * Eseguito prima del metodo annotato con <code>Test</code>, prepara i mock da usare per simulare
+     * l'accesso al database dell'iscritto e del gestore.
+     * @throws Exception relativa al metodo <code>getPasswordCrittografata()</code>
+     */
     @Before
     public void init() throws Exception{
         mockGestoreDao= Mockito.mock(GestoreDAO.class);
@@ -40,8 +52,12 @@ public class LoginTest_TC_2_2 {
                 service.getPasswordCrittografata(password))).thenReturn(null);
     }
 
+
+    /**
+     * Implementa il test della funzionalità Login
+     */
     @Test
-    public void testLogin() throws Exception {
+    public void testLogin(){
 
         System.out.println("Parameterized input is: " + username + ", " + password);
         assertThrows(CredenzialiErrateException.class, () -> {

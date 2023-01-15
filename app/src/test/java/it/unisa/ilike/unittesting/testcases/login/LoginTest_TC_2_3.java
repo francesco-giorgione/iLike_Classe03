@@ -12,16 +12,30 @@ import it.unisa.ilike.account.storage.GestoreBean;
 import it.unisa.ilike.account.storage.GestoreDAO;
 import it.unisa.ilike.account.storage.IscrittoDAO;
 
+
+/**
+ * Implementa il testing di unità per TC_2_3 (Login)
+ * @author LuiginaCostante
+ */
 public class LoginTest_TC_2_3 {
     String username;
     String password;
 
+
+    /**
+     * Costruttore che inizializza i parametri username e password previsti nel TC_2_3
+     */
     public LoginTest_TC_2_3() {
         this.username = "gestore1@ilike.it";
         this.password = "gestore1";
     }
 
 
+    /**
+     * Eseguito prima del metodo annotato con <code>Test</code>, prepara i mock da usare per simulare
+     * l'accesso al database dell'iscritto e del gestore.
+     * @throws Exception relativa al metodo <code>getPasswordCrittografata()</code>
+     */
     @Before
     public void init() throws Exception{
         mockGestoreDao= Mockito.mock(GestoreDAO.class);
@@ -41,6 +55,11 @@ public class LoginTest_TC_2_3 {
                 service.getPasswordCrittografata(password))).thenReturn(null);
     }
 
+
+    /**
+     * Implementa il test della funzionalità Login
+     * @throws Exception
+     */
     @Test
     public void testLogin() throws Exception {
 
