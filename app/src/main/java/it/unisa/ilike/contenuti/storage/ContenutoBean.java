@@ -128,7 +128,11 @@ public abstract class ContenutoBean implements Serializable {
      * @return
      */
     public boolean aggiungiRecensione(RecensioneBean recensione) {
-        return this.recensioni.add(recensione);
+        if(new RecensioneDAO().doSaveRecensione(recensione)) {
+            this.recensioni.add(recensione);
+            return true;
+        }
+        return false;
     }
 
     /**
