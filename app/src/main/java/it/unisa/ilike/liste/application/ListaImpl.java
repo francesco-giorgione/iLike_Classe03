@@ -24,6 +24,7 @@ public class ListaImpl implements ListaService {
     public ListaImpl(){
         this.listaDAO = new ListaDAO();
         this.listaBean = new ListaBean();
+        this.utils = new Utils();
     }
 
     public ListaImpl(ListaDAO listaDAO, Utils utils, ListaBean listaBean){
