@@ -18,7 +18,6 @@ it.unisa.ilike.segnalazioni.application
 it.unisa.ilike.segnalazioni.application.activities
 it.unisa.ilike.segnalazioni.application.exceptions
 it.unisa.ilike.segnalazioni.storage
-it.unisa.ilike.unittesting
 it.unisa.ilike.unittesting.testcases.cancellaRecensione
 it.unisa.ilike.unittesting.testcases.creazioneListe
 it.unisa.ilike.unittesting.testcases.login
