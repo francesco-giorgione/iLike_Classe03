@@ -52,37 +52,38 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     ContenutoBean c;
     VisualizzazioneDettagliataContenutoAdapter adapter;
 
-    private class GsonResultContenuto extends AsyncTask<Integer, Void, Void> {
+    private class GsonResultContenuto extends AsyncTask<Integer, Void, ContenutoBean> {
 
         @Override
-        protected Void doInBackground(Integer... id) {
+        protected ContenutoBean doInBackground(Integer... id) {
 
             ContenutoService contenutoService= new ContenutoImpl();
-            c= contenutoService.getById(id[0]);
-            return null;
+            return contenutoService.getById(id[0]);
         }
 
         @Override
-        protected void onPostExecute(Void unused) {
+        protected void onPostExecute(ContenutoBean contenuto) {
 
             TextView titoloContenuto= findViewById(R.id.titoloContenuto);
-            titoloContenuto.setText(c.getTitolo());
+            titoloContenuto.setText(contenuto.getTitolo());
 
             ImageView icona= findViewById(R.id.imgContenuto);
-            if (c instanceof FilmBean)
+            if (contenuto instanceof FilmBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
-            else if (c instanceof SerieTVBean)
+            else if (contenuto instanceof SerieTVBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
-            else if (c instanceof LibroBean)
+            else if (contenuto instanceof LibroBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
             else
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
 
             TextView descrizione= findViewById(R.id.descrizioneContenuto);
-            descrizione.append(c.getDescrizione());
+            descrizione.append(contenuto.getDescrizione());
 
             RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
-            valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
+            valutazioneMediaContenuto.setRating((int)contenuto.getValutazioneMedia());
+            c=contenuto;
+            GsonResultRecensioni gr = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
         }
     }
 
@@ -159,7 +160,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                 profiloButton = findViewById(R.id.profiloButton);
                 homepageButton = findViewById(R.id.homepageButton);
 
-                //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+                c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
                 Intent i = getIntent();
                 int idContenuto = i.getIntExtra("idContenuto", -1);
@@ -173,8 +174,6 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                         new ArrayList<RecensioneBean>());
 
                 recensioniList.setAdapter(adapter);
-
-                GsonResultRecensioni gr = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
 
                 setReturnIntent();
             }
