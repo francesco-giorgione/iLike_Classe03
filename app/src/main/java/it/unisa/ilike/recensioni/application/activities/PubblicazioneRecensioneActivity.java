@@ -43,8 +43,6 @@ import it.unisa.ilike.utils.InternetConnection;
  */
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
-
-
     private class GsonResultCreaRecensione extends AsyncTask<String, Void, Boolean> {
 
         Boolean isValidate = true;
@@ -55,54 +53,52 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
-            iscrittoBean = account.getIscrittoBean();
-            try {
-                int valutazioneContenuto = Integer.parseInt(string[1]);
-                this.recensione = null;
-                try {
-                    this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, iscrittoBean, contenuto);
 
-                    // controllo se l'inserimento è andato a buon fine (potrebbero esserci errori a livello di db)
-                    if (this.recensione == null) {
-                        this.isValidate = false;
-                        this.messaggio = "Recensione non pubblicata, riprovare";
-                    } else {
-                        if (contenuto.aggiungiRecensione(this.recensione) && iscrittoBean.addRecensione(this.recensione))
-                            this.messaggio = "Recensione pubblicata correttamente";
-                        else
-                            this.messaggio = "Recensione non pubblicata, riprovare";
-                    }
-                } catch (TestoTroppoBreveException e) {
-                    // messaggio di errore
+            int valutazioneContenuto= Integer.parseInt(string[1]);
+            this.recensione = null;
+            try {
+                this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
+
+                // controllo se l'inserimento è andato a buon fine (potrebbero esserci errori a livello di db)
+                if(this.recensione == null) {
                     this.isValidate = false;
-                    this.messaggio = "Il testo della recensione non rispetta il numero minimo di 3 caratteri!";
-                } catch (InvalidTestoException e) {
-                    // messaggio di errore
-                    this.isValidate = false;
-                    this.messaggio = "Il testo della recensione non può superare i 1000 caratteri!";
-                } catch (ValutazioneException e) {
-                    // messaggio di errore
-                    this.isValidate = false;
-                    this.messaggio = "La valutazione inserita non è valida";
+                    this.messaggio = "Recensione non pubblicata, riprovare.";
+                }
+                else {
+                    this.messaggio = "Recensione pubblicata correttamente";
                 }
 
-                return true;
-            }catch(NetworkOnMainThreadException n) {
-                messaggio = "Verifica la tua connessione ad internet";
-                return false;
+            } catch (TestoTroppoBreveException e) {
+                // messaggio di errore
+                this.isValidate = false;
+                this.messaggio = "Il testo della recensione non rispetta il numero minimo di 3 caratteri!";
+            } catch (InvalidTestoException e) {
+                // messaggio di errore
+                this.isValidate = false;
+                this.messaggio = "Il testo della recensione non può superare i 1000 caratteri!";
+            } catch (ValutazioneException e) {
+                // messaggio di errore
+                this.isValidate = false;
+                this.messaggio = "La valutazione inserita non è valida";
             }
+
+            return true;
         }
 
         protected void onPostExecute(Boolean b) {
+
             if (this.isValidate) {
+                contenuto.aggiungiRecensione(this.recensione);
+                IscrittoBean iscrittoBean = account.getIscrittoBean();
+                iscrittoBean.addRecensione(this.recensione);
                 account.setIscrittoBean(iscrittoBean);
 
                 Intent i = new Intent();
-                i.setClass(PubblicazioneRecensioneActivity.this, VisualizzazioneDettagliataContenutoActivity.class);
+                i.setClass(getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
                 i.putExtra("account", (Serializable) account);
                 i.putExtra("contenuto", (Serializable) contenuto);
                 startActivity(i);
-            } else {
+            }else {
                 Toast toast = Toast.makeText(getApplicationContext(), this.messaggio, Toast.LENGTH_LONG);
                 toast.show();
             }
@@ -246,5 +242,4 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
     private Account account;
     private ContenutoBean contenuto;
-    private IscrittoBean iscrittoBean;
 }
