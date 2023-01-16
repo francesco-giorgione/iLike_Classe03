@@ -29,8 +29,6 @@ public class IscrittoRealBean extends IscrittoBean  implements Serializable {
      */
     public IscrittoRealBean(String email, String password, String nickname, String nome, String cognome, String bio) {
         super(email, password, nickname, nome, cognome, bio);
-        this.liste = new ArrayList<>();
-        this.recensioni = new ArrayList<>();
     }
 
 
