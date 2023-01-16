@@ -74,7 +74,7 @@ public class SegnalazioneImpl implements SegnalazioneService{
 
         // se la cancellazione della recensione è andata a buon fine
         if(recensioneDAO.cancellaRecensione(r)) {
-            // la segnalazione viene marcata come gestita tramite un trigger nel DB (vedi maggiori dettagli nel DAO)
+            // la segnalazione viene marcata come gestita tramite un trigger nel DB (vedi maggiori dettagli in RecensioneDAO)
             // incrementa il numero di segnalazioni gestite dal gestore g
             gestoreDAO.doUpdate(g);
             return true;
