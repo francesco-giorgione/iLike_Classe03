@@ -24,7 +24,6 @@ import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.ListaService;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -126,6 +125,10 @@ public class VisualizzazioneContenutiListaPersonaleActivity extends AppCompatAct
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
         i.putExtra("account", account);
         startActivity(i);
+    }
+
+    public void onClickVisualizzaContenuto(View v){
+        ;
     }
 
 
