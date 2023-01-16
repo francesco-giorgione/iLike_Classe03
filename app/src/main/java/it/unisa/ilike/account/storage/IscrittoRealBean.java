@@ -76,6 +76,9 @@ public class IscrittoRealBean extends IscrittoBean  implements Serializable {
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     public boolean addRecensione(RecensioneBean recensioneBean){
+        if(this.recensioni == null){
+            this.recensioni = new IscrittoDAO().doRetrieveRecensioni(this.getEmail());
+        }
         return this.recensioni.add(recensioneBean);
     }
 

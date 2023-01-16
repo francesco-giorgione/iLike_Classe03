@@ -13,6 +13,7 @@ public abstract class ContenutoBean implements Serializable {
      * Costruttore senza parametri
      */
     public ContenutoBean() {
+        this.recensioni = new ArrayList<>();
     }
 
 
@@ -127,12 +128,7 @@ public abstract class ContenutoBean implements Serializable {
      * @return
      */
     public boolean aggiungiRecensione(RecensioneBean recensione) {
-        if(new RecensioneDAO().doSaveRecensione(recensione)) {
-            this.recensioni.add(recensione);
-            return true;
-        }
-
-        return false;
+        return this.recensioni.add(recensione);
     }
 
     /**

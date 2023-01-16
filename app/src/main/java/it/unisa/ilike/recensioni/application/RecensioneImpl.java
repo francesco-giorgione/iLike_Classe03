@@ -56,13 +56,13 @@ public class RecensioneImpl implements RecensioneService{
 
         recensioneBean = new RecensioneBean(-1, testo, valutazione, new Date(), false, null, i, c);
 
-        recensioneBean.setTesto(testo);
+        /*recensioneBean.setTesto(testo);
         recensioneBean.setValutazione(valutazione);
         recensioneBean.setData(new Date());
         recensioneBean.setCancellata(false);
         recensioneBean.setMotivazioneCancellazione(null);
         recensioneBean.setIscritto(i);
-        recensioneBean.setContenuto(c);
+        recensioneBean.setContenuto(c);*/
 
         if(recensioneDAO.doSaveRecensione(recensioneBean)) {
             return recensioneBean;

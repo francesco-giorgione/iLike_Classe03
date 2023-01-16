@@ -55,18 +55,19 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(String... string) {
             RecensioneService recensioneService = new RecensioneImpl();
+            iscrittoBean = account.getIscrittoBean();
             try {
                 int valutazioneContenuto = Integer.parseInt(string[1]);
                 this.recensione = null;
                 try {
-                    this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, account.getIscrittoBean(), contenuto);
+                    this.recensione = recensioneService.creaRecensione(string[0], valutazioneContenuto, iscrittoBean, contenuto);
 
                     // controllo se l'inserimento è andato a buon fine (potrebbero esserci errori a livello di db)
                     if (this.recensione == null) {
                         this.isValidate = false;
                         this.messaggio = "Recensione non pubblicata, riprovare";
                     } else {
-                        if (contenuto.aggiungiRecensione(this.recensione))
+                        if (contenuto.aggiungiRecensione(this.recensione) && iscrittoBean.addRecensione(this.recensione))
                             this.messaggio = "Recensione pubblicata correttamente";
                         else
                             this.messaggio = "Recensione non pubblicata, riprovare";
@@ -94,8 +95,6 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
         protected void onPostExecute(Boolean b) {
             if (this.isValidate) {
-                IscrittoBean iscrittoBean = account.getIscrittoBean();
-                iscrittoBean.addRecensione(this.recensione);
                 account.setIscrittoBean(iscrittoBean);
 
                 Intent i = new Intent();
@@ -247,4 +246,5 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
 
     private Account account;
     private ContenutoBean contenuto;
+    private IscrittoBean iscrittoBean;
 }
