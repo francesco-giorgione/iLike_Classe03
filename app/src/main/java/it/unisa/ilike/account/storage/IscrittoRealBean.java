@@ -105,6 +105,10 @@ public class IscrittoRealBean extends IscrittoBean  implements Serializable {
      * @return true se l'operazione è andata a buon fine, false altrimenti
      */
     public boolean addLista(ListaBean listaBean){
+        if(this.liste == null){
+            this.liste = new IscrittoDAO().doRetrieveListe(this.getEmail());
+        }
+
         return this.liste.add(listaBean);
     }
 
