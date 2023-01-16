@@ -195,7 +195,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
             }
         } else {
-                Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
     }
 

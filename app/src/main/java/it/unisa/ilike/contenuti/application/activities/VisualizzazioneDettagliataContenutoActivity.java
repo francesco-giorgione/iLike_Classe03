@@ -52,38 +52,37 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
     ContenutoBean c;
     VisualizzazioneDettagliataContenutoAdapter adapter;
 
-    private class GsonResultContenuto extends AsyncTask<Integer, Void, ContenutoBean> {
+    private class GsonResultContenuto extends AsyncTask<Integer, Void, Void> {
 
         @Override
-        protected ContenutoBean doInBackground(Integer... id) {
+        protected Void doInBackground(Integer... id) {
 
             ContenutoService contenutoService= new ContenutoImpl();
-            return contenutoService.getById(id[0]);
+            c= contenutoService.getById(id[0]);
+            return null;
         }
 
         @Override
-        protected void onPostExecute(ContenutoBean contenuto) {
+        protected void onPostExecute(Void unused) {
 
             TextView titoloContenuto= findViewById(R.id.titoloContenuto);
-            titoloContenuto.setText(contenuto.getTitolo());
+            titoloContenuto.setText(c.getTitolo());
 
             ImageView icona= findViewById(R.id.imgContenuto);
-            if (contenuto instanceof FilmBean)
+            if (c instanceof FilmBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
-            else if (contenuto instanceof SerieTVBean)
+            else if (c instanceof SerieTVBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
-            else if (contenuto instanceof LibroBean)
+            else if (c instanceof LibroBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
             else
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
 
             TextView descrizione= findViewById(R.id.descrizioneContenuto);
-            descrizione.append(contenuto.getDescrizione());
+            descrizione.append(c.getDescrizione());
 
             RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
-            valutazioneMediaContenuto.setRating((int)contenuto.getValutazioneMedia());
-            c=contenuto;
-            GsonResultRecensioni gr = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
+            valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
         }
     }
 
@@ -160,7 +159,7 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                 profiloButton = findViewById(R.id.profiloButton);
                 homepageButton = findViewById(R.id.homepageButton);
 
-                c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
+                //c = (ContenutoBean) getIntent().getExtras().getSerializable("contenuto");
 
                 Intent i = getIntent();
                 int idContenuto = i.getIntExtra("idContenuto", -1);
@@ -174,6 +173,8 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                         new ArrayList<RecensioneBean>());
 
                 recensioniList.setAdapter(adapter);
+
+                GsonResultRecensioni gr = (GsonResultRecensioni) new GsonResultRecensioni().execute(new Void[0]);
 
                 setReturnIntent();
             }
@@ -338,11 +339,11 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
                 GsonResultSegnalazione g = (GsonResultSegnalazione) new GsonResultSegnalazione().execute(new Void[0]);
             }
             catch(NetworkOnMainThreadException n){
-                    Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
-                }
+                Toast.makeText(getApplicationContext(), "Verifica la tua connessione ad internet", Toast.LENGTH_LONG).show();
             }
+        }
         else {
-                Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
     }
 
