@@ -49,15 +49,13 @@
 
     \chapter{Introduzione}\label{ch:introduzione}
 
-    Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che leggono libri, ascoltano musica,
-    guardano film e serie TV. Di conseguenza, aumenta la voglia di scoprire sempre nuovi contenuti in base alle proprie preferenze e rimanere
-    costantemente aggiornati sulle ultime novità. La maggior parte degli utenti,però, è spesso indecisa sui contenuti da scegliere e passa gran parte
-    del tempo a navigare tra i contenuti disponibili.
-    A tal proposito \textit{iLike}, oltre a realizzare una piattaforma unificata che consente di recensire film, serie TV, libri e album musicali,
-    offre la possibilità di interagire con una chat bot, la quale permette di visualizzare i contenuti richiesti dall’utente,personalizzati sulla base
-    delle sue preferenze. La chat bot è di fondamentale importanza poichè permette agli utenti indecisi di ricevere consigli personalizzati ed evitare
-    di passare ore ed ore nella scelta di un contenuto.
-
+    Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che scelgono di guardare un film nel proprio
+    tempo libero. Di conseguenza, aumenta la voglia di scoprire sempre nuovi contenuti in base alle proprie preferenze e rimanere costantemente
+    aggiornati sulle ultime novità. La maggior parte degli utenti,però, è spesso indecisa su quale film scegliere e passa gran parte del tempo
+    a navigare tra i contenuti disponibili. A tal proposito \textit{iLike}, oltre a realizzare una piattaforma unificata che consente di recensire
+    contenuti, offre la possibilità di interagire con una chat bot, la quale permette di visualizzare i film richiesti dall'utente,personalizzati sulla
+    base delle sue preferenze. La chat bot è di fondamentale importanza poichè permette agli utenti indecisi di ricevere consigli personalizzati ed evitare
+    di passare ore ed ore nella scelta di un film.
 
 
     \chapter{Business Understanding}\label{ch:business-understanding}
@@ -65,11 +63,10 @@
 
         \section{Obiettivi di business}\label{sec:obiettivi-di-business}
 
-        L’obiettivo principale di \textit{iLike} è la realizzazione di una chat bot, che permetterà all’utente di interagirvi
-        per richiedere consigli su contenuti che ricadono nei suoi gusti personali.
-        Lo scopo è quello di consentire una facile interazione degli utenti con la nostra applicazione, permettendo a utenti indecisi di ricevere
-        consigli personalizzati su contenuti che potrebbero essere di interesse personale,in base a quelli appartenenti alle liste personali create
-        e sulla base della valutazione inserita all'interno delle recensioni scritte riguardo a determinati contenuti.
+        L'obiettivo principale di \textit{iLike} è la realizzazione di una chat bot, che permetterà all'utente di interagirvi per richiedere consigli
+        su film da guardare. Lo scopo è quello di consentire una facile interazione degli utenti con la nostra applicazione, permettendo a utenti
+        indecisi di ricevere consigli personalizzati su film che potrebbero essere di interesse personale, in base a quelli appartenenti alle liste
+        personali create oppure in base ad un genere scelto dall'utente.
 
     \section{PEAS}\label{sec:peas}
 
@@ -79,7 +76,7 @@
 
                 \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
                     \hline
-                    \textbf{Performance} & Capacità dell’agente di suggerire all’utente contenuti che rispecchiano i suoi gusti. \\
+                    \textbf{Performance} & Capacità dell’agente di suggerire all’utente film che rispecchiano i suoi gusti. \\
                     \hline
                     \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
                     utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
@@ -101,31 +98,27 @@
                     \item \textbf{Statico}: nel momento in cui l’agente sta elaborando la sua decisione l’utente non può modificare
                     le sue preferenze;
                     \item \textbf{Discreto}: i suggerimenti dati dall’agente dipendono dalla combinazione di contenuti preferiti di cui
-                    l’utente dispone ed esistono un numero limitato di possibili combinazioni;
+                    l’utente dispone o da un genere stabilito ed esistono un numero limitato di possibili combinazioni;
                     \item \textbf{Singolo-agente}: esiste un unico agente che opera nell’ambiente.
                 \end{itemize}
 
         \section{Analisi del problema}\label{sec:analisi-del-problema}
-            Il problema che l’agente intelligente dovrà risolvere consiste nel suggerire film/serie TV da vedere,
-            libri da leggere ed album musicali da ascoltare in base ai contenuti presenti nei dataset dell’applicazione
-            e soprattutto in base alle preferenze espresse dagli utenti.
 
-            Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare
-            l’esecuzione di un task (T=fornire suggerimenti personalizzati) rispetto ad una misura di prestazione
-            (P= numero di suggerimenti accettati dall’utente) e sulla base dell’esperienza (E= database di contenuti non
-            etichettati).
-            Inoltre l’algoritmo di apprendimento in questione è di tipo non supervisionato in quanto non si dispone di un
-            database contenente dati già etichettati, bensì dovrà essere l’agente capace di apprendere il valore reale
-            della variabile dipendente sulla base delle conoscenze di cui dispone.
+        Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
+        presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
+        contenuti delle liste personali o ad un genere scelto).
+        Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare l'esecuzione
+        di un task (T=fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
+        dall'utente) e sulla base dell'esperienza (E= database di contenuti non etichettati). Inoltre l'algoritmo di apprendimento
+        in questione è di tipo non supervisionato in quanto non si dispone di un database contenente dati già etichettati, bensì dovrà
+        essere l'agente capace di apprendere il valore reale della variabile dipendente sulla base delle conoscenze di cui dispone.
+        Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
+        ha espresso le sue preferenze riguardanti contenuti presenti nell'applicazione, l'algoritmo creerà, in base ad una misura di similarità
+        (che verrà definita in seguito), dei cluster contenenti film dotati di un certo grado di omogeneità. Procederà quindi a consigliare nuovi
+        film in base alla clusterizzazione effettuata.
 
-            Nello specifico il problema in esame può essere risolto tramite l’utilizzo di un algoritmo di clustering.
-            Una volta che l’utente ha espresso le sue preferenze riguardanti contenuti presenti nell’applicazione, l’algoritmo
-            creerà, in base ad una misura di similarità (che verrà definita in seguito), dei cluster contenenti film, serie TV,
-            libri e album musicali dotati di un certo grado di omogeneità.
-            Procederà quindi a consigliare nuovi contenuti in base alla clusterizzazione effettuata.
-
-            I suggerimenti verranno dati solo qualora l’utente ne faccia richiesta ed il tutto avviene in maniera
-            automatica tramite l’utilizzo di un Conversational Agent.
+        I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
+        di un Conversational Agent.
 
     \chapter{Data Understanding}\label{ch:data-understanding}
 
@@ -134,29 +127,25 @@
             \begin{itemize}
                 \item Creare un dataset contenente gli utenti di iLike ed analizzare il loro comportamento, al fine di creare
                       cluster di utenti i quali hanno preferenze similari;
-                \item Cercare dataset con le informazioni sui contenuti e creare cluster di contenuti.
+                \item Cercare dataset con le informazioni relative ai film e creare cluster di film.
             \end{itemize}
 
             I problemi riscontrati sono:
             \begin{itemize}
                 \item La disponibilità di dati era maggiore nei dataset già esistenti;
-                \item Ogni utente ha gusti differenti, quindi la similarità dei contenuti in un cluster può non essere sempre
+                \item Ogni utente ha gusti differenti, quindi la similarità dei film in un cluster può non essere sempre
                       veritera;
-                \item Individuare dataset con un numero ottimale di istanze e le giuste informazioni sui contenuti richiede
+                \item Individuare dataset con un numero ottimale di istanze e le giuste informazioni sui film richiede
                       un'accurata analisi.
             \end{itemize}
-            Al seguito di un trade-off tra le due alternative abbiamo preferito utilizzare dataset già esistenti relativi ai contenuti,
+            Al seguito di un trade-off tra le due alternative abbiamo preferito utilizzare dataset già esistenti relativi ai film,
             poichè la disponibilità di dati e la giusta similarità di elementi in un cluster agevola le prestazioni dell'algoritmo
             di machine learning.
 
         \section{Analisi dei dataset}\label{sec:analisi-dei-dataset}
-            I dataset reperiti sulla piattaforma Kaggle sono:
-            \begin{itemize}
-                \item \href{https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset?resource=download}{\underline{Film}}
-                \item \href{https://www.kaggle.com/datasets/amritvirsinghx/web-series-ultimate-edition}{\underline{Serie TV}}
-                \item \href{https://www.kaggle.com/datasets/lucascantu/top-5000-albums-of-all-time-spotify-features}{\underline{Album Musicali}}
-                \item \href{https://www.kaggle.com/datasets/mdhamani/goodreads-books-100k}{\underline{Libri}}
-            \end{itemize}
+            Il dataset utilizzato riguardo i \href{https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset?resource=download}{\underline{Film}}
+            è reperibile sulla piattaforma Kaggle.
+
 
 
 
