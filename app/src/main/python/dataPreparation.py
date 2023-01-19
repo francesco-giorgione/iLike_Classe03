@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from sklearn import preprocessing
 from sklearn.feature_selection import VarianceThreshold
 
-filmPath = "dataset/film.csv"
+filmPath = "dataset/filmDaKaggle.csv"
 
 table = pd.read_csv(filmPath, sep=',')
 print(table.info())

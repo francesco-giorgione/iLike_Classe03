@@ -23,7 +23,7 @@ def get_film_frame():
     # inizializzazione della tabella film
     filmTable = pd.DataFrame()
 
-    # apertura film.csv
+    # apertura filmDaKaggle.csv
     table = pd.read_csv(filmPath, sep=',')
 
     # copia delle colonne di nostro interesse
