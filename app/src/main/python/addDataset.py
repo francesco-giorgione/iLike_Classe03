@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # path per aprire il file .csv
-filmPath = "dataset/film.csv"
+filmPath = "modelling/film.csv"
 serieTvPath = "dataset/serietv.csv"
 albumPath = "dataset/album.csv"
 libriPath = "dataset/libri.csv"
