@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from sklearn import preprocessing
 from sklearn.feature_selection import VarianceThreshold
 
-filmPath = "dataset/filmDaKaggle.csv"
+filmPath = "filmDaKaggle.csv"
 
 table = pd.read_csv(filmPath, sep=',')
 print(table.info())
@@ -105,12 +105,11 @@ print(table[numericCol])
 #       -------- FEATURE SELECTION --------
 
 """
-    RIMOZIONE voto_medio e filmtv_id
+    RIMOZIONE voto_medio, anno e filmtv_id
 """
 
-table.drop(columns=["voto_medio"], inplace=True)
 table.drop(columns=["filmtv_id"], inplace=True)
-# print(table.columns)
+
 
 # print("\n\n")
 # # per ogni colonna della tabella mostra le statistiche
@@ -118,8 +117,8 @@ table.drop(columns=["filmtv_id"], inplace=True)
 #     print(col, "\n", table[col].describe(), "\n\n")
 
 """
-    ELIMINAZIONE DI FEACTURE CON BASSA VARIANZA 
-    (eliminazione di feacture con varianza < 0.01)
+    ELIMINAZIONE DI FEATURE CON BASSA VARIANZA
+    (eliminazione di feature con varianza <= 0)
 """
 
 numericCol = table.select_dtypes(include=[np.number]).columns
@@ -128,14 +127,38 @@ lowVariance = VarianceThreshold()
 lowVariance.fit_transform(table[numericCol])
 # print(lowVariance.variances_)
 
-# eliminazione delle colonne con varianza < 0.01
+# eliminazione delle colonne con varianza <= 0
 for i, col in enumerate(numericCol):
-    if lowVariance.variances_[i] < 0.01:
+    if lowVariance.variances_[i] <= 0:
         table.drop(columns=col, inplace=True)
 
 print(table.columns)
 
 
+"""
+    ELIMINAZIONE UNIVARIATA DI FEATURE
+"""
+
+numericCol = table.select_dtypes(include=[np.number]).columns
+
+tableNum = table[numericCol]
+
+#heatmap per interpretare più facilmente la matrice di correlazione
+plt.figure(figsize = (15,6))
+sns.heatmap(tableNum.corr(), annot=True)
+
+
+#Dopo un confronto abbiamo deciso di togliere anno e voto_medio perchè
+#sono inversamente correlate con le altre variabili
+table.drop(columns=["anno"], inplace=True)
+table.drop(columns=["voto_medio"], inplace=True)
+
+numericCol = table.select_dtypes(include=[np.number]).columns
+tableNum = table[numericCol]
+
+plt.figure(figsize = (15,6))
+sns.heatmap(tableNum.corr(), annot=True)
+plt.show()
 
 # --- Utile ---
 
