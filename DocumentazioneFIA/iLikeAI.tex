@@ -1,6 +1,6 @@
-
 % Preamble
-\documentclass[a4paper, 12pt]{report}
+\documentclass[a4paper, 10pt]{report}
+\bibliographystyle{ACM-Reference-Format}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -75,15 +75,18 @@
 
                 \paragraph{}
 
-                \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
-                    \hline \textbf{Performance} & Capacità dell’agente di suggerire all’utente film che rispecchiano i suoi gusti. \\
-                    \hline \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
+                \begin{tabular}{|c|p{8cm}|}
+                    \hline
+                    \textbf{Performance} & Capacità dell’agente di suggerire all’utente film che rispecchiano i suoi gusti. \\
+                    \hline
+                    \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
                     utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
-                    \hline \textbf{Actuators} & Risposta del Conversational Agent.\\
-                    \hline \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
+                    \hline
+                    \textbf{Actuators} & Risposta del Conversational Agent.\\
+                    \hline
+                    \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
                     \hline
                 \end{tabular}
-
 
         \section{Proprietà dell'ambiente}\label{sec:proprieta-dell'ambiente}
             L’ambiente possiede le seguenti proprietà:
@@ -101,21 +104,30 @@
 
         \section{Analisi del problema}\label{sec:analisi-del-problema}
 
-        Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
-        presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
-        contenuti delle liste personali o ad un genere scelto).
-        Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare l'esecuzione
-        di un task (T=fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
-        dall'utente) e sulla base dell'esperienza (E= database di contenuti non etichettati). Inoltre l'algoritmo di apprendimento
-        in questione è di tipo non supervisionato in quanto non si dispone di un database contenente dati già etichettati, bensì dovrà
-        essere l'agente capace di apprendere il valore reale della variabile dipendente sulla base delle conoscenze di cui dispone.
-        Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
-        ha espresso le sue preferenze riguardanti contenuti presenti nell'applicazione, l'algoritmo creerà, in base ad una misura di similarità
-        (che verrà definita in seguito), dei cluster contenenti film dotati di un certo grado di omogeneità. Procederà quindi a consigliare nuovi
-        film in base alla clusterizzazione effettuata.
+    Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
+    presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
+    contenuti della lista preferiti dell'iscritto o ad un genere scelto).
+    Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare l'esecuzione
+    di un task (T= fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
+    dall'utente) e sulla base dell'esperienza (E= database di contenuti). Inoltre l'algoritmo di apprendimento
+    in questione è di tipo non supervisionato in quanto l'agente dovrà essere capace di apprendere il valore reale della
+    variabile dipendente sulla base delle conoscenze di cui dispone.
+    Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
+    ha espresso le sue preferenze riguardanti contenuti presenti nell'applicazione, l'algoritmo creerà, in base ad una misura di similarità
+    (che verrà definita in seguito), dei cluster contenenti film che hanno un certo grado di omogeneità. Procederà quindi a consigliarne nuovi
+    in base alla clusterizzazione effettuata.
 
-        I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
-        di un Conversational Agent.
+
+    I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
+    di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno mediante un apposito
+    pulsante presente nel footer delle varie activity dell'applicazione. Una volta premuto tale bottone l'utente potrà scrivere messaggi
+    in base ai quali riceverà una risposta opportuna. Nel momento in cui richiederà un consiglio per un film, si provvederà ad invocare
+    l'algoritmo di clustering e "calcolare" la relativa risposta.
+
+    Si è ritenuto non opportuno utilizzare un algoritmo di classificazione in quanto non disponiamo di un'insieme di osservazioni per cui
+    la variabile target è nota, di conseguenza non sarebbe possibile stimare il valore di una nuova variabile categorica.
+    Un'analoga considerazione è stata fatta in merito all'utilizzo di un algoritmo di regressione, anche se in questo caso occorreva
+    stimare il valore di una variabile numerica.
 
     \chapter{Data Understanding}\label{ch:data-understanding}
 
@@ -209,6 +221,27 @@
 
         \section{Fase di addestramento}\label{sec:fase-di-addestramento}
 
+        In merito all'addestramento del Conversational Agent abbiamo usufruito della libreria \textit{Natural Language Toolkit}
+        offerta dal linguaggio di programmazione \textit{Python}.
+
+        Abbiamo inizializzato un array (\textit{pairs}) di coppie domande-risposte, in particolare abbiamo ipotizzato una serie di pattern
+        corrispondenti ad espressioni regolari che esprimono statement o domande che l'utente può inviare al sistema ed
+        in base ad essi abbiamo definito delle risposte che il nostro CA dovrà fornire all'utente. In questo modo andiamo ad istruire il bot
+        su come rispondere alle domande o alle frasi dell'utente. Per diverse domande sono state previste risposte multiple, in modo da rendere il bot meno monotono.
+        \textit{Pairs} contiene domande e risposte specifiche per la nostra applicazione e per lo scopo
+        principale della creazione del bot, ovvero il suggerimento di film in base ai gusti degli iscritti.
+        Nel momento in cui l'iscritto digita un messaggio e lo invia, se questo avrà un match con uno dei pattern previsti allora
+        verrà visualizzata la risposta appropriata, altrimenti verrà visualizzato un messaggio che invita l'iscritto
+        ad esprimere diversamente la sua richiesta.
+
+        Grazie all'utilizzo della libreria \textit{Natural Language Toolkit} i vari passaggi previsti dal Natural Language Processing
+        sono eseguiti in automatico e risultano per questo motivo "nascosti".
+
+        Nel caso specifico in cui l'utente richiede un consiglio la risposta verrà data sulla base del risultato della chiamata
+        all'algoritmo di clustering per dare un suggerimento mirato, basato sui gusti dell'utente in questione espressi tramite
+        l'aggiunta dei film presenti nell'applicazione ad una lista di preferiti.
+
+
 
     \chapter{Evaluation}\label{ch:evaluation}
 
@@ -224,10 +257,17 @@
 
     \chapter{Deployment}\label{ch:deployment}
 
+    Sarà possibile usufruire del Conversational Agent premendo sull'apposito pulsante presente nelle varie activity dell'applicazione.
+    All'inizio l'utente visualizza un messaggio di benvenuto del bot e successivamente è libero di scrivere le sue
+    richieste nell'apposita area visibile in fondo alla schermata. Una volta scritto il messaggio, l'utente dovrà premere il pulsante
+    \textit{INVIA} e dopo pochi secondi la risposta del bot sarà visibile. A questo punto sarà possibile inviare un ulteriore messaggio a cui
+    il bot risponderà e così via fino a quando l'utente non deciderà di uscire dalla pagina in questione tramite l'apposito pulsante
+    o tramite il tasto \textit{back} del dispositivo mobile.
+
 
     \chapter{Glossario}\label{ch:glossario}
         \begin{adjustbox}{width=\columnwidth,center}
-            \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{10cm}|}
+            \begin{tabular}{|c|p{8cm}|}
                 \hline \textbf{Conversational Agent/CA} & É un bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
                 in un linguaggio naturale, attraverso la  generazione di una conversazione simil-umana.\\
                 \hline \textbf{Lista di contenuti} & Sottoinsieme di contenuti offerti da iLike, scelti dagli utenti secondo i loro gusti

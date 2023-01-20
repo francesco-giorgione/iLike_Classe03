@@ -1,7 +1,7 @@
 from nltk.chat.util import Chat, reflections
 
 # array contenente coppie domanda - risposta delimitate da parentesi quadre
-# r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano la risposta del bot
+# r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano le risposte del bot
 pairs = [
     [
         r"We|Ciao|Hey",
