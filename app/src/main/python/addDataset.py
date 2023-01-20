@@ -3,7 +3,7 @@ import pandas as pd
 
 
 # path per aprire il file .csv
-filmPath = "dataset/film.csv"
+filmPath = "modelling/film.csv"
 serieTvPath = "dataset/serietv.csv"
 albumPath = "dataset/album.csv"
 libriPath = "dataset/libri.csv"
@@ -23,7 +23,7 @@ def get_film_frame():
     # inizializzazione della tabella film
     filmTable = pd.DataFrame()
 
-    # apertura film.csv
+    # apertura filmDaKaggle.csv
     table = pd.read_csv(filmPath, sep=',')
 
     # copia delle colonne di nostro interesse
