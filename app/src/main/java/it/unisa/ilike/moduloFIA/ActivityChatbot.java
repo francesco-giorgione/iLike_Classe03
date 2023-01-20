@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,6 +32,7 @@ public class ActivityChatbot extends AppCompatActivity {
     boolean isMine =true;
     private ArrayList<Messaggio> messaggi;
     private ArrayAdapter<Messaggio> adapter;
+    private String utterances;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -40,9 +45,10 @@ public class ActivityChatbot extends AppCompatActivity {
         btnSend =findViewById(R.id.sendButton);
         messaggioDigitato =(EditText)findViewById(R.id.editTest_message);
 
-        adapter = new MessageListAdapter(ActivityChatbot.this, R.layout.activity_messaggio_bot, messaggi);
+        adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
 
         listView.setAdapter(adapter);
+
 
         //inizializzazione giorno chat
         GregorianCalendar g= new GregorianCalendar();
@@ -65,6 +71,15 @@ public class ActivityChatbot extends AppCompatActivity {
         data.setText(giorno);
 
 
+        if (!Python.isStarted()){
+            Python.start(new AndroidPlatform(this));
+        }
+
+        Python py= Python.getInstance();
+        //nome del nostro file python
+        final PyObject pyobj= py.getModule("training");
+
+
         String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
         //messaggio di benvenuto chatBot
         Messaggio messaggio = new Messaggio("Ciao, sono il chatbot di iLike. Come posso aiutarti?","iLike chatbot", dateTime,isMine);
@@ -83,9 +98,11 @@ public class ActivityChatbot extends AppCompatActivity {
                 if(messaggioDigitato.getText().toString().trim().equals("")){
                     Toast.makeText(ActivityChatbot.this,"Nessun testo inserito..",Toast.LENGTH_SHORT).show();
                 }else {
-                    String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
 
+                    //messaggio iscritto
+                    String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
                     Messaggio messaggio = new Messaggio(messaggioDigitato.getText().toString(),null,dateTime,isMine);
+                    utterances= messaggioDigitato.getText().toString();
                     messaggi.add(messaggio);
                     adapter.notifyDataSetChanged();
                     messaggioDigitato.setText("");
@@ -95,9 +112,20 @@ public class ActivityChatbot extends AppCompatActivity {
                         isMine = true;
                     }
 
+
+
                     //risposta chatBot al messaggio
+
+                    PyObject obj= pyobj.callAttr("main", utterances); //PyObject obj= pyobj.callAttr(function name, first argument, second argument, ...);
+
+                    String risposta;
+
+                    if (obj==null)
+                        risposta= "Non ho capito la domanda";
+                    else
+                        risposta=obj.toString();
                     dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
-                    Messaggio rispostaChatBot = new Messaggio("Risposta chatbot","iLike chatbot",dateTime,isMine);
+                    Messaggio rispostaChatBot = new Messaggio(risposta,"iLike chatbot",dateTime,isMine);
                     messaggi.add(rispostaChatBot);
                     adapter.notifyDataSetChanged();
                     messaggioDigitato.setText("");
@@ -110,4 +138,5 @@ public class ActivityChatbot extends AppCompatActivity {
             }
         });
     }
+
 }
