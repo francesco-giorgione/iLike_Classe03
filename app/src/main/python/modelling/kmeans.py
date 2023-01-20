@@ -1,35 +1,75 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
+import random
+
+import numpy as np                                # For data management
+import pandas as pd                               # For data management
+
+import matplotlib.pyplot as plt                   # For data visualization
+
 from sklearn.decomposition import PCA
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
+from sklearn.cluster import KMeans                # To instantiate, train and use model
 filmPath = 'film.csv'
 
 #Aprire il file csv e ottenere un oggetto DataFrame
 table = pd.read_csv(filmPath, sep=',')
 table.drop(columns=['Unnamed: 0'], inplace=True)
 
-kmeans = KMeans(n_clusters=3, init='random', n_init=10, max_iter=300, random_state=0)
-#bench_k_means(kmeans=kmeans, name="random", data=table, labels=labels)
-
 numericCol = table.select_dtypes(include=[np.number]).columns
-kmeans.fit(table[numericCol])
-# assegno una classe ad ogni esempio del dataset
-k = kmeans.predict(table[numericCol])
 
-print(k)
+tableNum = table[numericCol]
+
+pca = PCA(2)
+
+#Transform the data
+df = pca.fit_transform(tableNum)
+
+#Initialize the class object
+#considerazioni sulle scelte dei parametri della funzione KMeans
+kmeans = KMeans(init='k-means++', n_clusters=10, algorithm='lloyd', n_init='auto')
+
+#predict the labels of clusters.
+label = kmeans.fit_predict(df)
+print(label)
+
+print(kmeans.n_iter_)
+
+#Getting unique labels
+u_labels = np.unique(label)
+
+#plotting the results:
+for i in u_labels:
+    plt.scatter(df[label == i , 0] , df[label == i , 1] , label = i)
+
+plt.legend()
 
 centroids = kmeans.cluster_centers_
-print(centroids)
+plt.scatter(centroids[:,0] , centroids[:,1] , s = 80, color = 'k')
 
-table['Clusters'] = kmeans.labels_
+#TOGLIERE IL COMMENTO
+# plt.show()
 
-plt.figure(figsize = (20, 8))
-sns.scatterplot(data=table)
-plt.xlim(-10,10)
-plt.ylim(-10,10)
-plt.show()
+table["index"] = table.index
+
+print(table)
+
+a = []
+
+for i in range(0,10):
+    a.append(table.loc(int (random.uniform(0,len(table)))))
+
+print(a)
+
+
+
+#importare lista da Java
+#per ogni elemento della lista, trovare il cluster di appartenenza
+ #creare un  dizionario (chiave, valore) con (titolo, cluster)
+ #array da 0 a 9 contenente per ogni cella il numero di contenuti della lista appartenenti
+ #a quel determinato cluster
+#prendere max dell'array
+#ricavare l'indice del max dell'array
+
+#per ogni elemento nel dizionario avente cluster == indice del max dell'array
+ #fare la media tra le distanze metriche degli elementi della lista
+
+#media della somma calcolata nel ciclo
+
