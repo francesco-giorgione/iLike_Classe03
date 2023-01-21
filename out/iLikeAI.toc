@@ -13,14 +13,14 @@
 \contentsline {chapter}{\numberline {4}Data Preparation}{6}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Data Cleaning}{6}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Feature Scaling}{6}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Feature Selection}{6}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Data Balancing}{6}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Modeling}{7}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{7}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Fase di addestramento}{7}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Evaluation}{8}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Elbow point}{8}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Silhouette coefficient}{8}{section.6.2}%
-\contentsline {section}{\numberline {6.3}MoJo distance}{8}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deployment}{9}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Glossario}{10}{chapter.8}%
+\contentsline {section}{\numberline {4.3}Feature Selection}{7}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Data Balancing}{7}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Modeling}{8}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{8}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Fase di addestramento}{8}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Evaluation}{9}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Elbow point}{9}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Silhouette coefficient}{9}{section.6.2}%
+\contentsline {section}{\numberline {6.3}MoJo distance}{9}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Deployment}{10}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Glossario}{11}{chapter.8}%
