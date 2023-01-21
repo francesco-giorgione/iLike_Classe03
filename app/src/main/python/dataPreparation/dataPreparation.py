@@ -168,6 +168,11 @@ plt.title("Matrice di correlazione tra le variabili numeriche dopo la rimozione 
 sns.heatmap(tableNum.corr(), annot=True)
 plt.show()
 
+"""
+    Ricreare il file film.csv
+"""
+#table.to_csv("film.csv")
+
 
 # --- Utile ---
 
