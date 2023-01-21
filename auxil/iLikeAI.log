@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  20 JAN 2023 23:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  21 JAN 2023 14:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -9,8 +9,8 @@ LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2022-12-17>
 (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2022/07/02 v1.4n Standard LaTeX document class
-(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
-File: size12.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@chapter=\count186
@@ -411,20 +411,20 @@ File: logo.JPEG Graphic file (type jpg)
 Package pdftex.def Info: logo.JPEG  used on input line 48.
 (pdftex.def)             Requested size: 284.52756pt x 284.48376pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 48.
+(Font)              <12> on input line 48.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
+(Font)              <8> on input line 48.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 48.
  [1
 
+{C:/Users/Marta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG>
 ]
-[2{C:/Users/Marta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPE
-G>] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.toc
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 5.
+(Font)              <7> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 5.
+(Font)              <5> on input line 5.
 )
 \tf@toc=\write4
 \openout4 = `iLikeAI.toc'.
@@ -439,85 +439,145 @@ l.51     \chapter
 
 ]
 Capitolo 1.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.62     \chapter
-                 {Business Understanding}\label{ch:business-understanding}
 [2
 
 ]
 Capitolo 2.
-
-Overfull \hbox (7.8657pt too wide) in paragraph at lines 78--86
- [][] [] 
- []
-
 [3
 
 ] [4]
 Capitolo 3.
+
+iLikeAI.tex:143: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.143 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [5
 
 ]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--161
+Underfull \hbox (badness 10000) in paragraph at lines 173--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--174
+Underfull \hbox (badness 10000) in paragraph at lines 177--188
 
+ []
+
+<dataPreparation/noScaling.png, id=156, 990.099pt x 289.08pt>
+File: dataPreparation/noScaling.png Graphic file (type png)
+<use dataPreparation/noScaling.png>
+Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 200.
+
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 200--200
+ [] 
  []
 
 [6
 
-] [7]
-Capitolo 5.
-[8
-
 ]
-Capitolo 6.
+<dataPreparation/minMax.png, id=163, 990.099pt x 289.08pt>
+File: dataPreparation/minMax.png Graphic file (type png)
+<use dataPreparation/minMax.png>
+Package pdftex.def Info: dataPreparation/minMax.png  used on input line 202.
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 202--202
+ [][] 
+ []
+
+<dataPreparation/zScore.png, id=164, 990.099pt x 289.08pt>
+File: dataPreparation/zScore.png Graphic file (type png)
+<use dataPreparation/zScore.png>
+Package pdftex.def Info: dataPreparation/zScore.png  used on input line 204.
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 204--204
+ [][] 
+ []
+
+
+iLikeAI.tex:207: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.207             \\C
+                     ome evidenziato nei grafici, la tectica dello Z-Score N...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[7 <./dataPreparation/noScaling.png> <./dataPreparation/minMax.png> <./dataPrep
+aration/zScore.png>]
+<dataPreparation/matriceCorrelazione.png, id=172, 990.099pt x 433.62pt>
+File: dataPreparation/matriceCorrelazione.png Graphic file (type png)
+<use dataPreparation/matriceCorrelazione.png>
+Package pdftex.def Info: dataPreparation/matriceCorrelazione.png  used on input
+ line 219.
+(pdftex.def)             Requested size: 369.8812pt x 199.16988pt.
+
+Overfull \hbox (49.88123pt too wide) in paragraph at lines 219--219
+ [] 
+ []
+
+[8 <./dataPreparation/matriceCorrelazione.png>]
+Capitolo 5.
 [9
 
 ]
-Capitolo 7.
+Capitolo 6.
 [10
 
 ]
-Capitolo 8.
+Capitolo 7.
 [11
+
+]
+Capitolo 8.
+[12
 
 ] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
 (rerunfilecheck)             Checksum: 583BD7025CE5B6D2960BD58131704B86;3151.
  ) 
 Here is how much of TeX's memory you used:
- 12112 strings out of 476406
- 200452 string characters out of 2789566
+ 12141 strings out of 476406
+ 201325 string characters out of 2789566
  1860787 words of memory out of 3000000
- 32242 multiletter control sequences out of 15000+600000
- 524593 words of font info for 56 fonts, out of 8000000 for 9000
+ 32264 multiletter control sequences out of 15000+600000
+ 523665 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,90p,293b,546s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 84i,16n,90p,293b,518s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecbx1728.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecti1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecbx1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\Marta\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1440.pk> <C:\Users\Marta\AppData\Loca
-l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2074.pk> <C:\Users\Marta\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk>
+1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecbx1440.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecti1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecrm1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Marta\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Marta\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\Marta\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
 Output written on C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLike
-AI.pdf (13 pages, 422232 bytes).
+AI.pdf (13 pages, 559878 bytes).
 PDF statistics:
- 511 PDF objects out of 1000 (max. 8388607)
- 37 named destinations out of 1000 (max. 500000)
- 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 546 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
+ 210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -50,246 +50,254 @@
 
     \chapter{Introduzione}\label{ch:introduzione}
 
-    Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che scelgono di guardare un film nel proprio
-    tempo libero. Di conseguenza, aumenta la voglia di scoprire sempre nuovi contenuti in base alle proprie preferenze e rimanere costantemente
-    aggiornati sulle ultime novità. La maggior parte degli utenti, però, è spesso indecisa su quale film scegliere e passa gran parte del tempo
-    a navigare tra i contenuti disponibili. A tal proposito \textit{iLike}, oltre a realizzare una piattaforma unificata che consente di recensire
-    contenuti, offre la possibilità di interagire con un Conversational Agent, la quale permette di visualizzare i film richiesti dall'utente,
-    personalizzati sulla base delle sue preferenze. Il Conversational Agent è di fondamentale importanza poichè permette agli utenti indecisi di
-    ricevere consigli personalizzati evitando di passare ore ed ore nella scelta di un film.
+        Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che scelgono
+        di guardare un film nel proprio tempo libero. Di conseguenza, aumenta la voglia di scoprire sempre nuovi contenuti
+        in base alle proprie preferenze e rimanere costantemente aggiornati sulle ultime novità. La maggior parte degli utenti,
+        però, è spesso indecisa su quale film scegliere e passa gran parte del tempo a navigare tra i contenuti disponibili.
+        A tal proposito \textit{iLike}, oltre a realizzare una piattaforma unificata che consente di recensire contenuti, offre
+        la possibilità di interagire con un Conversational Agent, il quale permette di visualizzare i film richiesti dall'utente
+        personalizzati sulla base delle sue preferenze.
+        Il Conversational Agent è di fondamentale importanza poichè permette agli utenti di ottenere consiglia attraverso una
+        conversazione simil-umana.
 
 
     \chapter{Business Understanding}\label{ch:business-understanding}
 
+        \section{Obiettivi di business}\label{sec:obiettivi-di-business}
 
-    \section{Obiettivi di business}\label{sec:obiettivi-di-business}
+            L'obiettivo principale di \textit{iLike} è la realizzazione di un Conversational Agent, che permetterà all'utente di
+            interagirvi per richiedere consigli su nuovi film da guardare. Lo scopo è quello di consentire una facile interazione degli utenti
+            con la nostra applicazione, permettendo a utenti indecisi di ricevere consigli personalizzati su film che potrebbero essere di
+            interesse personale. I consigli personalizzati analizzeranno le diverse liste degli utenti, nelle quali ogni utente potrà decidere i contenuti
+            da selezionare in base alle preferenze personali.
 
-    L'obiettivo principale di \textit{iLike} è la realizzazione di un Conversational Agent, che permetterà all'utente di interagirvi per
-    richiedere consigli su film da guardare. Lo scopo è quello di consentire una facile interazione degli utenti con la nostra applicazione,
-    permettendo a utenti indecisi di ricevere consigli personalizzati su film che potrebbero essere di interesse personale, in base a quelli
-    appartenenti alle liste personali create oppure in base ad un genere scelto dall'utente.
+        \section{PEAS}\label{sec:peas}
 
-    \section{PEAS}\label{sec:peas}
+            Specifica PEAS dell'ambiente.
 
-    Specifica PEAS dell'ambiente.
+            \paragraph{}
 
-    \paragraph{}
+            \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{8cm}|}
+                \hline
+                \textbf{Performance} & Capacità dell’agente di suggerire all’utente film che rispecchiano i suoi gusti. \\
+                \hline
+                \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
+                utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
+                \hline
+                \textbf{Actuators} & Risposta del Conversational Agent.\\
+                \hline
+                \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
+                \hline
+            \end{tabular}
 
-    \begin{tabular}{|c|p{8cm}|}
-        \hline
-        \textbf{Performance} & Capacità dell’agente di suggerire all’utente film che rispecchiano i suoi gusti. \\
-        \hline
-        \textbf{Environment} & L’ambiente in cui l’agente opera è rappresentato da iLike, un’applicazione in cui gli
-        utenti possono scrivere recensioni ed esprimere preferenze sui contenuti che si trovano all’interno di essa.\\
-        \hline
-        \textbf{Actuators} & Risposta del Conversational Agent.\\
-        \hline
-        \textbf{Sensors} & Utterances (messaggi in linguaggio naturale dati in input al CA da un utente umano).\\
-        \hline
-    \end{tabular}
+        \section{Proprietà dell'ambiente}\label{sec:proprieta-dell'ambiente}
+            L’ambiente possiede le seguenti proprietà:
+            \begin{itemize}
+                \item \textbf{Completamente osservabile}: l’agente ha accesso all’elenco dei contenuti presenti nell’applicazione
+                e alle preferenze degli utenti in qualsiasi momento;
+                \item \textbf{Stocastico}: lo stato dell’ambiente varia indipendentemente dall’azione intrapresa dall’agente;
+                \item \textbf{Sequenziale}: le decisioni prese dall’agente dipendono dalle azioni passate dell’utente;
+                \item \textbf{Statico}: nel momento in cui l’agente sta elaborando la sua decisione l’utente non può modificare
+                le sue preferenze;
+                \item \textbf{Discreto}: i suggerimenti dati dall’agente dipendono dalla combinazione di contenuti preferiti di cui
+                l’utente dispone o da un genere stabilito ed esistono un numero limitato di possibili combinazioni;
+                \item \textbf{Singolo-agente}: esiste un unico agente che opera nell’ambiente.
+            \end{itemize}
 
-    \section{Proprietà dell'ambiente}\label{sec:proprieta-dell'ambiente}
-    L’ambiente possiede le seguenti proprietà:
-    \begin{itemize}
-        \item \textbf{Completamente osservabile}: l’agente ha accesso all’elenco dei contenuti presenti nell’applicazione
-        e alle preferenze degli utenti in qualsiasi momento;
-        \item \textbf{Stocastico}: lo stato dell’ambiente varia indipendentemente dall’azione intrapresa dall’agente;
-        \item \textbf{Sequenziale}: le decisioni prese dall’agente dipendono dalle azioni passate dell’utente;
-        \item \textbf{Statico}: nel momento in cui l’agente sta elaborando la sua decisione l’utente non può modificare
-        le sue preferenze;
-        \item \textbf{Discreto}: i suggerimenti dati dall’agente dipendono dalla combinazione di contenuti preferiti di cui
-        l’utente dispone o da un genere stabilito ed esistono un numero limitato di possibili combinazioni;
-        \item \textbf{Singolo-agente}: esiste un unico agente che opera nell’ambiente.
-    \end{itemize}
+        \section{Analisi del problema}\label{sec:analisi-del-problema}
 
-    \section{Analisi del problema}\label{sec:analisi-del-problema}
+            Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
+            presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
+            contenuti della lista preferiti dell'iscritto).\\
+            Il problema in esame può essere risolto con un algoritmo di apprendimento, in quanto consiste nel migliorare l'esecuzione
+            di un task (T= fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
+            dall'utente) e sulla base dell'esperienza (E= database di contenuti). Inoltre l'algoritmo di apprendimento
+            in questione è di tipo non supervisionato in quanto l'agente dovrà essere capace di apprendere il valore reale della
+            variabile dipendente sulla base delle conoscenze di cui dispone.
+            Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
+            ha espresso le sue preferenze riguardanti contenuti presenti nell'applicazione, l'algoritmo creerà, in base ad una misura di similarità
+            (che verrà definita in seguito), dei cluster contenenti film che hanno un certo grado di omogeneità. Procederà quindi a consigliarne nuovi
+            in base alla clusterizzazione effettuata.
 
-    Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
-    presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
-    contenuti della lista preferiti dell'iscritto o ad un genere scelto).
-    Il problema in esame può essere risolto con un algoritmo di apprendimento in quanto consiste nel migliorare l'esecuzione
-    di un task (T= fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
-    dall'utente) e sulla base dell'esperienza (E= database di contenuti). Inoltre l'algoritmo di apprendimento
-    in questione è di tipo non supervisionato in quanto l'agente dovrà essere capace di apprendere il valore reale della
-    variabile dipendente sulla base delle conoscenze di cui dispone.
-    Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
-    ha espresso le sue preferenze riguardanti contenuti presenti nell'applicazione, l'algoritmo creerà, in base ad una misura di similarità
-    (che verrà definita in seguito), dei cluster contenenti film che hanno un certo grado di omogeneità. Procederà quindi a consigliarne nuovi
-    in base alla clusterizzazione effettuata.
+            I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
+            di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno mediante un apposito
+            pulsante presente nel footer delle varie activity dell'applicazione. Una volta premuto tale bottone l'utente potrà scrivere messaggi
+            in base ai quali riceverà una risposta opportuna. Nel momento in cui richiederà un consiglio per un film, si provvederà ad invocare
+            l'algoritmo di clustering e "calcolare" la relativa risposta.
 
+            Si è ritenuto non opportuno utilizzare un algoritmo di classificazione in quanto non disponiamo di un'insieme di osservazioni per cui
+            la variabile target è nota, di conseguenza non sarebbe possibile stimare il valore di una nuova variabile categorica.
+            Un'analoga considerazione è stata fatta in merito all'utilizzo di un algoritmo di regressione, anche se in questo caso occorreva
+            stimare il valore di una variabile numerica.
 
-    I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
-    di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno mediante un apposito
-    pulsante presente nel footer delle varie activity dell'applicazione. Una volta premuto tale bottone l'utente potrà scrivere messaggi
-    in base ai quali riceverà una risposta opportuna. Nel momento in cui richiederà un consiglio per un film, si provvederà ad invocare
-    l'algoritmo di clustering e "calcolare" la relativa risposta.
-
-    Si è ritenuto non opportuno utilizzare un algoritmo di classificazione in quanto non disponiamo di un'insieme di osservazioni per cui
-    la variabile target è nota, di conseguenza non sarebbe possibile stimare il valore di una nuova variabile categorica.
-    Un'analoga considerazione è stata fatta in merito all'utilizzo di un algoritmo di regressione, anche se in questo caso occorreva
-    stimare il valore di una variabile numerica.
 
     \chapter{Data Understanding}\label{ch:data-understanding}
 
-    \section{Acquisizione dei dataset}\label{sec:acquisizione-dei-dataset}
-    Durante la scelta dai dati da fornire al machine learning le possibili scelte da seguire erano sostanzialmente due:
-    \begin{itemize}
-        \item Creare un dataset contenente gli utenti di iLike ed analizzare il loro comportamento, al fine di creare
-        cluster di utenti i quali hanno preferenze similari;
-        \item Cercare dataset con le informazioni relative ai film e creare cluster di film.
-    \end{itemize}
+        \section{Acquisizione dei dataset}\label{sec:acquisizione-dei-dataset}
+            Durante la scelta dai dati da fornire al machine learning le possibili scelte da seguire erano sostanzialmente due:
+            \begin{itemize}
+                \item Creare un dataset contenente gli utenti di iLike ed analizzare il loro comportamento, al fine di creare
+                cluster di utenti i quali hanno preferenze similari;
+                \item Cercare dataset con le informazioni relative ai film e creare cluster di film.
+            \end{itemize}\\
 
-    I problemi riscontrati sono:
-    \begin{itemize}
-        \item La disponibilità di dati era maggiore nei dataset già esistenti;
-        \item Ogni utente ha gusti differenti, quindi la similarità tra utenti, rappresentata come il numero di contenuti uguali
-        appartente alle proprie liste, può non essere sempre veritera;
-        \item Individuare dataset con un numero ottimale di istanze e le giuste informazioni sui film richiede
-        un'accurata analisi.
-    \end{itemize}
-    Al seguito di un trade-off tra le due alternative abbiamo preferito utilizzare dataset già esistenti relativi ai film,
-    poichè la disponibilità di dati e la giusta similarità di elementi in un cluster agevola le prestazioni dell'algoritmo
-    di machine learning.
+            I problemi riscontrati sono:
+            \begin{itemize}
+                \item La disponibilità di dati era maggiore nei dataset già esistenti;
+                \item Ogni utente ha gusti differenti, quindi la similarità tra utenti, rappresentata come il numero di contenuti uguali
+                appartente alle proprie liste, può non essere sempre veritera;
+                \item Individuare dataset con un numero ottimale di istanze e le giuste informazioni sui film richiede
+                un'accurata analisi.
+            \end{itemize}
+            Al seguito di un trade-off tra le due alternative abbiamo preferito utilizzare dataset già esistenti relativi ai film,
+            poichè la disponibilità di dati e la giusta similarità di elementi in un cluster agevola le prestazioni dell'algoritmo
+            di machine learning.
 
-    \section{Analisi dei dataset}\label{sec:analisi-dei-dataset}
-    Il dataset utilizzato riguardo i \href{https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset?resource=download}{\underline{Film}}
-    è reperibile sulla piattaforma Kaggle.
+        \section{Analisi dei dataset}\label{sec:analisi-dei-dataset}
+            Il dataset utilizzato riguardo i \href{https://www.kaggle.com/datasets/stefanoleone992/filmtv-movies-dataset?resource=download}{\underline{Film}}
+            è reperibile sulla piattaforma Kaggle.
 
 
     \chapter{Data Preparation}\label{ch:data-preparation}
-    In fase di Data Understanding abbiamo scelto l'utilizzo di un dataset già esistente, quindi è opportuno effettuare Data Preparation.
-    Lo scopo di questa fase è pulire i dati al fine di passarli all'algoritmo di Machine Learning.
+        In fase di Data Understanding abbiamo scelto l'utilizzo di un dataset già esistente, quindi è opportuno effettuare Data Preparation.
+        Lo scopo di questa fase è pulire i dati al fine di passarli all'algoritmo di Machine Learning.
 
-    \section{Data Cleaning}\label{sec:data-cleaning}
-    Lo scopo del Data Cleaning è gestire dati rumorosi e/o nulli.
-    A tal proposito, è stata effettuata inizialmente un'analisi dei dati al fine di evidenziare dati rumorosi.
-    Si è notato che le colonne 'voto\_medio' e 'voti\_totali' rispecchiano esattamente la media e la somma delle colonne
-    'voto\_critica' e 'voto\_pubblico'. Dunque abbiamo deciso di elimnare le colonne 'voto\_critica' e 'voto\_pubblico' e
-    non eliminare le colonne 'voto\_medio' e 'voti\_totali', rimandando tale scelta nel Feature Selection, per valutare
-    quale delle due ha una maggiore corelazione tra le altre variabili.
+        \section{Data Cleaning}\label{sec:data-cleaning}
+            Lo scopo del Data Cleaning è gestire dati rumorosi e/o nulli.
+            A tal proposito, è stata effettuata inizialmente un'analisi dei dati al fine di evidenziare dati rumorosi.
+            Si è notato che le colonne 'voto\_medio' e 'voti\_totali' rispecchiano esattamente la media e la somma delle colonne
+            'voto\_critica' e 'voto\_pubblico'. Dunque abbiamo deciso di elimnare le colonne 'voto\_critica' e 'voto\_pubblico' e
+            non eliminare le colonne 'voto\_medio' e 'voti\_totali', rimandando tale scelta nel Feature Selection, per valutare
+            quale delle due ha una maggiore corelazione tra le altre variabili.
 
-    In seguito è riportata una tabella contenente il nome della colonna, il numero di elementi mancanti e la scelta di
-    Data Imputation effettuata.\\
+            In seguito è riportata una tabella contenente il nome della colonna, il numero di elementi mancanti e la scelta di
+            Data Imputation effettuata.\\
 
 
-    \begin{tabular}{ |c|c|c| }
-        \hline \rowcolor{Goldenrod} Nome Colonne & Numero Elementi & Scelta Data Imputation \\
-        \hline genere & 95 & Eliminazione Riga \\
-        \hline paese & 11 & Eliminazione Riga \\
-        \hline registi & 33 & Eliminazione Riga \\
-        \hline attori & 2.027 & Eliminazione Colonna \\
-        \hline descrizione & 1.449 & Eliminazione Riga \\
-        \hline note & 21.628 & Eliminazione Colonna \\
-        \hline
-    \end{tabular}
-    \\
+            \begin{tabular}{ |c|c|c| }
+                \hline \rowcolor{Goldenrod} Nome Colonne & Numero Elementi & Scelta Data Imputation \\
+                \hline genere & 95 & Eliminazione Riga \\
+                \hline paese & 11 & Eliminazione Riga \\
+                \hline registi & 33 & Eliminazione Riga \\
+                \hline attori & 2.027 & Eliminazione Colonna \\
+                \hline descrizione & 1.449 & Eliminazione Riga \\
+                \hline note & 21.628 & Eliminazione Colonna \\
+                \hline
+            \end{tabular}
+            \\
 
-    Le scelte sopra riportate sono state effettuate per evitare di eliminare un eccessivo numero di righe.
-    Si fa eccezione per la colonna descrizione in quanto tale colonna è necessaria all'interno dell'applicazione
-    iLike, per altre funzionalità non riguardanti il modulo di Intelligenza Artificiale.
+            Le scelte sopra riportate sono state effettuate per evitare di eliminare un eccessivo numero di righe.
+            Si fa eccezione per la colonna descrizione in quanto tale colonna è necessaria all'interno dell'applicazione
+            iLike, per altre funzionalità non riguardanti il modulo di Intelligenza Artificiale.
 
-    \section{Feature Scaling}\label{sec:feature-scaling}
-    Lo scopo del Feature Scaling è normalizzare i valori numeri del dataset, portandoli tutti nello stesso range.
-    I grafici box plot sottoriportati confrontano i valori iniziale e i valori ottenuti prima con la tecnica del
-    Min-Max Normalizzation e in seguito con lo Z-Score Normalizzation.
+        \section{Feature Scaling}\label{sec:feature-scaling}
+            Lo scopo del Feature Scaling è normalizzare i valori numeri del dataset, portandoli tutti nello stesso range.
+            I grafici box plot sottoriportati confrontano i valori iniziale e i valori ottenuti prima con la tecnica del
+            Min-Max Normalizzation e in seguito con lo Z-Score Normalizzation.
 
-    % prima del Feature Scaling
-    \includegraphics[width=50cm]{dataPreparation/noScaling.png}
-    % con Min-Max normalizzation
-    \includegraphics[width=5]{dataPreparation/minMax.png}
-    % con Z-Score Normalizzation
-    \includegraphics[width=50cm]{dataPreparation/zScore.png}
+            \begin{center}
+                % prima del Feature Scaling
+                \includegraphics[width=13cm, height=5cm]{dataPreparation/noScaling.png}\\
+                % con Min-Max normalizzation
+                \includegraphics[width=13cm, height=5cm]{dataPreparation/minMax.png}\\
+                % con Z-Score Normalizzation
+                \includegraphics[width=13cm, height=5cm]{dataPreparation/zScore.png}\\
+            \end{center}
 
-    \\Come evidenziato nei grafici, la tectica dello Z-Score Normalizzation è meno tendente ai valori estremi.
-    Dunque, abbiamo preferito tale tecnica al fine di effettuare una corretta normalizzazione dei dati.
+            \\Come evidenziato nei grafici, la tectica dello Z-Score Normalizzation è meno tendente ai valori estremi.
+            Dunque, abbiamo preferito tale tecnica al fine di effettuare una corretta normalizzazione dei dati.
 
-    \section{Feature Selection}\label{sec:feature-selection}
-    Lo scopo del Feature Selection è selezionare le caratteristiche più correlate al problema in esame.
-    In questa fase, le tecniche utilizzate sono:
-    \begin{itemize}
-        \item Eliminazione di feature con bassa varianza, con questa tecnica vengono eliminate le feacture
-        con varianza uguale. Nessuna feature a noi diponibile ha varianza uguale a 0;
-        \item Eliminazione univariata di feature, con questa tectica si analizzano le correlazioni tra le variabili.
-        Il grafico sottoriportato offre un'analisi riassuntiva delle correlazioni tra le variabili.
-        \includegraphics[width=50cm]{dataPreparation/matriceCorrelazione.png}
-        Come si può notare la feature 'anno' è inversamente correlata con quasi tutte le variabili, e la variabile
-        'voto\_medio' ha meno correlazione tra le variabili rispetto a 'voto\_totale'.
-        Dunque abbiamo eliminato le feature 'anno' e 'voto\_medio'.
-    \end{itemize}
+        \section{Feature Selection}\label{sec:feature-selection}
+            Lo scopo del Feature Selection è selezionare le caratteristiche più correlate al problema in esame.
+            In questa fase, le tecniche utilizzate sono:
+            \begin{itemize}
+                \item Eliminazione di feature con bassa varianza. Con questa tecnica vengono eliminate le feacture
+                con varianza uguale. Nel nostro caso, nessuna feature a noi diponibile ha varianza uguale a 0;
+                \item Eliminazione univariata di feature. Con questa tecnica si analizzano le correlazioni tra le variabili.
+                Il grafico sottoriportato offre un'analisi riassuntiva delle correlazioni tra le variabili.
+                \begin{center}
+                    \includegraphics[width=13cm, height=7cm]{dataPreparation/matriceCorrelazione.png}\\
+                \end{center}
+                Come si può notare la feature 'anno' è inversamente correlata con quasi tutte le variabili, e la variabile
+                'voto\_medio' ha meno correlazione tra le variabili rispetto a 'voto\_totale'.
+                Dunque abbiamo eliminato le feature 'anno' e 'voto\_medio'.
+            \end{itemize}
 
-    \section{Data Balancing}\label{sec:data-balancing}
-
+        \section{Data Balancing}\label{sec:data-balancing}
+            Lo scopo del Data Balancing è bilanciare i dati, al fine di avere lo stesso numero di istanze in tutte le classi.
+            Nel nosto dataset le classi possono essere rappresentate dalla feture 'genere', ma avendo optato in fase di
+            Business Understanding per un algoritmo di apprendimento non supervisionato, tale bilanciamento non è necessario
+            in fase di Data Preparation.
 
 
     \chapter{Modeling}\label{ch:modeling}
 
 
-    \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
+        \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
 
 
-    \section{Fase di addestramento}\label{sec:fase-di-addestramento}
+        \section{Fase di addestramento}\label{sec:fase-di-addestramento}
 
-    In merito all'addestramento del Conversational Agent abbiamo usufruito della libreria \textit{Natural Language Toolkit}
-    offerta dal linguaggio di programmazione \textit{Python}.
+            In merito all'addestramento del Conversational Agent abbiamo usufruito della libreria \textit{Natural Language Toolkit}
+            offerta dal linguaggio di programmazione \textit{Python}. Abbiamo inizializzato un array (\textit{pairs}) di coppie domande-risposte,
+            in particolare abbiamo ipotizzato una serie di pattern corrispondenti ad espressioni regolari che esprimono statement o domande che
+            l'utente può inviare al sistema ed in base ad essi abbiamo definito delle risposte che il nostro CA dovrà fornire all'utente.
 
-    Abbiamo inizializzato un array (\textit{pairs}) di coppie domande-risposte, in particolare abbiamo ipotizzato una serie di pattern
-    corrispondenti ad espressioni regolari che esprimono statement o domande che l'utente può inviare al sistema ed
-    in base ad essi abbiamo definito delle risposte che il nostro CA dovrà fornire all'utente. In questo modo andiamo ad istruire il bot
-    su come rispondere alle domande o alle frasi dell'utente. Per diverse domande sono state previste risposte multiple, in modo da rendere il bot meno monotono.
-    \textit{Pairs} contiene domande e risposte specifiche per la nostra applicazione e per lo scopo
-    principale della creazione del bot, ovvero il suggerimento di film in base ai gusti degli iscritti.
-    Nel momento in cui l'iscritto digita un messaggio e lo invia, se questo avrà un match con uno dei pattern previsti allora
-    verrà visualizzata la risposta appropriata, altrimenti verrà visualizzato un messaggio che invita l'iscritto
-    ad esprimere diversamente la sua richiesta.
+            In questo modo andiamo ad istruire il bot su come rispondere alle domande o alle frasi dell'utente. Per diverse domande
+            sono state previste risposte multiple, in modo da rendere il bot meno monotono.
+            \textit{Pairs} contiene domande e risposte specifiche per la nostra applicazione e per lo scopo
+            principale della creazione del bot, ovvero il suggerimento di film in base ai gusti degli iscritti.
+            Nel momento in cui l'iscritto digita un messaggio e lo invia, se questo avrà un match con uno dei pattern previsti allora
+            verrà visualizzata la risposta appropriata, altrimenti verrà visualizzato un messaggio che invita l'iscritto
+            ad esprimere diversamente la sua richiesta.
 
-    Grazie all'utilizzo della libreria \textit{Natural Language Toolkit} i vari passaggi previsti dal Natural Language Processing
-    sono eseguiti in automatico e risultano per questo motivo "nascosti".
+            Grazie all'utilizzo della libreria \textit{Natural Language Toolkit} i vari passaggi previsti dal Natural Language Processing
+            sono eseguiti in automatico e risultano per questo motivo "nascosti".
 
-    Nel caso specifico in cui l'utente richiede un consiglio la risposta verrà data sulla base del risultato della chiamata
-    all'algoritmo di clustering per dare un suggerimento mirato, basato sui gusti dell'utente in questione espressi tramite
-    l'aggiunta dei film presenti nell'applicazione ad una lista di preferiti.
+            Nel caso specifico in cui l'utente richiede un consiglio la risposta verrà data sulla base del risultato della chiamata
+            all'algoritmo di clustering per dare un suggerimento mirato, basato sui gusti dell'utente in questione espressi tramite
+            l'aggiunta dei film presenti nell'applicazione ad una lista di preferiti.
 
 
 
     \chapter{Evaluation}\label{ch:evaluation}
 
-
-    \section{Elbow point}\label{sec:elbow-point}
-
-
-    \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
+        \section{Elbow point}\label{sec:elbow-point}
 
 
-    \section{MoJo distance}\label{sec:mojo-distance}
+        \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
+
+
+        \section{MoJo distance}\label{sec:mojo-distance}
 
 
     \chapter{Deployment}\label{ch:deployment}
 
-    Sarà possibile usufruire del Conversational Agent premendo sull'apposito pulsante presente nelle varie activity dell'applicazione.
-    All'inizio l'utente visualizza un messaggio di benvenuto del bot e successivamente è libero di scrivere le sue
-    richieste nell'apposita area visibile in fondo alla schermata. Una volta scritto il messaggio, l'utente dovrà premere il pulsante
-    \textit{INVIA} e dopo pochi secondi la risposta del bot sarà visibile. A questo punto sarà possibile inviare un ulteriore messaggio a cui
-    il bot risponderà e così via fino a quando l'utente non deciderà di uscire dalla pagina in questione tramite l'apposito pulsante
-    o tramite il tasto \textit{back} del dispositivo mobile.
+        Sarà possibile usufruire del Conversational Agent premendo sull'apposito pulsante presente nelle varie activity dell'applicazione.
+        All'inizio l'utente visualizza un messaggio di benvenuto del bot e successivamente è libero di scrivere le sue
+        richieste nell'apposita area visibile in fondo alla schermata. Una volta scritto il messaggio, l'utente dovrà premere il pulsante
+        \textit{INVIA} e dopo pochi secondi la risposta del bot sarà visibile. A questo punto sarà possibile inviare un ulteriore messaggio a cui
+        il bot risponderà e così via fino a quando l'utente non deciderà di uscire dalla pagina in questione tramite l'apposito pulsante
+        o tramite il tasto \textit{back} del dispositivo mobile.
 
 
     \chapter{Glossario}\label{ch:glossario}
-    \begin{adjustbox}{width=\columnwidth,center}
-        \begin{tabular}{|c|p{8cm}|}
-            \hline \textbf{Conversational Agent/CA} & É un bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
-            in un linguaggio naturale, attraverso la  generazione di una conversazione simil-umana.\\
-            \hline \textbf{Lista di contenuti} & Sottoinsieme di contenuti offerti da iLike, scelti dagli utenti secondo i loro gusti
-            e inseriti nelle proprie liste disponibili sul proprio profilo personale.\\
-            \hline \textbf{Cluster} & Sottoinsieme di contenuti con caratteristiche simili.\\
-            \hline \textbf{Machine Learning} & É la branca dell'Intelligenza Artificiale che include tutti gli algoritmi
-            che possano imparare dai dati e sulla base di questi fare previsioni.\\
-            \hline \textbf{Data Imputation} & É l'insieme di tecniche che possono stimare il valore di dati mancanti
-            sulla base dei dati disponibili oppure mitigare il problema dei dati mancanti.\\
-            \hline \textbf{Blox Plot} & è una rappresentazione grafica utilizzata per descrivere la distribuzione di un campione
-            tramite la media e deviazione standard.\\
-            \hline
-        \end{tabular}
-    \end{adjustbox}
+        \begin{adjustbox}{width=\columnwidth,center}
+            \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{8cm}|}
+                \hline \textbf{Conversational Agent/CA} & É un bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
+                in un linguaggio naturale, attraverso la  generazione di una conversazione simil-umana.\\
+                \hline \textbf{Lista di contenuti} & Sottoinsieme di contenuti offerti da iLike, scelti dagli utenti secondo i loro gusti
+                e inseriti nelle proprie liste disponibili sul proprio profilo personale.\\
+                \hline \textbf{Cluster} & Sottoinsieme di contenuti con caratteristiche simili.\\
+                \hline \textbf{Machine Learning} & É la branca dell'Intelligenza Artificiale che include tutti gli algoritmi
+                che possano imparare dai dati e sulla base di questi fare previsioni.\\
+                \hline \textbf{Data Imputation} & É l'insieme di tecniche che possono stimare il valore di dati mancanti
+                sulla base dei dati disponibili oppure mitigare il problema dei dati mancanti.\\
+                \hline \textbf{Blox Plot} & è una rappresentazione grafica utilizzata per descrivere la distribuzione di un campione
+                tramite la media e deviazione standard.\\
+                \hline
+            \end{tabular}
+        \end{adjustbox}
 
 
 \end{document}
