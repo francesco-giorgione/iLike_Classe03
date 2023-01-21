@@ -2,40 +2,15 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
+from scipy.stats import zscore
 from sklearn import preprocessing
 from sklearn.feature_selection import VarianceThreshold
+from sklearn.preprocessing import StandardScaler
 
 filmPath = "filmDaKaggle.csv"
 
 table = pd.read_csv(filmPath, sep=',')
 print(table.info())
-
-#       -------- DATA CLEANING --------
-
-# conto il numero di valori null
-print(table.isnull().sum())
-# Numero di righe
-print("Numero di righe:", table.index.stop)
-
-
-"""
-    ELIMINAZIONE DELLE COLONNE
-        voto_critica, voto_pubblico, note, attori
-"""
-print("\n\nEffettuo eliminazione per colonne: ")
-table.drop(columns=['voto_critica', 'voto_pubblico', "note", "attori"], inplace=True)
-print(table.isnull().sum())
-print("Numero di righe:", table.index.stop)
-
-
-"""
-    ELIMINAZIONE DELLE RIGHE CON VALORI NULLI SU
-        registi, descrizione, genere, paese
-"""
-print("\n\nEffettuo eliminazione per righe: ")
-table.dropna(subset=["registi", "descrizione", "genere", "paese"], inplace=True)
-print(table.isnull().sum())
-print("Numero di righe:", table.index)
 
 
 """
@@ -47,6 +22,35 @@ print(table.value_counts(subset=table["genere"]))
 condizioni = (table["genere"] == "Noir") | (table["genere"] == "Sperimentale") | (table["genere"] == "Mélo") | (table["genere"] == "Catastrofico") | (table["genere"] == "Gangster") | (table["genere"] == "Biblico") | (table["genere"] == "Sportivo") | (table["genere"] == "Cortometraggio")
 table.drop(table.loc[condizioni].index, inplace=True)
 # print(table.value_counts(subset=table["genere"]))
+
+
+#       -------- DATA CLEANING --------
+
+# conto il numero di valori null
+print(table.isnull().sum())
+# Numero di righe
+print("Numero di righe:", table.index)
+
+
+"""
+    ELIMINAZIONE DELLE COLONNE
+        voto_critica, voto_pubblico, note, attori
+"""
+print("\n\nEffettuo eliminazione per colonne: ")
+table.drop(columns=['voto_critica', 'voto_pubblico', "note", "attori"], inplace=True)
+print(table.isnull().sum())
+print("Numero di righe:", table.index)
+
+
+"""
+    ELIMINAZIONE DELLE RIGHE CON VALORI NULLI SU
+        registi, descrizione, genere, paese
+"""
+print("\n\nEffettuo eliminazione per righe: ")
+table.dropna(subset=["registi", "descrizione", "genere", "paese"], inplace=True)
+print(table.isnull().sum())
+print("Numero di righe:", table.index)
+
 
 
 #       -------- FEATURE SCALING --------
@@ -69,52 +73,52 @@ for col in table:
 """
 
 """
-    MIN-MAX NORMALIZZATION (range 0-1)
+    RIMOZIONE filmtv_id
 """
 
-# daNormalizzare = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali", "voto_medio", "durata"]
-min_max_scaler = preprocessing.MinMaxScaler()
-# table[daNormalizzare] = min_max_scaler.fit_transform(table[daNormalizzare].to_numpy())
-# print(table[daNormalizzare])
+table.drop(columns=["filmtv_id"], inplace=True)
 
-
+"""
+    Grafico prima del Feature Selection
+"""
 numericCol = table.select_dtypes(include=[np.number]).columns
-table[numericCol] = min_max_scaler.fit_transform(table[numericCol].to_numpy())
-print(table[numericCol])
 
-# print("\n\n")
-# # per ogni colonna della tabella mostra le statistiche
-# for col in table:
-#     print(col, "\n", table[col].describe(), "\n\n")
+plt.figure(figsize = (15,4))
+plt.title("Box Plot prima del Feature Scaling")
+sns.boxplot(data = table[numericCol], orient = "h")
 
+"""
+    MIN-MAX NORMALIZZATION (range 0-1)
+"""
+# min_max_scaler = preprocessing.MinMaxScaler()
+#
+# numericCol = table.select_dtypes(include=[np.number]).columns
+# table[numericCol] = min_max_scaler.fit_transform(table[numericCol].to_numpy())
+# print(table[numericCol])
+#
+# plt.figure(figsize = (15,4))
+# plt.title("Box Plot con il Feature Scaling con Min-Max Normalization")
+# sns.boxplot(data = table[numericCol], orient = "h")
+# plt.show()
+#
 
 """
     Z-SCORE NORMALIZZATION
 """
 
-# numericCol = table.select_dtypes(include=[np.number]).columns
-# table[numericCol] = zscore(table[numericCol], axis=1, ddof=1)
-# print(table[numericCol])
+numericCol = table.select_dtypes(include=[np.number]).columns
 
-# print("\n\n")
-# # per ogni colonna della tabella mostra le statistiche
-# for col in table:
-#     print(col, "\n", table[col].describe(), "\n\n")
+scaler = StandardScaler()
+scaled_array = scaler.fit_transform(table[numericCol])
+scaled_dataframe = pd.DataFrame( scaled_array, columns = table[numericCol].columns)
+
+plt.figure(figsize = (15,4))
+plt.title("Box Plot con il Feature Scaling con Z-Score Normalization")
+sns.boxplot(data = scaled_dataframe, orient = "h")
+# plt.show()
 
 
 #       -------- FEATURE SELECTION --------
-
-"""
-    RIMOZIONE voto_medio, anno e filmtv_id
-"""
-
-table.drop(columns=["filmtv_id"], inplace=True)
-
-
-# print("\n\n")
-# # per ogni colonna della tabella mostra le statistiche
-# for col in table:
-#     print(col, "\n", table[col].describe(), "\n\n")
 
 """
     ELIMINAZIONE DI FEATURE CON BASSA VARIANZA
@@ -122,10 +126,9 @@ table.drop(columns=["filmtv_id"], inplace=True)
 """
 
 numericCol = table.select_dtypes(include=[np.number]).columns
-# print(numericCol)
+
 lowVariance = VarianceThreshold()
 lowVariance.fit_transform(table[numericCol])
-# print(lowVariance.variances_)
 
 # eliminazione delle colonne con varianza <= 0
 for i, col in enumerate(numericCol):
@@ -143,13 +146,17 @@ numericCol = table.select_dtypes(include=[np.number]).columns
 
 tableNum = table[numericCol]
 
-#heatmap per interpretare più facilmente la matrice di correlazione
+#heatmap per la matrice di correlazione
 plt.figure(figsize = (15,6))
+plt.title("Matrice di correlazione tra le variabili numeriche")
 sns.heatmap(tableNum.corr(), annot=True)
 
 
 #Dopo un confronto abbiamo deciso di togliere anno e voto_medio perchè
 #sono inversamente correlate con le altre variabili
+"""
+    RIMOZIONE voto_medio e anno
+"""
 table.drop(columns=["anno"], inplace=True)
 table.drop(columns=["voto_medio"], inplace=True)
 
@@ -157,8 +164,10 @@ numericCol = table.select_dtypes(include=[np.number]).columns
 tableNum = table[numericCol]
 
 plt.figure(figsize = (15,6))
+plt.title("Matrice di correlazione tra le variabili numeriche dopo la rimozione di anno e voto_medio")
 sns.heatmap(tableNum.corr(), annot=True)
 plt.show()
+
 
 # --- Utile ---
 
