@@ -122,6 +122,10 @@ public class ActivityChatbot extends AppCompatActivity {
 
                     if (obj==null)
                         risposta= "Non ho capito la domanda";
+                    else if (obj.toString().equalsIgnoreCase("Certo! Scegli l'algoritmo che preferisci utilizzare.")) {
+                        risposta = obj.toString();
+                        risposta+="\n\nDigita:\nkms per k-means\ndbs per DBSCAN";
+                    }
                     else
                         risposta=obj.toString();
                     dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());

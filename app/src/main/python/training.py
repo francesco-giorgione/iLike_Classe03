@@ -1,7 +1,7 @@
 from nltk.chat.util import Chat, reflections
 
 # array contenente coppie domanda - risposta delimitate da parentesi quadre
-# r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano le risposte del bot
+# r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano la risposta del bot
 pairs = [
     [
         r"We|Ciao|Hey",
@@ -27,7 +27,11 @@ pairs = [
         ["Bene grazie tu?"],
     ],
     [
-        r"bene|male",
+        r"(.*)come va(.*)",
+        ["Bene grazie a te?"],
+    ],
+    [
+        r"bene|male|benino|potrebbe andare meglio",
         ["Come posso aiutarti?"],
     ],
     [
@@ -40,7 +44,15 @@ pairs = [
     ],
     [
         r"consigliami(.*)|mi dai un consiglio(.*)|(.*)consigli(.*)",
-        ["Chiamare algoritmo!!"],
+        ["Certo! Scegli l'algoritmo che preferisci utilizzare."],
+    ],
+    [
+        r"kms",
+        ["Chiamata algoritmo K-means"],
+    ],
+    [
+        r"dbs",
+        ["Chiamata algoritmo DBSCAN"],
     ],
     [
         r"che fai?",
@@ -64,6 +76,6 @@ pairs = [
 chat = Chat(pairs, reflections)  # serve alla libreria per distinguere domande e risposte
 
 def main(utterances):
-     return chat.respond(utterances)
+    return chat.respond(utterances)
 
 #chat.converse()  # comando per far sì che inizi la conversazione
