@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.28)  20 JAN 2023 23:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.28)  22 JAN 2023 18:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -390,14 +390,14 @@ LaTeX Info: Redefining \nameref on input line 33.
 <logo.JPEG, id=96, 2905.85625pt x 2905.85625pt>
 File: logo.JPEG Graphic file (type jpg)
 <use logo.JPEG>
-Package pdftex.def Info: logo.JPEG  used on input line 48.
+Package pdftex.def Info: logo.JPEG  used on input line 51.
 (pdftex.def)             Requested size: 284.52756pt x 284.48376pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 48.
+(Font)              <12> on input line 51.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 48.
+(Font)              <8> on input line 51.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 48.
+(Font)              <6> on input line 51.
  [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo.
@@ -416,7 +416,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.51     \chapter
+l.54     \chapter
                  {Introduzione}\label{ch:introduzione} [1
 
 ]
@@ -429,69 +429,164 @@ Capitolo 2.
 
 ] [4]
 Capitolo 3.
+
+./iLikeAI.tex:144: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.144 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [5
 
 ]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--173
+Underfull \hbox (badness 10000) in paragraph at lines 174--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--186
+Underfull \hbox (badness 10000) in paragraph at lines 178--189
 
+ []
+
+<dataPreparation/noScaling.png, id=157, 990.099pt x 289.08pt>
+File: dataPreparation/noScaling.png Graphic file (type png)
+<use dataPreparation/noScaling.png>
+Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 201.
+
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 201--201
+ [] 
  []
 
 [6
 
-] [7]
-Capitolo 5.
-[8
-
 ]
-Capitolo 6.
+<dataPreparation/minMax.png, id=165, 990.099pt x 289.08pt>
+File: dataPreparation/minMax.png Graphic file (type png)
+<use dataPreparation/minMax.png>
+Package pdftex.def Info: dataPreparation/minMax.png  used on input line 203.
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 203--203
+ [][] 
+ []
+
+<dataPreparation/zScore.png, id=166, 990.099pt x 289.08pt>
+File: dataPreparation/zScore.png Graphic file (type png)
+<use dataPreparation/zScore.png>
+Package pdftex.def Info: dataPreparation/zScore.png  used on input line 205.
+(pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+
+Overfull \hbox (24.8812pt too wide) in paragraph at lines 205--205
+ [][] 
+ []
+
+
+./iLikeAI.tex:208: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.208             \\C
+                     ome evidenziato nei grafici, la tectica dello Z-Score N...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[7 <./dataPreparation/noScaling.png> <./dataPreparation/minMax.png> <./dataPrep
+aration/zScore.png>]
+<dataPreparation/Matrice di Correlazione.png, id=174, 1084.05pt x 433.62pt>
+File: dataPreparation/Matrice di Correlazione.png Graphic file (type png)
+<use dataPreparation/Matrice di Correlazione.png>
+Package pdftex.def Info: dataPreparation/Matrice di Correlazione.png  used on i
+nput line 220.
+(pdftex.def)             Requested size: 369.87889pt x 199.16988pt.
+
+Overfull \hbox (49.87892pt too wide) in paragraph at lines 220--220
+ [] 
+ []
+
+[8 <./dataPreparation/Matrice di Correlazione.png>]
+Capitolo 5.
+<modelling/ClusterK-Means.png, id=180, 462.528pt x 346.896pt>
+File: modelling/ClusterK-Means.png Graphic file (type png)
+<use modelling/ClusterK-Means.png>
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 246.
+(pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
 [9
+
+ <./modelling/ClusterK-Means.png>]
+<modelling/numeroFilmxCluster.png, id=186, 907.89188pt x 191.21437pt>
+File: modelling/numeroFilmxCluster.png Graphic file (type png)
+<use modelling/numeroFilmxCluster.png>
+Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 2
+68.
+(pdftex.def)             Requested size: 227.62204pt x 47.9406pt.
+<modelling/distanzeMetriche.png, id=187, 658.46pt x 188.705pt>
+File: modelling/distanzeMetriche.png Graphic file (type png)
+<use modelling/distanzeMetriche.png>
+Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 274
+.
+(pdftex.def)             Requested size: 227.62204pt x 65.23286pt.
+<modelling/filmSelezionato.png, id=188, 337.76187pt x 212.795pt>
+File: modelling/filmSelezionato.png Graphic file (type png)
+<use modelling/filmSelezionato.png>
+Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 281.
+
+(pdftex.def)             Requested size: 227.62204pt x 143.40962pt.
+ [10 <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png> <.
+/modelling/filmSelezionato.png>] [11]
+Capitolo 6.
+[12
 
 ]
 Capitolo 7.
-[10
+[13
 
 ]
 Capitolo 8.
-[11
+[14
 
 ] (/Users/macbookpro/Desktop/progetto/out/iLikeAI.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
-(rerunfilecheck)             Checksum: A7CBE7BC78511145862A8D9D34CF5414;3128.
+(rerunfilecheck)             Checksum: A24323B1907A3A2C175D0E24B294C67A;3161.
  ) 
 Here is how much of TeX's memory you used:
- 11981 strings out of 478268
- 194436 string characters out of 5846346
- 597729 words of memory out of 5000000
- 29976 multiletter control sequences out of 15000+600000
- 480637 words of font info for 49 fonts, out of 8000000 for 9000
+ 12061 strings out of 478268
+ 196898 string characters out of 5846346
+ 596740 words of memory out of 5000000
+ 30042 multiletter control sequences out of 15000+600000
+ 481402 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,90p,291b,353s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,16n,90p,291b,406s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 }{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<
 /usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></u
 sr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
 /local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/l
 ocal/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/t
-exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texli
-ve/2022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on /Users/macbookpro/Desktop/progetto/out/iLikeAI.pdf (12 pages,
- 467339 bytes).
+al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/t
+exlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/tex
+live/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texli
+ve/2022/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive
+/2022/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on /Users/macbookpro/Desktop/progetto/out/iLikeAI.pdf (15 pages,
+ 771449 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
- 202 compressed objects within 3 object streams
- 37 named destinations out of 1000 (max. 500000)
- 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 

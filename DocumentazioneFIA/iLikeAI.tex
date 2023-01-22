@@ -237,7 +237,50 @@
         \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
 
 
-        \section{Fase di addestramento}\label{sec:fase-di-addestramento}
+        \section{Integrazione con il sistema}\label{sec:integrazione-con-il-sistema}
+            Dopo aver scelto l'algoritmo di clustering da utilizzare, restava il problema di come integrarlo ed impiegarlo all'interno
+            del nostro sistema software.
+            L'algoritmo adoperato ci consente di calcolare, a partire dal dataset di film di cui si dispone, un certo numero di cluster
+            contenenti film con caratteristiche simili, come visibile anche dal grafico seguente.
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/ClusterK-Means}\\
+            \end{center}
+            Una volta ottenuto questo modello, l'obiettivo da raggiungere era partire da una lista di film preferiti di un iscritto
+            e consigliarne nuovi che potessero rispecchiare i suoi gusti e le sue preferenze espresse tramite l'applicazione.
+            Ad esempio, ipotizziamo che la lista di preferiti dell'utente contenga i seguenti film:
+            \begin{itemize}
+                \item Storie irlandesi
+                \item Diva!
+                \item La grande bellezza
+                \item Adults in the Room
+                \item Ciao amore, vado a combattere
+                \item Il piccolo ladro
+                \item Polvere di stelle
+                \item Home
+                \item 120 battiti al minuto
+                \item Tutti fratelli nel West... per parte di padre
+            \end{itemize}
+            Sulla base degli elementi della lista dell'utente, abbiamo costruito un dizionario formato da
+            coppie chiave-valore rispettivamente contenenti il titolo e l'anno di un film (chiave) e il cluster di appartenenza (valore).
+            Successivamente abbiamo individuato il cluster contenente il maggior numero di elementi della lista di preferiti dell'iscritto (\textit{tableCluster})
+            e salvato all'interno di una nuova lista (\textit{newList[]}) i film che appartenevano a questa intersezione.
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/numeroFilmxCluster}\\
+            \end{center}
+
+            Abbiamo poi calcolato le distanze metriche medie tra gli elementi di \textit{newList[]} e tutti i restanti elementi
+            del cluster \textit{tableCluster}.
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/distanzeMetriche}\\
+            \end{center}
+
+            Ottenuta questa informazione abbiamo individuato l'elemento con distanza metrica inferiore. Quest'ultimo rappresenta proprio
+            il film più vicino alle preferenze espresse dall'utente e quindi il film che verrà consigliato all'iscritto tramite il
+            Conversational Agent.
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/filmSelezionato}\\
+            \end{center}
+
 
             In merito all'addestramento del Conversational Agent abbiamo usufruito della libreria \textit{Natural Language Toolkit}
             offerta dal linguaggio di programmazione \textit{Python}. Abbiamo inizializzato un array (\textit{pairs}) di coppie domande-risposte,
