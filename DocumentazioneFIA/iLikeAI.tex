@@ -235,9 +235,67 @@
 
 
         \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
+            Esiste un gran numero di algoritmi di clustering, pertanto bisogna effettuare una scelta dell'algoritmo da considerare
+            per effettuare il clustering tra gli elementi.
+            Prima di effettuare la scelta dell'algoritmo da utilizzare abbiamo fatto un confronto tra due algoritmi di clustering molto
+            usati, ossia il K-Means e il DBScan.
+
+            \subsection{K-Means}
+            Per quanto riguarda l'algoritmo di clustering K-Means, questo viene realizzato tramite la funzione KMeans()
+            della libreria sklearn.cluster.
+            Tale funzione permette di definire alcuni parametri di input, pertanto abbiamo valutato l'algoritmo di K-Means
+            con diversi valori per due di questi parametri.
+
+            Per il parametro che permette di definire il metodo per l'inizializzazione abbiamo valutato due opzioni:
+                \begin{itemize}
+                    \item random, che sceglie n cluster di osservazioni (righe) a caso dai dati per i centroidi iniziali
+                    \item k-means++, che garantisce un'inizializzazione più intelligente dei centroidi e migliora la qualità del clustering
+                \end{itemize}
+
+            Dopo aver valutato i due metodi di inizializzazione sul nostro dataset, abbiamo scelto il metodo k-means++, in quanto più adatto
+            a dividere il nostro dataset in cluster distinti.
+
+            Per quanto riguarda il parametro che specifica l'algoritmo che utilizza il K-Means abbiamo valutato le seguenti opzioni:
+            \begin{itemize}
+                \item llyod, che è quello utilizzato di default
+                \item elkan, che usa la disuguaglianza triangolare
+            \end{itemize}
+
+            A seguito di un confronto abbiamo preferito utilizzare l'algoritmo di elkan, in quanto il numero di iterazioni effettuate per arrivare ad ottenere
+            i cluster era nettamente minore al numero di iterazioni effettuate scegliendo l'algoritmo di llyod.
+
+            Il grafico riportato sotto mostra la divisione del dataset in cluster, effettuata utilizzando l'algoritmo di K-Means.
+
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/ClusterK-Means.png}\\
+            \end{center}
+
+            \subsection{DBScan}
+            L'algoritmo di clustering DBScan viene realizzato tramite la funzione DBSCAN() della libreria sklearn.cluster.
+            Anche questa funzione permette di definire alcuni parametri di input, che sono:
+            \begin{itemize}
+                \item eps, che definisce un intorno circolare di ciascun punto dai suoi vicini
+                \item min samples, che stabilisce il numero minimo di punti per considerare un intorno di un punto denso
+            \end{itemize}
+
+            La scelta dei valori effettuata è stata eps=1 e min samples=5.
+
+            Di seguito è riportato il clustering ottenuto con DBScan e i valori dei parametri definiti sopra.
+
+            \begin{center}
+                \includegraphics[width=8cm]{modelling/DBScan.png}\\
+            \end{center}
+
+        Tutte le considerazioni e valutazioni relative ai valori dei parametri scelti saranno effettuate nella fase successiva
+        che è quella di Evaluation.
+
+        Inoltre il giudizio sul clustering usato sarà dato dagli utenti finali, pertanto la scelta dell'algoritmo migliore tra
+        il K-Means e il DBScan sarà rimandata in fase di utilizzo.
+        Questo sarà possibile in quanto la chat bot permetterà ai beta tester di scegliere l'algoritmo di clustering
+        da utilizzare, chiedendo direttamente di effettuare tale scelta prima di iniziare il clustering.
 
 
-        \section{Integrazione con il sistema}\label{sec:integrazione-con-il-sistema}
+    \section{Integrazione con il sistema}\label{sec:integrazione-con-il-sistema}
             Dopo aver scelto l'algoritmo di clustering da utilizzare, restava il problema di come integrarlo ed impiegarlo all'interno
             del nostro sistema software.
             L'algoritmo adoperato ci consente di calcolare, a partire dal dataset di film di cui si dispone, un certo numero di cluster

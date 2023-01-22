@@ -4,7 +4,6 @@
 \contentsline {chapter}{\numberline {2}Business Understanding}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Obiettivi di business}{3}{section.2.1}%
 \contentsline {section}{\numberline {2.2}PEAS}{3}{section.2.2}%
-\contentsline {paragraph}{}{3}{section*.2}%
 \contentsline {section}{\numberline {2.3}Proprietà dell'ambiente}{3}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Analisi del problema}{4}{section.2.4}%
 \contentsline {chapter}{\numberline {3}Data Understanding}{5}{chapter.3}%
@@ -14,13 +13,13 @@
 \contentsline {section}{\numberline {4.1}Data Cleaning}{6}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Feature Scaling}{6}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Feature Selection}{7}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Data Balancing}{7}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Modeling}{8}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{8}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Fase di addestramento}{8}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Evaluation}{9}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Elbow point}{9}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Silhouette coefficient}{9}{section.6.2}%
-\contentsline {section}{\numberline {6.3}MoJo distance}{9}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deployment}{10}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Glossario}{11}{chapter.8}%
+\contentsline {section}{\numberline {4.4}Data Balancing}{8}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Modeling}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{9}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Integrazione con il sistema}{9}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Evaluation}{12}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Elbow point}{12}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Silhouette coefficient}{12}{section.6.2}%
+\contentsline {section}{\numberline {6.3}MoJo distance}{12}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Deployment}{13}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Glossario}{14}{chapter.8}%
