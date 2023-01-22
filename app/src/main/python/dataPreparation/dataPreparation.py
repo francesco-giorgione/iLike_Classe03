@@ -99,12 +99,16 @@ numericCol = table.select_dtypes(include=[np.number]).columns
 
 scaler = StandardScaler()
 scaled_array = scaler.fit_transform(table[numericCol])
-scaled_dataframe = pd.DataFrame( scaled_array, columns = table[numericCol].columns)
+table[numericCol] = pd.DataFrame( scaled_array, columns = table[numericCol].columns)
 
 plt.figure(figsize = (15,4))
 plt.title("Box Plot con il Feature Scaling con Z-Score Normalization")
-sns.boxplot(data = scaled_dataframe, orient = "h")
+sns.boxplot(data = table[numericCol], orient = "h")
 # plt.show()
+
+# per ogni colonna della tabella mostra le statistiche
+for col in table:
+    print(col, "\n", table[col].describe(), "\n\n")
 
 
 #       -------- FEATURE SELECTION --------
@@ -144,18 +148,19 @@ sns.heatmap(tableNum.corr(), annot=True)
 #Dopo un confronto abbiamo deciso di togliere anno e voto_medio perchè
 #sono inversamente correlate con le altre variabili
 """
-    RIMOZIONE voto_medio e anno
+    RIMOZIONE voto_medio, anno e durata
 """
 # la colonna non viene eliminata, ma non considerata come feature. Serve solo come chiave con 'titolo_italiano'
 # table.drop(columns=["anno"], inplace=True)
 table.drop(columns=["voto_medio"], inplace=True)
+table.drop(columns=["durata"], inplace=True)
 
 # numericCol = table.select_dtypes(include=[np.number]).columns
-numericCol = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali", "durata"]
+numericCol = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali"]
 tableNum = table[numericCol]
 
 plt.figure(figsize = (15,6))
-plt.title("Matrice di correlazione tra le variabili numeriche dopo la rimozione di anno e voto_medio")
+plt.title("Matrice di correlazione tra le variabili numeriche dopo la rimozione di anno, voto_medio e durata")
 sns.heatmap(tableNum.corr(), annot=True)
 plt.show()
 
