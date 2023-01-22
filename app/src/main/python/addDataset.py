@@ -17,7 +17,7 @@ def get_film_frame():
     # --------- FILM ---------
     # print("\n\nFILM: ")
     # Dizionario dove: key = nome attributo in dataset,  value = nome attributo in database
-    filmAttributiDataset = {"titolo_originale": "titolo", "descrizione": "descrizione", "genere": "categoria",
+    filmAttributiDataset = {"titolo_italiano": "titolo", "descrizione": "descrizione", "genere": "categoria",
                             "anno": "anno_rilascio", "durata": "durata", "registi": "regista", "attori": "attori", "paese": "paese"}
 
     # inizializzazione della tabella film
@@ -37,7 +37,7 @@ def get_film_frame():
     # numero null in ogni colonna
     # print(filmTable.isnull().sum())
     # togliere righe con valori = null
-    filmTable.dropna(subset=["regista", "attori", "regista", "descrizione", "categoria"], inplace=True)
+    # filmTable.dropna(subset=["regista", "attori", "regista", "descrizione", "categoria"], inplace=True)
 
     # print(filmTable.isnull().sum())
     # print(filmTable.head(0))

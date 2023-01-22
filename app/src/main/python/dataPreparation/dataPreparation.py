@@ -13,17 +13,6 @@ table = pd.read_csv(filmPath, sep=',')
 print(table.info())
 
 
-"""
-    ELIMINAZIONE DI GENERI
-        Noir, Sperimentale, Mélo, Catastrofico, Gangster, Biblico, Sportivo, Cortometraggio
-"""
-print(table.value_counts(subset=table["genere"]))
-
-condizioni = (table["genere"] == "Noir") | (table["genere"] == "Sperimentale") | (table["genere"] == "Mélo") | (table["genere"] == "Catastrofico") | (table["genere"] == "Gangster") | (table["genere"] == "Biblico") | (table["genere"] == "Sportivo") | (table["genere"] == "Cortometraggio")
-table.drop(table.loc[condizioni].index, inplace=True)
-# print(table.value_counts(subset=table["genere"]))
-
-
 #       -------- DATA CLEANING --------
 
 # conto il numero di valori null
@@ -157,10 +146,12 @@ sns.heatmap(tableNum.corr(), annot=True)
 """
     RIMOZIONE voto_medio e anno
 """
-table.drop(columns=["anno"], inplace=True)
+# la colonna non viene eliminata, ma non considerata come feature. Serve solo come chiave con 'titolo_italiano'
+# table.drop(columns=["anno"], inplace=True)
 table.drop(columns=["voto_medio"], inplace=True)
 
-numericCol = table.select_dtypes(include=[np.number]).columns
+# numericCol = table.select_dtypes(include=[np.number]).columns
+numericCol = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali", "durata"]
 tableNum = table[numericCol]
 
 plt.figure(figsize = (15,6))
@@ -168,11 +159,11 @@ plt.title("Matrice di correlazione tra le variabili numeriche dopo la rimozione 
 sns.heatmap(tableNum.corr(), annot=True)
 plt.show()
 
+
 """
     Ricreare il file film.csv
 """
-#table.to_csv("film.csv")
-
+# table.to_csv("film.csv")
 
 # --- Utile ---
 
