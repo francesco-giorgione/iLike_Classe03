@@ -41,7 +41,6 @@ print(table.isnull().sum())
 print("Numero di righe:", table.index)
 
 
-
 #       -------- FEATURE SCALING --------
 
 print("\n\n")
@@ -61,10 +60,7 @@ for col in table:
     durata      -> range 41-924
 """
 
-"""
-    RIMOZIONE filmtv_id
-"""
-
+# RIMOZIONE filmtv_id
 table.drop(columns=["filmtv_id"], inplace=True)
 
 """
@@ -98,8 +94,10 @@ sns.boxplot(data = table[numericCol], orient = "h")
 numericCol = table.select_dtypes(include=[np.number]).columns
 
 scaler = StandardScaler()
-scaled_array = scaler.fit_transform(table[numericCol])
-table[numericCol] = pd.DataFrame( scaled_array, columns = table[numericCol].columns)
+table[numericCol] = scaler.fit_transform(table[numericCol])
+# table[numericCol] = pd.DataFrame( scaled_array, columns = table[numericCol].columns)
+
+print(table[numericCol])
 
 plt.figure(figsize = (15,4))
 plt.title("Box Plot con il Feature Scaling con Z-Score Normalization")
