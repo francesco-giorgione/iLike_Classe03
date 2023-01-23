@@ -42,3 +42,5 @@ plt.scatter(X[:, 0], X[:, 1], c=y_dbscan, cmap="viridis", s=300, edgecolors="bla
 plt.title("Clustering con DB-Scan")
 plt.show()
 
+# table.to_csv("filmClusterDBScan.csv")
+
