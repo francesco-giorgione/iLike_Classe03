@@ -76,7 +76,7 @@
 
         \section{PEAS}\label{sec:peas}
 
-            Specifica PEAS dell'ambiente.
+            Specifica PEAS dell'ambiente.\\
 
             \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{8cm}|}
                 \hline
@@ -299,11 +299,14 @@
             Dopo aver scelto l'algoritmo di clustering da utilizzare, restava il problema di come integrarlo ed impiegarlo all'interno
             del nostro sistema software.
             L'algoritmo adoperato ci consente di calcolare, a partire dal dataset di film di cui si dispone, un certo numero di cluster
-            contenenti film con caratteristiche simili, come visibile anche dal grafico seguente.
+            contenenti film con caratteristiche simili, come visibile anche dai grafici seguenti.
+
             \begin{center}
-                \includegraphics[width=8cm]{modelling/ClusterK-Means}\\
+                \includegraphics[width=6cm]{modelling/ClusterK-Means}
+                \includegraphics[width=6cm]{modelling/DBScan}
             \end{center}
-            Una volta ottenuto questo modello, l'obiettivo da raggiungere era partire da una lista di film preferiti di un iscritto
+
+            \\Una volta ottenuto questo modello, l'obiettivo da raggiungere era partire da una lista di film preferiti di un iscritto
             e consigliarne nuovi che potessero rispecchiare i suoi gusti e le sue preferenze espresse tramite l'applicazione.
             Ad esempio, ipotizziamo che la lista di preferiti dell'utente contenga i seguenti film:
             \begin{itemize}
@@ -360,12 +363,32 @@
             all'algoritmo di clustering per dare un suggerimento mirato, basato sui gusti dell'utente in questione espressi tramite
             l'aggiunta dei film presenti nell'applicazione ad una lista di preferiti.
 
-
-
     \chapter{Evaluation}\label{ch:evaluation}
 
         \section{Elbow point}\label{sec:elbow-point}
+        Il primo metodo di valutazione dei risultati di cui si intende usufruire è l'elbow point, con l'ausilio della
+        libreria Python \textit{scikit-learn}. Dopo aver caricato i valori presenti nel dataset e inizializzato una nuova
+        lista (\textit{inertias[]}), abbiamo provveduto ad eseguire il k-means su un numero crescente di cluster, memorizzando
+        ad ogni iterazione il valore di inerzia prodotto.
+        Quest'ultimo è una misura della qualità dei cluster generati, in quanto si riferisce alla misura di somiglianza ottenuta
+        all'interno dei cluster.
+        Più bassa è l'inerzia, più simili sono i punti all'interno di un cluster.
+        L'inerzia di un cluster è calcolata come la somma delle distanze quadratiche tra ciascun punto del cluster e il
+        centroide del cluster stesso.
+        Il punto in cui si osserva una diminuzione significativa dell'inerzia indica il numero ottimale di cluster, ovviamente
+        si cerca di scegliere il numero di cluster che massimizzi la differenziazione tra cluster e
+        minimizzi l'inerzia all'interno dei cluster stessi.
 
+        Il grafico ottenuto è il seguente:
+
+        \begin{center}
+            \includegraphics[width=8cm]{evaluation/elbowPoint}\\
+        \end{center}
+
+        Come è possibile notare leggendo il grafico, si nota una diminuzione dell'inerzia con l'utilizzo di un k tra 3 e 4.
+        Sebbene l’errore venga minimizzato quando i cluster aumentano, avere un numero eccessivo di cluster implica avere tanti gruppi
+        formati da pochi elementi, per cui abbiamo ritenuto opportuno scegliere come valore k=4?? in seguito alla valutazione
+        del trade-off numero di cluster ed errore commesso.
 
         \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
 
@@ -400,6 +423,5 @@
                 \hline
             \end{tabular}
         \end{adjustbox}
-
 
 \end{document}
