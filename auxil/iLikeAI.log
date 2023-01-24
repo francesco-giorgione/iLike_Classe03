@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.31)  22 JAN 2023 19:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.31)  24 JAN 2023 18:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -415,7 +415,7 @@ Package hyperref Info: Link coloring ON on input line 33.
 \@outlinefile=\write3
 \openout3 = `iLikeAI.out'.
 
-<logo.JPEG, id=95, 2905.85625pt x 2905.85625pt>
+<logo.JPEG, id=103, 2905.85625pt x 2905.85625pt>
 File: logo.JPEG Graphic file (type jpg)
 <use logo.JPEG>
 Package pdftex.def Info: logo.JPEG  used on input line 51.
@@ -453,6 +453,11 @@ Capitolo 1.
 
 ]
 Capitolo 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--80
+
+ []
+
 [3
 
 ] [4]
@@ -484,7 +489,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--189
 
  []
 
-<dataPreparation/noScaling.png, id=156, 990.099pt x 289.08pt>
+<dataPreparation/noScaling.png, id=166, 990.099pt x 289.08pt>
 File: dataPreparation/noScaling.png Graphic file (type png)
 <use dataPreparation/noScaling.png>
 Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 201.
@@ -498,7 +503,7 @@ Overfull \hbox (24.8812pt too wide) in paragraph at lines 201--201
 [6
 
 ]
-<dataPreparation/minMax.png, id=163, 990.099pt x 289.08pt>
+<dataPreparation/minMax.png, id=173, 990.099pt x 289.08pt>
 File: dataPreparation/minMax.png Graphic file (type png)
 <use dataPreparation/minMax.png>
 Package pdftex.def Info: dataPreparation/minMax.png  used on input line 203.
@@ -508,7 +513,7 @@ Overfull \hbox (24.8812pt too wide) in paragraph at lines 203--203
  [][] 
  []
 
-<dataPreparation/zScore.png, id=164, 990.099pt x 289.08pt>
+<dataPreparation/zScore.png, id=174, 990.099pt x 289.08pt>
 File: dataPreparation/zScore.png Graphic file (type png)
 <use dataPreparation/zScore.png>
 Package pdftex.def Info: dataPreparation/zScore.png  used on input line 205.
@@ -534,7 +539,7 @@ or  <return>  to continue without it.
 
 [7 <./dataPreparation/noScaling.png> <./dataPreparation/minMax.png> <./dataPrep
 aration/zScore.png>]
-<dataPreparation/Matrice di Correlazione.png, id=172, 1084.05pt x 433.62pt>
+<dataPreparation/Matrice di Correlazione.png, id=182, 1084.05pt x 433.62pt>
 File: dataPreparation/Matrice di Correlazione.png Graphic file (type png)
 <use dataPreparation/Matrice di Correlazione.png>
 Package pdftex.def Info: dataPreparation/Matrice di Correlazione.png  used on i
@@ -547,7 +552,7 @@ Overfull \hbox (49.87892pt too wide) in paragraph at lines 220--220
 
 [8 <./dataPreparation/Matrice di Correlazione.png>]
 Capitolo 5.
-<modelling/ClusterK-Means.png, id=178, 462.528pt x 346.896pt>
+<modelling/ClusterK-Means.png, id=188, 462.528pt x 346.896pt>
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
 Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 270.
@@ -560,7 +565,7 @@ Overfull \hbox (2.44293pt too wide) in paragraph at lines 274--276
 te la fun-zio-ne DB-SCAN()
  []
 
-<modelling/DBScan.png, id=185, 1011.78pt x 722.7pt>
+<modelling/DBScan.png, id=194, 1011.78pt x 722.7pt>
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
 Package pdftex.def Info: modelling/DBScan.png  used on input line 286.
@@ -568,49 +573,111 @@ Package pdftex.def Info: modelling/DBScan.png  used on input line 286.
 [10 <./modelling/ClusterK-Means.png> <./modelling/DBScan.png>]
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 304.
-(pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
-<modelling/numeroFilmxCluster.png, id=193, 907.89188pt x 191.21437pt>
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 305.
+(pdftex.def)             Requested size: 170.71652pt x 128.0372pt.
+File: modelling/DBScan.png Graphic file (type png)
+<use modelling/DBScan.png>
+Package pdftex.def Info: modelling/DBScan.png  used on input line 306.
+(pdftex.def)             Requested size: 170.71652pt x 121.93106pt.
+
+
+iLikeAI.tex:309: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.309             \\U
+                     na volta ottenuto questo modello, l'obiettivo da raggiu...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<modelling/numeroFilmxCluster.png, id=201, 907.89188pt x 191.21437pt>
 File: modelling/numeroFilmxCluster.png Graphic file (type png)
 <use modelling/numeroFilmxCluster.png>
 Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 3
-26.
+29.
 (pdftex.def)             Requested size: 227.62204pt x 47.9406pt.
- [11]
-<modelling/distanzeMetriche.png, id=198, 658.46pt x 188.705pt>
+[11 <./modelling/numeroFilmxCluster.png>]
+<modelling/distanzeMetriche.png, id=207, 658.46pt x 188.705pt>
 File: modelling/distanzeMetriche.png Graphic file (type png)
 <use modelling/distanzeMetriche.png>
-Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 332
+Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 335
 .
 (pdftex.def)             Requested size: 227.62204pt x 65.23286pt.
-<modelling/filmSelezionato.png, id=199, 337.76187pt x 212.795pt>
+<modelling/filmSelezionato.png, id=208, 337.76187pt x 212.795pt>
 File: modelling/filmSelezionato.png Graphic file (type png)
 <use modelling/filmSelezionato.png>
-Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 339.
+Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 342.
 
 (pdftex.def)             Requested size: 227.62204pt x 143.40962pt.
- [12 <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png> <.
-/modelling/filmSelezionato.png>] [13]
+ [12 <./modelling/distanzeMetriche.png> <./modelling/filmSelezionato.png>]
 Capitolo 6.
-[14
+<evaluation/elbowPoint.png, id=216, 642.4pt x 481.8pt>
+File: evaluation/elbowPoint.png Graphic file (type png)
+<use evaluation/elbowPoint.png>
+Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 385.
+(pdftex.def)             Requested size: 227.62204pt x 170.71304pt.
+<evaluation/k=7.png, id=217, 642.4pt x 481.8pt>
+File: evaluation/k=7.png Graphic file (type png)
+<use evaluation/k=7.png>
+Package pdftex.def Info: evaluation/k=7.png  used on input line 397.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/k=8.png, id=218, 642.4pt x 481.8pt>
+File: evaluation/k=8.png Graphic file (type png)
+<use evaluation/k=8.png>
+Package pdftex.def Info: evaluation/k=8.png  used on input line 398.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+[13
 
-]
+ <./evaluation/elbowPoint.png (PNG copy)>]
+<evaluation/k=9.png, id=223, 642.4pt x 481.8pt>
+File: evaluation/k=9.png Graphic file (type png)
+<use evaluation/k=9.png>
+Package pdftex.def Info: evaluation/k=9.png  used on input line 399.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/k=10.png, id=224, 642.4pt x 481.8pt>
+File: evaluation/k=10.png Graphic file (type png)
+<use evaluation/k=10.png>
+Package pdftex.def Info: evaluation/k=10.png  used on input line 400.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/silhouette score.png, id=225, 335.75438pt x 71.51718pt>
+File: evaluation/silhouette score.png Graphic file (type png)
+<use evaluation/silhouette score.png>
+Package pdftex.def Info: evaluation/silhouette score.png  used on input line 41
+9.
+(pdftex.def)             Requested size: 227.62204pt x 48.4848pt.
+<evaluation/silhouette_9.png, id=226, 987.2082pt x 479.1501pt>
+File: evaluation/silhouette_9.png Graphic file (type png)
+<use evaluation/silhouette_9.png>
+Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 428.
+(pdftex.def)             Requested size: 369.88583pt x 227.62059pt.
+
+Overfull \hbox (24.88583pt too wide) in paragraph at lines 428--428
+ [] 
+ []
+
+[14 <./evaluation/k=7.png (PNG copy)> <./evaluation/k=8.png (PNG copy)> <./eval
+uation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./evaluation/sil
+houette score.png>] [15 <./evaluation/silhouette_9.png>]
 Capitolo 7.
-[15
+[16
 
 ]
 Capitolo 8.
-[16
+[17
 
 ] (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
-(rerunfilecheck)             Checksum: D2AF551111FCB9837E5F4D2F24D3C04F;3184.
+(rerunfilecheck)             Checksum: 70BBC9A18845B1A8A268C82EDD71B43D;3375.
  ) 
 Here is how much of TeX's memory you used:
- 12203 strings out of 476406
- 203288 string characters out of 2789094
+ 12288 strings out of 476406
+ 205408 string characters out of 2789094
  1859787 words of memory out of 3000000
- 32313 multiletter control sequences out of 15000+600000
+ 32389 multiletter control sequences out of 15000+600000
  525206 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,16n,90p,293b,518s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -629,9 +696,9 @@ ers\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk>
  <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1
 728.pk>
 Output written on C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLik
-eAI.pdf (17 pages, 1111857 bytes).
+eAI.pdf (18 pages, 1472860 bytes).
 PDF statistics:
- 618 PDF objects out of 1000 (max. 8388607)
- 43 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 641 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 286 words of extra memory for PDF output out of 10000 (max. 10000000)
 

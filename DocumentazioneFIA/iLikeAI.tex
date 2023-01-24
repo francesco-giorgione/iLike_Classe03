@@ -401,7 +401,32 @@
         \end{center}
 
         \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
+        Un altro metodo di valutazione dei risultati utilizzato è il silhouette coefficient, che permette di calcolare
+        quanto i dati siano ben disposti nei cluster generati.
+        Dal metodo di valutazione dell'elbow point sopra citato, emerge che il numero di cluster ottimale è un valore
+        per k=7 in su.
+        Pertanto abbiamo valutato il silhouette coefficient eseguendo il K-Means con un numero di cluster che variava
+        nel range da 7 a 10.
+        Quindi, utilizzando la libreria di Python sklearn, per ogni valore di 7<=k<=10, abbiamo eseguito il k-means sul
+        nostro dataset. Successivamente, tramite la funzione silhouette\_{}score(), abbiamo calcolato il silhouette score,
+        ossia una misura della coesione e separazione tra i dati.
+        Siamo passati poi a calcolare il silhouette score per ogni campione dei cluster utilizzando l'apposita funzione
+        silhouette\_{}samples().
 
+        Vengono riportati di seguito i valori di silhouette score relativi al numero di cluster indicato
+
+        \begin{center}
+            \includegraphics[width=8cm]{evaluation/silhouette score}\\
+        \end{center}
+
+        Come mostrato nell'immagine soprastante, il valore di k ottimale è k=9, quindi la scelta è effettuare il clustering
+        k-means impostando il parametro n\_{}cluster = 9.
+        Questo grafico mostra, per n\_{}cluster=9, il valore del silhouette score e inoltre la divisione dei dati nei vari
+        cluster ottenuti.
+
+        \begin{center}
+            \includegraphics[width=13cm, height=8cm]{evaluation/silhouette_9}\\
+        \end{center}
 
         \section{MoJo distance}\label{sec:mojo-distance}
 
