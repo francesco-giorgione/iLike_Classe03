@@ -161,13 +161,13 @@
 
     \chapter{Data Preparation}\label{ch:data-preparation}
         In fase di Data Understanding abbiamo scelto l'utilizzo di un dataset già esistente, quindi è opportuno effettuare Data Preparation.
-        Lo scopo di questa fase è pulire i dati al fine di passarli all'algoritmo di Machine Learning.
+        Lo scopo di questa fase è preparare i dati al fine di passarli correttamente all'algoritmo di Machine Learning.
 
         \section{Data Cleaning}\label{sec:data-cleaning}
             Lo scopo del Data Cleaning è gestire dati rumorosi e/o nulli.
             A tal proposito, è stata effettuata inizialmente un'analisi dei dati al fine di evidenziare dati rumorosi.
             Si è notato che le colonne 'voto\_medio' e 'voti\_totali' rispecchiano esattamente la media e la somma delle colonne
-            'voto\_critica' e 'voto\_pubblico'. Dunque abbiamo deciso di elimnare le colonne 'voto\_critica' e 'voto\_pubblico' e
+            'voto\_critica' e 'voto\_pubblico'. Dunque abbiamo deciso di eliminare le colonne 'voto\_critica' e 'voto\_pubblico' e
             non eliminare le colonne 'voto\_medio' e 'voti\_totali', rimandando tale scelta nel Feature Selection, per valutare
             quale delle due ha una maggiore corelazione tra le altre variabili.
 
@@ -192,7 +192,7 @@
             iLike, per altre funzionalità non riguardanti il modulo di Intelligenza Artificiale.
 
         \section{Feature Scaling}\label{sec:feature-scaling}
-            Lo scopo del Feature Scaling è normalizzare i valori numeri del dataset, portandoli tutti nello stesso range.
+            Lo scopo del Feature Scaling è normalizzare i valori numerici del dataset, portandoli tutti nello stesso range.
             I grafici box plot sottoriportati confrontano i valori iniziale e i valori ottenuti prima con la tecnica del
             Min-Max Normalizzation e in seguito con lo Z-Score Normalizzation.
 
@@ -385,10 +385,20 @@
             \includegraphics[width=8cm]{evaluation/elbowPoint}\\
         \end{center}
 
-        Come è possibile notare leggendo il grafico, si nota una diminuzione dell'inerzia con l'utilizzo di un k tra ?? e ??.
+        Come è possibile notare leggendo il grafico, si nota una diminuzione dell'inerzia con l'utilizzo di un k da 7 in su.
         Sebbene l’errore venga minimizzato quando i cluster aumentano, avere un numero eccessivo di cluster implica avere tanti gruppi
-        formati da pochi elementi, per cui abbiamo ritenuto opportuno scegliere come valore k=?? in seguito alla valutazione
-        del trade-off numero di cluster ed errore commesso.
+        formati da pochi elementi.
+        Valutando i grafici ottenuti con l'esecuzione dell'algoritmo k-means al variare della variabile k da 7 a 10 (mostrati di seguito),
+        abbiamo notato che, al crescere del valore della variabile k, alcuni cluster si mantengono abbastanza stabili mentre altri
+        tendono ad essere fin troppo piccoli. Per questo motivo, dopo aver valutato il trade-off numero di cluster VS errore commesso
+        abbiamo ritenuto opportuno scegliere come valore k=8.
+
+        \begin{center}
+            \includegraphics[width=6cm]{evaluation/k=7}
+            \includegraphics[width=6cm]{evaluation/k=8} \\
+            \includegraphics[width=6cm]{evaluation/k=9}
+            \includegraphics[width=6cm]{evaluation/k=10}
+        \end{center}
 
         \section{Silhouette coefficient}\label{sec:silhouette-coefficient}
 
@@ -409,16 +419,16 @@
     \chapter{Glossario}\label{ch:glossario}
         \begin{adjustbox}{width=\columnwidth,center}
             \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{8cm}|}
-                \hline \textbf{Conversational Agent/CA} & É un bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
+                \hline \textbf{Conversational Agent/CA} & Bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
                 in un linguaggio naturale, attraverso la  generazione di una conversazione simil-umana.\\
                 \hline \textbf{Lista di contenuti} & Sottoinsieme di contenuti offerti da iLike, scelti dagli utenti secondo i loro gusti
                 e inseriti nelle proprie liste disponibili sul proprio profilo personale.\\
                 \hline \textbf{Cluster} & Sottoinsieme di contenuti con caratteristiche simili.\\
-                \hline \textbf{Machine Learning} & É la branca dell'Intelligenza Artificiale che include tutti gli algoritmi
+                \hline \textbf{Machine Learning} & Branca dell'Intelligenza Artificiale che include tutti gli algoritmi
                 che possano imparare dai dati e sulla base di questi fare previsioni.\\
-                \hline \textbf{Data Imputation} & É l'insieme di tecniche che possono stimare il valore di dati mancanti
+                \hline \textbf{Data Imputation} & Insieme di tecniche che permettono di stimare il valore di dati mancanti
                 sulla base dei dati disponibili oppure mitigare il problema dei dati mancanti.\\
-                \hline \textbf{Blox Plot} & è una rappresentazione grafica utilizzata per descrivere la distribuzione di un campione
+                \hline \textbf{Blox Plot} & Rappresentazione grafica utilizzata per descrivere la distribuzione di un campione
                 tramite la media e deviazione standard.\\
                 \hline
             \end{tabular}
