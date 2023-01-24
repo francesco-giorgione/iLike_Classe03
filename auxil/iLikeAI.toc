@@ -16,10 +16,12 @@
 \contentsline {section}{\numberline {4.4}Data Balancing}{8}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Modeling}{9}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Scelta dell'algoritmo da utilizzare}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Integrazione con il sistema}{9}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Evaluation}{12}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Elbow point}{12}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Silhouette coefficient}{12}{section.6.2}%
-\contentsline {section}{\numberline {6.3}MoJo distance}{12}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deployment}{13}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Glossario}{14}{chapter.8}%
+\contentsline {subsection}{\numberline {5.1.1}K-Means}{9}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}DBScan}{10}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Integrazione con il sistema}{11}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Evaluation}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Elbow point}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Silhouette coefficient}{14}{section.6.2}%
+\contentsline {section}{\numberline {6.3}MoJo distance}{14}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Deployment}{15}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Glossario}{16}{chapter.8}%

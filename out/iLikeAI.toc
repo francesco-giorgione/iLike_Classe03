@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {5.2}Integrazione con il sistema}{11}{section.5.2}%
 \contentsline {chapter}{\numberline {6}Evaluation}{13}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Elbow point}{13}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Silhouette coefficient}{13}{section.6.2}%
-\contentsline {section}{\numberline {6.3}MoJo distance}{13}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Deployment}{14}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Glossario}{15}{chapter.8}%
+\contentsline {section}{\numberline {6.2}Silhouette coefficient}{14}{section.6.2}%
+\contentsline {section}{\numberline {6.3}MoJo distance}{14}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Deployment}{15}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Glossario}{16}{chapter.8}%
