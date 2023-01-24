@@ -22,7 +22,7 @@ pca = PCA()
 X = pca.fit_transform(tableNum)
 
 # istanzio la classe di clustering DBSCAN
-dbscan = DBSCAN(eps=1, min_samples=6)
+dbscan = DBSCAN(eps=1.2, min_samples=40)
 # eseguo fitting e predizione in una volta sola
 y_dbscan = dbscan.fit_predict(X)
 table['Cluster'] = dbscan.labels_
@@ -74,7 +74,7 @@ for i, cluster in enumerate(np.unique(y_dbscan)):
     ax[0].set_ylabel('Cluster')
 
     plt.scatter(X[:, 0], X[:, 1], c=y_dbscan)
-    ax[1].set_title("Clustering con DB-Scan: intorno = 1.2 e numero minimo di punti = 200 ")
+    ax[1].set_title("Clustering con DB-Scan: intorno = 1.2 e numero minimo di punti = 40 ")
     plt.tight_layout()
 
 plt.show()
