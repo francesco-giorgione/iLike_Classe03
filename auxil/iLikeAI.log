@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.31)  24 JAN 2023 18:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.31)  25 JAN 2023 11:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -25,23 +25,50 @@ File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count194
+\Gm@cntv=\count195
+\c@Gm@tempcnt=\count196
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
+\Gm@dimlist=\toks17
+
+(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
+) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
+\inpenc@prehook=\toks18
+\inpenc@posthook=\toks19
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2022/11/30 3.83 The Babel package
-\babel@savecnt=\count194
-\U@D=\dimen141
+\babel@savecnt=\count197
+\U@D=\dimen149
 \l@unhyphenated=\language79
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count195
+\bbl@dirlevel=\count198
 
 *************************************
 * Local config file bblopts.cfg used
@@ -53,9 +80,9 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italian.
 ldf
 Language: italian 2022/03/27 v.1.4.07 Italian support for the babel system
-\it@lettering=\count196
-\it@doublequoteactive=\count197
-\it@ISOcompliance=\count198
+\it@lettering=\count199
+\it@doublequoteactive=\count266
+\it@ISOcompliance=\count267
 ))
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\babe
 l-italian.tex
@@ -64,7 +91,7 @@ Package babel Info: Importing font and identification data for italian
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count199
+\etb@tempcnta=\count268
 ) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3
 keys2e.sty
@@ -74,15 +101,15 @@ Package: expl3 2022-12-17 L3 programming layer (loader)
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
 ftex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count266
+\l__color_backend_stack_int=\count269
 \l__pdf_internal_box=\box51
 ))
 Package: l3keys2e 2022-12-17 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count267
-\l__lipsum_a_int=\count268
-\l__lipsum_b_int=\count269
+\g__lipsum_par_int=\count270
+\l__lipsum_a_int=\count271
+\l__lipsum_b_int=\count272
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex)
 ) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
@@ -91,10 +118,10 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen142
+\col@sep=\dimen150
 \ar@mcellbox=\box52
-\extrarowheight=\dimen143
-\NC@list=\toks18
+\extrarowheight=\dimen151
+\NC@list=\toks20
 \extratabsurround=\skip50
 \backup@length=\skip51
 \ar@cellbox=\box53
@@ -115,9 +142,9 @@ File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
-\everycr=\toks19
+\everycr=\toks21
 \minrowclearance=\skip52
-\rownum=\count270
+\rownum=\count273
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.st
 y
@@ -127,10 +154,10 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
-\XKV@toks=\toks20
-\XKV@tempa@toks=\toks21
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))
-\XKV@depth=\count271
+\XKV@toks=\toks22
+\XKV@tempa@toks=\toks23
+)
+\XKV@depth=\count274
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
@@ -154,44 +181,44 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 )
-\Gin@req@height=\dimen144
-\Gin@req@width=\dimen145
+\Gin@req@height=\dimen152
+\Gin@req@width=\dimen153
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.
 sty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \collectedbox=\box54
 )
-\tc@llx=\dimen146
-\tc@lly=\dimen147
-\tc@urx=\dimen148
-\tc@ury=\dimen149
+\tc@llx=\dimen154
+\tc@lly=\dimen155
+\tc@urx=\dimen156
+\tc@ury=\dimen157
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.de
 f
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
-\adjbox@Width=\dimen150
-\adjbox@Height=\dimen151
-\adjbox@Depth=\dimen152
-\adjbox@Totalheight=\dimen153
-\adjbox@pwidth=\dimen154
-\adjbox@pheight=\dimen155
-\adjbox@pdepth=\dimen156
-\adjbox@ptotalheight=\dimen157
+\adjbox@Width=\dimen158
+\adjbox@Height=\dimen159
+\adjbox@Depth=\dimen160
+\adjbox@Totalheight=\dimen161
+\adjbox@pwidth=\dimen162
+\adjbox@pheight=\dimen163
+\adjbox@pdepth=\dimen164
+\adjbox@ptotalheight=\dimen165
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.st
 y
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count272
+\c@checkoddpage=\count275
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box55
-\sift@deathcycles=\count273
-\@vwid@loff=\dimen158
-\@vwid@roff=\dimen159
+\sift@deathcycles=\count276
+\@vwid@loff=\dimen166
+\@vwid@roff=\dimen167
 )) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
 
@@ -221,8 +248,6 @@ Package: hyperref 2022-11-13 v7.00u Hypertext links for LaTeX
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmd
 s.sty
@@ -273,11 +298,11 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 y
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count274
+\c@section@level=\count277
 )
-\@linkdim=\dimen160
-\Hy@linkcounter=\count275
-\Hy@pagecounter=\count276
+\@linkdim=\dimen168
+\Hy@linkcounter=\count278
+\Hy@pagecounter=\count279
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
@@ -291,7 +316,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 y
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count277
+\Hy@SavedSpaceFactor=\count280
  (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -305,9 +330,9 @@ Package hyperref Info: Plain pages OFF on input line 4177.
 Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4410.
-\c@Hy@tempcnt=\count278
+\c@Hy@tempcnt=\count281
 LaTeX Info: Redefining \url on input line 4748.
-\XeTeXLinkMargin=\dimen161
+\XeTeXLinkMargin=\dimen169
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -316,9 +341,9 @@ c.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count279
-\Field@Width=\dimen162
-\Fld@charsize=\dimen163
+\Fld@menulength=\count282
+\Field@Width=\dimen170
+\Fld@charsize=\dimen171
 Package hyperref Info: Hyper figures OFF on input line 6027.
 Package hyperref Info: Link nesting OFF on input line 6032.
 Package hyperref Info: Hyper index ON on input line 6035.
@@ -331,9 +356,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6057.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count280
-\c@Item=\count281
-\c@Hfootnote=\count282
+\Hy@abspage=\count283
+\c@Item=\count284
+\c@Hfootnote=\count285
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -344,8 +369,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count283
-\c@bookmark@seq@number=\count284
+\Fld@listcount=\count286
+\c@bookmark@seq@number=\count287
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfi
 lecheck.sty
@@ -363,41 +388,77 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 \openout1 = `iLikeAI.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Info: Redefining \it@ocap on input line 33.
-LaTeX Info: Redefining \it@ccap on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* bindingoffset: 14.22636pt
+* modes: heightrounded 
+* h-part:(L,W,R)=(56.9055pt, 469.4705pt, 56.9055pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=469.4705pt
+* \textheight=730.0pt
+* \oddsidemargin=-1.13812pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \it@ocap on input line 35.
+LaTeX Info: Redefining \it@ccap on input line 35.
 
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count285
-\scratchdimen=\dimen164
+\scratchcounter=\count288
+\scratchdimen=\dimen172
 \scratchbox=\box56
-\nofMPsegments=\count286
-\nofMParguments=\count287
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count288
-\MPscratchDim=\dimen165
-\MPnumerator=\count289
-\makeMPintoPDFobject=\count290
-\everyMPtoPDFconversion=\toks23
+\nofMPsegments=\count289
+\nofMParguments=\count290
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count291
+\MPscratchDim=\dimen173
+\MPnumerator=\count292
+\makeMPintoPDFobject=\count293
+\everyMPtoPDFconversion=\toks25
 )
 (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
 base.sty
@@ -409,7 +470,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 33.
+Package hyperref Info: Link coloring ON on input line 35.
  (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
 (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
 \@outlinefile=\write3
@@ -418,14 +479,14 @@ Package hyperref Info: Link coloring ON on input line 33.
 <logo.JPEG, id=103, 2905.85625pt x 2905.85625pt>
 File: logo.JPEG Graphic file (type jpg)
 <use logo.JPEG>
-Package pdftex.def Info: logo.JPEG  used on input line 51.
+Package pdftex.def Info: logo.JPEG  used on input line 53.
 (pdftex.def)             Requested size: 284.52756pt x 284.48376pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 51.
+(Font)              <12> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 51.
+(Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 51.
+(Font)              <6> on input line 53.
  [1
 
 {C:/Users/Utente/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG
@@ -444,7 +505,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54     \chapter
+l.56     \chapter
                  {Introduzione}\label{ch:introduzione} [1
 
 ]
@@ -454,7 +515,7 @@ Capitolo 1.
 ]
 Capitolo 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
@@ -463,13 +524,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 79--80
 ] [4]
 Capitolo 3.
 
-iLikeAI.tex:144: LaTeX Error: There's no line here to end.
+iLikeAI.tex:146: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.144 
+l.146 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -480,207 +541,183 @@ or  <return>  to continue without it.
 ]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--176
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--189
+Underfull \hbox (badness 10000) in paragraph at lines 180--191
 
  []
 
 <dataPreparation/noScaling.png, id=166, 990.099pt x 289.08pt>
 File: dataPreparation/noScaling.png Graphic file (type png)
 <use dataPreparation/noScaling.png>
-Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 201.
+Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 203.
 
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
-
-Overfull \hbox (24.8812pt too wide) in paragraph at lines 201--201
- [] 
- []
-
-[6
-
-]
-<dataPreparation/minMax.png, id=173, 990.099pt x 289.08pt>
+<dataPreparation/minMax.png, id=168, 990.099pt x 289.08pt>
 File: dataPreparation/minMax.png Graphic file (type png)
 <use dataPreparation/minMax.png>
-Package pdftex.def Info: dataPreparation/minMax.png  used on input line 203.
+Package pdftex.def Info: dataPreparation/minMax.png  used on input line 205.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
+[6
 
-Overfull \hbox (24.8812pt too wide) in paragraph at lines 203--203
- [][] 
- []
-
-<dataPreparation/zScore.png, id=174, 990.099pt x 289.08pt>
+ <./dataPreparation/noScaling.png>]
+<dataPreparation/zScore.png, id=175, 990.099pt x 289.08pt>
 File: dataPreparation/zScore.png Graphic file (type png)
 <use dataPreparation/zScore.png>
-Package pdftex.def Info: dataPreparation/zScore.png  used on input line 205.
+Package pdftex.def Info: dataPreparation/zScore.png  used on input line 207.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
 
-Overfull \hbox (24.8812pt too wide) in paragraph at lines 205--205
- [][] 
- []
 
-
-iLikeAI.tex:208: LaTeX Error: There's no line here to end.
+iLikeAI.tex:210: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.208             \\C
+l.210             \\C
                      ome evidenziato nei grafici, la tectica dello Z-Score N...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[7 <./dataPreparation/noScaling.png> <./dataPreparation/minMax.png> <./dataPrep
-aration/zScore.png>]
-<dataPreparation/Matrice di Correlazione.png, id=182, 1084.05pt x 433.62pt>
+<dataPreparation/Matrice di Correlazione.png, id=176, 1084.05pt x 433.62pt>
 File: dataPreparation/Matrice di Correlazione.png Graphic file (type png)
 <use dataPreparation/Matrice di Correlazione.png>
 Package pdftex.def Info: dataPreparation/Matrice di Correlazione.png  used on i
-nput line 220.
+nput line 222.
 (pdftex.def)             Requested size: 369.87889pt x 199.16988pt.
-
-Overfull \hbox (49.87892pt too wide) in paragraph at lines 220--220
- [] 
- []
-
-[8 <./dataPreparation/Matrice di Correlazione.png>]
+[7 <./dataPreparation/minMax.png> <./dataPreparation/zScore.png> <./dataPrepara
+tion/Matrice di Correlazione.png>] [8]
 Capitolo 5.
 <modelling/ClusterK-Means.png, id=188, 462.528pt x 346.896pt>
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 270.
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 272.
 (pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
-[9
 
-]
-Overfull \hbox (2.44293pt too wide) in paragraph at lines 274--276
+Overfull \hbox (1.77553pt too wide) in paragraph at lines 276--278
 \T1/cmr/m/n/10 L'algoritmo di clu-ste-ring DB-Scan vie-ne rea-liz-za-to tra-mi-
-te la fun-zio-ne DB-SCAN()
+te la fun-zio-ne DB-SCAN() del-la li-bre-ria sklearn.cluster.
  []
 
-<modelling/DBScan.png, id=194, 1011.78pt x 722.7pt>
+<modelling/DBScan.png, id=189, 1011.78pt x 722.7pt>
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 286.
+Package pdftex.def Info: modelling/DBScan.png  used on input line 288.
 (pdftex.def)             Requested size: 227.62204pt x 162.57841pt.
-[10 <./modelling/ClusterK-Means.png> <./modelling/DBScan.png>]
+[9
+
+ <./modelling/ClusterK-Means.png>]
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 305.
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 307.
 (pdftex.def)             Requested size: 170.71652pt x 128.0372pt.
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 306.
+Package pdftex.def Info: modelling/DBScan.png  used on input line 308.
 (pdftex.def)             Requested size: 170.71652pt x 121.93106pt.
 
 
-iLikeAI.tex:309: LaTeX Error: There's no line here to end.
+iLikeAI.tex:311: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.309             \\U
+l.311             \\U
                      na volta ottenuto questo modello, l'obiettivo da raggiu...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+[10 <./modelling/DBScan.png>]
 <modelling/numeroFilmxCluster.png, id=201, 907.89188pt x 191.21437pt>
 File: modelling/numeroFilmxCluster.png Graphic file (type png)
 <use modelling/numeroFilmxCluster.png>
 Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 3
-29.
+31.
 (pdftex.def)             Requested size: 227.62204pt x 47.9406pt.
-[11 <./modelling/numeroFilmxCluster.png>]
-<modelling/distanzeMetriche.png, id=207, 658.46pt x 188.705pt>
+<modelling/distanzeMetriche.png, id=202, 658.46pt x 188.705pt>
 File: modelling/distanzeMetriche.png Graphic file (type png)
 <use modelling/distanzeMetriche.png>
-Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 335
+Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 337
 .
 (pdftex.def)             Requested size: 227.62204pt x 65.23286pt.
-<modelling/filmSelezionato.png, id=208, 337.76187pt x 212.795pt>
+<modelling/filmSelezionato.png, id=203, 337.76187pt x 212.795pt>
 File: modelling/filmSelezionato.png Graphic file (type png)
 <use modelling/filmSelezionato.png>
-Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 342.
+Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 344.
 
 (pdftex.def)             Requested size: 227.62204pt x 143.40962pt.
- [12 <./modelling/distanzeMetriche.png> <./modelling/filmSelezionato.png>]
+ [11 <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png> <.
+/modelling/filmSelezionato.png>]
 Capitolo 6.
-<evaluation/elbowPoint.png, id=216, 642.4pt x 481.8pt>
+<evaluation/elbowPoint.png, id=211, 642.4pt x 481.8pt>
 File: evaluation/elbowPoint.png Graphic file (type png)
 <use evaluation/elbowPoint.png>
-Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 385.
+Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 387.
 (pdftex.def)             Requested size: 227.62204pt x 170.71304pt.
-<evaluation/k=7.png, id=217, 642.4pt x 481.8pt>
+<evaluation/k=7.png, id=212, 642.4pt x 481.8pt>
 File: evaluation/k=7.png Graphic file (type png)
 <use evaluation/k=7.png>
-Package pdftex.def Info: evaluation/k=7.png  used on input line 397.
+Package pdftex.def Info: evaluation/k=7.png  used on input line 399.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=8.png, id=218, 642.4pt x 481.8pt>
+<evaluation/k=8.png, id=213, 642.4pt x 481.8pt>
 File: evaluation/k=8.png Graphic file (type png)
 <use evaluation/k=8.png>
-Package pdftex.def Info: evaluation/k=8.png  used on input line 398.
+Package pdftex.def Info: evaluation/k=8.png  used on input line 400.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-[13
-
- <./evaluation/elbowPoint.png (PNG copy)>]
-<evaluation/k=9.png, id=223, 642.4pt x 481.8pt>
+<evaluation/k=9.png, id=214, 642.4pt x 481.8pt>
 File: evaluation/k=9.png Graphic file (type png)
 <use evaluation/k=9.png>
-Package pdftex.def Info: evaluation/k=9.png  used on input line 399.
+Package pdftex.def Info: evaluation/k=9.png  used on input line 401.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=10.png, id=224, 642.4pt x 481.8pt>
+<evaluation/k=10.png, id=215, 642.4pt x 481.8pt>
 File: evaluation/k=10.png Graphic file (type png)
 <use evaluation/k=10.png>
-Package pdftex.def Info: evaluation/k=10.png  used on input line 400.
+Package pdftex.def Info: evaluation/k=10.png  used on input line 402.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/silhouette score.png, id=225, 335.75438pt x 71.51718pt>
+[12
+
+ <./evaluation/elbowPoint.png (PNG copy)> <./evaluation/k=7.png (PNG copy)> <./
+evaluation/k=8.png (PNG copy)>]
+<evaluation/silhouette score.png, id=221, 335.75438pt x 71.51718pt>
 File: evaluation/silhouette score.png Graphic file (type png)
 <use evaluation/silhouette score.png>
-Package pdftex.def Info: evaluation/silhouette score.png  used on input line 41
-9.
+Package pdftex.def Info: evaluation/silhouette score.png  used on input line 42
+1.
 (pdftex.def)             Requested size: 227.62204pt x 48.4848pt.
-<evaluation/silhouette_9.png, id=226, 987.2082pt x 479.1501pt>
+<evaluation/silhouette_9.png, id=222, 987.2082pt x 479.1501pt>
 File: evaluation/silhouette_9.png Graphic file (type png)
 <use evaluation/silhouette_9.png>
-Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 428.
+Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 430.
 (pdftex.def)             Requested size: 369.88583pt x 227.62059pt.
-
-Overfull \hbox (24.88583pt too wide) in paragraph at lines 428--428
- [] 
- []
-
-[14 <./evaluation/k=7.png (PNG copy)> <./evaluation/k=8.png (PNG copy)> <./eval
-uation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./evaluation/sil
-houette score.png>] [15 <./evaluation/silhouette_9.png>]
+ [13 <./evaluation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./ev
+aluation/silhouette score.png> <./evaluation/silhouette_9.png>]
 Capitolo 7.
-[16
+[14
 
 ]
 Capitolo 8.
-[17
+[15
 
 ] (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
 (rerunfilecheck)             Checksum: 70BBC9A18845B1A8A268C82EDD71B43D;3375.
  ) 
 Here is how much of TeX's memory you used:
- 12288 strings out of 476406
- 205408 string characters out of 2789094
- 1859787 words of memory out of 3000000
- 32389 multiletter control sequences out of 15000+600000
+ 12794 strings out of 476406
+ 213728 string characters out of 2789094
+ 1861787 words of memory out of 3000000
+ 32889 multiletter control sequences out of 15000+600000
  525206 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,90p,293b,518s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 84i,16n,90p,293b,517s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecb
 x1200.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 600\tcrm1000.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
@@ -696,9 +733,9 @@ ers\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk>
  <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1
 728.pk>
 Output written on C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLik
-eAI.pdf (18 pages, 1472860 bytes).
+eAI.pdf (16 pages, 1470743 bytes).
 PDF statistics:
- 641 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 42 named destinations out of 1000 (max. 500000)
  286 words of extra memory for PDF output out of 10000 (max. 10000000)
 
