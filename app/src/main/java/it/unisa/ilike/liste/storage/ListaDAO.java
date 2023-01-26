@@ -68,7 +68,8 @@ public class ListaDAO {
                 query += "('" + nome + "', '" + emailIscritto + "', " + c.getId() + "),";
             }
 
-            return queryManager.update(query.substring(0, query.length() - 1));
+            QueryManager queryManager1= new QueryManager();
+            return queryManager1.update(query.substring(0, query.length() - 1));
         }
         else return false;
     }
