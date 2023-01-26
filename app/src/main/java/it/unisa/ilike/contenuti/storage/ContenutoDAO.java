@@ -102,13 +102,13 @@ public class ContenutoDAO {
         QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
         String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
-                "from ContenutiRid " +
+                "from Film " +
                 "where id = " + id;
 
         String jsonRes = queryManager.select(query);
         NotAbstractContenutoBean[] res = gson.fromJson(jsonRes, NotAbstractContenutoBean[].class);
 
-        if(res.length > 0) {
+        if(res != null) {
             return res[0];
         }
         else return null;
