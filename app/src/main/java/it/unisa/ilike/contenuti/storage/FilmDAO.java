@@ -4,9 +4,9 @@ package it.unisa.ilike.contenuti.storage;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import it.unisa.ilike.QueryManager;
+import it.unisa.ilike.utils.Utils;
 
 public class FilmDAO extends ContenutoDAO {
 
@@ -109,7 +109,7 @@ public class FilmDAO extends ContenutoDAO {
         FilmBean film = new FilmBean();
         film.setId(res[0].getIndex());
         film.setTitolo(res[0].getTitolo());
-        //film.setAnnoRilascio(res[0].getAnnoRilascio());
+        film.setAnnoRilascio(res[0].getAnnoRilascio());
         film.setCategoria(res[0].getCategoria());
         film.setPaese(res[0].getPaese());
         film.setRegista(res[0].getRegista());
@@ -125,15 +125,41 @@ public class FilmDAO extends ContenutoDAO {
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente i FilmBean selezionati.
      */
-    public List<ContenutoBean> search(String titolo){
-        ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>) super.search("film", titolo);
-        List<ContenutoBean> filmCercati = new ArrayList<>();
+    public ArrayList<FilmBean> search(String titolo){
+        //ArrayList<ContenutoBean> film = (ArrayList<ContenutoBean>)
+                //super.search("film", titolo);
+        //List<ContenutoBean> filmCercati = new ArrayList<>();
 
-        for(ContenutoBean c: film) {
+        /*for(ContenutoBean c: film) {
             filmCercati.add(this.doRetrieveById(c.getId()));
+        }*/
+
+        //return filmCercati;
+        titolo = Utils.addEscape(titolo);
+
+        QueryManager queryManager = new QueryManager();
+        Gson gson = new Gson();
+        /*String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+                "FROM ContenutiRid " +
+                "where tipo like '%" + tipo + "%' and titolo like '%" + titolo + "%'";*/
+        String query = "SELECT * " +
+                "FROM Film " +
+                "where titolo like '%" + titolo + "%'";
+
+
+        String jsonRes = queryManager.select(query);
+        RisultatoQuery[] res= gson.fromJson(jsonRes, RisultatoQuery[].class);
+
+        ArrayList <FilmBean> toReturn= new ArrayList<>();
+
+
+        int i;
+        for (i=0; i<res.length;i++) {
+            toReturn.add(new FilmBean(res[i].getIndex(), res[i].getTitolo(), res[i].getAnnoRilascio(), res[i].getCategoria(),
+                    res[i].getPaese(), res[i].getRegista(), res[i].getDescrizione()));
         }
 
-        return filmCercati;
+        return toReturn;
     }
 
 }

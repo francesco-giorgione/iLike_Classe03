@@ -27,7 +27,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
      * @param regista è il regista del film.
      * @param attori è l'elenco degli attori del film.
      */
-    public FilmBean(int id, String titolo, String descrizione, String categoria, String annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
+    public FilmBean(int id, String titolo, String descrizione, String categoria, Float annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
         super(id, titolo, descrizione, categoria, valutazioneMedia);
         this.annoRilascio = annoRilascio;
         this.durata = durata;
@@ -36,11 +36,21 @@ public class FilmBean extends ContenutoBean  implements Serializable {
         this.attori = attori;
     }
 
+    public FilmBean (int id, String titolo, Float annoRilascio, String categoria,String paese, String regista, String descrizione){
+        this.setId(id);
+        this.setTitolo(titolo);
+        this.setDescrizione(descrizione);
+        this.setCategoria(categoria);
+        this.annoRilascio=annoRilascio;
+        this.paese=paese;
+        this.regista=regista;
+    }
+
     /**
      * Questo metodo restituisce l'anno di rilascio del film
      * @return anno di rilascio
      */
-    public String getAnnoRilascio() {
+    public Float getAnnoRilascio() {
         return annoRilascio;
     }
 
@@ -48,7 +58,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
      * Questo metodo imposta l'anno di rilascio del film
      * @param annoRilascio
      */
-    public void setAnnoRilascio(String annoRilascio) {
+    public void setAnnoRilascio(Float annoRilascio) {
         this.annoRilascio = annoRilascio;
     }
 
@@ -116,7 +126,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
         this.attori = attori;
     }
 
-    private String annoRilascio;
+    private Float annoRilascio;
     private int durata;
     private String paese;
     private String regista;
