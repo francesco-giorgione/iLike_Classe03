@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +23,8 @@ import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.ContenutoImpl;
-import it.unisa.ilike.contenuti.application.ContenutoService;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.FilmBean;
-import it.unisa.ilike.contenuti.storage.LibroBean;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
+import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.liste.application.activities.AggiuntaContenutoListaActivity;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
@@ -57,8 +52,10 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
         @Override
         protected Void doInBackground(Integer... id) {
 
-            ContenutoService contenutoService= new ContenutoImpl();
-            c= contenutoService.getById(id[0]);
+            //ContenutoService contenutoService= new ContenutoImpl();
+            //c= contenutoService.getById(id[0]);
+            FilmDAO dao= new FilmDAO();
+            c= dao.doRetrieveById(id[0]);
             return null;
         }
 
@@ -69,20 +66,20 @@ public class VisualizzazioneDettagliataContenutoActivity extends AppCompatActivi
             titoloContenuto.setText(c.getTitolo());
 
             ImageView icona= findViewById(R.id.imgContenuto);
-            if (c instanceof FilmBean)
+            //if (c instanceof FilmBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_film));
-            else if (c instanceof SerieTVBean)
+            /*else if (c instanceof SerieTVBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_serietv));
             else if (c instanceof LibroBean)
                 icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_libro));
             else
-                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));
+                icona.setImageDrawable(getResources().getDrawable(R.drawable.icona_musica));*/
 
             TextView descrizione= findViewById(R.id.descrizioneContenuto);
             descrizione.append(c.getDescrizione());
 
-            RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
-            valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
+            //RatingBar valutazioneMediaContenuto= findViewById(R.id.valutazioneMediaContenuto);
+            //valutazioneMediaContenuto.setRating((int)c.getValutazioneMedia());
         }
     }
 

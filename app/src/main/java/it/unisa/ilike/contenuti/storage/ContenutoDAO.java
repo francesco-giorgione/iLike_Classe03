@@ -94,9 +94,9 @@ public class ContenutoDAO {
      * e la valutazione media del contenuto selezionato.
      */
     public ContenutoBean doRetrieveById(int id) {
-        QueryManager queryManager = new QueryManager();
+        /*QueryManager queryManager = new QueryManager();
         Gson gson = new Gson();
-        String query = "SELECT id, titolo, descrizione, categoria, valutazione_media as valutazioneMedia " +
+        String query = "SELECT * " +
                 "from Film " +
                 "where \"index\" = " + id;
 
@@ -106,7 +106,9 @@ public class ContenutoDAO {
         if(res != null) {
             return res[0];
         }
-        else return null;
+        else return null;*/
+        FilmDAO dao= new FilmDAO();
+        return dao.doRetrieveById(id);
     }
 
 

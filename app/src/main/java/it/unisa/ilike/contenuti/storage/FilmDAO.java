@@ -1,6 +1,8 @@
 package it.unisa.ilike.contenuti.storage;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -87,6 +89,7 @@ public class FilmDAO extends ContenutoDAO {
         private String descrizione;
 
     }
+
     public FilmBean doRetrieveById(int id){
         //ContenutoBean contenuto = super.doRetrieveById(id);
 
@@ -100,6 +103,7 @@ public class FilmDAO extends ContenutoDAO {
 
         Gson gson = new Gson();
         String jsonRes = queryManager.select(query);
+        Log.d("MyDebug", jsonRes);
         RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
 
         if(res == null) {
@@ -118,7 +122,6 @@ public class FilmDAO extends ContenutoDAO {
         return film;
         //return null;
     }
-
 
     /**
      * Restituisce una collezione di film che matchano con un dato titolo.
