@@ -37,6 +37,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
     }
 
     public FilmBean (int id, String titolo, Float annoRilascio, String categoria,String paese, String regista, String descrizione){
+        super(id, titolo, descrizione, categoria, 0);
         this.setId(id);
         this.setTitolo(titolo);
         this.setDescrizione(descrizione);
@@ -44,6 +45,8 @@ public class FilmBean extends ContenutoBean  implements Serializable {
         this.annoRilascio=annoRilascio;
         this.paese=paese;
         this.regista=regista;
+        this.attori="";
+        this.durata=0;
     }
 
     /**
