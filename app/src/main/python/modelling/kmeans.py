@@ -53,4 +53,4 @@ plt.title("Clustering con K-means")
 plt.show()
 
 # salvataggio del dataset con i cluster
-# table.to_csv("filmClusterKMeans.csv")
+# table.to_csv("film_cluster_kmeans.csv")

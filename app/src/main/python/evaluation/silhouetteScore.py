@@ -26,7 +26,7 @@ dbscan = DBSCAN(eps=1, min_samples=15)
 # eseguo fitting e predizione in una volta sola
 y_dbscan = dbscan.fit_predict(X)
 
-# table.to_csv("filmClusterDBScan.csv")
+# table.to_csv("film_cluster_dbscan.csv")
 
 
 """

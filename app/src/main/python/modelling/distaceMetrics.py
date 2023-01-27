@@ -3,24 +3,24 @@ from statistics import mean
 
 import pandas as pd
 from pandas import DataFrame
-from sklearn.metrics import DistanceMetric
+from scipy.spatial import distance
+import csv
+from os.path import dirname, join
 
 # importare lista da Java
 a = []
 
 
-strFromJava = ""
+def calculateDistaceMetrics(a):
 
-def calculateDistaceMetrics(strFromJava, a):
-
-    if strFromJava == "kms":
-        filmPath = 'filmClusterKMeans.csv'
-    elif strFromJava == "dbs":
-        filmPath = 'filmClusterDBScan.csv'
-    else:
-        return ""
+    filmPath = join(dirname(__file__), "film_cluster_kmeans.csv")
 
     # Aprire il file csv e ottenere un oggetto DataFrame
+    #with open(filename, newline='') as csvfile:
+        #reader = csv.reader(csvfile)
+        #for row in reader:
+            #print(row)
+
     table = pd.read_csv(filmPath, sep=',')
 
     numericCol = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali"]
@@ -76,10 +76,11 @@ def calculateDistaceMetrics(strFromJava, a):
     """
     # calcoli la media tra le distanze metriche degli elementi della lista e tutti gli altri cluster
     print(newList)
-    dist = DistanceMetric.get_metric('euclidean')
-    # numTableCluster = ['voti_totali', 'humor', 'ritmo',
-    #                     'impegno', 'tensione', 'erotismo']
-    distanze = dist.pairwise(newList, tableCluster[numericCol])
+    #dist = DistanceMetric.get_metric('euclidean')
+    numTableCluster = ['voti_totali', 'humor', 'ritmo', 'impegno', 'tensione', 'erotismo']
+    #distanze = dist.pairwise(newList, tableCluster[numericCol])
+
+    distanze= cdist(newList, tableCluster[numericCol], metric='euclidean')
 
     # recuperiamo l'elemento con distanza minima
     min = None

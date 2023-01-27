@@ -40,6 +40,6 @@ plt.legend()
 plt.title("Clustering con DB-Scan")
 plt.show()
 
-# table.to_csv("filmClusterDBScan.csv")
+# table.to_csv("film_cluster_dbscan.csv")
 
 

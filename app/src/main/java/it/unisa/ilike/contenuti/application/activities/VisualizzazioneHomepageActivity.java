@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.AccountImpl;
@@ -188,11 +189,12 @@ public class VisualizzazioneHomepageActivity extends Activity {
             if (isOk){
                 ArrayList<ContenutoBean> list= new ArrayList<>();
                 for (ListaBean l: listeIscritto){
-                    ArrayList<ContenutoBean> contenutiLista= (ArrayList<ContenutoBean>) l.getContenuti();
+                    List<ContenutoBean> contenutiLista= l.getContenuti();
                     for (ContenutoBean c: contenutiLista){
                         list.add(c);
                     }
                 }
+                //ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), ActivityChatbot.class);
                 i.putExtra("contenuti", list);

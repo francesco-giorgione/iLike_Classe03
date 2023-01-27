@@ -17,11 +17,13 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -35,7 +37,8 @@ public class ActivityChatbot extends AppCompatActivity {
     private ArrayList<Messaggio> messaggi;
     private ArrayAdapter<Messaggio> adapter;
     private String utterances;
-    private ArrayList<ContenutoBean> contenuti;
+    private List<ContenutoBean> contenuti;
+    public InputStream inputStream;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -48,11 +51,15 @@ public class ActivityChatbot extends AppCompatActivity {
         btnSend =findViewById(R.id.sendButton);
         messaggioDigitato =(EditText)findViewById(R.id.editTest_message);
 
-        contenuti = (ArrayList<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
+        contenuti = (List<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
+
+        //List<ContenutoBean> contenutiList = new ArrayList<>(Arrays.asList(contenuti));
 
         for (ContenutoBean c: contenuti){
             Log.d("chatbot", c.toString());
         }
+
+        //inputStream = getResources().openRawResource(R.raw.film_cluster_kmeans);
 
 
         adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
@@ -126,7 +133,8 @@ public class ActivityChatbot extends AppCompatActivity {
 
                     //risposta chatBot al messaggio
 
-                    PyObject obj= pyobj.callAttr("main", utterances); //PyObject obj= pyobj.callAttr(function name, first argument, second argument, ...);
+
+                    PyObject obj= pyobj.callAttr("main", utterances, contenuti); //PyObject obj= pyobj.callAttr(function name, first argument, second argument, ...);
 
                     String risposta;
 

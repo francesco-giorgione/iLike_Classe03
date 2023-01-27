@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId 'it.unisa.ilike'
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,8 +39,8 @@ android {
                 install "chatterbot==1.0.4"
                 install "pytz"
                 install "pandas"
-                install"statistics"
-                install "sklearn"
+                install "statistics"
+                install "scipy"
             }
         }
     }
