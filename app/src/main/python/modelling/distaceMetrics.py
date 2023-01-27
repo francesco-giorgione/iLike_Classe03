@@ -3,7 +3,7 @@ from statistics import mean
 
 import pandas as pd
 from pandas import DataFrame
-from scipy.spatial import distance
+from scipy.spatial.distance import cdist
 import csv
 from os.path import dirname, join
 
@@ -11,9 +11,14 @@ from os.path import dirname, join
 #a = []
 
 
-def calculateDistaceMetrics(a):
+def calculateDistaceMetrics(a, alg):
 
-    filmPath = join(dirname(__file__), "film_cluster_kmeans.csv")
+    if alg=="kms":
+        filmPath = join(dirname(__file__), "film_cluster_kmeans.csv")
+    elif alg=="dbs":
+        filmPath = join(dirname(__file__), "film_cluster_dbscan.csv")
+    else:
+        return "errore"
 
     # Aprire il file csv e ottenere un oggetto DataFrame
     #with open(filename, newline='') as csvfile:
@@ -31,13 +36,20 @@ def calculateDistaceMetrics(a):
     d = dict()
     list = [0, 0, 0, 0, 0, 0, 0, 0]
 
+    tableLista = DataFrame(columns=['voti_totali', 'humor', 'ritmo',
+                                      'impegno', 'tensione', 'erotismo',
+                                      'titolo_italiano', 'anno'])
+    j=0
     # per ogni elemento della lista, trovare il cluster di appartenenza
     for i in range(len(table)):
         for elemento in a:
-            if elemento.getTitolo() == table['titolo_italiano'].loc[i] and elemento.getAnnoRilascio() == table['anno'].loc[i]:
-                key = elemento.getTitolo() + '--' + elemento.getAnnoRilascioString()
+            if elemento.getTitolo() == table['titolo_italiano'].loc[i]: #and elemento.getAnnoRilascio() == table['anno'].loc[i]:
+                key = elemento.getTitolo() #+ '--' + elemento.getAnnoRilascioString()
                 d[key] = table['Cluster'].loc[i]
                 list[table['Cluster'].loc[i]] += 1
+                tableLista.loc[j]= [table['voti_totali'].loc[i], table['humor'].loc[i], table['ritmo'].loc[i],
+                                    table['impegno'].loc[i], table['tensione'].loc[i], table['erotismo'].loc[i],
+                                    table['titolo_italiano'].loc[i], table['anno'].loc[i]]
 
 
     # prendere max dell'array = cluster di riferimento
@@ -51,12 +63,13 @@ def calculateDistaceMetrics(a):
 
 
     # salvo la lista che hanno nel dizionario il cluster == indice del max dell'array
-    newList = []
-    for elemento in a:
-        key = elemento.getTitolo() + '--' + elemento.getAnnoRilascioString()
-        if d[key] == cluster:
-            newList.append([elemento['voti_totali'], elemento['humor'], elemento['ritmo'],
-                            elemento['impegno'], elemento['tensione'], elemento['erotismo']])
+    #newList = []
+    #for elemento in a:
+    #    key = elemento.getTitolo() + '--' + elemento.getAnnoRilascioString()
+    #    if d[key] == cluster:
+    #        newList.append([elemento['voti_totali'], elemento['humor'], elemento['ritmo'],
+    #                        elemento['impegno'], elemento['tensione'], elemento['erotismo']])
+    #        newList.append(elemento)
 
 
     tableCluster = DataFrame(columns=['voti_totali', 'humor', 'ritmo',
@@ -71,16 +84,18 @@ def calculateDistaceMetrics(a):
             y += 1
 
 
+
     """
         DISTANCE METRIC
     """
     # calcoli la media tra le distanze metriche degli elementi della lista e tutti gli altri cluster
-    print(newList)
+    #print(newList)
     #dist = DistanceMetric.get_metric('euclidean')
+
     numTableCluster = ['voti_totali', 'humor', 'ritmo', 'impegno', 'tensione', 'erotismo']
     #distanze = dist.pairwise(newList, tableCluster[numericCol])
 
-    distanze= cdist(newList, tableCluster[numericCol], metric='euclidean')
+    distanze= cdist(tableLista[numericCol], tableCluster[numericCol], metric='euclidean')
 
     # recuperiamo l'elemento con distanza minima
     min = None
@@ -90,4 +105,4 @@ def calculateDistaceMetrics(a):
         if min is None or media < min[0]:
             min = (media, i)
 
-    return tableCluster['titolo_italiano'].loc[min[1]] + "--" + tableCluster['anno'].loc[min[1]]
+    return tableCluster['titolo_italiano'].loc[min[1]] #+ "--" + str(tableCluster['anno'].loc[min[1]])

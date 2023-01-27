@@ -2,12 +2,8 @@ from nltk.chat.util import Chat, reflections
 from modelling.distaceMetrics import calculateDistaceMetrics
 import csv
 
-
-#kms= calculateDistaceMetrics("film_cluster_kmeans.csv", list)
-#dbscan= calculateDistaceMetrics("film_cluster_dbscan.csv", list)
-
-
 def main(utterances, listaJava):
+
     # array contenente coppie domanda - risposta delimitate da parentesi quadre
     # r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano la risposta del bot
     pairs = [
@@ -56,11 +52,11 @@ def main(utterances, listaJava):
         ],
         [
             r"kms",
-            [calculateDistaceMetrics(listaJava)],
+            [calculateDistaceMetrics(listaJava, "kms")],
         ],
         [
             r"dbs",
-            [calculateDistaceMetrics(listaJava)],
+            [calculateDistaceMetrics(listaJava, "dbs")],
         ],
         [
             r"che fai?",
@@ -82,7 +78,6 @@ def main(utterances, listaJava):
     ]
 
     chat = Chat(pairs, reflections)  # serve alla libreria per distinguere domande e risposte
+    #chat.converse()  # comando per far sì che inizi la conversazione
 
     return chat.respond(utterances)
-
-#chat.converse()  # comando per far sì che inizi la conversazione

@@ -108,6 +108,7 @@ public class ActivityChatbot extends AppCompatActivity {
         }
 
 
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(messaggioDigitato.getText().toString().trim().equals("")){
