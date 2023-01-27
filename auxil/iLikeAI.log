@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.31)  25 JAN 2023 11:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  27 JAN 2023 12:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -7,9 +7,9 @@ entering extended mode
 (iLikeAI.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2022-12-17>
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2022/07/02 v1.4n Standard LaTeX document class
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
@@ -25,17 +25,17 @@ File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks16
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 \Gm@cnth=\count194
@@ -51,55 +51,56 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutvoffset=\dimen148
 \Gm@dimlist=\toks17
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
-) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks18
 \inpenc@posthook=\toks19
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2022/11/30 3.83 The Babel package
 \babel@savecnt=\count197
 \U@D=\dimen149
 \l@unhyphenated=\language79
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count198
 
 *************************************
 * Local config file bblopts.cfg used
 *
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italian.
-ldf
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\italian.l
+df
 Language: italian 2022/03/27 v.1.4.07 Italian support for the babel system
 \it@lettering=\count199
 \it@doublequoteactive=\count266
 \it@ISOcompliance=\count267
 ))
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\babe
-l-italian.tex
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/it\babel
+-italian.tex
 Package babel Info: Importing font and identification data for italian
 (babel)             from babel-it.ini. Reported on input line 11.
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count268
-) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3
-keys2e.sty
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+)
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3k
+eys2e.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
 Package: expl3 2022-12-17 L3 programming layer (loader) 
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
-ftex.def
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count269
 \l__pdf_internal_box=\box51
@@ -111,12 +112,12 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \l__lipsum_a_int=\count271
 \l__lipsum_b_int=\count272
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex)
-) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex))
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
 \col@sep=\dimen150
 \ar@mcellbox=\box52
@@ -126,57 +127,55 @@ Package: array 2022/03/10 v2.5f Tabular extension package (FMi)
 \backup@length=\skip51
 \ar@cellbox=\box53
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
-f
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
-))
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \everycr=\toks21
 \minrowclearance=\skip52
 \rownum=\count273
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.st
-y
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.sty
 Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
- (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks22
 \XKV@tempa@toks=\toks23
 )
 \XKV@depth=\count274
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
-cfg
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
@@ -184,8 +183,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen152
 \Gin@req@width=\dimen153
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.
-sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.s
+ty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \collectedbox=\box54
 )
@@ -195,8 +194,7 @@ Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \tc@ury=\dimen157
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.de
-f
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen158
@@ -208,28 +206,24 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen164
 \adjbox@ptotalheight=\dimen165
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.st
-y
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count275
-)
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
+) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box55
 \sift@deathcycles=\count276
 \@vwid@loff=\dimen166
 \@vwid@roff=\dimen167
-)) (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+)) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
 LaTeX Info: Redefining \color on input line 711.
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
-)
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
 Package xcolor Info: Model `RGB' extended on input line 1369.
@@ -239,63 +233,59 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
-))
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+)) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.st
+y
 Package: hyperref 2022-11-13 v7.00u Hypertext links for LaTeX
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmd
-s.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.
-sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.st
-y
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefin
-ekeys.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.
-sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacr
-o.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
+.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\getti
-tlestring.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.st
-y
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count277
@@ -303,21 +293,18 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \@linkdim=\dimen168
 \Hy@linkcounter=\count278
 \Hy@pagecounter=\count279
-
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+ (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.st
-y
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count280
- (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+ (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -333,11 +320,12 @@ Package hyperref Info: Bookmarks ON on input line 4410.
 \c@Hy@tempcnt=\count281
 LaTeX Info: Redefining \url on input line 4748.
 \XeTeXLinkMargin=\dimen169
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcal
-c.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -352,7 +340,7 @@ Package hyperref Info: Link coloring ON on input line 6045.
 Package hyperref Info: Link coloring with OCG OFF on input line 6052.
 Package hyperref Info: PDF/A mode OFF on input line 6057.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
@@ -361,10 +349,10 @@ package with kernel methods
 \c@Hfootnote=\count285
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
- (C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
 File: hpdftex.def 2022-11-13 v7.00u Hyperref driver for pdfTeX
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
@@ -372,12 +360,12 @@ with kernel methods
 \Fld@listcount=\count286
 \c@bookmark@seq@number=\count287
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfi
-lecheck.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\unique
-counter.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -385,7 +373,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip53
 )
-(C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.aux)
 \openout1 = `iLikeAI.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
@@ -445,8 +433,8 @@ LaTeX Font Info:    ... okay on input line 35.
 LaTeX Info: Redefining \it@ocap on input line 35.
 LaTeX Info: Redefining \it@ccap on input line 35.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
-kii
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count288
 \scratchdimen=\dimen172
@@ -460,23 +448,23 @@ kii
 \makeMPintoPDFobject=\count293
 \everyMPtoPDFconversion=\toks25
 )
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
-base.sty
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\Utente\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.
-cfg
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 35.
- (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
-(C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
+ (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.out)
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.out)
 \@outlinefile=\write3
 \openout3 = `iLikeAI.out'.
 
-<logo.JPEG, id=103, 2905.85625pt x 2905.85625pt>
+<logo.JPEG, id=111, 2905.85625pt x 2905.85625pt>
 File: logo.JPEG Graphic file (type jpg)
 <use logo.JPEG>
 Package pdftex.def Info: logo.JPEG  used on input line 53.
@@ -487,11 +475,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 53.
- [1
 
-{C:/Users/Utente/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG
->]
-(C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.toc
+[1
+
+{C:/Users/Marta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG>
+] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -524,13 +512,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--82
 ] [4]
 Capitolo 3.
 
-iLikeAI.tex:146: LaTeX Error: There's no line here to end.
+iLikeAI.tex:149: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.146 
+l.149 
       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -541,201 +529,237 @@ or  <return>  to continue without it.
 ]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--178
+Underfull \hbox (badness 10000) in paragraph at lines 179--181
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--191
-
- []
-
-<dataPreparation/noScaling.png, id=166, 990.099pt x 289.08pt>
+<dataPreparation/noScaling.png, id=176, 990.099pt x 289.08pt>
 File: dataPreparation/noScaling.png Graphic file (type png)
 <use dataPreparation/noScaling.png>
-Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 203.
+Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 208.
 
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
-<dataPreparation/minMax.png, id=168, 990.099pt x 289.08pt>
+<dataPreparation/minMax.png, id=178, 990.099pt x 289.08pt>
 File: dataPreparation/minMax.png Graphic file (type png)
 <use dataPreparation/minMax.png>
-Package pdftex.def Info: dataPreparation/minMax.png  used on input line 205.
+Package pdftex.def Info: dataPreparation/minMax.png  used on input line 210.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
 [6
 
  <./dataPreparation/noScaling.png>]
-<dataPreparation/zScore.png, id=175, 990.099pt x 289.08pt>
+<dataPreparation/zScore.png, id=185, 990.099pt x 289.08pt>
 File: dataPreparation/zScore.png Graphic file (type png)
 <use dataPreparation/zScore.png>
-Package pdftex.def Info: dataPreparation/zScore.png  used on input line 207.
+Package pdftex.def Info: dataPreparation/zScore.png  used on input line 212.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
 
 
-iLikeAI.tex:210: LaTeX Error: There's no line here to end.
+iLikeAI.tex:215: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.210             \\C
-                     ome evidenziato nei grafici, la tectica dello Z-Score N...
+l.215             \\C
+                     ome evidenziato nei grafici, la tecnica dello Z-Score N...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<dataPreparation/Matrice di Correlazione.png, id=176, 1084.05pt x 433.62pt>
+<dataPreparation/Matrice di Correlazione.png, id=186, 1084.05pt x 433.62pt>
 File: dataPreparation/Matrice di Correlazione.png Graphic file (type png)
 <use dataPreparation/Matrice di Correlazione.png>
 Package pdftex.def Info: dataPreparation/Matrice di Correlazione.png  used on i
-nput line 222.
+nput line 229.
 (pdftex.def)             Requested size: 369.87889pt x 199.16988pt.
 [7 <./dataPreparation/minMax.png> <./dataPreparation/zScore.png> <./dataPrepara
 tion/Matrice di Correlazione.png>] [8]
 Capitolo 5.
-<modelling/ClusterK-Means.png, id=188, 462.528pt x 346.896pt>
+<modelling/ClusterK-Means.png, id=198, 462.528pt x 346.896pt>
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 272.
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 278.
 (pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
 
-Overfull \hbox (1.77553pt too wide) in paragraph at lines 276--278
+Overfull \hbox (1.77553pt too wide) in paragraph at lines 282--284
 \T1/cmr/m/n/10 L'algoritmo di clu-ste-ring DB-Scan vie-ne rea-liz-za-to tra-mi-
 te la fun-zio-ne DB-SCAN() del-la li-bre-ria sklearn.cluster.
  []
 
-<modelling/DBScan.png, id=189, 1011.78pt x 722.7pt>
+<modelling/DBScan.png, id=199, 1011.78pt x 722.7pt>
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 288.
+Package pdftex.def Info: modelling/DBScan.png  used on input line 294.
 (pdftex.def)             Requested size: 227.62204pt x 162.57841pt.
 [9
 
- <./modelling/ClusterK-Means.png>]
+ <./modelling/ClusterK-Means.png>] [10 <./modelling/DBScan.png>]
+Capitolo 6.
+<evaluation/elbowPoint.png, id=211, 642.4pt x 481.8pt>
+File: evaluation/elbowPoint.png Graphic file (type png)
+<use evaluation/elbowPoint.png>
+Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 321.
+(pdftex.def)             Requested size: 227.62204pt x 170.71304pt.
+<evaluation/k=7.png, id=212, 642.4pt x 481.8pt>
+File: evaluation/k=7.png Graphic file (type png)
+<use evaluation/k=7.png>
+Package pdftex.def Info: evaluation/k=7.png  used on input line 333.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/k=8.png, id=213, 642.4pt x 481.8pt>
+File: evaluation/k=8.png Graphic file (type png)
+<use evaluation/k=8.png>
+Package pdftex.def Info: evaluation/k=8.png  used on input line 334.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/k=9.png, id=214, 642.4pt x 481.8pt>
+File: evaluation/k=9.png Graphic file (type png)
+<use evaluation/k=9.png>
+Package pdftex.def Info: evaluation/k=9.png  used on input line 335.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/k=10.png, id=215, 642.4pt x 481.8pt>
+File: evaluation/k=10.png Graphic file (type png)
+<use evaluation/k=10.png>
+Package pdftex.def Info: evaluation/k=10.png  used on input line 336.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+[11
+
+ <./evaluation/elbowPoint.png (PNG copy)> <./evaluation/k=7.png (PNG copy)> <./
+evaluation/k=8.png (PNG copy)>]
+<evaluation/silhouette score.png, id=220, 335.75438pt x 71.51718pt>
+File: evaluation/silhouette score.png Graphic file (type png)
+<use evaluation/silhouette score.png>
+Package pdftex.def Info: evaluation/silhouette score.png  used on input line 35
+5.
+(pdftex.def)             Requested size: 227.62204pt x 48.4848pt.
+<evaluation/silhouette_9.png, id=221, 987.2082pt x 479.1501pt>
+File: evaluation/silhouette_9.png Graphic file (type png)
+<use evaluation/silhouette_9.png>
+Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 364.
+(pdftex.def)             Requested size: 369.88583pt x 227.62059pt.
+ [12 <./evaluation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./ev
+aluation/silhouette score.png> <./evaluation/silhouette_9.png>]
+<evaluation/DBScan_1.4_15.png, id=229, 1084.05pt x 505.89pt>
+File: evaluation/DBScan_1.4_15.png Graphic file (type png)
+<use evaluation/DBScan_1.4_15.png>
+Package pdftex.def Info: evaluation/DBScan_1.4_15.png  used on input line 377.
+(pdftex.def)             Requested size: 398.33858pt x 185.88724pt.
+<evaluation/DBScan_1-15.png, id=230, 1084.05pt x 505.89pt>
+File: evaluation/DBScan_1-15.png Graphic file (type png)
+<use evaluation/DBScan_1-15.png>
+Package pdftex.def Info: evaluation/DBScan_1-15.png  used on input line 378.
+(pdftex.def)             Requested size: 398.33858pt x 185.88724pt.
+ [13 <./evaluation/DBScan_1.4_15.png> <./evaluation/DBScan_1-15.png>]
+Capitolo 7.
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 307.
+Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 406.
 (pdftex.def)             Requested size: 170.71652pt x 128.0372pt.
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 308.
+Package pdftex.def Info: modelling/DBScan.png  used on input line 407.
 (pdftex.def)             Requested size: 170.71652pt x 121.93106pt.
 
-
-iLikeAI.tex:311: LaTeX Error: There's no line here to end.
+iLikeAI.tex:410: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.311             \\U
-                     na volta ottenuto questo modello, l'obiettivo da raggiu...
+l.410         \\U
+                 na volta ottenuto questo modello, l'obiettivo da raggiunger...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-[10 <./modelling/DBScan.png>]
-<modelling/numeroFilmxCluster.png, id=201, 907.89188pt x 191.21437pt>
+<modelling/numeroFilmxCluster.png, id=238, 907.89188pt x 191.21437pt>
 File: modelling/numeroFilmxCluster.png Graphic file (type png)
 <use modelling/numeroFilmxCluster.png>
-Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 3
-31.
+Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 4
+30.
 (pdftex.def)             Requested size: 227.62204pt x 47.9406pt.
-<modelling/distanzeMetriche.png, id=202, 658.46pt x 188.705pt>
+<modelling/distanzeMetriche.png, id=239, 658.46pt x 188.705pt>
 File: modelling/distanzeMetriche.png Graphic file (type png)
 <use modelling/distanzeMetriche.png>
-Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 337
+Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 436
 .
 (pdftex.def)             Requested size: 227.62204pt x 65.23286pt.
-<modelling/filmSelezionato.png, id=203, 337.76187pt x 212.795pt>
+<modelling/filmSelezionato.png, id=240, 337.76187pt x 212.795pt>
 File: modelling/filmSelezionato.png Graphic file (type png)
 <use modelling/filmSelezionato.png>
-Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 344.
+Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 443.
 
 (pdftex.def)             Requested size: 227.62204pt x 143.40962pt.
- [11 <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png> <.
-/modelling/filmSelezionato.png>]
-Capitolo 6.
-<evaluation/elbowPoint.png, id=211, 642.4pt x 481.8pt>
-File: evaluation/elbowPoint.png Graphic file (type png)
-<use evaluation/elbowPoint.png>
-Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 387.
-(pdftex.def)             Requested size: 227.62204pt x 170.71304pt.
-<evaluation/k=7.png, id=212, 642.4pt x 481.8pt>
-File: evaluation/k=7.png Graphic file (type png)
-<use evaluation/k=7.png>
-Package pdftex.def Info: evaluation/k=7.png  used on input line 399.
-(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=8.png, id=213, 642.4pt x 481.8pt>
-File: evaluation/k=8.png Graphic file (type png)
-<use evaluation/k=8.png>
-Package pdftex.def Info: evaluation/k=8.png  used on input line 400.
-(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=9.png, id=214, 642.4pt x 481.8pt>
-File: evaluation/k=9.png Graphic file (type png)
-<use evaluation/k=9.png>
-Package pdftex.def Info: evaluation/k=9.png  used on input line 401.
-(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=10.png, id=215, 642.4pt x 481.8pt>
-File: evaluation/k=10.png Graphic file (type png)
-<use evaluation/k=10.png>
-Package pdftex.def Info: evaluation/k=10.png  used on input line 402.
-(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-[12
-
- <./evaluation/elbowPoint.png (PNG copy)> <./evaluation/k=7.png (PNG copy)> <./
-evaluation/k=8.png (PNG copy)>]
-<evaluation/silhouette score.png, id=221, 335.75438pt x 71.51718pt>
-File: evaluation/silhouette score.png Graphic file (type png)
-<use evaluation/silhouette score.png>
-Package pdftex.def Info: evaluation/silhouette score.png  used on input line 42
-1.
-(pdftex.def)             Requested size: 227.62204pt x 48.4848pt.
-<evaluation/silhouette_9.png, id=222, 987.2082pt x 479.1501pt>
-File: evaluation/silhouette_9.png Graphic file (type png)
-<use evaluation/silhouette_9.png>
-Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 430.
-(pdftex.def)             Requested size: 369.88583pt x 227.62059pt.
- [13 <./evaluation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./ev
-aluation/silhouette score.png> <./evaluation/silhouette_9.png>]
-Capitolo 7.
 [14
 
-]
+ <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png>]
+[15 <./modelling/filmSelezionato.png>]
 Capitolo 8.
-[15
+<deployment/icona_chatbot.png, id=252, 48.18pt x 48.18pt>
+File: deployment/icona_chatbot.png Graphic file (type png)
+<use deployment/icona_chatbot.png>
+Package pdftex.def Info: deployment/icona_chatbot.png  used on input line 469.
+(pdftex.def)             Requested size: 11.38092pt x 11.38037pt.
+<deployment/tasto_invia.png, id=253, 534.99875pt x 57.71562pt>
+File: deployment/tasto_invia.png Graphic file (type png)
+<use deployment/tasto_invia.png>
+Package pdftex.def Info: deployment/tasto_invia.png  used on input line 473.
+(pdftex.def)             Requested size: 85.35826pt x 9.20825pt.
+<deployment/tasto_back.png, id=254, 541.52313pt x 65.74562pt>
+File: deployment/tasto_back.png Graphic file (type png)
+<use deployment/tasto_back.png>
+Package pdftex.def Info: deployment/tasto_back.png  used on input line 475.
+(pdftex.def)             Requested size: 85.35826pt x 10.363pt.
 
-] (C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
+iLikeAI.tex:478: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.478         \\N
+                 el caso in cui, l'utente non ha liste a lui associate oppur...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[16
+
+ <./deployment/icona_chatbot.png> <./deployment/tasto_invia.png> <./deployment/
+tasto_back.png>]
+Capitolo 9.
+[17
+
+] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.aux)
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
-(rerunfilecheck)             Checksum: 70BBC9A18845B1A8A268C82EDD71B43D;3375.
+(rerunfilecheck)             Checksum: 200542C7B8F232B99EB231DEC673AFEE;3671.
  ) 
 Here is how much of TeX's memory you used:
- 12794 strings out of 476406
- 213728 string characters out of 2789094
+ 12835 strings out of 476406
+ 214649 string characters out of 2789566
  1861787 words of memory out of 3000000
- 32889 multiletter control sequences out of 15000+600000
+ 32919 multiletter control sequences out of 15000+600000
  525206 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,16n,90p,293b,517s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecb
-x1200.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
-600\tcrm1000.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen
-/ec/dpi600\ecbx1440.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/j
-knappen/ec/dpi600\ecti1000.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/l
-jfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Utente\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Utente\AppData\Local\MiK
-TeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Utente\AppData\Lo
-cal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Utente\App
-Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Ute
-nte\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Us
-ers\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk>
- <C:\Users\Utente\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1
-728.pk>
-Output written on C:/Users\Utente\AndroidStudioProjects\iLike_Classe03\out\iLik
-eAI.pdf (16 pages, 1470743 bytes).
+ <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
+1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecbx1440.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\ecti1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fon
+ts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Marta\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Marta\AppData\Loca
+l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Marta\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Marta\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\
+Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
+Output written on C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLike
+AI.pdf (18 pages, 1883226 bytes).
 PDF statistics:
- 632 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 286 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 669 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 327 words of extra memory for PDF output out of 10000 (max. 10000000)
 
