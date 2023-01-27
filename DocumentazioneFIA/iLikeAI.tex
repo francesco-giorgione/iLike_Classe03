@@ -366,28 +366,26 @@
 
         \section{DB-Scan Evaluation}\label{sec:dbscan-evaluation}
             \subsection{Silhouette Score}
-                Il metodo di valutazione, utilizzato per valutare i risultati prodotti dall'algoritmo DB-Scan, è il Silhouette Score
+                Il metodo di valutazione utilizzato per valutare i risultati prodotti dall'algoritmo DB-Scan è il Silhouette Score,
                 fornito dalla libreria Python \textit{scikit-learn}. Dopo aver eseguito il DB-Scan con diversi valori sia per l'intorno
-                circolare, sia per il minimo numero di punti per considerare un intorno denso, le esecuzioni più rilevanti sono ripostate
-                in seguito. I grafici sottoriportati evidenziano il valore del silhouette score e la divisione dei dati nei vari cluster
-                ottenuti. La linea verticale tratteggiata è rappresenta la media delle Silhouette Score calcolate in preceneza.
+                circolare, sia per il minimo numero di punti per considerare un intorno denso, abbiamo riportato di seguito le esecuzioni
+                più rilevanti. I grafici sottoriportati evidenziano il valore del silhouette score e la divisione dei dati nei vari cluster
+                ottenuti. La linea verticale tratteggiata rappresenta la media delle Silhouette Score calcolate in preceneza.
 
                 \begin{center}
                     \includegraphics[width=14cm]{evaluation/DBScan_0.9-15.png}
                     \includegraphics[width=14cm]{evaluation/DBScan_1-15.png} \\
                 \end{center}
 
-                Come si può notare nessun grafico risulta essere un clustering ottimale.
-                Nel secondo grafico si può notare una suddivisione sub-ottima in quanto:
+                Come si può notare dai grafici, nessuno rappresenta un clustering ottimale.
+                Nel secondo grafico si può notare una suddivisione sub-ottima in cluster in quanto:
                 \begin{itemize}
-                    \item il numero di cluster è minore nel secondo grafico, ciò consente una migliore suddivisione dei cluster;
+                    \item il numero di cluster è minore rispetto al primo grafico e ciò consente una migliore suddivisione dei dati nei cluster;
                     \item la media delle Silhouette Score è simile tra le due;
-                    \item il numero di outline (rappresentato dal cluster -1) è minore nel secondo grafico.
+                    \item il numero di elementi outline (elementi nel cluster -1) è minore nel secondo grafico.
                 \end{itemize}
 
-                Gli altri risultati, non riportati, hanno gli stessi risultati dei precedenti con una media inferiore e
-                una suddivisione non ideale.
-                \\Di conseguenza, i valori sub-ottimi sono rappresentati da eps = 1 e min samples = 15.
+                Di conseguenza, i valori sub-ottimi sono rappresentati da eps = 1 e min samples = 15.
 
                 \paragraph{}
                 Si può notare che l'algoritmo K-Means effettua un clustering migliore, ma il giudizio sul clustering usato sarà offerto dagli
