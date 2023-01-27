@@ -91,6 +91,25 @@ public class ListaDAO {
 
         QueryManager queryManager= new QueryManager();
 
+        String query = "delete from Inclusioni where nome_lista = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+
+        //String query = "delete from Liste where nome = " + nome + " and email_iscritto = " + emailIscritto + "";
+
+        return queryManager.update(query);
+    }
+
+    private boolean doDeleteByKeyLista(String nome, String emailIscritto){
+        if (nome == null || emailIscritto == null){
+            return false;
+        }
+
+        nome = addEscape(nome);
+        emailIscritto = addEscape(emailIscritto);
+
+        QueryManager queryManager= new QueryManager();
+
+        //String query = "delete from Inclusioni where nome_lista = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
+
         String query = "delete from Liste where nome = '" + nome + "' and email_iscritto = '" + emailIscritto + "'";
 
         return queryManager.update(query);
@@ -172,9 +191,13 @@ public class ListaDAO {
         }
 
         if(this.doDeleteByKey(lista.getNome(), lista.getIscritto().getEmail())) {
-            return this.doSave(lista);
+            if (this.doDeleteByKeyLista(lista.getNome(), lista.getIscritto().getEmail()))
+                return this.doSave(lista);
+            else
+                return false;
         }
-        else return false;
+        else
+            return false;
     }
 
 

@@ -100,7 +100,7 @@ def calculateDistaceMetrics(a, alg):
     # recuperiamo l'elemento con distanza minima
     min = None
     for i, x in enumerate(distanze):
-        print(len(x))
+        #print(len(x))
         media = mean(x)
         if min is None or media < min[0]:
             min = (media, i)
