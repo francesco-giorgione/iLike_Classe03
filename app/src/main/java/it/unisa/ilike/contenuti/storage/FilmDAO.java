@@ -14,8 +14,8 @@ public class FilmDAO extends ContenutoDAO {
 
 
     private class RisultatoQuery {
-        public RisultatoQuery(Integer index, String titolo, Float annoRilascio, String categoria, String paese,  String regista, String descrizione) {
-            this.index=index;
+        public RisultatoQuery(Integer id, String titolo, Float annoRilascio, String categoria, String paese,  String regista, String descrizione) {
+            this.id =id;
             this.titolo=titolo;
             this.annoRilascio=annoRilascio;
             this.categoria=categoria;
@@ -24,12 +24,12 @@ public class FilmDAO extends ContenutoDAO {
             this.descrizione=descrizione;
         }
 
-        public Integer getIndex() {
-            return index;
+        public Integer getId() {
+            return id;
         }
 
-        public void setIndex(Integer index) {
-            this.index = index;
+        public void setId(Integer id) {
+            this.id = id;
         }
 
         public String getTitolo() {
@@ -80,7 +80,7 @@ public class FilmDAO extends ContenutoDAO {
             this.descrizione = descrizione;
         }
 
-        private Integer index;
+        private Integer id;
         private String titolo;
         private Float annoRilascio;
         private String categoria;
@@ -96,10 +96,10 @@ public class FilmDAO extends ContenutoDAO {
         QueryManager queryManager = new QueryManager();
         String query = "SELECT * " +
                 "FROM Film " +
-                "WHERE \"index\" = " + id;
+                "WHERE \"id\" = " + id;
 
         /*String query = "SELECT * " +
-                "FROM Film WHERE \"index\" < 3";*/
+                "FROM Film WHERE \"id\" < 3";*/
 
         Gson gson = new Gson();
         String jsonRes = queryManager.select(query);
@@ -111,7 +111,7 @@ public class FilmDAO extends ContenutoDAO {
         }
 
         FilmBean film = new FilmBean();
-        film.setId(res[0].getIndex());
+        film.setId(res[0].getId());
         film.setTitolo(res[0].getTitolo());
         film.setAnnoRilascio(res[0].getAnnoRilascio());
         film.setCategoria(res[0].getCategoria());
@@ -158,7 +158,7 @@ public class FilmDAO extends ContenutoDAO {
 
         int i;
         for (i=0; i<res.length;i++) {
-            toReturn.add(new FilmBean(res[i].getIndex(), res[i].getTitolo(), res[i].getAnnoRilascio(), res[i].getCategoria(),
+            toReturn.add(new FilmBean(res[i].getId(), res[i].getTitolo(), res[i].getAnnoRilascio(), res[i].getCategoria(),
                     res[i].getPaese(), res[i].getRegista(), res[i].getDescrizione()));
         }
 

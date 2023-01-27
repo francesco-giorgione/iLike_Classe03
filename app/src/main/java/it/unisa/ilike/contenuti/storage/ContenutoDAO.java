@@ -114,8 +114,8 @@ public class ContenutoDAO {
 
     private class RisultatoQueryRicercaFilm extends ContenutoBean {
 
-        public RisultatoQueryRicercaFilm(Integer index, String titolo, Float annoRilascio, String categoria, String paese,  String regista, String descrizione) {
-            this.index=index;
+        public RisultatoQueryRicercaFilm(Integer id, String titolo, Float annoRilascio, String categoria, String paese,  String regista, String descrizione) {
+            this.id =id;
             this.titolo=titolo;
             this.annoRilascio=annoRilascio;
             this.categoria=categoria;
@@ -124,12 +124,12 @@ public class ContenutoDAO {
             this.descrizione=descrizione;
         }
 
-        public Integer getIndex() {
-            return index;
+        public int getId() {
+            return id;
         }
 
-        public void setIndex(Integer index) {
-            this.index = index;
+        public void setId(Integer id) {
+            this.id = id;
         }
 
         public String getTitolo() {
@@ -180,7 +180,7 @@ public class ContenutoDAO {
             this.descrizione = descrizione;
         }
 
-        private Integer index;
+        private Integer id;
         private String titolo;
         private Float annoRilascio;
         private String categoria;
