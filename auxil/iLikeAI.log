@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  27 JAN 2023 12:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  27 JAN 2023 12:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -373,7 +373,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip53
 )
-(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.aux)
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 \openout1 = `iLikeAI.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
@@ -459,8 +459,8 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 35.
- (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.out)
-(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.out)
+ (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
 \@outlinefile=\write3
 \openout3 = `iLikeAI.out'.
 
@@ -475,11 +475,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 53.
-
-[1
+ [1
 
 {C:/Users/Marta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG>
-] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.toc
+]
+(C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -731,15 +731,15 @@ tasto_back.png>]
 Capitolo 9.
 [17
 
-] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\auxil\iLikeAI.aux)
+] (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
-(rerunfilecheck)             Checksum: 200542C7B8F232B99EB231DEC673AFEE;3671.
+(rerunfilecheck)             Checksum: 563C41BD103A876FA8E28C6D34530450;3698.
  ) 
 Here is how much of TeX's memory you used:
- 12835 strings out of 476406
- 214649 string characters out of 2789566
+ 12836 strings out of 476406
+ 214644 string characters out of 2789566
  1861787 words of memory out of 3000000
- 32919 multiletter control sequences out of 15000+600000
+ 32920 multiletter control sequences out of 15000+600000
  525206 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,16n,90p,293b,517s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -757,7 +757,7 @@ a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Marta\
 AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\
 Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
 Output written on C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLike
-AI.pdf (18 pages, 1883226 bytes).
+AI.pdf (18 pages, 1883298 bytes).
 PDF statistics:
  669 PDF objects out of 1000 (max. 8388607)
  47 named destinations out of 1000 (max. 500000)
