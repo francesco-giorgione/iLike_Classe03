@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  27 JAN 2023 12:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2022.12.27)  27 JAN 2023 15:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -373,27 +373,30 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip53
 )
+(C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
 (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.aux)
 \openout1 = `iLikeAI.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 35.
-LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -430,8 +433,8 @@ LaTeX Font Info:    ... okay on input line 35.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \it@ocap on input line 35.
-LaTeX Info: Redefining \it@ccap on input line 35.
+LaTeX Info: Redefining \it@ocap on input line 36.
+LaTeX Info: Redefining \it@ccap on input line 36.
 
 (C:\Users\Marta\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -458,7 +461,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 35.
+Package hyperref Info: Link coloring ON on input line 36.
  (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
 (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.out)
 \@outlinefile=\write3
@@ -467,14 +470,18 @@ Package hyperref Info: Link coloring ON on input line 35.
 <logo.JPEG, id=111, 2905.85625pt x 2905.85625pt>
 File: logo.JPEG Graphic file (type jpg)
 <use logo.JPEG>
-Package pdftex.def Info: logo.JPEG  used on input line 53.
+Package pdftex.def Info: logo.JPEG  used on input line 55.
 (pdftex.def)             Requested size: 284.52756pt x 284.48376pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 53.
+(Font)              <9> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 53.
+(Font)              <6> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 53.
+(Font)              <5> on input line 55.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 55.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 55.
  [1
 
 {C:/Users/Marta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./logo.JPEG>
@@ -482,8 +489,6 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLikeAI.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 5.
 )
 \tf@toc=\write4
 \openout4 = `iLikeAI.toc'.
@@ -493,7 +498,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.56     \chapter
+l.58     \chapter
                  {Introduzione}\label{ch:introduzione} [1
 
 ]
@@ -503,23 +508,41 @@ Capitolo 1.
 ]
 Capitolo 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
+<deployment/icona_chatbot.png, id=162, 48.18pt x 48.18pt>
+File: deployment/icona_chatbot.png Graphic file (type png)
+<use deployment/icona_chatbot.png>
+Package pdftex.def Info: deployment/icona_chatbot.png  used on input line 131.
+(pdftex.def)             Requested size: 11.38092pt x 11.38037pt.
 [3
 
-] [4]
+] [4 <./deployment/icona_chatbot.png>]
 Capitolo 3.
 
-iLikeAI.tex:149: LaTeX Error: There's no line here to end.
+iLikeAI.tex:152: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.149 
-      
+l.152             \\\\
+                      I pro e i contro delle alternative sopra elencate sono:
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+iLikeAI.tex:152: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152             \\\\I
+                        pro e i contro delle alternative sopra elencate sono:
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
@@ -529,54 +552,54 @@ or  <return>  to continue without it.
 ]
 Capitolo 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--181
+Underfull \hbox (badness 10000) in paragraph at lines 181--183
 
  []
 
-<dataPreparation/noScaling.png, id=176, 990.099pt x 289.08pt>
+<dataPreparation/noScaling.png, id=180, 990.099pt x 289.08pt>
 File: dataPreparation/noScaling.png Graphic file (type png)
 <use dataPreparation/noScaling.png>
-Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 208.
+Package pdftex.def Info: dataPreparation/noScaling.png  used on input line 210.
 
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
-<dataPreparation/minMax.png, id=178, 990.099pt x 289.08pt>
+<dataPreparation/minMax.png, id=181, 990.099pt x 289.08pt>
 File: dataPreparation/minMax.png Graphic file (type png)
 <use dataPreparation/minMax.png>
-Package pdftex.def Info: dataPreparation/minMax.png  used on input line 210.
+Package pdftex.def Info: dataPreparation/minMax.png  used on input line 212.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
 [6
 
  <./dataPreparation/noScaling.png>]
-<dataPreparation/zScore.png, id=185, 990.099pt x 289.08pt>
+<dataPreparation/zScore.png, id=188, 990.099pt x 289.08pt>
 File: dataPreparation/zScore.png Graphic file (type png)
 <use dataPreparation/zScore.png>
-Package pdftex.def Info: dataPreparation/zScore.png  used on input line 212.
+Package pdftex.def Info: dataPreparation/zScore.png  used on input line 214.
 (pdftex.def)             Requested size: 369.8812pt x 142.26357pt.
 
 
-iLikeAI.tex:215: LaTeX Error: There's no line here to end.
+iLikeAI.tex:217: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.215             \\C
+l.217             \\C
                      ome evidenziato nei grafici, la tecnica dello Z-Score N...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<dataPreparation/Matrice di Correlazione.png, id=186, 1084.05pt x 433.62pt>
+<dataPreparation/Matrice di Correlazione.png, id=189, 1084.05pt x 433.62pt>
 File: dataPreparation/Matrice di Correlazione.png Graphic file (type png)
 <use dataPreparation/Matrice di Correlazione.png>
 Package pdftex.def Info: dataPreparation/Matrice di Correlazione.png  used on i
-nput line 229.
+nput line 231.
 (pdftex.def)             Requested size: 369.87889pt x 199.16988pt.
 [7 <./dataPreparation/minMax.png> <./dataPreparation/zScore.png> <./dataPrepara
 tion/Matrice di Correlazione.png>] [8]
 Capitolo 5.
-<modelling/ClusterK-Means.png, id=198, 462.528pt x 346.896pt>
+<modelling/ClusterK-Means.png, id=201, 462.528pt x 346.896pt>
 File: modelling/ClusterK-Means.png Graphic file (type png)
 <use modelling/ClusterK-Means.png>
 Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 278.
@@ -587,137 +610,138 @@ Overfull \hbox (1.77553pt too wide) in paragraph at lines 282--284
 te la fun-zio-ne DB-SCAN() del-la li-bre-ria sklearn.cluster.
  []
 
-<modelling/DBScan.png, id=199, 1011.78pt x 722.7pt>
+<modelling/DBScan.png, id=202, 1011.78pt x 722.7pt>
 File: modelling/DBScan.png Graphic file (type png)
 <use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 294.
+Package pdftex.def Info: modelling/DBScan.png  used on input line 293.
 (pdftex.def)             Requested size: 227.62204pt x 162.57841pt.
 [9
 
  <./modelling/ClusterK-Means.png>] [10 <./modelling/DBScan.png>]
 Capitolo 6.
-<evaluation/elbowPoint.png, id=211, 642.4pt x 481.8pt>
+<evaluation/elbowPoint.png, id=214, 642.4pt x 481.8pt>
 File: evaluation/elbowPoint.png Graphic file (type png)
 <use evaluation/elbowPoint.png>
-Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 321.
+Package pdftex.def Info: evaluation/elbowPoint.png  used on input line 320.
 (pdftex.def)             Requested size: 227.62204pt x 170.71304pt.
-<evaluation/k=7.png, id=212, 642.4pt x 481.8pt>
+<evaluation/k=7.png, id=215, 642.4pt x 481.8pt>
 File: evaluation/k=7.png Graphic file (type png)
 <use evaluation/k=7.png>
-Package pdftex.def Info: evaluation/k=7.png  used on input line 333.
+Package pdftex.def Info: evaluation/k=7.png  used on input line 332.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=8.png, id=213, 642.4pt x 481.8pt>
+<evaluation/k=8.png, id=216, 642.4pt x 481.8pt>
 File: evaluation/k=8.png Graphic file (type png)
 <use evaluation/k=8.png>
-Package pdftex.def Info: evaluation/k=8.png  used on input line 334.
+Package pdftex.def Info: evaluation/k=8.png  used on input line 333.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=9.png, id=214, 642.4pt x 481.8pt>
+<evaluation/k=9.png, id=217, 642.4pt x 481.8pt>
 File: evaluation/k=9.png Graphic file (type png)
 <use evaluation/k=9.png>
-Package pdftex.def Info: evaluation/k=9.png  used on input line 335.
+Package pdftex.def Info: evaluation/k=9.png  used on input line 334.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
-<evaluation/k=10.png, id=215, 642.4pt x 481.8pt>
+<evaluation/k=10.png, id=218, 642.4pt x 481.8pt>
 File: evaluation/k=10.png Graphic file (type png)
 <use evaluation/k=10.png>
-Package pdftex.def Info: evaluation/k=10.png  used on input line 336.
+Package pdftex.def Info: evaluation/k=10.png  used on input line 335.
 (pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
 [11
 
  <./evaluation/elbowPoint.png (PNG copy)> <./evaluation/k=7.png (PNG copy)> <./
 evaluation/k=8.png (PNG copy)>]
-<evaluation/silhouette score.png, id=220, 335.75438pt x 71.51718pt>
+<evaluation/silhouette score.png, id=223, 335.75438pt x 71.51718pt>
 File: evaluation/silhouette score.png Graphic file (type png)
 <use evaluation/silhouette score.png>
 Package pdftex.def Info: evaluation/silhouette score.png  used on input line 35
-5.
+4.
 (pdftex.def)             Requested size: 227.62204pt x 48.4848pt.
-<evaluation/silhouette_9.png, id=221, 987.2082pt x 479.1501pt>
+<evaluation/silhouette_9.png, id=224, 987.2082pt x 479.1501pt>
 File: evaluation/silhouette_9.png Graphic file (type png)
 <use evaluation/silhouette_9.png>
-Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 364.
-(pdftex.def)             Requested size: 369.88583pt x 227.62059pt.
- [12 <./evaluation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./ev
-aluation/silhouette score.png> <./evaluation/silhouette_9.png>]
-<evaluation/DBScan_1.4_15.png, id=229, 1084.05pt x 505.89pt>
-File: evaluation/DBScan_1.4_15.png Graphic file (type png)
-<use evaluation/DBScan_1.4_15.png>
-Package pdftex.def Info: evaluation/DBScan_1.4_15.png  used on input line 377.
+Package pdftex.def Info: evaluation/silhouette_9.png  used on input line 363.
+(pdftex.def)             Requested size: 398.33858pt x 193.33823pt.
+<evaluation/DBScan_0.9-15.png, id=225, 1084.05pt x 505.89pt>
+File: evaluation/DBScan_0.9-15.png Graphic file (type png)
+<use evaluation/DBScan_0.9-15.png>
+Package pdftex.def Info: evaluation/DBScan_0.9-15.png  used on input line 376.
 (pdftex.def)             Requested size: 398.33858pt x 185.88724pt.
-<evaluation/DBScan_1-15.png, id=230, 1084.05pt x 505.89pt>
+<evaluation/DBScan_1-15.png, id=226, 1084.05pt x 505.89pt>
 File: evaluation/DBScan_1-15.png Graphic file (type png)
 <use evaluation/DBScan_1-15.png>
-Package pdftex.def Info: evaluation/DBScan_1-15.png  used on input line 378.
+Package pdftex.def Info: evaluation/DBScan_1-15.png  used on input line 377.
 (pdftex.def)             Requested size: 398.33858pt x 185.88724pt.
- [13 <./evaluation/DBScan_1.4_15.png> <./evaluation/DBScan_1-15.png>]
+ [12 <./evaluation/k=9.png (PNG copy)> <./evaluation/k=10.png (PNG copy)> <./ev
+aluation/silhouette score.png> <./evaluation/silhouette_9.png>] [13 <./evaluati
+on/DBScan_0.9-15.png> <./evaluation/DBScan_1-15.png>]
 Capitolo 7.
-File: modelling/ClusterK-Means.png Graphic file (type png)
-<use modelling/ClusterK-Means.png>
-Package pdftex.def Info: modelling/ClusterK-Means.png  used on input line 406.
-(pdftex.def)             Requested size: 170.71652pt x 128.0372pt.
-File: modelling/DBScan.png Graphic file (type png)
-<use modelling/DBScan.png>
-Package pdftex.def Info: modelling/DBScan.png  used on input line 407.
-(pdftex.def)             Requested size: 170.71652pt x 121.93106pt.
+File: evaluation/k=9.png Graphic file (type png)
+<use evaluation/k=9.png>
+Package pdftex.def Info: evaluation/k=9.png  used on input line 405.
+(pdftex.def)             Requested size: 170.71652pt x 128.03662pt.
+<evaluation/DBScan.png, id=241, 1011.78pt x 692.3466pt>
+File: evaluation/DBScan.png Graphic file (type png)
+<use evaluation/DBScan.png>
+Package pdftex.def Info: evaluation/DBScan.png  used on input line 406.
+(pdftex.def)             Requested size: 199.16928pt x 136.28004pt.
 
-iLikeAI.tex:410: LaTeX Error: There's no line here to end.
+iLikeAI.tex:409: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.410         \\U
+l.409         \\U
                  na volta ottenuto questo modello, l'obiettivo da raggiunger...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
-<modelling/numeroFilmxCluster.png, id=238, 907.89188pt x 191.21437pt>
+<modelling/numeroFilmxCluster.png, id=242, 879.78688pt x 191.21437pt>
 File: modelling/numeroFilmxCluster.png Graphic file (type png)
 <use modelling/numeroFilmxCluster.png>
 Package pdftex.def Info: modelling/numeroFilmxCluster.png  used on input line 4
-30.
-(pdftex.def)             Requested size: 227.62204pt x 47.9406pt.
-<modelling/distanzeMetriche.png, id=239, 658.46pt x 188.705pt>
+29.
+(pdftex.def)             Requested size: 227.62204pt x 49.46947pt.
+<modelling/distanzeMetriche.png, id=243, 600.2425pt x 188.705pt>
 File: modelling/distanzeMetriche.png Graphic file (type png)
 <use modelling/distanzeMetriche.png>
-Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 436
+Package pdftex.def Info: modelling/distanzeMetriche.png  used on input line 435
 .
-(pdftex.def)             Requested size: 227.62204pt x 65.23286pt.
-<modelling/filmSelezionato.png, id=240, 337.76187pt x 212.795pt>
-File: modelling/filmSelezionato.png Graphic file (type png)
-<use modelling/filmSelezionato.png>
-Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 443.
-
-(pdftex.def)             Requested size: 227.62204pt x 143.40962pt.
+(pdftex.def)             Requested size: 227.62204pt x 71.5589pt.
 [14
 
- <./modelling/numeroFilmxCluster.png> <./modelling/distanzeMetriche.png>]
-[15 <./modelling/filmSelezionato.png>]
+ <./evaluation/DBScan.png> <./modelling/numeroFilmxCluster.png> <./modelling/di
+stanzeMetriche.png>]
+<modelling/filmSelezionato.png, id=251, 325.71687pt x 180.17313pt>
+File: modelling/filmSelezionato.png Graphic file (type png)
+<use modelling/filmSelezionato.png>
+Package pdftex.def Info: modelling/filmSelezionato.png  used on input line 442.
+
+(pdftex.def)             Requested size: 227.62204pt x 125.91412pt.
+ [15 <./modelling/filmSelezionato.png>]
 Capitolo 8.
-<deployment/icona_chatbot.png, id=252, 48.18pt x 48.18pt>
 File: deployment/icona_chatbot.png Graphic file (type png)
 <use deployment/icona_chatbot.png>
-Package pdftex.def Info: deployment/icona_chatbot.png  used on input line 469.
+Package pdftex.def Info: deployment/icona_chatbot.png  used on input line 468.
 (pdftex.def)             Requested size: 11.38092pt x 11.38037pt.
-<deployment/tasto_invia.png, id=253, 534.99875pt x 57.71562pt>
+<deployment/tasto_invia.png, id=257, 534.99875pt x 57.71562pt>
 File: deployment/tasto_invia.png Graphic file (type png)
 <use deployment/tasto_invia.png>
-Package pdftex.def Info: deployment/tasto_invia.png  used on input line 473.
+Package pdftex.def Info: deployment/tasto_invia.png  used on input line 472.
 (pdftex.def)             Requested size: 85.35826pt x 9.20825pt.
-<deployment/tasto_back.png, id=254, 541.52313pt x 65.74562pt>
+<deployment/tasto_back.png, id=258, 541.52313pt x 65.74562pt>
 File: deployment/tasto_back.png Graphic file (type png)
 <use deployment/tasto_back.png>
-Package pdftex.def Info: deployment/tasto_back.png  used on input line 475.
+Package pdftex.def Info: deployment/tasto_back.png  used on input line 474.
 (pdftex.def)             Requested size: 85.35826pt x 10.363pt.
 
-iLikeAI.tex:478: LaTeX Error: There's no line here to end.
+iLikeAI.tex:477: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.478         \\N
+l.477         \\N
                  el caso in cui, l'utente non ha liste a lui associate oppur...
 
 Your command was ignored.
@@ -726,8 +750,7 @@ or  <return>  to continue without it.
 
 [16
 
- <./deployment/icona_chatbot.png> <./deployment/tasto_invia.png> <./deployment/
-tasto_back.png>]
+ <./deployment/tasto_invia.png> <./deployment/tasto_back.png>]
 Capitolo 9.
 [17
 
@@ -736,13 +759,13 @@ Package rerunfilecheck Info: File `iLikeAI.out' has not changed.
 (rerunfilecheck)             Checksum: 563C41BD103A876FA8E28C6D34530450;3698.
  ) 
 Here is how much of TeX's memory you used:
- 12836 strings out of 476406
- 214644 string characters out of 2789566
- 1861787 words of memory out of 3000000
- 32920 multiletter control sequences out of 15000+600000
- 525206 words of font info for 55 fonts, out of 8000000 for 9000
+ 12873 strings out of 476406
+ 215433 string characters out of 2789566
+ 1860787 words of memory out of 3000000
+ 32951 multiletter control sequences out of 15000+600000
+ 526118 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,16n,90p,293b,517s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 84i,16n,90p,293b,519s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx
 1200.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tcrm1000.pk> <C:\Users\Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
@@ -757,9 +780,9 @@ a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm0900.pk> <C:\Users\Marta\
 AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1728.pk> <C:\Users\
 Marta\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk>
 Output written on C:/Users\Marta\AndroidStudioProjects\iLike_Classe03\out\iLike
-AI.pdf (18 pages, 1883298 bytes).
+AI.pdf (18 pages, 2224460 bytes).
 PDF statistics:
- 669 PDF objects out of 1000 (max. 8388607)
+ 678 PDF objects out of 1000 (max. 8388607)
  47 named destinations out of 1000 (max. 500000)
- 327 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 332 words of extra memory for PDF output out of 10000 (max. 10000000)
 

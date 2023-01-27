@@ -19,6 +19,7 @@
     urlcolor  = darkgray,
     citecolor = white,
     anchorcolor = darkgray]{hyperref}
+\usepackage{textcomp}
 
 \makeatletter
 \def\@makechapterhead#1{%
@@ -37,7 +38,8 @@
     \title{\includegraphics[width=10cm]{logo.JPEG} \\ \textcolor{Goldenrod}{\textbf{Università degli Studi di Salerno}} \\
     Documentazione progetto\\
     \begin{small}
-        Fondamenti di Intelligenza Artificiale \\ a.a. 2022/2023 prof. Fabio Palomba
+        Fondamenti di Intelligenza Artificiale \\ a.a. 2022/2023 prof. Fabio Palomba \\
+        \href{https://github.com/francesco-giorgione/iLike_Classe03}{\underline{Repository GitHub}}
     \end{small}}
     \author{
         \begin{tabular}{p{5cm}l}
@@ -116,7 +118,7 @@
             contenuti della lista preferiti dell'iscritto).\\
             Il problema in esame può essere risolto con un algoritmo di apprendimento, in quanto consiste nel migliorare l'esecuzione
             di un task (T= fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
-            dall'utente) e sulla base dell'esperienza (E= database di contenuti). Inoltre l'algoritmo di apprendimento
+            dall'utente) e sulla base dell'esperienza (E= dataset di film). Inoltre l'algoritmo di apprendimento
             in questione è di tipo non supervisionato in quanto l'agente dovrà essere capace di apprendere il valore reale della
             variabile dipendente sulla base delle conoscenze di cui dispone.
             Nello specifico il problema in esame può essere risolto tramite l'utilizzo di un algoritmo di clustering. Una volta che l'utente
@@ -125,11 +127,11 @@
             in base alla clusterizzazione effettuata.
 
             I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
-            di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno mediante un apposito
-            pulsante presente nel footer delle varie activity dell'applicazione. Una volta premuto tale pulsante l'utente potrà scrivere messaggi
-            in base ai quali riceverà una risposta opportuna. Nel momento in cui richiederà un consiglio per un film, il Conversational Agent
-            chiederà l'algoritmo che si vuole utilizzare e successivamente provvederà ad analizzare l'insieme di cluster di cui si dispone e
-            "calcolare" la relativa risposta.
+            di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno,
+            mediante \includegraphics[width=0.4cm]{deployment/icona_chatbot.png} presente nel footer delle varie activity dell'applicazione.
+            Una volta premuto tale pulsante l'utente potrà scrivere messaggi in base ai quali riceverà una risposta opportuna.
+            Nel momento in cui richiederà un consiglio per un film, il Conversational Agent chiederà l'algoritmo che si vuole utilizzare e
+            successivamente provvederà ad analizzare l'insieme di cluster di cui si dispone e "calcolare" la relativa risposta.
 
             Si è ritenuto non opportuno utilizzare un algoritmo di classificazione in quanto non disponiamo di un'insieme di osservazioni per cui
             la variabile target è nota, di conseguenza non sarebbe possibile stimare il valore di una nuova variabile categorica.
@@ -145,9 +147,9 @@
                 \item Creare un dataset contenente gli utenti di iLike ed analizzare il loro comportamento, al fine di creare
                 cluster di utenti i quali hanno preferenze similari;
                 \item Cercare dataset con le informazioni relative ai film e creare cluster di film.
-            \end{itemize}\\
+            \end{itemize}
 
-            I pro e i contro delle alternative sopra elencate sono:
+            \\\\I pro e i contro delle alternative sopra elencate sono:
             \begin{itemize}
                 \item La disponibilità di dati era maggiore nei dataset già esistenti;
                 \item Ogni utente ha gusti differenti, quindi la similarità tra utenti, rappresentata come il numero di contenuti uguali
@@ -256,23 +258,21 @@
 
                 Per il parametro che permette di definire il metodo per l'inizializzazione abbiamo valutato due opzioni:
                     \begin{itemize}
-                        \item random, che sceglie n cluster di osservazioni (righe) a caso dai dati per i centroidi iniziali
-                        \item k-means++, che garantisce un'inizializzazione più intelligente dei centroidi e migliora la qualità del clustering
+                        \item random, che sceglie n cluster di osservazioni (righe) a caso dai dati per i centroidi iniziali;
+                        \item k-means++, che garantisce un'inizializzazione più intelligente dei centroidi e migliora la qualità del clustering.
                     \end{itemize}
 
                 Dopo aver valutato i due metodi di inizializzazione sul nostro dataset, abbiamo scelto il metodo k-means++, in quanto più adatto
-                a dividere il nostro dataset in cluster distinti.
-
-                Per quanto riguarda il parametro che specifica l'algoritmo che utilizza il K-Means abbiamo valutato le seguenti opzioni:
+                a dividere il nostro dataset in cluster distinti.Per quanto riguarda il parametro che specifica l'algoritmo che utilizza il K-Means
+                abbiamo valutato le seguenti opzioni:
                 \begin{itemize}
-                    \item llyod, che è quello utilizzato di default
-                    \item elkan, che usa la disuguaglianza triangolare
+                    \item llyod, che è quello utilizzato di default;
+                    \item elkan, che usa la disuguaglianza triangolare.
                 \end{itemize}
 
                 A seguito di un confronto abbiamo preferito utilizzare l'algoritmo di elkan, in quanto il numero di iterazioni effettuate per arrivare ad ottenere
-                i cluster era nettamente minore al numero di iterazioni effettuate scegliendo l'algoritmo di llyod.
-
-                Il grafico riportato sotto mostra la divisione del dataset in cluster, effettuata utilizzando l'algoritmo di K-Means.
+                i cluster era nettamente minore al numero di iterazioni effettuate scegliendo l'algoritmo di llyod. Il grafico riportato sotto mostra la divisione
+                del dataset in cluster, effettuata utilizzando l'algoritmo di K-Means.
 
                 \begin{center}
                     \includegraphics[width=8cm]{modelling/ClusterK-Means.png}\\
@@ -282,13 +282,12 @@
                 L'algoritmo di clustering DBScan viene realizzato tramite la funzione DBSCAN() della libreria sklearn.cluster.
                 Anche questa funzione permette di definire alcuni parametri di input, che sono:
                 \begin{itemize}
-                    \item eps, che definisce un intorno circolare di ciascun punto dai suoi vicini
-                    \item min samples, che stabilisce il numero minimo di punti per considerare un intorno di un punto denso
+                    \item eps, che definisce un intorno circolare di ciascun punto dai suoi vicini;
+                    \item min samples, che stabilisce il numero minimo di punti per considerare un intorno di un punto denso.
                 \end{itemize}
 
-                La scelta dei valori effettuata è stata eps=1 e min samples=5.
-
-                Di seguito è riportato il clustering ottenuto con DBScan con i valori dei parametri definiti sopra.
+                La scelta dei valori effettuata è stata eps=1 e min samples=5. Di seguito è riportato il clustering ottenuto con
+                DBScan con i valori dei parametri definiti sopra.
 
                 \begin{center}
                     \includegraphics[width=8cm]{modelling/DBScan.png}\\
@@ -361,7 +360,7 @@
                 dei dati nei vari cluster ottenuti.
 
                 \begin{center}
-                    \includegraphics[width=13cm, height=8cm]{evaluation/silhouette_9}\\
+                    \includegraphics[width=14cm]{evaluation/silhouette_9}\\
                 \end{center}
 
 
@@ -374,16 +373,16 @@
                 ottenuti. La linea verticale tratteggiata è rappresenta la media delle Silhouette Score calcolate in preceneza.
 
                 \begin{center}
-                    \includegraphics[width=14cm]{evaluation/DBScan_1.4_15.png}
+                    \includegraphics[width=14cm]{evaluation/DBScan_0.9-15.png}
                     \includegraphics[width=14cm]{evaluation/DBScan_1-15.png} \\
                 \end{center}
 
                 Come si può notare nessun grafico risulta essere un clustering ottimale.
                 Nel secondo grafico si può notare una suddivisione sub-ottima in quanto:
                 \begin{itemize}
-                    \item il numero di cluster è maggiore e il cluster contenente più punti ha una dimensione inferiore rispetto al precendente;
-                    \item la media delle Silhouette Score è molto simile tra le due;
-                    \item la dimensione del cluster (rappresentato dal cluster -1) ha dimensione minore.
+                    \item il numero di cluster è minore nel secondo grafico, ciò consente una migliore suddivisione dei cluster;
+                    \item la media delle Silhouette Score è simile tra le due;
+                    \item il numero di outline (rappresentato dal cluster -1) è minore nel secondo grafico.
                 \end{itemize}
 
                 Gli altri risultati, non riportati, hanno gli stessi risultati dei precedenti con una media inferiore e
@@ -403,8 +402,8 @@
         contenenti film con caratteristiche simili, come visibile anche dai grafici seguenti.
 
         \begin{center}
-            \includegraphics[width=6cm]{modelling/ClusterK-Means}
-            \includegraphics[width=6cm]{modelling/DBScan}
+            \includegraphics[width=6cm]{evaluation/k=9.png}
+            \includegraphics[width=7cm]{evaluation/DBScan.png}
         \end{center}
 
         \\Una volta ottenuto questo modello, l'obiettivo da raggiungere era partire da una lista di film preferiti di un iscritto
