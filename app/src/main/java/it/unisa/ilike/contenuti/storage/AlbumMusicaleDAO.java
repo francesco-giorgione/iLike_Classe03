@@ -1,21 +1,14 @@
 package it.unisa.ilike.contenuti.storage;
 
-import com.google.gson.Gson;
+public class AlbumMusicaleDAO extends ContenutoDAO {}
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.unisa.ilike.QueryManager;
-
-public class AlbumMusicaleDAO extends ContenutoDAO {
-
-    /**
+    /*/**
      * Restituisce l'album musicale avente un dato id.
      * @param id è l'id dell'album musicale che si vuole selezionare dal db
      * @return un oggetto AlbumMusicaleBean contenente le informazioni relative all'album
      * musicale selezionato.
      */
-    public AlbumMusicaleBean doRetrieveById(int id){
+    /*public AlbumMusicaleBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
         QueryManager queryManager = new QueryManager();
@@ -48,7 +41,7 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente gli AlbumMusicaleBean selezionati.
      */
-    public List<ContenutoBean> search(String titolo){
+    /*public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> album = (ArrayList<ContenutoBean>) super.search("album", titolo);
         List<ContenutoBean> albumCercati = new ArrayList<>();
 
@@ -59,4 +52,4 @@ public class AlbumMusicaleDAO extends ContenutoDAO {
         return albumCercati;
     }
 
-}
+}*/

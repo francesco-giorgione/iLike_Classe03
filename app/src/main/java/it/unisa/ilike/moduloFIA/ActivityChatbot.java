@@ -2,6 +2,7 @@ package it.unisa.ilike.moduloFIA;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 public class ActivityChatbot extends AppCompatActivity {
 
@@ -33,6 +35,7 @@ public class ActivityChatbot extends AppCompatActivity {
     private ArrayList<Messaggio> messaggi;
     private ArrayAdapter<Messaggio> adapter;
     private String utterances;
+    private ArrayList<ContenutoBean> contenuti;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -44,6 +47,13 @@ public class ActivityChatbot extends AppCompatActivity {
         listView =(ListView)findViewById(R.id.messaggiList);
         btnSend =findViewById(R.id.sendButton);
         messaggioDigitato =(EditText)findViewById(R.id.editTest_message);
+
+        contenuti = (ArrayList<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
+
+        for (ContenutoBean c: contenuti){
+            Log.d("chatbot", c.toString());
+        }
+
 
         adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
 
@@ -77,7 +87,7 @@ public class ActivityChatbot extends AppCompatActivity {
 
         Python py= Python.getInstance();
         //nome del nostro file python
-        final PyObject pyobj= py.getModule("training");
+        final PyObject pyobj= py.getModule("trainingCA");
 
 
         String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
@@ -124,7 +134,7 @@ public class ActivityChatbot extends AppCompatActivity {
                         risposta= "Non ho capito la domanda";
                     else if (obj.toString().equalsIgnoreCase("Certo! Scegli l'algoritmo che preferisci utilizzare.")) {
                         risposta = obj.toString();
-                        risposta+="\n\nDigita:\nkms per k-means\ndbs per DBSCAN";
+                        risposta+="\n\nDigita:\nkms per k-means\ndbs per DBScan";
                     }
                     else
                         risposta=obj.toString();
@@ -141,6 +151,10 @@ public class ActivityChatbot extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onClickBack (View v){
+        super.onBackPressed();
     }
 
 }

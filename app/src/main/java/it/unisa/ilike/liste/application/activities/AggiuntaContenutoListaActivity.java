@@ -25,7 +25,6 @@ import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.ListaService;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.storage.ListaBean;
-import it.unisa.ilike.liste.storage.ListaDAO;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -85,7 +84,7 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
                 ListaBean lista = service.getLista(strings[0], iscritto.getEmail());
                 Log.d("debugListe", contenuto.toString());
                 try {
-                    service.aggiungiContenuto(lista, contenuto);
+                    isOk= service.aggiungiContenuto(lista, contenuto);
                 } catch (ContenutoGiaPresenteException e) {
                     isOk =false;
                 }

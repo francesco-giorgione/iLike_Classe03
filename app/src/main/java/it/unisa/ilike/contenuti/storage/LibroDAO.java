@@ -1,20 +1,15 @@
 package it.unisa.ilike.contenuti.storage;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import it.unisa.ilike.QueryManager;
-
 public class LibroDAO extends ContenutoDAO {
 
-    /**
+}
+
+   /* /**
      * Restituisce il libro avente un dato id.
      * @param id è l'id del contenuto che si vuole selezionare dal db
      * @return un oggetto LibroBean contenente le informazioni relative al libro selezionato.
      */
-    public LibroBean doRetrieveById(int id){
+    /*public LibroBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
         QueryManager queryManager = new QueryManager();
@@ -47,7 +42,7 @@ public class LibroDAO extends ContenutoDAO {
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente i LibroBean selezionati.
      */
-    public List<ContenutoBean> search(String titolo){
+    /*public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> libri = (ArrayList<ContenutoBean>) super.search("libro", titolo);
         List<ContenutoBean> libriCercati = new ArrayList<>();
 
@@ -59,4 +54,4 @@ public class LibroDAO extends ContenutoDAO {
     }
 
 
-}
+}*/

@@ -1,20 +1,13 @@
 package it.unisa.ilike.contenuti.storage;
 
-import com.google.gson.Gson;
+public class SerieTVDAO extends ContenutoDAO {}
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.unisa.ilike.QueryManager;
-
-public class SerieTVDAO extends ContenutoDAO {
-
-    /**
+    /*/**
      * Restituisce la serie tv avente un dato id.
      * @param id è l'id del contenuto che si vuole selezionare dal db.
      * @return un oggetto SerieTVBean contenente i dati relativi alla serie tv avente come id 'id'.
      */
-    public SerieTVBean doRetrieveById(int id){
+    /*public SerieTVBean doRetrieveById(int id){
         ContenutoBean contenuto = super.doRetrieveById(id);
 
         QueryManager queryManager = new QueryManager();
@@ -47,7 +40,7 @@ public class SerieTVDAO extends ContenutoDAO {
      * @param titolo è il titolo sulla base di cui viene eseguita la ricerca.
      * @return un ArrayList contenente i SerieTVBean selezionati.
      */
-    public List<ContenutoBean> search(String titolo){
+    /*public List<ContenutoBean> search(String titolo){
         ArrayList<ContenutoBean> serieTV = (ArrayList<ContenutoBean>) super.search("serie_tv", titolo);
         List<ContenutoBean> serieTVCercate = new ArrayList<>();
 
@@ -58,4 +51,4 @@ public class SerieTVDAO extends ContenutoDAO {
         return serieTVCercate;
     }
 
-}
+}*/

@@ -1,20 +1,11 @@
 package it.unisa.ilike.contenuti.application;
 
-import android.os.Build;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleBean;
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
-import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
-import it.unisa.ilike.contenuti.storage.LibroBean;
-import it.unisa.ilike.contenuti.storage.LibroDAO;
-import it.unisa.ilike.contenuti.storage.SerieTVBean;
-import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 
 /**
  * La classe implementa i servizi relativi alla gestione dei contenuti.
@@ -33,15 +24,15 @@ public class ContenutoImpl implements ContenutoService {
         }
 
         FilmBean film = null;
-        SerieTVBean serieTV = null;
-        LibroBean libro = null;
-        AlbumMusicaleBean album = null;
+        //SerieTVBean serieTV = null;
+        //LibroBean libro = null;
+        //AlbumMusicaleBean album = null;
 
         if((film = new FilmDAO().doRetrieveById(id)) != null) {
             return film;
         }
 
-        if((serieTV = new SerieTVDAO().doRetrieveById(id)) != null) {
+        /*if((serieTV = new SerieTVDAO().doRetrieveById(id)) != null) {
             return serieTV;
         }
 
@@ -51,7 +42,7 @@ public class ContenutoImpl implements ContenutoService {
 
         if((libro = new LibroDAO().doRetrieveById(id)) != null) {
             return libro;
-        }
+        }*/
 
         return null;
     }
@@ -64,25 +55,24 @@ public class ContenutoImpl implements ContenutoService {
     public List<ContenutoBean> cerca(String titolo) {
         List<ContenutoBean> res = new ArrayList<>();
         res.addAll(this.cerca(titolo, 0));
-        res.addAll(this.cerca(titolo, 1));
-        res.addAll(this.cerca(titolo, 2));
-        res.addAll(this.cerca(titolo, 3));
+        //res.addAll(this.cerca(titolo, 1));
+        //res.addAll(this.cerca(titolo, 2));
+        //res.addAll(this.cerca(titolo, 3));
         return res;
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public List<ContenutoBean> cerca(String titolo, int tipo) {
-        switch (tipo) {
+    public List<ContenutoBean> cerca(String titolo, int tipo) {return null;}
+        /*switch (tipo) {
             case 0:     return new FilmDAO().search(titolo);
             case 1:     return new SerieTVDAO().search(titolo);
             case 2:     return new LibroDAO().search(titolo);
             case 3:     return new AlbumMusicaleDAO().search(titolo);
             default:    return null;
         }
-    }
+    }*/
 
 
 

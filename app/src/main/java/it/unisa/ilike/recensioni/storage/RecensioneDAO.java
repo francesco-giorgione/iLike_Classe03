@@ -148,13 +148,15 @@ public class RecensioneDAO {
         }
 
         QueryManager queryManager = new QueryManager();
-        ContenutoDAO contenutoDAO = new ContenutoDAO();
+        //ContenutoDAO contenutoDAO = new ContenutoDAO();
 
-        if(queryManager.update(query)) {
+        return queryManager.update(query);
+
+        /*if(queryManager.update(query)) {
             return contenutoDAO.doUpdateValutazioneMedia(recensione.getContenuto().getId(), contenutoDAO.
                     calcolaValutazioneMediaAggiornata(recensione.getContenuto().getId()));
         }
-        else return false;
+        else return false;*/
     }
 
 

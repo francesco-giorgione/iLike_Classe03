@@ -26,8 +26,9 @@ import it.unisa.ilike.account.application.AccountService;
 import it.unisa.ilike.account.application.activities.LoginActivity;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
 import it.unisa.ilike.account.storage.Account;
-import it.unisa.ilike.contenuti.application.ContenutoImpl;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
+import it.unisa.ilike.contenuti.storage.FilmBean;
+import it.unisa.ilike.contenuti.storage.FilmDAO;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -39,13 +40,13 @@ import it.unisa.ilike.utils.InternetConnection;
 public class RicercaContenutoActivity extends AppCompatActivity {
 
 
-    private class GsonResultRicerca extends AsyncTask<String, Void, List<ContenutoBean>> {
+    private class GsonResultRicerca extends AsyncTask<String, Void, ArrayList<FilmBean>> {
 
         List<ContenutoBean> contenutoBeans;
 
         @Override
-        protected List<ContenutoBean> doInBackground(String... string) {
-            ContenutoImpl contenutoImpl = new ContenutoImpl();
+        protected ArrayList<FilmBean> doInBackground(String... string) {
+            /*ContenutoImpl contenutoImpl = new ContenutoImpl();
             if (string[1].equalsIgnoreCase("noFilter") || string[1].equalsIgnoreCase("tutti i contenuti")) {
                 this.contenutoBeans = contenutoImpl.cerca(string[0]);
             }
@@ -61,22 +62,17 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                     tipo=3;
                 this.contenutoBeans = contenutoImpl.cerca(string[0], tipo);
                 filtroRicerca="noFilter";
-            }
+            }*/
+            FilmDAO dao= new FilmDAO();
+            ArrayList<FilmBean> contenutoBeans= dao.search(string[0]);
             return contenutoBeans;
         }
 
 
-        public List<ContenutoBean> getContenuti(){
-            while (this.contenutoBeans==null);
-            return this.contenutoBeans;
-        }
-
-
-
         @Override
-        protected void onPostExecute(List<ContenutoBean> contenutoBeans) {
+        protected void onPostExecute(ArrayList<FilmBean> contenutoBeans) {
             Log.d("MyDebug", "sono in onPostExecute RicercaContenutoActivity");
-            ArrayList<ContenutoBean> contenutiTrovati= (ArrayList<ContenutoBean>) contenutoBeans;
+            ArrayList<FilmBean> contenutiTrovati= contenutoBeans;
 
             if (contenutiTrovati.size()>0) {
                 for (ContenutoBean c : contenutiTrovati)

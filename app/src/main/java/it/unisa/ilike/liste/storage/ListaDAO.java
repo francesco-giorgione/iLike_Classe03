@@ -8,12 +8,9 @@ import java.util.ArrayList;
 
 import it.unisa.ilike.QueryManager;
 import it.unisa.ilike.account.storage.IscrittoDAO;
-import it.unisa.ilike.contenuti.storage.AlbumMusicaleDAO;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.ContenutoDAO;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
-import it.unisa.ilike.contenuti.storage.LibroDAO;
-import it.unisa.ilike.contenuti.storage.SerieTVDAO;
 import it.unisa.ilike.utils.Utils;
 
 /**
@@ -71,7 +68,8 @@ public class ListaDAO {
                 query += "('" + nome + "', '" + emailIscritto + "', " + c.getId() + "),";
             }
 
-            return queryManager.update(query.substring(0, query.length() - 1));
+            QueryManager queryManager1= new QueryManager();
+            return queryManager1.update(query.substring(0, query.length() - 1));
         }
         else return false;
     }
@@ -125,7 +123,7 @@ public class ListaDAO {
         String jsonRes = queryManager.select(query);
         RisultatoQuery[] res = gson.fromJson(jsonRes, RisultatoQuery[].class);
 
-        if(res.length == 0) {
+        if(res == null) {
             return null;
         }
 
@@ -143,7 +141,7 @@ public class ListaDAO {
         jsonRes = queryManager.select(query);
         RisultatoQuery2[] res2 = gson.fromJson(jsonRes, RisultatoQuery2[].class);
 
-        if(res2.length == 0) {
+        if(res2 == null) {
             return lista;
         }
 
@@ -152,19 +150,7 @@ public class ListaDAO {
             ContenutoBean currBean = new ContenutoDAO().doRetrieveById(curr.idContenuto);
             ContenutoBean toAdd = null;
 
-            toAdd = new LibroDAO().doRetrieveById(id);
-
-            if(toAdd == null) {
-                toAdd = new FilmDAO().doRetrieveById(id);
-
-                if(toAdd == null) {
-                    toAdd = new SerieTVDAO().doRetrieveById(id);
-
-                    if(toAdd == null) {
-                        toAdd = new AlbumMusicaleDAO().doRetrieveById(id);
-                    }
-                }
-            }
+            toAdd = new FilmDAO().doRetrieveById(id);
 
             if(toAdd != null) {
                 lista.aggiungiContenuto(toAdd);
