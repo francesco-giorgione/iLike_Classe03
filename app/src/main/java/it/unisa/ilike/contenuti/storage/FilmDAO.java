@@ -14,7 +14,7 @@ public class FilmDAO extends ContenutoDAO {
 
 
     private class RisultatoQuery {
-        public RisultatoQuery(Integer id, String titolo, Float annoRilascio, String categoria, String paese,  String regista, String descrizione) {
+        public RisultatoQuery(Integer id, String titolo, Double annoRilascio, String categoria, String paese,  String regista, String descrizione) {
             this.id =id;
             this.titolo=titolo;
             this.annoRilascio=annoRilascio;
@@ -40,11 +40,11 @@ public class FilmDAO extends ContenutoDAO {
             this.titolo = titolo;
         }
 
-        public Float getAnnoRilascio() {
+        public Double getAnnoRilascio() {
             return annoRilascio;
         }
 
-        public void setAnnoRilascio(Float annoRilascio) {
+        public void setAnnoRilascio(Double annoRilascio) {
             this.annoRilascio = annoRilascio;
         }
 
@@ -82,7 +82,7 @@ public class FilmDAO extends ContenutoDAO {
 
         private Integer id;
         private String titolo;
-        private Float annoRilascio;
+        private Double annoRilascio;
         private String categoria;
         private String paese;
         private String regista;

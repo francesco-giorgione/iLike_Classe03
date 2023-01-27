@@ -8,7 +8,7 @@ import csv
 from os.path import dirname, join
 
 # importare lista da Java
-a = []
+#a = []
 
 
 def calculateDistaceMetrics(a):
@@ -34,8 +34,8 @@ def calculateDistaceMetrics(a):
     # per ogni elemento della lista, trovare il cluster di appartenenza
     for i in range(len(table)):
         for elemento in a:
-            if elemento['titolo_italiano'] == table['titolo_italiano'].loc[i] and elemento['anno'] == table['anno'].loc[i]:
-                key = elemento['titolo_italiano'] + '--' + str(elemento['anno'])
+            if elemento.getTitolo() == table['titolo_italiano'].loc[i] and elemento.getAnnoRilascio() == table['anno'].loc[i]:
+                key = elemento.getTitolo() + '--' + elemento.getAnnoRilascioString()
                 d[key] = table['Cluster'].loc[i]
                 list[table['Cluster'].loc[i]] += 1
 
@@ -53,7 +53,7 @@ def calculateDistaceMetrics(a):
     # salvo la lista che hanno nel dizionario il cluster == indice del max dell'array
     newList = []
     for elemento in a:
-        key = elemento['titolo_italiano'] + '--' + str(elemento['anno'])
+        key = elemento.getTitolo() + '--' + elemento.getAnnoRilascioString()
         if d[key] == cluster:
             newList.append([elemento['voti_totali'], elemento['humor'], elemento['ritmo'],
                             elemento['impegno'], elemento['tensione'], elemento['erotismo']])

@@ -194,10 +194,10 @@ public class VisualizzazioneHomepageActivity extends Activity {
                         list.add(c);
                     }
                 }
-                //ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
+                ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), ActivityChatbot.class);
-                i.putExtra("contenuti", list);
+                i.putExtra("contenuti", array);
                 startActivity(i);
             }
             else{

@@ -27,7 +27,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
      * @param regista è il regista del film.
      * @param attori è l'elenco degli attori del film.
      */
-    public FilmBean(int id, String titolo, String descrizione, String categoria, Float annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
+    public FilmBean(int id, String titolo, String descrizione, String categoria, Double annoRilascio, int durata, String paese, String regista, String attori, float valutazioneMedia) {
         super(id, titolo, descrizione, categoria, valutazioneMedia);
         this.annoRilascio = annoRilascio;
         this.durata = durata;
@@ -36,7 +36,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
         this.attori = attori;
     }
 
-    public FilmBean (int id, String titolo, Float annoRilascio, String categoria,String paese, String regista, String descrizione){
+    public FilmBean (int id, String titolo, Double annoRilascio, String categoria,String paese, String regista, String descrizione){
         super(id, titolo, descrizione, categoria, 0);
         this.setId(id);
         this.setTitolo(titolo);
@@ -53,7 +53,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
      * Questo metodo restituisce l'anno di rilascio del film
      * @return anno di rilascio
      */
-    public Float getAnnoRilascio() {
+    public Double getAnnoRilascio() {
         return annoRilascio;
     }
 
@@ -61,7 +61,7 @@ public class FilmBean extends ContenutoBean  implements Serializable {
      * Questo metodo imposta l'anno di rilascio del film
      * @param annoRilascio
      */
-    public void setAnnoRilascio(Float annoRilascio) {
+    public void setAnnoRilascio(Double annoRilascio) {
         this.annoRilascio = annoRilascio;
     }
 
@@ -129,7 +129,11 @@ public class FilmBean extends ContenutoBean  implements Serializable {
         this.attori = attori;
     }
 
-    private Float annoRilascio;
+    public String getAnnoRilascioString(){
+        return ""+this.annoRilascio;
+    }
+
+    private Double annoRilascio;
     private int durata;
     private String paese;
     private String regista;

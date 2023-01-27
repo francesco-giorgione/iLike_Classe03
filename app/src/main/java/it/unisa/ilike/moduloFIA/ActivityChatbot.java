@@ -2,7 +2,6 @@ package it.unisa.ilike.moduloFIA;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,13 +16,11 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
@@ -37,8 +34,8 @@ public class ActivityChatbot extends AppCompatActivity {
     private ArrayList<Messaggio> messaggi;
     private ArrayAdapter<Messaggio> adapter;
     private String utterances;
-    private List<ContenutoBean> contenuti;
-    public InputStream inputStream;
+    //private List<ContenutoBean> contenuti;
+    private ContenutoBean[] contenuti;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,15 +48,16 @@ public class ActivityChatbot extends AppCompatActivity {
         btnSend =findViewById(R.id.sendButton);
         messaggioDigitato =(EditText)findViewById(R.id.editTest_message);
 
-        contenuti = (List<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
+        //contenuti = (List<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
+
+        contenuti = (ContenutoBean[]) getIntent().getExtras().getSerializable("contenuti");
+
 
         //List<ContenutoBean> contenutiList = new ArrayList<>(Arrays.asList(contenuti));
 
-        for (ContenutoBean c: contenuti){
+        /*for (ContenutoBean c: contenuti){
             Log.d("chatbot", c.toString());
-        }
-
-        //inputStream = getResources().openRawResource(R.raw.film_cluster_kmeans);
+        }*/
 
 
         adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
