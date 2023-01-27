@@ -11,7 +11,7 @@ a = []
 
 strFromJava = ""
 
-def calculateDistaceMetrics(strFromJava):
+def calculateDistaceMetrics(strFromJava, a):
 
     if strFromJava == "kms":
         filmPath = 'filmClusterKMeans.csv'
@@ -24,13 +24,6 @@ def calculateDistaceMetrics(strFromJava):
     table = pd.read_csv(filmPath, sep=',')
 
     numericCol = ["erotismo", "tensione", "impegno", "ritmo", "humor", "voti_totali"]
-    # tableNum = table[numericCol]
-
-    for i in range(0, 10):
-        x = int(random.uniform(0, len(table)))
-        # print(table.loc[x])
-        a.append(table.loc[x])
-
 
     # creare un  dizionario (chiave, valore) con (titolo, cluster)
     # array da 0 a 9 contenente per ogni cella il numero di contenuti della lista appartenenti
