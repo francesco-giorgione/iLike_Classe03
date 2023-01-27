@@ -38,6 +38,9 @@ android {
                 install "nltk"
                 install "chatterbot==1.0.4"
                 install "pytz"
+                install "pandas"
+                install"statistics"
+                install "sklearn"
             }
         }
     }

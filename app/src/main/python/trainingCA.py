@@ -1,4 +1,8 @@
 from nltk.chat.util import Chat, reflections
+from modelling.distaceMetrics import calculateDistaceMetrics
+
+kms= calculateDistaceMetrics("kms")
+dbscan= calculateDistaceMetrics("dbs")
 
 # array contenente coppie domanda - risposta delimitate da parentesi quadre
 # r indica ciò ceh l'utente scrive nel bot (utterances), [] indicano la risposta del bot
@@ -48,11 +52,11 @@ pairs = [
     ],
     [
         r"kms",
-        ["Chiamata algoritmo K-means"],
+        [kms],
     ],
     [
         r"dbs",
-        ["Chiamata algoritmo DBSCAN"],
+        [dbscan],
     ],
     [
         r"che fai?",
