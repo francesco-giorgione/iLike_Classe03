@@ -32,7 +32,13 @@ android {
         }
 
         python{
-            buildPython "/Applications/Python311"
+            buildPython "/usr/bin/python3"
+
+            pip {
+                install "nltk"
+                install "chatterbot==1.0.4"
+                install "pytz"
+            }
         }
     }
 
