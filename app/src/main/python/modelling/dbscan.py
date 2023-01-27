@@ -22,7 +22,7 @@ pca = PCA()
 X = pca.fit_transform(tableNum)
 
 # istanzio la classe di clustering DBSCAN
-dbscan = DBSCAN(eps=1.2, min_samples=40)
+dbscan = DBSCAN(eps=1, min_samples=15)
 # eseguo fitting e predizione in una volta sola
 y_dbscan = dbscan.fit_predict(X)
 table['Cluster'] = dbscan.labels_
