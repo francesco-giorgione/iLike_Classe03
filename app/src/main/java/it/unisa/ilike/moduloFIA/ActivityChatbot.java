@@ -134,7 +134,7 @@ public class ActivityChatbot extends AppCompatActivity {
                         risposta= "Non ho capito la domanda";
                     else if (obj.toString().equalsIgnoreCase("Certo! Scegli l'algoritmo che preferisci utilizzare.")) {
                         risposta = obj.toString();
-                        risposta+="\n\nDigita:\nkms per k-means\ndbs per DBSCAN";
+                        risposta+="\n\nDigita:\nkms per k-means\ndbs per DBScan";
                     }
                     else
                         risposta=obj.toString();
@@ -151,6 +151,10 @@ public class ActivityChatbot extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onClickBack (View v){
+        super.onBackPressed();
     }
 
 }
