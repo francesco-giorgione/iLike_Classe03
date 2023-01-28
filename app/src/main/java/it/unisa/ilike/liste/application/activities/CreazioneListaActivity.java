@@ -12,15 +12,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.storage.IscrittoBean;
 import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.application.activities.VisualizzazioneHomepageActivity;
+import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.exceptions.InvalidNomeException;
 import it.unisa.ilike.liste.application.exceptions.ListaGiaEsistenteException;
 import it.unisa.ilike.liste.application.exceptions.NomeVuotoException;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
+import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.moduloFIA.ActivityChatbot;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -73,6 +79,53 @@ public class CreazioneListaActivity extends AppCompatActivity {
         public Boolean isListaCreata(){
             while (this.listaCreata==null);
             return this.listaCreata;
+        }
+    }
+
+    private class GsonResultGetListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        private Boolean isOk= true;
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+            if (account.getIscrittoBean()!=null){
+                ArrayList<ListaBean> listeIscritto = (ArrayList<ListaBean>) account.getIscrittoBean().getListe();
+                if (listeIscritto==null){
+                    isOk= false;
+                }
+                else
+                    return listeIscritto;
+            }
+            else
+                isOk=false;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+            Log.d("chatBot", "sono in onPostExecute");
+
+            if (isOk){
+                ArrayList<ContenutoBean> list= new ArrayList<>();
+                for (ListaBean l: listeIscritto){
+                    List<ContenutoBean> contenutiLista= l.getContenuti();
+                    for (ContenutoBean c: contenutiLista){
+                        list.add(c);
+                    }
+                }
+                ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), ActivityChatbot.class);
+                i.putExtra("contenuti", array);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(CreazioneListaActivity.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
+                        "operazione!", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
@@ -171,6 +224,10 @@ public class CreazioneListaActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Connessione Internet assente!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void onClickChatBot (View v){
+        GsonResultGetListe g= (GsonResultGetListe) new GsonResultGetListe().execute(new Void[0]);
     }
 
     private Account account;

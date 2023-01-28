@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPersonaleActivity;
@@ -25,6 +26,7 @@ import it.unisa.ilike.liste.application.ListaImpl;
 import it.unisa.ilike.liste.application.ListaService;
 import it.unisa.ilike.liste.application.exceptions.ContenutoGiaPresenteException;
 import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.moduloFIA.ActivityChatbot;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -161,6 +163,54 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         }
     }
 
+
+    private class GsonResultGetListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        private Boolean isOk= true;
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+            if (account.getIscrittoBean()!=null){
+                ArrayList<ListaBean> listeIscritto = (ArrayList<ListaBean>) account.getIscrittoBean().getListe();
+                if (listeIscritto==null){
+                    isOk= false;
+                }
+                else
+                    return listeIscritto;
+            }
+            else
+                isOk=false;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+            Log.d("chatBot", "sono in onPostExecute");
+
+            if (isOk){
+                ArrayList<ContenutoBean> list= new ArrayList<>();
+                for (ListaBean l: listeIscritto){
+                    List<ContenutoBean> contenutiLista= l.getContenuti();
+                    for (ContenutoBean c: contenutiLista){
+                        list.add(c);
+                    }
+                }
+                ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), ActivityChatbot.class);
+                i.putExtra("contenuti", array);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(AggiuntaContenutoListaActivity.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
+                        "operazione!", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
     private void setReturnIntent() {
         Intent data = new Intent();
         setResult(RESULT_OK,data);
@@ -194,6 +244,11 @@ public class AggiuntaContenutoListaActivity extends AppCompatActivity {
         i.setClass(getApplicationContext(), VisualizzazioneHomepageActivity.class);
         startActivity(i);
     }
+
+    public void onClickChatBot (View v){
+        GsonResultGetListe g= (GsonResultGetListe) new GsonResultGetListe().execute(new Void[0]);
+    }
+
 
     /**
      * Questo metodo permette di aggiungere il contenuto selezionato alla lista personale scelta.

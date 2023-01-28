@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.unisa.ilike.R;
 import it.unisa.ilike.account.application.activities.LoginActivity;
@@ -27,6 +29,8 @@ import it.unisa.ilike.account.application.activities.VisualizzazioneProfiloPerso
 import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.LibroBean;
 import it.unisa.ilike.contenuti.storage.SerieTVBean;
+import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.moduloFIA.ActivityChatbot;
 import it.unisa.ilike.recensioni.application.RecensioneImpl;
 import it.unisa.ilike.recensioni.application.RecensioneService;
 import it.unisa.ilike.recensioni.application.exceptions.InvalidTestoException;
@@ -42,6 +46,53 @@ import it.unisa.ilike.utils.InternetConnection;
  * @version 0.1
  */
 public class PubblicazioneRecensioneActivity extends AppCompatActivity {
+
+    private class GsonResultGetListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        private Boolean isOk= true;
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+            if (account.getIscrittoBean()!=null){
+                ArrayList<ListaBean> listeIscritto = (ArrayList<ListaBean>) account.getIscrittoBean().getListe();
+                if (listeIscritto==null){
+                    isOk= false;
+                }
+                else
+                    return listeIscritto;
+            }
+            else
+                isOk=false;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+            Log.d("chatBot", "sono in onPostExecute");
+
+            if (isOk){
+                ArrayList<ContenutoBean> list= new ArrayList<>();
+                for (ListaBean l: listeIscritto){
+                    List<ContenutoBean> contenutiLista= l.getContenuti();
+                    for (ContenutoBean c: contenutiLista){
+                        list.add(c);
+                    }
+                }
+                ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), ActivityChatbot.class);
+                i.putExtra("contenuti", array);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(PubblicazioneRecensioneActivity.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
+                        "operazione!", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
 
     private class GsonResultCreaRecensione extends AsyncTask<String, Void, Boolean> {
 
@@ -239,6 +290,9 @@ public class PubblicazioneRecensioneActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void onClickChatBot (View v){
+        GsonResultGetListe g= (GsonResultGetListe) new GsonResultGetListe().execute(new Void[0]);
+    }
 
     private Account account;
     private ContenutoBean contenuto;
