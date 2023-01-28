@@ -335,7 +335,7 @@
                     \includegraphics[width=6cm]{evaluation/k=10}
                 \end{center}
 
-            \subsection{Silhouette coefficient}
+            \subsection{Silhouette Coefficient}
                 Un altro metodo di valutazione dei risultati utilizzato è il silhouette coefficient, che permette di calcolare
                 quanto i dati siano ben disposti nei cluster generati.
                 Dal metodo di valutazione dell'elbow point sopra citato, emerge che il numero di cluster ottimale è un valore
@@ -365,8 +365,8 @@
 
 
         \section{DB-Scan Evaluation}\label{sec:dbscan-evaluation}
-            \subsection{Silhouette Score}
-                Il metodo di valutazione utilizzato per valutare i risultati prodotti dall'algoritmo DB-Scan è il Silhouette Score,
+            \subsection{Silhouette Coefficient}
+                Il metodo di valutazione utilizzato per valutare i risultati prodotti dall'algoritmo DB-Scan è il Silhouette Coefficient,
                 fornito dalla libreria Python \textit{scikit-learn}. Dopo aver eseguito il DB-Scan con diversi valori sia per l'intorno
                 circolare, sia per il minimo numero di punti per considerare un intorno denso, abbiamo riportato di seguito le esecuzioni
                 più rilevanti. I grafici sottoriportati evidenziano il valore del silhouette score e la divisione dei dati nei vari cluster
@@ -472,8 +472,12 @@
         di uscire dalla pagina in questione tramite l'apposito pulsante \includegraphics[width=3cm]{deployment/tasto_back.png}
         o tramite il tasto  del dispositivo mobile.
 
-        \\Nel caso in cui, l'utente non ha liste a lui associate oppure ha liste ma non
-        ha contenuti all'interno delle liste, il Conversational Agent inviterà l'utente a creare ed aggiungere nelle liste i suoi film preferiti.
+        Quando l'utente chiederà al CA un consiglio sul film da guardare, la risposta ottenuta sarà il titolo del film consigliato
+        con la possibilità di visualizzare tutti i dettagli del film tramite \includegraphics[width=0.4cm]{deployment/icona_information.png}
+        vicino messggio ricevuto.
+
+        \\Nel caso in cui, l'utente non ha liste a lui associate oppure ha liste ma non ha contenuti all'interno delle liste,
+        il Conversational Agent inviterà l'utente a creare ed aggiungere nelle liste i suoi film preferiti.
 
 
     \chapter{Glossario}\label{ch:glossario}
@@ -491,6 +495,12 @@
                 \hline \textbf{Blox Plot} & Rappresentazione grafica utilizzata per descrivere la distribuzione di un campione
                         tramite la media e deviazione standard.\\
                 \hline \textbf{Utente} & Iscritto, cioè persona registrata ad iLike.\\
+                \hline \textbf{Beta Tester} & Coloro che sono interessati a testare l'applicazione.\\
+                \hline \textbf{Elbow point} & Un metodo empirico, che consiste nel valutare i valori del parametro k
+                        rispetto alla somma degli errori quadratici ottenuti dall’algoritmo
+                        configurato per generare k cluster.\\
+                \hline \textbf{Silhouette Score/Silhouette Coefficient} & una misura della coesione e separazione tra i dati, cioè
+                        quantifica quanto i dati siano ben disposti nei cluster generati.\\
                 \hline
             \end{tabular}
         \end{adjustbox}
