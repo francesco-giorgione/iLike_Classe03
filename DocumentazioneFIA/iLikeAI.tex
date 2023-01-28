@@ -249,11 +249,15 @@
 
     \chapter{Modeling}\label{ch:modeling}
 
+        Lo scopo del Modeling è selezionare l'algoritmo da utlizzare in base alla soluzione che più si adatta ed è utile per
+        il nostro problema di clustering.
+
         \section{Scelta dell'algoritmo da utilizzare}\label{sec:scelta-dell'algoritmo-da-utilizzare}
             Esiste un gran numero di algoritmi di clustering, pertanto bisogna effettuare una scelta dell'algoritmo da considerare
             per effettuare il clustering tra gli elementi.
             Prima di effettuare la scelta dell'algoritmo da utilizzare abbiamo fatto un confronto tra due algoritmi di clustering molto
             usati, ossia il K-Means e il DBScan.
+            Entrambi gli algoritmi utilizzarano la distanza metrica euclidea.
 
             \subsection{K-Means}
                 Per quanto riguarda l'algoritmo di clustering K-Means, questo viene realizzato tramite la funzione KMeans()
@@ -303,6 +307,9 @@
 
 
     \chapter{Evaluation}\label{ch:evaluation}
+
+        Lo scopo dell'Evaluation è valutare se i risultati prodotti dell'algoritmo selezionato in fase di Modeling e definire aspetti
+        non molto chiari in fase di Modeling.
 
         \section{K-Means Evaluation}\label{sec:k-means-evaluation}
             \subsection{Elbow point}
