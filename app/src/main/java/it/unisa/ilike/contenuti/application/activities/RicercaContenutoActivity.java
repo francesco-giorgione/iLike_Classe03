@@ -150,7 +150,7 @@ public class RicercaContenutoActivity extends AppCompatActivity {
                 startActivity(i);
             }
             else{
-                Toast.makeText(Ric.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
+                Toast.makeText(RicercaContenutoActivity.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
                         "operazione!", Toast.LENGTH_LONG).show();
             }
 
