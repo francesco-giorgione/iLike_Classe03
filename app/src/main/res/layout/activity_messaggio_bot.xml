@@ -82,5 +82,14 @@
         app:layout_constraintBottom_toBottomOf="@id/card_messaggioBot"
         app:layout_constraintStart_toEndOf="@id/card_messaggioBot" />
 
+    <ImageView
+        android:id="@+id/buttonInfoFilm"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/icona_information"
+        android:onClick="onClickVisualizzaFilm"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/card_messaggioBot"
+        app:layout_constraintStart_toEndOf="@id/textView_orario"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

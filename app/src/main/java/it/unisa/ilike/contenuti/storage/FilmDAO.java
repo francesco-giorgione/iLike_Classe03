@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import it.unisa.ilike.QueryManager;
@@ -14,7 +15,7 @@ public class FilmDAO extends ContenutoDAO {
 
 
     private class RisultatoQuery {
-        public RisultatoQuery(Integer id, String titolo, Double annoRilascio, String categoria, String paese,  String regista, String descrizione) {
+        public RisultatoQuery(Integer id, String titolo, BigDecimal annoRilascio, String categoria, String paese, String regista, String descrizione) {
             this.id =id;
             this.titolo=titolo;
             this.annoRilascio=annoRilascio;
@@ -40,11 +41,11 @@ public class FilmDAO extends ContenutoDAO {
             this.titolo = titolo;
         }
 
-        public Double getAnnoRilascio() {
+        public BigDecimal getAnnoRilascio() {
             return annoRilascio;
         }
 
-        public void setAnnoRilascio(Double annoRilascio) {
+        public void setAnnoRilascio(BigDecimal annoRilascio) {
             this.annoRilascio = annoRilascio;
         }
 
@@ -82,7 +83,7 @@ public class FilmDAO extends ContenutoDAO {
 
         private Integer id;
         private String titolo;
-        private Double annoRilascio;
+        private BigDecimal annoRilascio;
         private String categoria;
         private String paese;
         private String regista;

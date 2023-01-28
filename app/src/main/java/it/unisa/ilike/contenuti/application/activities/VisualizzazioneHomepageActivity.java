@@ -198,6 +198,7 @@ public class VisualizzazioneHomepageActivity extends Activity {
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), ActivityChatbot.class);
                 i.putExtra("contenuti", array);
+                i.putExtra("account", account);
                 startActivity(i);
             }
             else{

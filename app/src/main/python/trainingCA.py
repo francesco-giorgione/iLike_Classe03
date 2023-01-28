@@ -1,6 +1,5 @@
 from nltk.chat.util import Chat, reflections
 from modelling.distaceMetrics import calculateDistaceMetrics
-import csv
 
 def main(utterances, listaJava):
 
@@ -51,20 +50,12 @@ def main(utterances, listaJava):
             ["Certo! Scegli l'algoritmo che preferisci utilizzare."],
         ],
         [
-            r"kms",
-            [calculateDistaceMetrics(listaJava, "kms")],
-        ],
-        [
-            r"dbs",
-            [calculateDistaceMetrics(listaJava, "dbs")],
-        ],
-        [
             r"che fai?",
             ["Adesso niente, ma potrei consigliarti un film!"],
         ],
         [
             r"(.*)quale|quale?",
-            ["Chiamare algoritmo!!"],
+            ["Certo! Scegli l'algoritmo che preferisci utilizzare."],
         ],
         [
             r"cosa sai fare?|cosa sei capace di fare?",
@@ -80,4 +71,9 @@ def main(utterances, listaJava):
     chat = Chat(pairs, reflections)  # serve alla libreria per distinguere domande e risposte
     #chat.converse()  # comando per far sì che inizi la conversazione
 
-    return chat.respond(utterances)
+    if utterances== "kms":
+       return calculateDistaceMetrics(listaJava, "kms")
+    elif utterances== "dbs":
+        return calculateDistaceMetrics(listaJava, "dbs")
+    else:
+        return chat.respond(utterances)

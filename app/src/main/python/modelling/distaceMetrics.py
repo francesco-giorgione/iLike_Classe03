@@ -15,8 +15,10 @@ def calculateDistaceMetrics(a, alg):
 
     if alg=="kms":
         filmPath = join(dirname(__file__), "film_cluster_kmeans.csv")
+        list=[0]*10
     elif alg=="dbs":
         filmPath = join(dirname(__file__), "film_cluster_dbscan.csv")
+        list=[0]*18
     else:
         return "errore"
 
@@ -34,7 +36,8 @@ def calculateDistaceMetrics(a, alg):
     # array da 0 a 9 contenente per ogni cella il numero di contenuti della lista appartenenti
     # a quel determinato cluster
     d = dict()
-    list = [0, 0, 0, 0, 0, 0, 0, 0]
+
+    #print(list)
 
     tableLista = DataFrame(columns=['voti_totali', 'humor', 'ritmo',
                                       'impegno', 'tensione', 'erotismo',
@@ -43,13 +46,17 @@ def calculateDistaceMetrics(a, alg):
     # per ogni elemento della lista, trovare il cluster di appartenenza
     for i in range(len(table)):
         for elemento in a:
-            if elemento.getTitolo() == table['titolo_italiano'].loc[i]: #and elemento.getAnnoRilascio() == table['anno'].loc[i]:
-                key = elemento.getTitolo() #+ '--' + elemento.getAnnoRilascioString()
+            #if elemento.getTitolo() == table['titolo_italiano'].loc[i]: #and elemento.getAnnoRilascio() == table['anno'].loc[i]:
+                #print(table['Unnamed: 0.1'])
+            if table['Unnamed: 0.1'].loc[i] == elemento.getId():
+                #key = elemento.getTitolo() #+ '--' + elemento.getAnnoRilascioString()
+                key= elemento.getId()
                 d[key] = table['Cluster'].loc[i]
-                list[table['Cluster'].loc[i]] += 1
+                list[table['Cluster'].loc[i]+1] += 1
                 tableLista.loc[j]= [table['voti_totali'].loc[i], table['humor'].loc[i], table['ritmo'].loc[i],
                                     table['impegno'].loc[i], table['tensione'].loc[i], table['erotismo'].loc[i],
                                     table['titolo_italiano'].loc[i], table['anno'].loc[i]]
+                j+=1
 
 
     # prendere max dell'array = cluster di riferimento
@@ -59,7 +66,7 @@ def calculateDistaceMetrics(a, alg):
     for i, x in enumerate(list):
         if x > max:
             max = x
-            cluster = i
+            cluster = i-1
 
 
     # salvo la lista che hanno nel dizionario il cluster == indice del max dell'array
@@ -74,13 +81,13 @@ def calculateDistaceMetrics(a, alg):
 
     tableCluster = DataFrame(columns=['voti_totali', 'humor', 'ritmo',
                                       'impegno', 'tensione', 'erotismo',
-                                      'titolo_italiano', 'anno'])
+                                      'titolo_italiano', 'anno', 'Unnamed: 0.1'])
     y = 0
     for i in range(len(table)):
         if table['Cluster'].loc[i] == cluster:
             tableCluster.loc[y] = [table['voti_totali'].loc[i], table['humor'].loc[i], table['ritmo'].loc[i],
                                    table['impegno'].loc[i], table['tensione'].loc[i], table['erotismo'].loc[i],
-                                   table['titolo_italiano'].loc[i], table['anno'].loc[i]]
+                                   table['titolo_italiano'].loc[i], table['anno'].loc[i], table['Unnamed: 0.1'].loc[i]]
             y += 1
 
 
@@ -105,4 +112,4 @@ def calculateDistaceMetrics(a, alg):
         if min is None or media < min[0]:
             min = (media, i)
 
-    return tableCluster['titolo_italiano'].loc[min[1]] #+ "--" + str(tableCluster['anno'].loc[min[1]])
+    return [tableCluster['Unnamed: 0.1'].loc[min[1]], tableCluster['titolo_italiano'].loc[min[1]]]

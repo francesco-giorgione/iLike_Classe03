@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 
 public class ActivityChatbot extends AppCompatActivity {
@@ -36,6 +37,7 @@ public class ActivityChatbot extends AppCompatActivity {
     private String utterances;
     //private List<ContenutoBean> contenuti;
     private ContenutoBean[] contenuti;
+    private Account account;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,6 +53,8 @@ public class ActivityChatbot extends AppCompatActivity {
         //contenuti = (List<ContenutoBean>) getIntent().getExtras().getSerializable("contenuti");
 
         contenuti = (ContenutoBean[]) getIntent().getExtras().getSerializable("contenuti");
+        account= (Account) getIntent().getExtras().getSerializable("account");
+
 
 
         //List<ContenutoBean> contenutiList = new ArrayList<>(Arrays.asList(contenuti));
@@ -132,21 +136,35 @@ public class ActivityChatbot extends AppCompatActivity {
 
                     //risposta chatBot al messaggio
 
+                    Messaggio rispostaChatBot = new Messaggio();
 
                     PyObject obj= pyobj.callAttr("main", utterances, contenuti); //PyObject obj= pyobj.callAttr(function name, first argument, second argument, ...);
 
                     String risposta;
 
+                    //System.out.println(obj.toString());
                     if (obj==null)
                         risposta= "Non ho capito la domanda";
                     else if (obj.toString().equalsIgnoreCase("Certo! Scegli l'algoritmo che preferisci utilizzare.")) {
                         risposta = obj.toString();
                         risposta+="\n\nDigita:\nkms per k-means\ndbs per DBScan";
                     }
+                    else if (obj.toString().contains("[")){
+                        //System.out.println(obj.toString());
+                        String[] stringhe= obj.toString().split(", ");
+                        //System.out.println(stringhe[0]);
+                        risposta=stringhe[1].substring(1, stringhe[1].length()-2);
+                        rispostaChatBot.setId(Integer.parseInt(stringhe[0].substring(1)));
+                        rispostaChatBot.setAccount(account);
+                    }
                     else
                         risposta=obj.toString();
                     dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
-                    Messaggio rispostaChatBot = new Messaggio(risposta,"iLike chatbot",dateTime,isMine);
+                    rispostaChatBot.setTesto(risposta);
+                    rispostaChatBot.setUtente("iLike chatbot");
+                    rispostaChatBot.setOra(dateTime);
+                    rispostaChatBot.setMine(isMine);
+                    //rispostaChatBot = new Messaggio(risposta,"iLike chatbot",dateTime,isMine);
                     messaggi.add(rispostaChatBot);
                     adapter.notifyDataSetChanged();
                     messaggioDigitato.setText("");

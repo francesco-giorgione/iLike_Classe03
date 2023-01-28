@@ -1,15 +1,19 @@
 package it.unisa.ilike.moduloFIA;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unisa.ilike.R;
+import it.unisa.ilike.contenuti.application.activities.VisualizzazioneDettagliataContenutoActivity;
 
 public class MessageListAdapter extends ArrayAdapter<Messaggio> {
 
@@ -49,6 +53,21 @@ public class MessageListAdapter extends ArrayAdapter<Messaggio> {
         //inizializzo il messaggio
         holder.msg.setText(messaggio.getTesto());
         holder.ora.setText(messaggio.getOra());
+        if (messaggio.getAccount()!=null && messaggio.getId()>0) {
+            holder.info.setVisibility(View.VISIBLE);
+            holder.info.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent();
+                    i.setClass(activity.getApplicationContext(), VisualizzazioneDettagliataContenutoActivity.class);
+                    i.putExtra("idContenuto", messaggio.getId());
+                    i.putExtra("account", (Serializable) messaggio.getAccount());
+                    activity.startActivity(i);
+                }
+            });
+        }
+        else
+            holder.info.setVisibility(View.INVISIBLE);
         return view;
     }
 
@@ -66,9 +85,11 @@ public class MessageListAdapter extends ArrayAdapter<Messaggio> {
     private class ViewHolder {
         private TextView msg;
         private TextView ora;
+        private ImageView info;
         public ViewHolder(View v) {
             msg = (TextView) v.findViewById(R.id.textView_messaggio);
             ora= (TextView) v.findViewById(R.id.textView_orario);
+            info= (ImageView) v.findViewById(R.id.buttonInfoFilm);
         }
 
     }

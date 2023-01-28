@@ -1,6 +1,12 @@
 package it.unisa.ilike.moduloFIA;
 
+import it.unisa.ilike.account.storage.Account;
+
 public class Messaggio {
+
+    public Messaggio(){
+
+    }
 
     public Messaggio(String testo, String utente,String dataOra, boolean isMine) {
         this.testo = testo;
@@ -37,6 +43,22 @@ public class Messaggio {
         return isMine;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Account getAccount(){
+        return this.account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public void setMine(boolean mine) {
         isMine = mine;
     }
@@ -46,4 +68,6 @@ public class Messaggio {
     private String utente;
     private String ora;
     private boolean isMine;
+    private Account account;
+    private int id;
 }
