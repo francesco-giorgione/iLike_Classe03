@@ -57,10 +57,12 @@
 
     \chapter{Introduzione}\label{ch:introduzione}
 
+
         Con l'avvento del digitale è in costante crescita il numero di persone - di ogni fascia di età - che scelgono
         di guardare un film nel proprio tempo libero. Di conseguenza, aumenta la voglia di scoprire sempre nuovi contenuti
         in base alle proprie preferenze e rimanere costantemente aggiornati sulle ultime novità. La maggior parte degli utenti,
         però, è spesso indecisa su quale film scegliere e passa gran parte del tempo a navigare tra i contenuti disponibili.
+
         A tal proposito \textit{iLike}, oltre a realizzare una piattaforma unificata che consente di recensire contenuti, offre
         la possibilità di interagire con un Conversational Agent, il cui ruolo principale è fornire all'utente indicazioni circa possibili
         film da vedere, sulla base delle sue preferenze.
@@ -115,7 +117,8 @@
 
             Il problema che l'agente intelligente dovrà risolvere consiste nel suggerire film da vedere in base ai contenuti
             presenti nei dataset dell'applicazione e soprattutto in merito alle preferenze espresse dagli utenti (in base ai
-            contenuti della lista preferiti dell'iscritto).\\
+            contenuti della lista preferiti dell'iscritto).
+
             Il problema in esame può essere risolto con un algoritmo di apprendimento, in quanto consiste nel migliorare l'esecuzione
             di un task (T= fornire suggerimenti personalizzati) rispetto ad una misura di prestazione (P= numero di suggerimenti accettati
             dall'utente) e sulla base dell'esperienza (E= dataset di film). Inoltre l'algoritmo di apprendimento
@@ -149,7 +152,7 @@
                 \item Cercare dataset con le informazioni relative ai film e creare cluster di film.
             \end{itemize}
 
-            \\\\I pro e i contro delle alternative sopra elencate sono:
+            \\I pro e i contro delle alternative sopra elencate sono:
             \begin{itemize}
                 \item La disponibilità di dati era maggiore nei dataset già esistenti;
                 \item Ogni utente ha gusti differenti, quindi la similarità tra utenti, rappresentata come il numero di contenuti uguali
@@ -214,7 +217,8 @@
                 \includegraphics[width=13cm, height=5cm]{dataPreparation/zScore.png}\\
             \end{center}
 
-            \\Come evidenziato nei grafici, la tecnica dello Z-Score Normalizzation è meno tendente ai valori estremi.
+
+            Come evidenziato nei grafici, la tecnica dello Z-Score Normalizzation è meno tendente ai valori estremi.
             Dunque, abbiamo preferito tale tecnica al fine di effettuare una corretta normalizzazione dei dati.
 
         \section{Feature Selection}\label{sec:feature-selection}
@@ -230,10 +234,11 @@
                 \begin{center}
                     \includegraphics[width=13cm, height=7cm]{dataPreparation/Matrice di Correlazione.png}\\
                 \end{center}
-                Come si può notare la feature 'anno' è inversamente correlata con quasi tutte le variabili, e la variabile
-                'voto\_medio' ha meno correlazione tra le variabili rispetto a 'voto\_totale'.
-                Dunque abbiamo eliminato le feature 'anno' e 'voto\_medio'.
             \end{itemize}
+
+            Come si può notare la feature 'anno' è inversamente correlata con quasi tutte le variabili, e la variabile
+            'voto\_medio' ha meno correlazione tra le variabili rispetto a 'voto\_totale'.
+            Dunque abbiamo eliminato le feature 'anno' e 'voto\_medio'.
 
         \section{Data Balancing}\label{sec:data-balancing}
             Lo scopo del Data Balancing è bilanciare i dati, al fine di avere lo stesso numero di istanze in tutte le classi.
@@ -252,22 +257,22 @@
 
             \subsection{K-Means}
                 Per quanto riguarda l'algoritmo di clustering K-Means, questo viene realizzato tramite la funzione KMeans()
-                della libreria sklearn.cluster.
+                della libreria \textit{sklearn.cluster}.
                 Tale funzione permette di definire alcuni parametri di input, pertanto abbiamo valutato l'algoritmo di K-Means
                 con diversi valori per due di questi parametri.
 
                 Per il parametro che permette di definire il metodo per l'inizializzazione abbiamo valutato due opzioni:
                     \begin{itemize}
-                        \item random, che sceglie n cluster di osservazioni (righe) a caso dai dati per i centroidi iniziali;
-                        \item k-means++, che garantisce un'inizializzazione più intelligente dei centroidi e migliora la qualità del clustering.
+                        \item \textbf{random}, che sceglie n cluster di osservazioni (righe) a caso dai dati per i centroidi iniziali;
+                        \item \textbf{k-means++}, che garantisce un'inizializzazione più intelligente dei centroidi e migliora la qualità del clustering.
                     \end{itemize}
 
                 Dopo aver valutato i due metodi di inizializzazione sul nostro dataset, abbiamo scelto il metodo k-means++, in quanto più adatto
                 a dividere il nostro dataset in cluster distinti.Per quanto riguarda il parametro che specifica l'algoritmo che utilizza il K-Means
                 abbiamo valutato le seguenti opzioni:
                 \begin{itemize}
-                    \item llyod, che è quello utilizzato di default;
-                    \item elkan, che usa la disuguaglianza triangolare.
+                    \item \textbf{llyod}, che è quello utilizzato di default;
+                    \item \textbf{elkan}, che usa la disuguaglianza triangolare.
                 \end{itemize}
 
                 A seguito di un confronto abbiamo preferito utilizzare l'algoritmo di elkan, in quanto il numero di iterazioni effettuate per arrivare ad ottenere
@@ -279,11 +284,11 @@
                 \end{center}
 
             \subsection{DBScan}
-                L'algoritmo di clustering DBScan viene realizzato tramite la funzione DBSCAN() della libreria sklearn.cluster.
+                L'algoritmo di clustering DBScan viene realizzato tramite la funzione DBSCAN() della libreria \textit{sklearn.cluster}.
                 Anche questa funzione permette di definire alcuni parametri di input, che sono:
                 \begin{itemize}
-                    \item eps, che definisce un intorno circolare di ciascun punto dai suoi vicini;
-                    \item min samples, che stabilisce il numero minimo di punti per considerare un intorno di un punto denso.
+                    \item \textbf{eps}, che definisce un intorno circolare di ciascun punto dai suoi vicini;
+                    \item \textbf{min samples}, che stabilisce il numero minimo di punti per considerare un intorno di un punto denso.
                 \end{itemize}
 
                 La scelta dei valori effettuata è stata eps=1 e min samples=5. Di seguito è riportato il clustering ottenuto con
@@ -305,16 +310,16 @@
                 libreria Python \textit{scikit-learn}. Dopo aver caricato i valori presenti nel dataset e inizializzato una nuova
                 lista (\textit{inertias[]}), abbiamo provveduto ad eseguire il k-means su un numero crescente di cluster, memorizzando
                 ad ogni iterazione il valore di inerzia prodotto.
+
                 Quest'ultimo è una misura della qualità dei cluster generati, in quanto si riferisce alla misura di somiglianza ottenuta
                 all'interno dei cluster.
                 Più bassa è l'inerzia, più simili sono i punti all'interno di un cluster.
                 L'inerzia di un cluster è calcolata come la somma delle distanze quadratiche tra ciascun punto del cluster e il
                 centroide del cluster stesso.
+
                 Il punto in cui si osserva una diminuzione significativa dell'inerzia indica il numero ottimale di cluster, ovviamente
                 si cerca di scegliere il numero di cluster che massimizzi la differenziazione tra cluster e
-                minimizzi l'inerzia all'interno dei cluster stessi.
-
-                Il grafico ottenuto è il seguente:
+                minimizzi l'inerzia all'interno dei cluster stessi. Il grafico ottenuto è il seguente:
 
                 \begin{center}
                     \includegraphics[width=8cm]{evaluation/elbowPoint}\\
@@ -323,11 +328,12 @@
                 Come è possibile notare leggendo il grafico, si nota una diminuzione dell'inerzia con l'utilizzo di un k da 7 in su.
                 Sebbene l’errore venga minimizzato quando i cluster aumentano, avere un numero eccessivo di cluster implica avere tanti gruppi
                 formati da pochi elementi.
+
                 Valutando i grafici ottenuti con l'esecuzione dell'algoritmo k-means al variare della variabile k da 7 a 10 (mostrati di seguito),
                 abbiamo notato che, al crescere del valore della variabile k, alcuni cluster si mantengono abbastanza stabili mentre altri
                 tendono ad essere fin troppo piccoli. Per questo motivo, risultano migliori i cluster ottenuti con l'utilizzo
-                della variabile k pari ad 8 o a 9. Abbiamo ritenuto opportuno demandare tale scelta alla fase successiva, con l'ausilio del calcolo del silhouette
-                coefficient.
+                della variabile k pari ad 8 o a 9.
+                Abbiamo ritenuto opportuno demandare tale scelta alla fase successiva, con l'ausilio del calcolo del silhouette coefficient.
                 \begin{center}
                     \includegraphics[width=6cm]{evaluation/k=7}
                     \includegraphics[width=6cm]{evaluation/k=8} \\
@@ -342,13 +348,14 @@
                 per k=7 in su.
                 Pertanto abbiamo valutato il silhouette coefficient eseguendo il K-Means con un numero di cluster che variava
                 nel range da 7 a 10.
-                Quindi, utilizzando la libreria di Python sklearn, per ogni valore di 7<=k<=10, abbiamo eseguito il k-means sul
+
+                Quindi, utilizzando la libreria di Python \textit{sklearn}, per ogni valore di 7<=k<=10, abbiamo eseguito il k-means sul
                 nostro dataset. Successivamente, tramite la funzione silhouette\_{}score(), abbiamo calcolato il silhouette score,
                 ossia una misura della coesione e separazione tra i dati.
                 Siamo passati poi a calcolare il silhouette score per ogni campione dei cluster utilizzando l'apposita funzione
                 silhouette\_{}samples().
 
-                Vengono riportati di seguito i valori di silhouette score relativi al numero di cluster indicato
+                Vengono riportati di seguito i valori di silhouette score relativi al numero di cluster indicato.
 
                 \begin{center}
                     \includegraphics[width=8cm]{evaluation/silhouette score}\\
@@ -367,10 +374,14 @@
         \section{DB-Scan Evaluation}\label{sec:dbscan-evaluation}
             \subsection{Silhouette Coefficient}
                 Il metodo di valutazione utilizzato per valutare i risultati prodotti dall'algoritmo DB-Scan è il Silhouette Coefficient,
-                fornito dalla libreria Python \textit{scikit-learn}. Dopo aver eseguito il DB-Scan con diversi valori sia per l'intorno
-                circolare, sia per il minimo numero di punti per considerare un intorno denso, abbiamo riportato di seguito le esecuzioni
-                più rilevanti. I grafici sottoriportati evidenziano il valore del silhouette score e la divisione dei dati nei vari cluster
-                ottenuti. La linea verticale tratteggiata rappresenta la media delle Silhouette Score calcolate in preceneza.
+                fornito dalla libreria Python \textit{scikit-learn}.
+                Al fine di valutare i diversi risultati ottenuti, abbiamo eseguito il DB-Scan con diversi valori sia per l'intorno
+                circolare, sia per il minimo numero di punti per considerare un intorno denso, e per ogni esecuzione abbiamo calcolo il
+                Silhouette Coefficient.
+
+                Di seguito sono riportate le esecuzioni più rilevanti attraverso i grafici, i quali evidenziano il valore del silhouette score
+                e la divisione dei dati nei vari cluster ottenuti. La linea verticale tratteggiata rappresenta la media delle Silhouette Score
+                calcolate in precedenza.
 
                 \begin{center}
                     \includegraphics[width=14cm]{evaluation/DBScan_0.9-15.png}
@@ -378,7 +389,7 @@
                 \end{center}
 
                 Come si può notare dai grafici, nessuno rappresenta un clustering ottimale.
-                Nel secondo grafico si può notare una suddivisione sub-ottima in cluster in quanto:
+                Nel secondo grafico si può notare una suddivisione sub-ottima dei cluster in quanto:
                 \begin{itemize}
                     \item il numero di cluster è minore rispetto al primo grafico e ciò consente una migliore suddivisione dei dati nei cluster;
                     \item la media delle Silhouette Score è simile tra le due;
@@ -392,6 +403,7 @@
                 utenti finali, pertanto la scelta dell'algoritmo migliore tra il K-Means e il DBScan sarà rimandata in fase di utilizzo.
                 Questo sarà possibile in quanto il Conversational Agent permetterà ai beta tester di scegliere l'algoritmo di clustering
                 da utilizzare, chiedendo direttamente di effettuare tale scelta prima di iniziare il clustering.
+
 
     \chapter{Integrazione con il sistema}\label{ch:integrazione-con-il-sistema}
         Dopo aver scelto l'algoritmo di clustering da utilizzare e le conseguenti valutazioni su di esso, va definito come
@@ -419,7 +431,8 @@
             \item 120 battiti al minuto
             \item Tutti fratelli nel West... per parte di padre
         \end{itemize}
-        Sulla base degli elementi della lista dell'utente, abbiamo costruito un dizionario formato da
+
+        \\Sulla base degli elementi della lista dell'utente, abbiamo costruito un dizionario formato da
         coppie chiave-valore rispettivamente contenenti il titolo e l'anno di un film (chiave) e il cluster di appartenenza (valore).
         Successivamente abbiamo individuato il cluster contenente il maggior numero di elementi della lista di preferiti dell'iscritto
         (\textit{tableCluster}) e salvato all'interno di una nuova lista (\textit{newList}) i film che appartenevano a questa intersezione.
@@ -447,6 +460,7 @@
 
         In questo modo andiamo ad istruire il bot su come rispondere alle domande o alle frasi dell'utente. Per alcune domande
         sono state previste risposte multiple, in modo da rendere il bot meno monotono.
+
         \textit{Pairs} contiene domande e risposte specifiche per la nostra applicazione e per lo scopo
         principale della creazione del bot, ovvero il suggerimento di film in base ai gusti degli iscritti.
         Nel momento in cui l'iscritto digita un messaggio e lo invia, se questo avrà un match con uno dei pattern previsti allora
@@ -499,7 +513,7 @@
                 \hline \textbf{Elbow point} & Un metodo empirico, che consiste nel valutare i valori del parametro k
                         rispetto alla somma degli errori quadratici ottenuti dall’algoritmo
                         configurato per generare k cluster.\\
-                \hline \textbf{Silhouette Score/Silhouette Coefficient} & una misura della coesione e separazione tra i dati, cioè
+                \hline \textbf{Silhouette Score/Silhouette Coefficient} & Una misura della coesione e separazione tra i dati, cioè
                         quantifica quanto i dati siano ben disposti nei cluster generati.\\
                 \hline
             \end{tabular}
