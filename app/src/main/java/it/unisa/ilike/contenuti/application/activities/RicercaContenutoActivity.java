@@ -29,6 +29,8 @@ import it.unisa.ilike.account.storage.Account;
 import it.unisa.ilike.contenuti.storage.ContenutoBean;
 import it.unisa.ilike.contenuti.storage.FilmBean;
 import it.unisa.ilike.contenuti.storage.FilmDAO;
+import it.unisa.ilike.liste.storage.ListaBean;
+import it.unisa.ilike.moduloFIA.ActivityChatbot;
 import it.unisa.ilike.utils.InternetConnection;
 
 /**
@@ -105,6 +107,53 @@ public class RicercaContenutoActivity extends AppCompatActivity {
             i.setClass(RicercaContenutoActivity.this, VisualizzazioneHomepageActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
+        }
+    }
+
+    private class GsonResultGetListe extends AsyncTask<Void, Void, ArrayList<ListaBean>> {
+
+        private Boolean isOk= true;
+
+        @Override
+        protected ArrayList<ListaBean> doInBackground(Void... voids) {
+            if (account.getIscrittoBean()!=null){
+                ArrayList<ListaBean> listeIscritto = (ArrayList<ListaBean>) account.getIscrittoBean().getListe();
+                if (listeIscritto==null){
+                    isOk= false;
+                }
+                else
+                    return listeIscritto;
+            }
+            else
+                isOk=false;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<ListaBean> listeIscritto) {
+            Log.d("chatBot", "sono in onPostExecute");
+
+            if (isOk){
+                ArrayList<ContenutoBean> list= new ArrayList<>();
+                for (ListaBean l: listeIscritto){
+                    List<ContenutoBean> contenutiLista= l.getContenuti();
+                    for (ContenutoBean c: contenutiLista){
+                        list.add(c);
+                    }
+                }
+                ContenutoBean[] array = list.toArray(new ContenutoBean[list.size()]);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), ActivityChatbot.class);
+                i.putExtra("contenuti", array);
+                i.putExtra("account", account);
+                startActivity(i);
+            }
+            else{
+                Toast.makeText(Ric.this, "Devi essere loggato ed avere almeno una lista per effettuare questa " +
+                        "operazione!", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 
@@ -277,6 +326,11 @@ public class RicercaContenutoActivity extends AppCompatActivity {
         i.putExtra("account", (Serializable) account);
         startActivity(i);
     }
+
+    public void onClickChatBot (View v){
+        GsonResultGetListe g= (GsonResultGetListe) new GsonResultGetListe().execute(new Void[0]);
+    }
+
 
     private ImageButton profiloButton;
     private ImageButton homepageButton;
