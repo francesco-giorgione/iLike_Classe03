@@ -70,6 +70,13 @@ public class Account implements Serializable {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Account{" +
+                "email=" + iscrittoBean.getEmail() +
+                '}';
+    }
+
     private IscrittoBean iscrittoBean;
     private GestoreBean gestoreBean;
 }

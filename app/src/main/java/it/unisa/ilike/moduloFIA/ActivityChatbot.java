@@ -2,6 +2,7 @@ package it.unisa.ilike.moduloFIA;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -45,6 +46,8 @@ public class ActivityChatbot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
+        Log.d("--debug--", "Lancio ActivityChatbot");
+
         messaggi =new ArrayList<>();
         listView =(ListView)findViewById(R.id.messaggiList);
         btnSend =findViewById(R.id.sendButton);
@@ -67,6 +70,15 @@ public class ActivityChatbot extends AppCompatActivity {
         adapter = new MessageListAdapter(this, R.layout.activity_messaggio_bot, messaggi);
 
         listView.setAdapter(adapter);
+
+
+        Log.d("--debug--", "Liste dell'iscritto --> ");
+
+        for (ContenutoBean c: contenuti){
+            Log.d("--debug--", c.toString());
+        }
+
+        Log.d("--debug--", "Account --> "+ account.toString());
 
 
         //inizializzazione giorno chat
@@ -101,6 +113,7 @@ public class ActivityChatbot extends AppCompatActivity {
 
         String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
         //messaggio di benvenuto chatBot
+        Log.d("--debug--", "Messaggio di benvenuto --> Ciao, sono il chatbot di iLike. Come posso aiutarti?");
         Messaggio messaggio = new Messaggio("Ciao, sono il chatbot di iLike. Come posso aiutarti?","iLike chatbot", dateTime,isMine);
         messaggi.add(messaggio);
         adapter.notifyDataSetChanged();
@@ -120,6 +133,7 @@ public class ActivityChatbot extends AppCompatActivity {
                 }else {
 
                     //messaggio iscritto
+                    Log.d("--debug--", "Messaggio iscritto (utterances) --> "+messaggioDigitato.getText().toString());
                     String dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
                     Messaggio messaggio = new Messaggio(messaggioDigitato.getText().toString(),null,dateTime,isMine);
                     utterances= messaggioDigitato.getText().toString();
@@ -156,9 +170,12 @@ public class ActivityChatbot extends AppCompatActivity {
                         risposta=stringhe[1].substring(1, stringhe[1].length()-2);
                         rispostaChatBot.setId(Integer.parseInt(stringhe[0].substring(1)));
                         rispostaChatBot.setAccount(account);
+                        Log.d("--debug--", "ID contenuto trovato --> "+Integer.parseInt(stringhe[0].substring(1)));
+                        Log.d("--debug--", "Titolo contenuto trovato --> "+risposta);
                     }
                     else
                         risposta=obj.toString();
+                    Log.d("--debug--", "Risposta chatbot --> "+risposta);
                     dateTime = DateTimeFormatter.ofPattern("hh:mm a").format(LocalDateTime.now());
                     rispostaChatBot.setTesto(risposta);
                     rispostaChatBot.setUtente("iLike chatbot");

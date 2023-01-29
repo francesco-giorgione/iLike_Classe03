@@ -143,8 +143,7 @@ public abstract class ContenutoBean implements Serializable {
         return "ContenutoBean{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", valutazioneMedia=" + valutazioneMedia +
+                ", descrizione='" + descrizione + '\'' +
                 '}';
     }
 
