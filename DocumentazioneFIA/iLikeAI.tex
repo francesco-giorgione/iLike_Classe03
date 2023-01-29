@@ -131,7 +131,7 @@
 
             I suggerimenti verranno dati solo qualora l'utente ne faccia richiesta ed il tutto avviene in maniera automatica tramite l'utilizzo
             di un Conversational Agent. L'iscritto potrà interagire con quest'ultimo ogni qualvolta lo ritenga opportuno,
-            mediante \includegraphics[width=0.4cm]{deployment/icona_chatbot.png} presente nel footer delle varie activity dell'applicazione.
+            mediante il pulsante \includegraphics[width=0.4cm]{deployment/icona_chatbot.png} presente nel footer delle varie activity dell'applicazione.
             Una volta premuto tale pulsante l'utente potrà scrivere messaggi in base ai quali riceverà una risposta opportuna.
             Nel momento in cui richiederà un consiglio per un film, il Conversational Agent chiederà l'algoritmo che si vuole utilizzare e
             successivamente provvederà ad analizzare l'insieme di cluster di cui si dispone e "calcolare" la relativa risposta.
@@ -242,7 +242,7 @@
 
         \section{Data Balancing}\label{sec:data-balancing}
             Lo scopo del Data Balancing è bilanciare i dati, al fine di avere lo stesso numero di istanze in tutte le classi.
-            Nel nosto dataset le classi possono essere rappresentate dalla feature 'genere', ma avendo optato in fase di
+            Nel nosto dataset le etichette possono essere rappresentate dalla feature 'genere', ma avendo optato in fase di
             Business Understanding per un algoritmo di apprendimento non supervisionato, tale bilanciamento non è necessario
             in fase di Data Preparation.
 
@@ -257,7 +257,8 @@
             per effettuare il clustering tra gli elementi.
             Prima di effettuare la scelta dell'algoritmo da utilizzare abbiamo fatto un confronto tra due algoritmi di clustering molto
             usati, ossia il K-Means e il DBScan.
-            Entrambi gli algoritmi utilizzarano la distanza metrica euclidea.
+            Entrambi gli algoritmi utilizzano la distanza metrica euclidea, in quanto prevista di default dalle funzioni utilizzate della
+            libreria \textit{sklearn.cluster}.
 
             \subsection{K-Means}
                 Per quanto riguarda l'algoritmo di clustering K-Means, questo viene realizzato tramite la funzione KMeans()
@@ -308,8 +309,8 @@
 
     \chapter{Evaluation}\label{ch:evaluation}
 
-        Lo scopo dell'Evaluation è valutare se i risultati prodotti dell'algoritmo selezionato in fase di Modeling e definire aspetti
-        non molto chiari in fase di Modeling.
+        Lo scopo dell'Evaluation è valutare i risultati prodotti dall'algoritmo selezionato e definire aspetti non molto chiari della
+        fase di Modeling.
 
         \section{K-Means Evaluation}\label{sec:k-means-evaluation}
             \subsection{Elbow point}
@@ -491,11 +492,11 @@
         \includegraphics[width=3cm]{deployment/tasto_invia.png} e dopo pochi secondi la risposta del bot sarà visibile.
         A questo punto sarà possibile inviare un ulteriore messaggio a cui il bot risponderà e così via fino a quando l'utente non deciderà
         di uscire dalla pagina in questione tramite l'apposito pulsante \includegraphics[width=3cm]{deployment/tasto_back.png}
-        o tramite il tasto  del dispositivo mobile.
+        o tramite il tasto back del dispositivo mobile.
 
         Quando l'utente chiederà al CA un consiglio sul film da guardare, la risposta ottenuta sarà il titolo del film consigliato
-        con la possibilità di visualizzare tutti i dettagli del film tramite \includegraphics[width=0.4cm]{deployment/icona_information.png}
-        vicino messggio ricevuto.
+        con la possibilità di visualizzare tutti i dettagli del film tramite il pulsante
+        \includegraphics[width=0.4cm]{deployment/icona_information.png} vicino messggio ricevuto.
 
         \\Nel caso in cui, l'utente non ha liste a lui associate oppure ha liste ma non ha contenuti all'interno delle liste,
         il Conversational Agent inviterà l'utente a creare ed aggiungere nelle liste i suoi film preferiti.
@@ -504,6 +505,11 @@
     \chapter{Glossario}\label{ch:glossario}
         \begin{adjustbox}{width=\columnwidth,center}
             \begin{tabular}{|>{\columncolor{Goldenrod}}c|p{8cm}|}
+                \hline \textbf{Clustering} & Attività che ha l’obiettivo di raggruppare oggetti in gruppi che abbiano un certo grado
+                        di omogeneità ma che, al tempo stesso, abbiamo un certo grado di eterogeneità rispetto agli altri gruppi.\\
+                \hline \textbf{Apprendimento non supervisionato} & L'agente apprende usando dati non etichettati, quindi in grado di
+                        imparare senza conoscere il valore reale della variabile dipendente.\\
+                \hline \textbf{Centroide} & Punto medio di un cluster.\\
                 \hline \textbf{Conversational Agent/CA} & Bot che interpreta e risponde alle dichiarazioni fatte dagli utenti
                         in un linguaggio naturale, attraverso la  generazione di una conversazione simil-umana.\\
                 \hline \textbf{Lista di contenuti} & Sottoinsieme di contenuti offerti da iLike, scelti dagli utenti secondo i loro gusti
@@ -522,6 +528,9 @@
                         configurato per generare k cluster.\\
                 \hline \textbf{Silhouette Score/Silhouette Coefficient} & Una misura della coesione e separazione tra i dati, cioè
                         quantifica quanto i dati siano ben disposti nei cluster generati.\\
+                \hline \textbf{Utterances} & Messaggi in linguaggio naturale dati in input al CA da un utente umano.\\
+                \hline \textbf{Misura metrica} & Una quantità calcolabile di distanza tra più elementi di un cluster.\\
+                \hline \textbf{Distanza euclidea} & Calcola la distanza tra due punti in un piano cartesiano.\\
                 \hline
             \end{tabular}
         \end{adjustbox}
